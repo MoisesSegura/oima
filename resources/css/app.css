@@ -1,0 +1,5 @@
+@import '../../vendor/filament/forms/dist/index.css';
+@import '../../../../vendor/codedor/filament-translatable-tabs/resources/css/plugin.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
