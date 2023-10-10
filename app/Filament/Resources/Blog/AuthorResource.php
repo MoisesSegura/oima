@@ -15,6 +15,8 @@ class AuthorResource extends Resource
 {
     protected static ?string $model = Author::class;
 
+    protected static bool $shouldRegisterNavigation = false;//invisible
+
     protected static ?string $slug = 'blog/authors';
 
     protected static ?string $recordTitleAttribute = 'name';

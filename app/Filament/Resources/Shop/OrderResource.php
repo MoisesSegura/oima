@@ -24,6 +24,8 @@ class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
+    protected static bool $shouldRegisterNavigation = false;//invisible
+
     protected static ?string $slug = 'shop/orders';
 
     protected static ?string $recordTitleAttribute = 'number';

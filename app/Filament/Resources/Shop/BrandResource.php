@@ -17,6 +17,8 @@ class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
 
+    protected static bool $shouldRegisterNavigation = false;//invisible
+
     protected static ?string $slug = 'shop/brands';
 
     protected static ?string $recordTitleAttribute = 'name';

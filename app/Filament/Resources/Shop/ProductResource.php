@@ -22,6 +22,8 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
+    protected static bool $shouldRegisterNavigation = false;//invisible
+
     protected static ?string $slug = 'shop/products';
 
     protected static ?string $recordTitleAttribute = 'name';

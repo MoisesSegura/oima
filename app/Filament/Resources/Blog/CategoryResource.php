@@ -19,6 +19,8 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $slug = 'blog/categories';
 
     protected static ?string $recordTitleAttribute = 'name';

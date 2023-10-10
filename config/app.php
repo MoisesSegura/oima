@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Astrotomic\Translatable\TranslatableServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

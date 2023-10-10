@@ -19,6 +19,8 @@ class CustomerResource extends Resource
 {
     protected static ?string $model = Customer::class;
 
+    protected static bool $shouldRegisterNavigation = false;//invisible
+
     protected static ?string $slug = 'shop/customers';
 
     protected static ?string $recordTitleAttribute = 'name';

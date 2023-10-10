@@ -9,11 +9,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Tags\HasTags;
 
-class Post extends Model
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable; 
+use App\Models\PostTranslation;
+
+
+class Post extends Model implements TranslatableContract
 {
     use HasFactory;
     use HasTags;
+    use Translatable;
 
+    // 3. To define which attributes needs to be translated
+    public $translatedAttributes = ['title','content'];
+
+    protected $fillable = ['name'];
     /**
      * @var string
      */
@@ -41,3 +51,14 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 }
+
+
+
+
+
+    //    // Scope para obtener los posts traducidos al español
+    //    public function scopeTranslatedInSpanish($query)
+    //    {
+    //        return $query->whereTranslation('locale', 'es');
+    //    }
+

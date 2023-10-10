@@ -18,10 +18,25 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use App\Models\PostTranslation;
+
+use Filament\Forms\Components\Tabs;
+use Filament\Resources\Pages\ListRecords\Tab;
+use App\Livewire\CreatePost;
+
+use App\Filament\Traits\Translatable;
+
+
+
 
 class PostResource extends Resource
 {
+
+    use Translatable;
+
     protected static ?string $model = Post::class;
+
+    // protected static bool $shouldRegisterNavigation = false;//invisible
 
     protected static ?string $slug = 'blog/posts';
 
@@ -37,42 +52,79 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
+                Tabs::make('Mis formularios') 
+                    ->tabs([
+                        Tabs\Tab::make('Eng') 
+                            ->schema([
+                                Forms\Components\TextInput::make('en.title')
+                                    ->required()
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' 
+                                    ? $set('slug', Str::slug($state)) : null), 
+
+                                Forms\Components\MarkdownEditor::make('en.content')
+                                    ->required(),
+                   
+                            ]),
+                        Tabs\Tab::make('Esp')
+                        ->schema([
+                            Forms\Components\TextInput::make('es.title')
+                                ->required()
+                                ->live(onBlur: true)
+                                ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' 
+                                ? $set('slug', Str::slug($state)) : null),
+
+                            Forms\Components\MarkdownEditor::make('es.content')
+                                ->required(),
+                               
+                        ]),
+                        Tabs\Tab::make('PT')
+                        ->schema([
+                            Forms\Components\TextInput::make('pt.title')
+                                ->required()
+                                ->live(onBlur: true)
+                                ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' 
+                                ? $set('slug', Str::slug($state)) : null),
+
+                            Forms\Components\MarkdownEditor::make('pt.content')
+                                ->required(),
+                               
+                        ]),
+                        
+                    ])
+                    ->columns('full'), 
+    
+                //  el resto de los inputs
+                
+                
                 Forms\Components\Group::make()
                     ->schema([
                         Forms\Components\Section::make()
                             ->schema([
-                                Forms\Components\TextInput::make('title')
-                                    ->required()
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
 
                                 Forms\Components\TextInput::make('slug')
-                                    ->disabled()
-                                    ->dehydrated()
-                                    ->required()
-                                    ->unique(Post::class, 'slug', ignoreRecord: true),
-
-                                Forms\Components\MarkdownEditor::make('content')
-                                    ->required()
-                                    ->columnSpan('full'),
+                                ->disabled()
+                                ->dehydrated()
+                                ->required()
+                                ->unique(Post::class, 'slug', ignoreRecord: true),
 
                                 Forms\Components\Select::make('blog_author_id')
                                     ->relationship('author', 'name')
                                     ->searchable()
                                     ->required(),
-
+    
                                 Forms\Components\Select::make('blog_category_id')
                                     ->relationship('category', 'name')
                                     ->searchable()
                                     ->required(),
-
+    
                                 Forms\Components\DatePicker::make('published_at')
                                     ->label('Published Date'),
-
+    
                                 SpatieTagsInput::make('tags'),
                             ])
                             ->columns(2),
-
+    
                         Forms\Components\Section::make('Image')
                             ->schema([
                                 Forms\Components\FileUpload::make('image')
@@ -83,13 +135,13 @@ class PostResource extends Resource
                             ->collapsible(),
                     ])
                     ->columnSpan(['lg' => fn (?Post $record) => $record === null ? 3 : 2]),
-
+    
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
                             ->label('Created at')
                             ->content(fn (Post $record): ?string => $record->created_at?->diffForHumans()),
-
+    
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
                             ->content(fn (Post $record): ?string => $record->updated_at?->diffForHumans()),
@@ -98,10 +150,11 @@ class PostResource extends Resource
                     ->hidden(fn (?Post $record) => $record === null),
             ])
             ->columns([
-                'sm' => 3,
-                'lg' => null,
+                'sm' => '3',
+                'lg' => 'full',
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -112,7 +165,10 @@ class PostResource extends Resource
 
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        return $query->whereTranslationLike('name', "%{$search}%");
+                    }),
 
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable()
@@ -174,6 +230,7 @@ class PostResource extends Resource
 
                         return $indicators;
                     }),
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -193,9 +250,13 @@ class PostResource extends Resource
             ]);
     }
 
+    
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
+
+        
             ->schema([
                 Components\Section::make()
                     ->schema([
@@ -231,13 +292,25 @@ class PostResource extends Resource
                             ->hiddenLabel(),
                     ])
                     ->collapsible(),
-            ]);
+                    ]);
+
+             
+
+    }
+
+
+    public static function store(StorePostRequest $request)
+    {
+        Post::create($request->validated());
+
+        return redirect()->route('dashboard');
     }
 
     public static function getRelations(): array
     {
         return [
             RelationManagers\CommentsRelationManager::class,
+
         ];
     }
 
@@ -253,12 +326,12 @@ class PostResource extends Resource
 
     public static function getGlobalSearchEloquentQuery(): Builder
     {
-        return parent::getGlobalSearchEloquentQuery()->with(['author', 'category']);
+        return parent::getGlobalSearchEloquentQuery()->with(['author', 'category', 'posttranslation']);
     }
 
     public static function getGloballySearchableAttributes(): array
     {
-        return ['title', 'slug', 'author.name', 'category.name'];
+        return ['title', 'slug', 'author.name', 'category.name', 'posttranslation.title', 'posttranslation.content'];
     }
 
     public static function getGlobalSearchResultDetails(Model $record): array
@@ -274,6 +347,90 @@ class PostResource extends Resource
             $details['Category'] = $record->category->name;
         }
 
+        if ($record->posttranslation) {
+            $details['PostTranslation'] = $record->posttranslation->title;
+        }
+
+        if ($record->posttranslation) {
+            $details['PostTranslation'] = $record->posttranslation->content;
+        }
+
+
         return $details;
     }
 }
+
+
+
+// public static function form(Form $form): Form
+// {
+//     return $form
+
+//         ->schema([
+//             Forms\Components\Group::make()
+                
+//                 ->schema([
+//                     Forms\Components\Section::make()
+//                         ->schema([
+//                             Forms\Components\TextInput::make('title')
+//                                 ->required()
+//                                 ->live(onBlur: true)
+//                                 ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+
+//                             Forms\Components\TextInput::make('slug')
+//                                 ->disabled()
+//                                 ->dehydrated()
+//                                 ->required()
+//                                 ->unique(Post::class, 'slug', ignoreRecord: true),
+
+//                             Forms\Components\MarkdownEditor::make('content')
+//                                 ->required()
+//                                 ->columnSpan('full'),
+
+//                             Forms\Components\Select::make('blog_author_id')
+//                                 ->relationship('author', 'name')
+//                                 ->searchable()
+//                                 ->required(),
+
+//                             Forms\Components\Select::make('blog_category_id')
+//                                 ->relationship('category', 'name')
+//                                 ->searchable()
+//                                 ->required(),
+
+//                             Forms\Components\DatePicker::make('published_at')
+//                                 ->label('Published Date'),
+
+//                             SpatieTagsInput::make('tags'),
+//                         ])
+//                         ->columns(2),
+
+//                     Forms\Components\Section::make('Image')
+//                         ->schema([
+//                             Forms\Components\FileUpload::make('image')
+//                                 ->label('Image')
+//                                 ->image()
+//                                 ->disableLabel(),
+//                         ])
+//                         ->collapsible(),
+//                 ])
+//                 ->columnSpan(['lg' => fn (?Post $record) => $record === null ? 3 : 2]),
+
+//             Forms\Components\Section::make()
+//                 ->schema([
+//                     Forms\Components\Placeholder::make('created_at')
+//                         ->label('Created at')
+//                         ->content(fn (Post $record): ?string => $record->created_at?->diffForHumans()),
+
+//                     Forms\Components\Placeholder::make('updated_at')
+//                         ->label('Last modified at')
+//                         ->content(fn (Post $record): ?string => $record->updated_at?->diffForHumans()),
+//                 ])
+//                 ->columnSpan(['lg' => 1])
+//                 ->hidden(fn (?Post $record) => $record === null),
+                
+//         ])
+//         ->columns([
+//             'sm' => 3,
+//             'lg' => null,
+//         ]);
+// }
