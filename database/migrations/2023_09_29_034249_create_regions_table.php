@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
+            // $table->string('name'); translatables
+            // $table->string('type')->default('');
+            $table->string('slug');
+            $table->string('hide_locale')->nullable();
             $table->timestamps();
         });
     }

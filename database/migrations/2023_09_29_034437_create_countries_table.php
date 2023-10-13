@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('region_id')->constrained('regions');
+            // $table->string('name'); translatable
+            $table->string('slug');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('flag_id')->nullable();
             $table->timestamps();
+
         });
     }
 

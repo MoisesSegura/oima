@@ -18,13 +18,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use App\Models\PostTranslation;
 
+use App\Models\PostTranslation;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
-use App\Livewire\CreatePost;
 
-use App\Filament\Traits\Translatable;
+use App\Filament\Traits\Translatable;//necesario para guardar y buscar traducciones del resource
 
 
 
@@ -36,7 +35,7 @@ class PostResource extends Resource
 
     protected static ?string $model = Post::class;
 
-    // protected static bool $shouldRegisterNavigation = false;//invisible
+    protected static bool $shouldRegisterNavigation = false;//invisible
 
     protected static ?string $slug = 'blog/posts';
 

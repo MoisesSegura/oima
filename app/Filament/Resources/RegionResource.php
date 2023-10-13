@@ -13,23 +13,78 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use App\Models\RegionTranslation;
+use Filament\Forms\Components\Tabs;
+use Filament\Resources\Pages\ListRecords\Tab;
+
+use App\Filament\Traits\Translatable;
+
 class RegionResource extends Resource
 {
     protected static ?string $model = Region::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
 
+    protected static ?string $navigationGroup = 'Countries and Regions';
+
     public static function form(Form $form): Form
     {
+
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('type')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        ->schema([
+            Tabs::make('Mis formularios') 
+                ->tabs([
+                    Tabs\Tab::make('En') 
+                        ->schema([
+                            Forms\Components\TextInput::make('en.name') 
+                            ->required(),
+
+                            Forms\Components\TextInput::make('en.type')->required()
+                            ->maxLength(255),
+               
+                        ]),
+                    Tabs\Tab::make('Es')
+                        ->schema([
+                            Forms\Components\TextInput::make('es.name')
+                            ->required(),
+
+                            Forms\Components\TextInput::make('es.type')
+                            ->required()
+                            ->maxLength(255),
+                           
+                    ]),
+                    Tabs\Tab::make('Pt')
+                        ->schema([
+                            Forms\Components\TextInput::make('pt.name')
+                            ->required(),
+
+                            Forms\Components\TextInput::make('pt.type')
+                            ->required()
+                            ->maxLength(255),
+                           
+                    ]),
+                    
+                ]),
+                // ->columns('full'), 
+
+            //  el resto de los inputs            
+            Forms\Components\Group::make()
+                ->schema([
+                    Forms\Components\Section::make()
+                        ->schema([
+
+                            Forms\Components\TextInput::make('slug')
+                            ->required(),
+                            
+                        ])
+                ])
+
+        ])
+        ->columns([
+            'sm' => '3',
+            'lg' => '2',
+        ]);
+            
     }
 
     public static function table(Table $table): Table
