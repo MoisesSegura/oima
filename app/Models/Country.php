@@ -12,6 +12,8 @@ use Astrotomic\Translatable\Translatable;
 
 class Country extends Model implements TranslatableContract
 {
+
+    protected $table = 'country';
    
     use HasFactory;
     use Translatable;
@@ -28,5 +30,11 @@ class Country extends Model implements TranslatableContract
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'region_id');
+    }
+
+
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class, 'country_id');
     }
 }

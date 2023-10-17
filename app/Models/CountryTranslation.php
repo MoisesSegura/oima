@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CountryTranslation extends Model
 {
     use HasFactory;
-    protected $table = 'country_translations';
+    protected $table = 'info_country_translation';
 
-    protected $fillable = ['name'];
+    // protected $fillable = ['name'];
     public $timestamps = false;
 
     public function regiontranslation(): BelongsTo
@@ -21,6 +21,11 @@ class CountryTranslation extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'region_id');
+    }
+
+    public function organizations(): HasMany
+    {
+        return $this->hasMany(Organization::class, 'country_id');
     }
 
 

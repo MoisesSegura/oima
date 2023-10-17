@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use Filament\Support\Colors\Color;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -33,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
-            ])
+            ]) 
             
 
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
@@ -42,7 +43,7 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\FilamentInfoWidget::class,
             ])
             // ->navigationGroups([
-            //     'Shop',
+            //     'base products',
             //     'Blog',
             // ])
             ->databaseNotifications()
@@ -58,8 +59,6 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             
-            // ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
-            // ->plugin(FilamentLanguageSwitchPlugin::make())
 
             ->plugins([
                 FilamentSpatieRolesPermissionsPlugin::make(),

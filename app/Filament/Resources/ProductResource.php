@@ -13,10 +13,14 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
 use App\Models\ProductTranslation;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
+use App\Models\Category; //para el select
 
+use Illuminate\Database\Eloquent\Model; //global search
 use App\Filament\Traits\Translatable;
 
 class ProductResource extends Resource
@@ -38,18 +42,25 @@ class ProductResource extends Resource
                         ->schema([
                             Forms\Components\TextInput::make('en.name') 
                             ->required(),
+
+                            Forms\Components\Hidden::make('en.file_real')
+                            ->default('default'),
                
                         ]),
                     Tabs\Tab::make('Es')
                         ->schema([
                             Forms\Components\TextInput::make('es.name')
                             ->required(),
+                            Forms\Components\Hidden::make('es.file_real')
+                            ->default('default'),
                            
                     ]),
                     Tabs\Tab::make('Pt')
                         ->schema([
                             Forms\Components\TextInput::make('pt.name')
                             ->required(),
+                            Forms\Components\Hidden::make('pt.file_real')
+                            ->default('default'),
                            
                     ]),
                     
@@ -62,12 +73,17 @@ class ProductResource extends Resource
                     Forms\Components\Section::make()
                         ->schema([
                             Forms\Components\Select::make('category_id')
-                            ->relationship('CategoryTranslation', 'name')
                             ->label('Category')
+                            ->options(Category::all()->pluck('name', 'id'))
                             ->searchable()
                             ->required(),
+
+                        Forms\Components\FileUpload::make('file_real')
+                        ->label('file')
+                        ->required(),
                         Forms\Components\FileUpload::make('image')
-                            ->image(),
+                            ->image()
+                            ->required(),
                         Forms\Components\TextInput::make('scientific_name')
                             ->required()
                             ->maxLength(255),
@@ -144,4 +160,28 @@ class ProductResource extends Resource
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
     }    
+
+    public static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['category']);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'category.name'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        /** @var Post $record */
+        $details = [];
+
+        if ($record->author) {
+            $details['Category'] = $record->category->name;
+        }
+
+
+
+        return $details;
+    }
 }

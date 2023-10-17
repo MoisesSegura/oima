@@ -10,14 +10,18 @@ use App\Models\Region;
 class RegionTranslation extends Model
 {
     use HasFactory;
-    protected $table = 'region_translations';
+    protected $table = 'region_translation';
+    public $timestamps = false;
 
     protected $fillable = ['name', 'type'];
-    public $timestamps = false;
 
     public function countries(): HasMany
     {
         return $this->hasMany(Country::class, 'region_id');
     }
     
+    public function laboraldocuments(): HasMany
+    {
+        return $this->hasMany(LaboralDocument::class, 'region_id');
+    }
 }

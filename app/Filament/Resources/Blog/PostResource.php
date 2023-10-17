@@ -31,7 +31,6 @@ use App\Filament\Traits\Translatable;//necesario para guardar y buscar traduccio
 class PostResource extends Resource
 {
 
-    use Translatable;
 
     protected static ?string $model = Post::class;
 

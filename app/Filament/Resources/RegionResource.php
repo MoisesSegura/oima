@@ -38,19 +38,12 @@ class RegionResource extends Resource
                         ->schema([
                             Forms\Components\TextInput::make('en.name') 
                             ->required(),
-
-                            Forms\Components\TextInput::make('en.type')->required()
-                            ->maxLength(255),
                
                         ]),
                     Tabs\Tab::make('Es')
                         ->schema([
                             Forms\Components\TextInput::make('es.name')
                             ->required(),
-
-                            Forms\Components\TextInput::make('es.type')
-                            ->required()
-                            ->maxLength(255),
                            
                     ]),
                     Tabs\Tab::make('Pt')
@@ -58,9 +51,6 @@ class RegionResource extends Resource
                             Forms\Components\TextInput::make('pt.name')
                             ->required(),
 
-                            Forms\Components\TextInput::make('pt.type')
-                            ->required()
-                            ->maxLength(255),
                            
                     ]),
                     
@@ -73,6 +63,9 @@ class RegionResource extends Resource
                     Forms\Components\Section::make()
                         ->schema([
 
+                            Forms\Components\TextInput::make('type')
+                            ->required()
+                            ->maxLength(255),
                             Forms\Components\TextInput::make('slug')
                             ->required(),
                             

@@ -13,6 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
+use Illuminate\Database\Eloquent\Model;
+use App\Filament\Traits\Translatable;
+
 class OrganizationResource extends Resource
 {
     protected static ?string $model = Organization::class;
@@ -25,9 +28,11 @@ class OrganizationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('country_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('country_id')
+                ->relationship('countrytranslation', 'name')
+                ->label('country')
+                ->searchable()
+                ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -40,9 +45,10 @@ class OrganizationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('country_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('country.name')
+                ->label('country')
+                ->sortable()
+                ->toggleable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),
@@ -84,5 +90,26 @@ class OrganizationResource extends Resource
             'view' => Pages\ViewOrganization::route('/{record}'),
             'edit' => Pages\EditOrganization::route('/{record}/edit'),
         ];
-    }    
+    }  
+    
+    public static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['country']);
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name','country.name'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        /** @var Post $record */
+        $details = [];
+
+        if ($record->country) {
+            $details['Country'] = $record->country->name;
+        }
+        return $details;
+    }
 }

@@ -10,15 +10,22 @@ use App\Models\Category;
 class CategoryTranslation extends Model
 {
     use HasFactory;
-    protected $table = 'product_category_translations';
+    // protected $table = 'product_category_translations';
+    protected $table = 'product_category_translation';
 
     protected $fillable = ['name'];
     public $timestamps = false;
 
-    public function products(): HasMany
+    public function product(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
     }
 
+    public function producttranslation(): HasMany
+    {
+        return $this->hasMany(ProductTranslation::class, 'category_id');
+    }
+
+ 
     
 }

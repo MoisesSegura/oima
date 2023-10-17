@@ -18,6 +18,7 @@ use Filament\Forms\Components\Select;
 use App\Models\CountryTranslation;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
+use App\Models\Region;
 
 use App\Filament\Traits\Translatable;
 
@@ -66,12 +67,15 @@ class CountryResource extends Resource
                     Forms\Components\Section::make()
                         ->schema([
                             Forms\Components\Select::make('region_id')
-                                ->relationship('regiontranslation', 'name')
-                                ->label('region')
-                                ->searchable()
-                                ->required(),
+                            ->label('Region')
+                            ->options(Region::all()->pluck('name', 'id'))
+                            ->searchable()
+                            ->required(),
                             
                             Forms\Components\TextInput::make('slug')
+                            ->required(),
+
+                            Forms\Components\TextInput::make('name')
                             ->required(),
                             
                         ])

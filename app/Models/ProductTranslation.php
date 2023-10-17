@@ -9,7 +9,7 @@ class ProductTranslation extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_translations';
+    protected $table = 'product_translation';
     protected $fillable = ['name'];
     public $timestamps = false;
 
@@ -22,6 +22,9 @@ class ProductTranslation extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+
+
 
 
 }

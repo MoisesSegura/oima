@@ -13,12 +13,22 @@ class Category extends Model  implements TranslatableContract
     use HasFactory;
     use Translatable;
 
-    protected $table = 'product_categories';
+    // protected $table = 'product_categories';
+
+    protected $table = 'product_category';
+
+    public $timestamps = false;
 
     public $translatedAttributes = ['name'];
 
-    public function products(): HasMany
+    public function product(): HasMany
     {
         return $this->hasMany(Product::class, 'category_id');
     }
+
+    public function producttranslation(): HasMany
+    {
+        return $this->hasMany(ProductTranslation::class, 'category_id');
+    }
+
 }

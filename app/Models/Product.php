@@ -14,7 +14,7 @@ class Product extends Model implements TranslatableContract
     use HasFactory;
     use Translatable;
 
-    protected $table = 'products';
+    protected $table = 'product';
 
     protected $guarded = [];
 
@@ -31,6 +31,7 @@ class Product extends Model implements TranslatableContract
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
 
 
 
