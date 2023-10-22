@@ -20,6 +20,12 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use Filament\Support\Colors\Color;
+use LaraZeus\Sky\SkyPlugin;
+use RyanChandler\FilamentNavigation\FilamentNavigation;
+use Filament\SpatieLaravelTranslatablePlugin;
+
+use App\Models\Banner;
+use App\Models;
 
 
 class AdminPanelProvider extends PanelProvider

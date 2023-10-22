@@ -5,12 +5,12 @@ namespace App\Filament\Resources\CountryResource\Pages;
 use App\Filament\Resources\CountryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use App\Filament\Traits\Translatable;
+// use App\Filament\Traits\Translatable;
 
 class EditCountry extends EditRecord
 {
 
-    use translatable;
+    // use translatable;
 
     protected static string $resource = CountryResource::class;
 

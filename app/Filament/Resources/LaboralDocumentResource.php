@@ -150,5 +150,6 @@ class LaboralDocumentResource extends Resource
             'view' => Pages\ViewLaboralDocument::route('/{record}'),
             'edit' => Pages\EditLaboralDocument::route('/{record}/edit'),
         ];
-    }    
+    }
+    
 }

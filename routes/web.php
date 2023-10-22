@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 \Illuminate\Support\Facades\Route::get('form', Form::class);
 
-Route::get('posts/create', CreatePost::class);
+// Route::get('posts/create', CreatePost::class);
 
 // Route::resource('posts', \App\Http\Controllers\PostController::class)
 // ->only('create', 'store');

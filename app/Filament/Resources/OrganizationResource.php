@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Filament\Traits\Translatable;
+use App\Models\Country;
 
 class OrganizationResource extends Resource
 {
@@ -28,11 +29,18 @@ class OrganizationResource extends Resource
     {
         return $form
             ->schema([
+                // Forms\Components\Select::make('country_id')
+                // ->relationship('countrytranslation', 'name')
+                // ->label('country')
+                // ->searchable()
+                // ->required(),
+
                 Forms\Components\Select::make('country_id')
-                ->relationship('countrytranslation', 'name')
-                ->label('country')
+                ->label('Country')
+                ->options(Country::all()->pluck('name', 'id'))
                 ->searchable()
                 ->required(),
+
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -78,7 +86,9 @@ class OrganizationResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\DelegatesRelationManager::class,
+            RelationManagers\PricesRelationManager::class,
+            RelationManagers\ExternalsRelationManager::class,
         ];
     }
     

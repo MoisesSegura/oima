@@ -22,5 +22,22 @@ class Organization extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    //relation managers
+
+    public function delegates()
+    {
+        return $this->hasMany(OrganizationDelegate::class);
+    }
+
+    public function prices()
+    {
+        return $this->hasMany(OrganizationPrice::class);
+    }
+
+    public function externals()
+    {
+        return $this->hasMany(OrganizationExternal::class);
+    }
+
 
 }

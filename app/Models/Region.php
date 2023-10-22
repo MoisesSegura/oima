@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations; 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable; 
@@ -33,4 +34,6 @@ class Region extends Model  implements TranslatableContract
     {
         return $this->hasMany(LaboralDocument::class, 'region_id');
     }
+
+
 }

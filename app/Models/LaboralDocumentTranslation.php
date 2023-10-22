@@ -11,4 +11,14 @@ class LaboralDocumentTranslation extends Model
 
     protected $table = 'laboral_document_translation';
     public $timestamps = false;
+
+    public function regiontranslation(): BelongsTo
+    {
+        return $this->belongsTo(RegionTranslation::class, 'region_id');
+    }
+
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
 }

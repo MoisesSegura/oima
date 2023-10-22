@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable; 
+// use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+// use Astrotomic\Translatable\Translatable; 
 
-class Country extends Model implements TranslatableContract
+class Country extends Model //implements TranslatableContract
 {
 
     protected $table = 'country';
    
     use HasFactory;
-    use Translatable;
+    // use Translatable;
     
     protected $guarded = [];
 
-    public $translatedAttributes = ['name'];
+    // public $translatedAttributes = ['name'];
 
     public function regiontranslation(): BelongsTo
     {
@@ -36,5 +36,10 @@ class Country extends Model implements TranslatableContract
     public function organizations(): HasMany
     {
         return $this->hasMany(Organization::class, 'country_id');
+    }
+
+    public function persons(): HasMany
+    {
+        return $this->hasMany(Person::class, 'country_id');
     }
 }

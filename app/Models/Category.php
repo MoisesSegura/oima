@@ -13,8 +13,6 @@ class Category extends Model  implements TranslatableContract
     use HasFactory;
     use Translatable;
 
-    // protected $table = 'product_categories';
-
     protected $table = 'product_category';
 
     public $timestamps = false;

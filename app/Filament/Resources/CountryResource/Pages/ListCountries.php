@@ -12,7 +12,7 @@ class ListCountries extends ListRecords
 {
     protected static string $resource = CountryResource::class;
 
-    use translatable;
+    // use translatable;
 
     protected function getHeaderActions(): array
     {
