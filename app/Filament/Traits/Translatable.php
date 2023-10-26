@@ -4,6 +4,8 @@
 namespace App\Filament\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait Translatable
 {
@@ -29,4 +31,6 @@ trait Translatable
     {
         return static::getResource()::getEloquentQuery()->with('translations');
     }
+
+
 }

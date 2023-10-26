@@ -114,8 +114,10 @@ class PersonResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('personcategory.name')
+                    ->label('Category')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('infocountry.name')
+                    ->label('Country')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
