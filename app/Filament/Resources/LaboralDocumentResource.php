@@ -113,6 +113,7 @@ class LaboralDocumentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                ->wrap()
                 ->searchable(),
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),

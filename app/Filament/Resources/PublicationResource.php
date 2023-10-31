@@ -77,7 +77,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('en.title')
                             ->maxLength(255),
 
-                            Forms\Components\MarkdownEditor::make('en.description') 
+                            Forms\Components\RichEditor::make('en.description') 
                             ->required(),
 
                             Forms\Components\FileUpload::make('en.file_real')
@@ -93,7 +93,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('es.title')
                             ->maxLength(255),
 
-                            Forms\Components\MarkdownEditor::make('es.description')
+                            Forms\Components\RichEditor::make('es.description')
                             ->required(),
 
                             Forms\Components\FileUpload::make('es.file_real')
@@ -109,7 +109,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('pt.title')
                             ->maxLength(255),
 
-                            Forms\Components\MarkdownEditor::make('pt.description')
+                            Forms\Components\RichEditor::make('pt.description')
                             ->required(),
 
                             Forms\Components\FileUpload::make('pt.file_real')
@@ -136,7 +136,7 @@ class PublicationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title') ->wrap()
                 ->searchable(),
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),

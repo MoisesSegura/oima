@@ -37,7 +37,7 @@ class ProductDetailResource extends Resource
 {
     protected static ?string $model = ProductDetail::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
     protected static ?string $navigationGroup = 'Product by country';
 

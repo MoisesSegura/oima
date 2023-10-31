@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\RegionTranslation;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
-
+use Filament\Forms\Components\Select;
 use App\Filament\Traits\Translatable;
 
 class RegionResource extends Resource
@@ -63,9 +63,16 @@ class RegionResource extends Resource
                     Forms\Components\Section::make()
                         ->schema([
 
-                            Forms\Components\TextInput::make('type')
-                            ->required()
-                            ->maxLength(255),
+                            // Forms\Components\TextInput::make('type')
+                            // ->required()
+                            // ->maxLength(255),
+
+            Select::make('type')
+            ->options([
+                '1' => 'Normal',
+                '2' => 'North',
+                '3' => 'south',
+            ]),
                             Forms\Components\TextInput::make('slug')
                             ->required(),
                             
@@ -74,8 +81,8 @@ class RegionResource extends Resource
 
         ])
         ->columns([
-            'sm' => '3',
-            'lg' => '2',
+            'sm' => '2',
+            'lg' => 'full',
         ]);
             
     }
@@ -86,8 +93,8 @@ class RegionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('type')
+                //     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

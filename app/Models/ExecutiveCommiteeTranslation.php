@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AssistanceTypeTranslation extends Model
+class ExecutiveCommiteeTranslation extends Model
 {
     use HasFactory;
-    protected $table = 'assistance_type_translation';
+    protected $table = 'executive_commitee_translation';
     public $timestamps = false;
 }

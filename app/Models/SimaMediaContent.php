@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable; 
+use Astrotomic\Translatable\Translatable;
 
-class AssistanceType extends Model implements TranslatableContract
+class SimaMediaContent extends Model implements TranslatableContract
 {
     use HasFactory;
-
     use Translatable;
 
-    protected $table = 'assistance_type';
+    protected $table = 'sima_media_content';
+    public $timestamps = false;
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['subtitle','text','video_description'];
 }
