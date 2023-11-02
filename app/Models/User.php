@@ -14,13 +14,18 @@ use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class User extends Authenticatable implements FilamentUser, HasTenants, MustVerifyEmail
+
+class User extends Authenticatable implements FilamentUser//, HasTenants, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    
     use HasRoles;
+
+    //protected $table = 'fos_user_user';
 
     
     /**
@@ -31,6 +36,9 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
         'remember_token',
     ];
 
+
+
+
     /**
      * @var array<string, string>
      */
@@ -38,10 +46,18 @@ class User extends Authenticatable implements FilamentUser, HasTenants, MustVeri
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
     }
+
+    
 
     public function canAccessTenant(Model $tenant): bool
     {

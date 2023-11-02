@@ -24,7 +24,7 @@ class PresentationResource extends Resource
 {
     protected static ?string $model = Presentation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     protected static ?string $navigationGroup = 'OIMA';
 
@@ -88,7 +88,7 @@ class PresentationResource extends Resource
         return $table
             ->columns([
 
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title')->wrap()
                 ->searchable(),
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),

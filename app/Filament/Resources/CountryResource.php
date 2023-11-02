@@ -22,6 +22,7 @@ use App\Models\Region;
 use App\Models\InfoCountry;
 
 use App\Filament\Traits\Translatable;
+use Filament\Tables\Filters\SelectFilter;
 
 class CountryResource extends Resource
 {
@@ -32,37 +33,13 @@ class CountryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-americas';
 
-    protected static ?string $navigationGroup = 'Countries and Regions';
+    protected static ?string $navigationGroup = 'Regions & Countries';
 
     public static function form(Form $form): Form
     {
         return $form
         ->schema([
-            // Tabs::make('Mis formularios') 
-            //     ->tabs([
-            //         Tabs\Tab::make('En') 
-            //             ->schema([
-            //                 Forms\Components\TextInput::make('en.name') 
-            //                 ->required(),
-               
-            //             ]),
-            //         Tabs\Tab::make('Es')
-            //             ->schema([
-            //                 Forms\Components\TextInput::make('es.name')
-            //                 ->required(),
-                           
-            //         ]),
-            //         Tabs\Tab::make('Pt')
-            //             ->schema([
-            //                 Forms\Components\TextInput::make('pt.name')
-            //                 ->required(),
-                           
-            //         ]),
-                    
-            //     ]),
-                // ->columns('full'), 
-
-            //  el resto de los inputs            
+           
             Forms\Components\Group::make()
                 ->schema([
                     Forms\Components\Section::make()
@@ -82,9 +59,6 @@ class CountryResource extends Resource
                             ->options(InfoCountry::all()->pluck('name', 'id'))
                             ->searchable()
                             ->required(),
-
-                    
-                            
                         ])
                 ])
 
@@ -103,20 +77,12 @@ class CountryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('region.name')
-                ->sortable()
-                ->toggleable(),
+                ->sortable(),
       
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                //   SelectFilter::make('Region') 
+                // ->relationship('regiontranslation', 'name')
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

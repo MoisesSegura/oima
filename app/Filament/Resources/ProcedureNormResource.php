@@ -22,7 +22,7 @@ class ProcedureNormResource extends Resource
 {
     protected static ?string $model = ProcedureNorm::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
     protected static ?string $navigationGroup = 'OIMA';
 

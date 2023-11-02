@@ -26,6 +26,7 @@ use Filament\SpatieLaravelTranslatablePlugin;
 
 use App\Models\Banner;
 use App\Models;
+use Filament\Navigation\NavigationGroup;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -38,6 +39,10 @@ class AdminPanelProvider extends PanelProvider
             ->login(Login::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+
+            ->sidebarFullyCollapsibleOnDesktop()
+            
+
             ->pages([
                 Pages\Dashboard::class,
             ]) 
@@ -48,10 +53,19 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
-            // ->navigationGroups([
-            //     'base products',
-            //     'Blog',
-            // ])
+            ->navigationGroups([
+                'Users',
+                'Regions & Countries',
+                'Products Base',
+                'Products by country',
+                'Organizations',
+                'OIMA',
+                'Blog',
+                'Who we are',
+            ])
+
+            
+
             ->databaseNotifications()
             ->middleware([
                 EncryptCookies::class,
@@ -67,7 +81,7 @@ class AdminPanelProvider extends PanelProvider
             
 
             ->plugins([
-                FilamentSpatieRolesPermissionsPlugin::make(),
+              //  FilamentSpatieRolesPermissionsPlugin::make(),
                 FilamentLanguageSwitchPlugin::make(),
                 
             ])

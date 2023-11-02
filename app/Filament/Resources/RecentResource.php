@@ -22,7 +22,7 @@ class RecentResource extends Resource
 {
     protected static ?string $model = Recent::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
 
     protected static ?string $navigationLabel = 'Recent Documents';
 

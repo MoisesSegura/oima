@@ -99,7 +99,7 @@ class EventResource extends Resource
                 Forms\Components\Select::make('event_language_id')
                 ->relationship('languages')
                         ->multiple()
-                        ->label('available languages')
+                        ->label('Available languages')
                         ->options(LanguageTranslation::where('locale', app()->getLocale())->pluck('name', 'language_id'))
                         ->searchable(),
  

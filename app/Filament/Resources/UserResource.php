@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\Country;
 
 class UserResource extends Resource
 {
@@ -35,9 +38,17 @@ class UserResource extends Resource
                 ->required(),
                 TextInput::make('password')
                 ->password()
+                ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
                 ->hiddenOn('edit', true)
                 ->required(),
-                Select::make('roles')->multiple()->relationship('roles','name')
+                Select::make('roles')->multiple()
+                ->relationship('roles','name')
+                ->searchable() ->preload(),
+
+                Forms\Components\Select::make('country_id')
+                ->label('Country')
+                ->options(Country::all()->pluck('name', 'id'))
+                ->searchable(),
 
             ]);
     }

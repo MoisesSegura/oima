@@ -39,7 +39,7 @@ class Event extends Model implements TranslatableContract
         return $this->HasMany(EventSchedule::class);
     }
 
-    //-----------------------------------------------------------------------
+    //-----------------------TAGS------------------------------------------------
 
 
     public function assistanceTypes()

@@ -32,6 +32,8 @@ use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
 use Filament\Resources\RelationManagers\RelationGroup;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
 
 class ProductDetailResource extends Resource
 {
@@ -39,7 +41,7 @@ class ProductDetailResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
-    protected static ?string $navigationGroup = 'Product by country';
+    protected static ?string $navigationGroup = 'Products by country';
 
     protected static ?string $navigationLabel = 'Products by country';
 
@@ -211,6 +213,15 @@ class ProductDetailResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+
+
+
+            ->modifyQueryUsing(fn (Builder $query): Builder => 
+            $query->when(auth()->user()->hasRole('Admin') === false, function ($query) {
+                return $query->where('country_id', auth()->user()->country_id);
+            }))
+
+
             ->columns([
                 Tables\Columns\TextColumn::make('country.name')
                     ->numeric()
@@ -221,7 +232,8 @@ class ProductDetailResource extends Resource
               
             ])
             ->filters([
-                //
+          
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

@@ -30,7 +30,7 @@ class SiteTextResource extends Resource
 {
     protected static ?string $model = SiteText::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $navigationGroup = 'OIMA';
 
@@ -49,14 +49,14 @@ class SiteTextResource extends Resource
                 Tabs\Tab::make('General') 
                 ->schema([
                
-                    Forms\Components\TextInput::make('oima_id')
-                                ->numeric(),
-                            Forms\Components\TextInput::make('history_id')
-                                ->numeric(),
-                            Forms\Components\TextInput::make('executive_commitee_id')
-                                ->numeric(),
-                            Forms\Components\TextInput::make('extra_id')
-                                ->numeric(),
+                    // Forms\Components\TextInput::make('oima_id')
+                    //             ->numeric(),
+                    //         Forms\Components\TextInput::make('history_id')
+                    //             ->numeric(),
+                    //         Forms\Components\TextInput::make('executive_commitee_id')
+                    //             ->numeric(),
+                    //         Forms\Components\TextInput::make('extra_id')
+                    //             ->numeric(),
 
                             Forms\Components\Toggle::make('active')
                                 ->required(),
@@ -124,9 +124,14 @@ class SiteTextResource extends Resource
 
                         Tabs\Tab::make('OIMA')
                         ->schema([
+                            
                             Section::make('OIMA')
                             ->relationship('oima')
                             ->schema([
+
+                                Forms\Components\FileUpload::make('image')
+                                ->image(),
+
                                 Repeater::make('translations') ->collapsible()
                                 ->relationship('translations')
                                 ->schema([
@@ -137,6 +142,9 @@ class SiteTextResource extends Resource
                                     Forms\Components\RichEditor::make('vision'),
                                 ]),
                             ]),
+
+
+
                     ]),
 
                 
@@ -182,7 +190,7 @@ class SiteTextResource extends Resource
                     Tabs\Tab::make('Extras')
                     ->schema([
                     
-                        Section::make('Executive commitee')
+                        Section::make('Extras')
                         ->relationship('extra')
                         ->schema([
                             Repeater::make('translations')
@@ -251,6 +259,7 @@ class SiteTextResource extends Resource
         return [
             RelationManagers\AchievementsRelationManager::class,
             RelationManagers\StatisticsRelationManager::class,
+            RelationManagers\WorkPrincipleRelationManager::class,
         ];
     }
     

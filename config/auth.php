@@ -72,6 +72,11 @@ return [
 
         // 'users' => [
         //     'driver' => 'database',
+        //     'model' => App\Models\FosUser::class,
+        // ],
+
+        // 'users' => [
+        //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
