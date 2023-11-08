@@ -11,6 +11,7 @@ class Organization extends Model
     protected $table = 'organization';
     use HasFactory;
     protected $guarded = [];
+    public $timestamps = false;
 
     public function countrytranslation(): BelongsTo
     {

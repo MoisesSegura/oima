@@ -69,6 +69,7 @@ class NutritionalPropertyRelationManager extends RelationManager
             ->recordTitleAttribute('text')
             ->columns([
                 Tables\Columns\TextColumn::make('text'),
+                Tables\Columns\TextColumn::make('unit'),
             ])
             ->filters([
                 //

@@ -25,9 +25,11 @@ use App\Models\Bibliography;
 use App\Models\CommercialChain;
 use App\Models\ImpRequirement;
 use App\Models\ExpImpContent;
+use App\Models\ExpImpLink;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\hasManyThrough;
 use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
@@ -156,55 +158,23 @@ class ProductDetailResource extends Resource
                   
                 Forms\Components\TextInput::make('nutricional_font')
                 ->maxLength(255),
-                  
-                    
 
-                // Forms\Components\TextInput::make('bibliography_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('commercial_chain_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('requirement_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('offer_calendar_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('production_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('exportation_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('importation_id')
-                //     ->numeric(),
-                // Forms\Components\TextInput::make('hide_locale')
-                //     ->maxLength(255),
+                Section::make('Requirements')
+                ->relationship('impRequirement')
+                ->schema([
+                    Repeater::make('translations')->collapsed()
+                    ->relationship('translations')
+                    ->schema([
+                        Forms\Components\TextInput::make('locale'),
+                        Forms\Components\TextInput::make('title'),
+                        Forms\Components\TextInput::make('subtitle'),
+                    ])
+                ]),
+                  
             
             ]),
                 
-                Tabs\Tab::make('Requirements for imports and exports')
-                    ->schema([
-                        Section::make('Requirements')
-                        ->relationship('impRequirement')
-                        ->schema([
-                            Repeater::make('translations')
-                            ->relationship('translations')
-                            ->schema([
-                                Forms\Components\TextInput::make('locale'),
-                                Forms\Components\TextInput::make('title'),
-                                Forms\Components\TextInput::make('subtitle'),
-                            ])
-                        ]),
-
-                        Section::make('Requirements')
-                        ->relationship('ImpExpContent')
-                        ->schema([
-                            Repeater::make('translations')
-                            ->relationship('translations')
-                            ->schema([
-                                Forms\Components\TextInput::make('locale'),
-                                Forms\Components\TextInput::make('title'),
-                                Forms\Components\RichEditor::make('text'),
-                            ])
-                        ]),
-                        
-                ]),
+        
             ]),
         ])->Columns('full');
            
@@ -252,10 +222,26 @@ class ProductDetailResource extends Resource
           
             RelationManagers\SalesRelationManager::class,
             RelationManagers\GraphicsRelationManager::class,
+
+            RelationGroup::make('Nutritional Information', [
+                RelationManagers\NutritionalPropertyRelationManager::class,
+                RelationManagers\NutritionalPropertyValueRelationManager::class,
+                RelationManagers\NutritionalContentRelationManager::class,
+            ]),
+
             RelationManagers\AgronomicsRelationManager::class,
+
+            RelationGroup::make('Export & Import info.', [
+                RelationManagers\ExportImportContentRelationManager::class,
+                RelationManagers\LinksRelationManager::class,
+            ]),
+          
+          
             RelationManagers\GalleriesRelationManager::class,
-            RelationManagers\NutritionalPropertyRelationManager::class,
-            RelationManagers\NutritionalContentRelationManager::class,
+
+
+          
+           
         ];
     }
     

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\hasManyThrough;
 
 use Illuminate\Database\Eloquent\Relations;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
@@ -56,10 +56,8 @@ class ProductDetail extends Model implements TranslatableContract
         return $this->belongsTo(ImpRequirement::class,'requirement_id');
     }
 
-    public function ImpExpContent()
-    {
-        return $this->belongsTo(ExpImpContent::class);
-    }
+
+
 
  //----------------- RELATION MANAGERS ---------------- 
     public function sales()
@@ -89,16 +87,24 @@ class ProductDetail extends Model implements TranslatableContract
 
     public function nutritionalPropertyValue()
     {
-        return $this->hasMany(NutritionalPropertyValue::class);
+       return $this->hasMany(NutritionalPropertyValue::class, 'nutritional_property_id', 'id', 'product_detail_id');
+       
     }
-
 
     public function nutritionalContent()
     {
         return $this->hasMany(NutritionalContent::class);
     }
 
+    public function ExportImportContent()
+    {
+        return $this->hasMany(ExpImpContent::class,'requirement_id','requirement_id');
+    }
 
+    public function Links()
+    {
+        return $this->hasMany(ExpImpLink::class,'requirement_id','requirement_id');
+    }
 
 
 

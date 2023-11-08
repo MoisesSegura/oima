@@ -28,7 +28,8 @@ class NutritionalProperty extends Model implements TranslatableContract
     }
 
     public function nutritionalPropertyValue()
-    {
-        return $this->belongsTo(NutritionalPropertyValue::class);
-    }
+{
+    return $this->hasMany(NutritionalPropertyValue::class, 'nutritional_property_id');
+}
+
 }

@@ -40,8 +40,7 @@ class ProductResource extends Resource
                 ->tabs([
                     Tabs\Tab::make('En') 
                         ->schema([
-                            Forms\Components\TextInput::make('en.name') 
-                            ->required(),
+                            Forms\Components\TextInput::make('en.name'),
 
                             Forms\Components\Hidden::make('en.file_real')
                             ->default('default'),
@@ -49,16 +48,14 @@ class ProductResource extends Resource
                         ]),
                     Tabs\Tab::make('Es')
                         ->schema([
-                            Forms\Components\TextInput::make('es.name')
-                            ->required(),
+                            Forms\Components\TextInput::make('es.name'),
                             Forms\Components\Hidden::make('es.file_real')
                             ->default('default'),
                            
                     ]),
                     Tabs\Tab::make('Pt')
                         ->schema([
-                            Forms\Components\TextInput::make('pt.name')
-                            ->required(),
+                            Forms\Components\TextInput::make('pt.name'),
                             Forms\Components\Hidden::make('pt.file_real')
                             ->default('default'),
                            
@@ -79,8 +76,7 @@ class ProductResource extends Resource
                             ->required(),
 
                         Forms\Components\FileUpload::make('file_real')
-                        ->label('file')
-                        ->required(),
+                        ->label('file'),
                         Forms\Components\FileUpload::make('image')
                             ->image()
                             ->required(),

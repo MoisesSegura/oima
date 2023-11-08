@@ -46,10 +46,7 @@ class SiteText extends Model implements TranslatableContract
       return $this->belongsTo(Oima::class);
   }
 
-  public function workPrinciple()
-  {
-      return $this->belongsTo(WorkPrinciple::class, 'oima_id', 'oima_id');
-  }
+
 
 
 //----------------- RELATION MANAGERS ---------------- 
@@ -62,6 +59,11 @@ class SiteText extends Model implements TranslatableContract
     public function Statistics()
     {
         return $this->hasMany(Statistic::class);
+    }
+
+    public function workPrinciple()
+    {
+        return $this->hasMany(WorkPrinciple::class, 'oima_id', 'oima_id');
     }
 
 

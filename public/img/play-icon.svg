@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="297px" height="297px" viewBox="0 0 297 297" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Play</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="OIMA_Blog-Noticia-Destacada" transform="translate(-572.000000, -1161.000000)">
+            <g id="Video" transform="translate(212.000000, 1046.000000)">
+                <g id="Overlay">
+                    <g id="Play" transform="translate(365.000000, 120.000000)">
+                        <path d="M0,143.5 C0,64.2468766 64.2473191,0 143.5,0 C222.753123,0 287,64.2468766 287,143.5 C287,222.753123 222.753123,287 143.5,287 C64.2473191,287 0,222.753123 0,143.5 Z" id="Stroke-1" stroke="#FFFFFF" stroke-width="10"></path>
+                        <polygon id="Fill-3" fill="#FFFFFF" points="106 210 217 142.999779 106 76"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

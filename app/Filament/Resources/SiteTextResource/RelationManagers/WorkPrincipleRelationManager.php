@@ -53,6 +53,8 @@ class WorkPrincipleRelationManager extends RelationManager
                 ]),
                 
             ]),
+            Forms\Components\FileUpload::make('image')
+            ->image(),
 
 
         ])->Columns('full');
