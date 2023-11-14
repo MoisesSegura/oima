@@ -16,7 +16,7 @@ Route::get('/home/{locale}', function ($locale = null) {
     return redirect()->back();
 })->name('change-language');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
 
 Route::get('/frutas', [App\Http\Controllers\CatalogController::class, 'Catalog'])->name('frutas');
