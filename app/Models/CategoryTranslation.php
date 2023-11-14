@@ -16,12 +16,12 @@ class CategoryTranslation extends Model
     protected $fillable = ['name'];
     public $timestamps = false;
 
-    public function product(): HasMany
+    public function product()
     {
         return $this->hasMany(Product::class, 'category_id');
     }
 
-    public function producttranslation(): HasMany
+    public function producttranslation()
     {
         return $this->hasMany(ProductTranslation::class, 'category_id');
     }

@@ -18,7 +18,7 @@ class NutritionalProperty extends Model implements TranslatableContract
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['text'];
+    public $translatedAttributes = ['text','name'];
 
     public $timestamps = false;
 

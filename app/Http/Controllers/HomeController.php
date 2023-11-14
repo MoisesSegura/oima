@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Models\Achievement;
 use App\Models\Organization;
-use App\Models\AchievementTranslation;
-use App\Models\Product;
 use App\Models\History;
 use App\Models\SiteText;
-
+use App\Models\Event;
+use App\Models\OimaNew;
+use App\Models\SimaMedia;
+use App\Models\Extra;
+use App\Models\AdditionalTool;
 class HomeController extends Controller
 {
     
@@ -23,7 +25,18 @@ class HomeController extends Controller
 
         $site = $this->getSiteText();
 
-        return view('home', compact('organizations', 'achievements','site'));
+        $events = $this->getEvents();
+
+        $news = $this->getNews();
+
+        $simas = $this->getSimaMedia();
+
+        $extras = $this->getExtras();
+
+        $tool = $this->getAdditionalTool();
+        
+
+        return view('home', compact('organizations', 'achievements','site','events','news','simas','extras','tool'));
     }
 
 
@@ -32,10 +45,18 @@ class HomeController extends Controller
         return Achievement::all();
     }
 
-    public function getProducts()
+    public function getExtras()
     {
-        return Product::all();
+        $extra = Extra::first();
+
+        if ($extra) {
+            return $extra;
+        }
+    
+        return null; 
     }
+
+ 
 
     public function getHistory()
     {
@@ -57,6 +78,32 @@ class HomeController extends Controller
     }
 
     return null; 
+    }
+
+    public function getAdditionalTool()
+    {
+        $tool = AdditionalTool::first();
+
+    if ($tool) {
+        return $tool;
+    }
+
+    return null; 
+    }
+
+    public function getEvents()
+    {
+        return Event::orderBy('id', 'desc')->take(10)->get();
+    }
+
+    public function getNews()
+    {
+        return OimaNew::orderBy('id', 'desc')->take(10)->get();
+    }
+
+    public function getSimaMedia()
+    {
+        return SimaMedia::orderBy('id', 'desc')->take(10)->get();
     }
 
     // public function Home(Request $request)

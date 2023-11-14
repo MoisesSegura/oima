@@ -41,11 +41,15 @@ class NutritionalPropertyRelationManager extends RelationManager
                     ->schema([
                 Forms\Components\TextInput::make('es.text')
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('es.name')
+                    ->maxLength(255),
            
                     ]),
                 Tabs\Tab::make('En')
                     ->schema([
                 Forms\Components\TextInput::make('en.text')
+                    ->maxLength(255),
+                    Forms\Components\TextInput::make('en.text')
                     ->maxLength(255),
                        
                 ]),
@@ -53,10 +57,15 @@ class NutritionalPropertyRelationManager extends RelationManager
                     ->schema([
                 Forms\Components\TextInput::make('pt.text')
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('pt.text')
+                    ->maxLength(255),
 
                 ]),
             ]),
             Forms\Components\TextInput::make('unit')
+            ->maxLength(255),
+
+            Forms\Components\TextInput::make('value')
             ->maxLength(255),
 
 
@@ -102,19 +111,27 @@ class NutritionalPropertyRelationManager extends RelationManager
                             ->schema([
                         Forms\Components\TextInput::make('es.text')
                             ->maxLength(255),
+                            Forms\Components\TextInput::make('es.name')
+                            ->maxLength(255),
                             ]),
                         Tabs\Tab::make('En')
                             ->schema([
                         Forms\Components\TextInput::make('en.text')
+                            ->maxLength(255),
+                            Forms\Components\TextInput::make('en.name')
                             ->maxLength(255),
                         ]),
                         Tabs\Tab::make('Pt')
                             ->schema([
                         Forms\Components\TextInput::make('pt.text')
                             ->maxLength(255),
+                            Forms\Components\TextInput::make('pt.name')
+                            ->maxLength(255),
                         ]),
                     ]),
                     Forms\Components\TextInput::make('unit')
+                    ->maxLength(255),
+                    Forms\Components\TextInput::make('value')
                     ->maxLength(255),
 
                     // Section::make('Commercial Chain')

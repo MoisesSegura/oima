@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Section;
 
 use App\Models\Country;
 
@@ -31,25 +32,47 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                ->required(),
-                TextInput::make('email')
-                ->email()
-                ->required(),
-                TextInput::make('password')
-                ->password()
-                ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
-                ->hiddenOn('edit', true)
-                ->required(),
-                Select::make('roles')->multiple()
-                ->relationship('roles','name')
-                ->searchable() ->preload(),
 
-                Forms\Components\Select::make('country_id')
-                ->label('Country')
-                ->options(Country::all()->pluck('name', 'id'))
-                ->searchable(),
 
+                Section::make('Profile')
+                ->schema([
+                Forms\Components\TextInput::make('firstname')
+                    ->maxLength(64),
+                Forms\Components\TextInput::make('lastname')
+                    ->maxLength(64),
+                Forms\Components\TextInput::make('phone')
+                    ->maxLength(64),
+                ]),
+
+
+                Section::make('General')
+                ->schema([
+                   
+                    TextInput::make('name')
+                    ->required(),
+                    TextInput::make('email')
+                    ->email()
+                    ->required(),
+                    TextInput::make('password')
+                    ->password()
+                    ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
+                    ->hiddenOn('edit', true)
+                    ->required(),
+                    Select::make('roles')->multiple()
+                    ->relationship('roles','name')
+                    ->searchable() ->preload(),
+
+                ]),
+                
+                Section::make('Country')
+                ->schema([
+                    Forms\Components\Select::make('country_id')
+                    ->label('Country')
+                    ->options(Country::all()->pluck('name', 'id'))
+                    ->searchable(),
+                ]),
+
+            
             ]);
     }
 

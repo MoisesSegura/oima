@@ -60,7 +60,7 @@ class SiteTextResource extends Resource
 
                             Forms\Components\Toggle::make('active')
                                 ->required(),
-                            Forms\Components\FileUpload::make('image')
+                            Forms\Components\FileUpload::make('image')->multiple()
                                 ->image(),
 
                             Tabs::make('Mis formularios') 

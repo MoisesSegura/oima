@@ -79,7 +79,7 @@ class EventResource extends Resource
                     
                 ]),
 
-                Forms\Components\DatePicker::make('start')
+                Forms\Components\DatePicker::make('start')  ->seconds(false)
                 ->required(),
                 Forms\Components\DatePicker::make('end'),
                 Forms\Components\FileUpload::make('image')->nullable()

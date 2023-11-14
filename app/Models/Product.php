@@ -32,7 +32,7 @@ class Product extends Model implements TranslatableContract
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function productdetail(): HasMany
+    public function productdetail()
     {
         return $this->hasMany(ProductDetail::class, 'product_id');
     }

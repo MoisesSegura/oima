@@ -68,7 +68,8 @@ class ProductDetailResource extends Resource
     
                         Forms\Components\Select::make('product_id')
                         ->label('Product')
-                        ->options(ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id'))
+                        ->options(ProductTranslation::all()->pluck('name', 'product_id'))
+                        //->options(ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id'))
                         ->searchable()
                         ->required(),
     
@@ -225,7 +226,7 @@ class ProductDetailResource extends Resource
 
             RelationGroup::make('Nutritional Information', [
                 RelationManagers\NutritionalPropertyRelationManager::class,
-                RelationManagers\NutritionalPropertyValueRelationManager::class,
+                //RelationManagers\NutritionalPropertyValueRelationManager::class,
                 RelationManagers\NutritionalContentRelationManager::class,
             ]),
 
