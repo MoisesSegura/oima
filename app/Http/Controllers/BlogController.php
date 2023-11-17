@@ -30,4 +30,25 @@ class BlogController extends Controller
   
         return view('sima-media', compact('simaMedias'));
     }
+
+    public function showEvent($id)
+    {
+        $event = Event::findOrFail($id);
+
+        return view('verEvento', compact('event'));
+    }
+
+    public function showNew($id)
+    {
+        $new = OimaNew::findOrFail($id);
+
+        return view('verNoticia', compact('new'));
+    }
+
+    public function showSimaMedia($id)
+    {
+        $simaMedia = SimaMedia::findOrFail($id);
+
+        return view('verSimaMedia', compact('simaMedia'));
+    }
 }

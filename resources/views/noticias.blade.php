@@ -121,8 +121,7 @@
                                 <p class="card--subtitle w-100 text-left">{{
                                     \Carbon\Carbon::parse($new->date)->isoFormat('D [-] MMMM YYYY') }}</p>
                             
-                                <a class="btn btn--green" href="{{ url('new/' . $new->id . '.html') }}">Ver
-                                    Noticia</a>
+                                <a class="btn btn--green" href="{{ route('showNew', ['id' => $new->id]) }}">Ver Noticia</a>
                             </div>
                         </div>
                         @endforeach

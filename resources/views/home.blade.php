@@ -36,9 +36,9 @@
             </div>
         </li>
         </ul> <div class="nav--others"> 
-            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'es']) }}">Español</a> 
-            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'en']) }}">English</a> 
-            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'pt']) }}">português</a>
+            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'es']) }}">ES</a> 
+            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'en']) }}">EN</a> 
+            <a class="text-decoration-none lang--select" href="{{ route('change-language',['locale' => 'pt']) }}">PT</a>
 
     <!-- <p>Current Language: {{ app()->getLocale() }}</p> -->
 
@@ -70,7 +70,7 @@
     <div class="lead__content">
     <h3 class="title">{{ __($site->know_oima_title) }}</h3>
 
-    <p class="txt--gray"> {{ __($site->know_oima_description) }}</p>
+    <p class="txt--gray"> {!! __($site->know_oima_description) !!}</p>
     <br/>
 
 

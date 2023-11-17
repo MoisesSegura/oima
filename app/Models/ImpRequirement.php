@@ -29,6 +29,11 @@ class ImpRequirement extends Model  implements TranslatableContract
 
     public function expImpContent()
     {
-    return $this->hasMany(ExpImpContent::class);
+    return $this->hasMany(ExpImpContent::class,'requirement_id', 'id');
+    }
+
+    public function Links()
+    {
+    return $this->hasMany(ExpImpLink::class,'requirement_id', 'id');
     }
 }

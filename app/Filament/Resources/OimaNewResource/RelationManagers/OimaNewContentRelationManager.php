@@ -40,8 +40,7 @@ class OimaNewContentRelationManager extends RelationManager
                         ->maxLength(255),
                     Forms\Components\TextInput::make('es.video_description')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('es.video')
-                        ->maxLength(255),  
+                
            
                     ]),
                 Tabs\Tab::make('En')
@@ -53,8 +52,7 @@ class OimaNewContentRelationManager extends RelationManager
                         ->maxLength(255),
                     Forms\Components\TextInput::make('en.video_description')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('en.video')
-                        ->maxLength(255),       
+                  
                        
                 ]),
                 Tabs\Tab::make('Pt')
@@ -65,12 +63,14 @@ class OimaNewContentRelationManager extends RelationManager
                         ->maxLength(255),
                     Forms\Components\TextInput::make('pt.video_description')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('pt.video')
-                        ->maxLength(255),  
+                  
 
                 ]),
                 
             ]),
+
+            Forms\Components\TextInput::make('video')
+            ->maxLength(255),  
 
 
         ])->Columns('full');
@@ -118,8 +118,7 @@ class OimaNewContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('en.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('en.video')
-                            ->maxLength(255),       
+                      
                              
                         ]),
                     Tabs\Tab::make('Es')
@@ -131,8 +130,7 @@ class OimaNewContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('es.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('es.video')
-                            ->maxLength(255),  
+                      
                       
                            
                     ]),
@@ -144,12 +142,11 @@ class OimaNewContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('pt.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('pt.video')
-                            ->maxLength(255),  
-    
                     ]),
                         
                     ]),
+                    Forms\Components\TextInput::make('video')
+                    ->maxLength(255),  
                 ]),
                 Tables\Actions\DeleteAction::make(),
             ])

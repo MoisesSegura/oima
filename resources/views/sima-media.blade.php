@@ -118,7 +118,7 @@
                             <div class="card--blog-alt__text card--blog__text">
                                 <h4 class="card--title w-100 text-left">{{ $simaMedia->title }}</h4>
                                 <!-- <p class="card--text w-100 text-left">{{ $simaMedia->short_description }}</p> -->
-                                <a class="txt--blue" href="{{ url('sima-media/' . $simaMedia->id . '.html') }}">Ver
+                                <a class="txt--blue" href="{{ route('showSimaMedia', ['id' => $simaMedia->id]) }}">Ver
                                     noticia completa</a>
                             </div>
                         </div>

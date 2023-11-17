@@ -128,23 +128,18 @@
         <div class="tab-content bg-white">
     <div class="tab-pane fade show active">
         <div class="card__container js-equal-height-parent" id="products">
-        @foreach ($vegetables as $vegetabletDetail)
-                @php
-                    $product = \App\Models\ProductDetail::find($vegetabletDetail->id)->product;
-                @endphp
+        @foreach ($vegetables as $vegetableDetail)
                 <a href="" class="card card--flex card--link js-equal-height">
-                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="card--flex__img">
+                    <img src="{{ asset($vegetableDetail->product->image) }}" alt="{{ $vegetableDetail->product->name }}"
+                        class="card--flex__img">
                     <div class="card--flex__content">
-                        <h4 class="card--title">{{ __($product->name) }}</h4>
-                        
-                        <p class="card--text">{{ $vegetabletDetail->known_name }}</p>
-         
-                        <p class="card--text">{{ $product->family_name }}</p>
+                        <h4 class="card--title">{{ __($vegetableDetail->product->name) }}</h4>
+                        <p class="card--text">{{ $vegetableDetail->concatenated_known_names }}</p>
+                        <p class="card--text">{{ $vegetableDetail->product->family_name }}</p>
                         <p class="txt--blue">Ver</p>
-                      
                     </div>
                 </a>
-            @endforeach
+                @endforeach
         </div>
     </div>
     <div class="text-center mb-5">

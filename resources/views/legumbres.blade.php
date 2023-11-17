@@ -127,16 +127,20 @@
         <div class="tab-content bg-white">
             <div class="tab-pane fade show active">
                 <div class="card__container js-equal-height-parent" id="products">
-                    <a href="../producto/Frijoles.html" class="card card--flex card--link js-equal-height">
-                        <img src="../../uploads/products/images/8a433134ef0060bc1d1621bd6c9264d38e45ce7c.jpg"
-                            alt="Frijoles" class="card--flex__img">
+
+                @foreach ($legumes as $legumeDetail)
+                    <a href="" class="card card--flex card--link js-equal-height">
+                        <img src="{{ asset($legumeDetail->product->image) }}"
+                            alt="{{ $legumeDetail->product->name }}" class="card--flex__img">
                         <div class="card--flex__content">
-                            <h4 class="card--title">Frijoles</h4>
-                            <p class="card--text">Frijoles, Porotos, Habichuelas</p>
-                            <p class="card--text">Fabaceae</p>
+                            <h4 class="card--title">{{ __($legumeDetail->product->name) }}</h4>
+                            <p class="card--text">{{ $legumeDetail->concatenated_known_names }}</p>
+                            <p class="card--text">{{ $legumeDetail->product->family_name }}</p>
                             <p class="txt--blue">Ver</p>
                         </div>
                     </a>
+                    @endforeach
+
                 </div>
             </div>
             <div class="text-center mb-5">

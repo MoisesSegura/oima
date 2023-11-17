@@ -119,7 +119,7 @@
                                 <p class="card--subtitle w-100 text-left">{{
                                     \Carbon\Carbon::parse($event->start)->isoFormat('D [-] MMMM') }}</p>
                                 <!-- <p class="card--text w-100 text-left">{!! \Illuminate\Support\Str::limit($event->description, 20) !!}</p> -->
-                                <a class="btn btn--green" href="{{ url('eventos/' . $event->id . '.html') }}">Ver
+                                <a class="btn btn--green" href="{{ route('showEvent', ['id' => $event->id]) }}">Ver
                                     Evento</a>
                             </div>
                         </div>

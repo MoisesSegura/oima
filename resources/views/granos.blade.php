@@ -86,12 +86,12 @@
                     <h3 class="txt--blue title--underline">Buscar producto</h3>
                     <div class="selectors">
                         <div class="select--wrapper">
-                        <select class="select" name="region" id="region" data-lang="es">
-                                    <option value="">Región</option>
-                                    @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}">{{ __($region->name) }}</option>
-                                    @endforeach
-                                </select>
+                            <select class="select" name="region" id="region" data-lang="es">
+                                <option value="">Región</option>
+                                @foreach ($regions as $region)
+                                <option value="{{ $region->id }}">{{ __($region->name) }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="select--wrapper">
                             <select class="select" name="country" id="country">
@@ -113,43 +113,38 @@
                 <li class="nav-item"><a href="{{ route('frutas')}}" class="nav-link " id="cat3-tab" aria-controls="cat3"
                         aria-selected="false">Frutas</a></li>
 
-                <li class="nav-item"><a href="{{ route('hortalizas')}}" class="nav-link " id="cat4-tab" aria-controls="cat4"
-                        aria-selected="false">Hortalizas</a></li>
+                <li class="nav-item"><a href="{{ route('hortalizas')}}" class="nav-link " id="cat4-tab"
+                        aria-controls="cat4" aria-selected="false">Hortalizas</a></li>
 
-                <li class="nav-item"><a href="{{ route('granos')}}" class="nav-link active" id="cat5-tab" aria-controls="cat5"
-                        aria-selected="true">Granos</a></li>
+                <li class="nav-item"><a href="{{ route('granos')}}" class="nav-link active" id="cat5-tab"
+                        aria-controls="cat5" aria-selected="true">Granos</a></li>
 
-                <li class="nav-item"><a href="{{ route('legumbres')}}" class="nav-link " id="cat6-tab" aria-controls="cat6"
-                        aria-selected="false">Legumbres</a></li>
+                <li class="nav-item"><a href="{{ route('legumbres')}}" class="nav-link " id="cat6-tab"
+                        aria-controls="cat6" aria-selected="false">Legumbres</a></li>
 
             </ul>
         </div>
         <div class="tab-content bg-white">
-    <div class="tab-pane fade show active">
-        <div class="card__container js-equal-height-parent" id="products">
-        @foreach ($grains as $grainDetail)
-                @php
-                    $product = \App\Models\ProductDetail::find($grainDetail->id)->product;
-                @endphp
-                <a href="" class="card card--flex card--link js-equal-height">
-                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="card--flex__img">
-                    <div class="card--flex__content">
-                        <h4 class="card--title">{{ __($product->name) }}</h4>
-                        
-                        <p class="card--text">{{ $grainDetail->known_name }}</p>
-         
-                        <p class="card--text">{{ $product->family_name }}</p>
-                        <p class="txt--blue">Ver</p>
-                      
-                    </div>
-                </a>
-            @endforeach
+            <div class="tab-pane fade show active">
+                <div class="card__container js-equal-height-parent" id="products">
+                    @foreach ($grains as $grainDetail)
+                    <a href="" class="card card--flex card--link js-equal-height">
+                        <img src="{{ asset($grainDetail->product->image) }}"
+                            alt="{{ $grainDetail->product->name }}" class="card--flex__img">
+                        <div class="card--flex__content">
+                            <h4 class="card--title">{{ __($grainDetail->product->name) }}</h4>
+                            <p class="card--text">{{ $grainDetail->concatenated_known_names }}</p>
+                            <p class="card--text">{{ $grainDetail->product->family_name }}</p>
+                            <p class="txt--blue">Ver</p>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
+            </div>
+            <div class="text-center mb-5">
+                <button class="btn btn--green" id="more-results">Cargar más</button>
+            </div>
         </div>
-    </div>
-    <div class="text-center mb-5">
-        <button class="btn btn--green" id="more-results">Cargar más</button>
-    </div>
-</div>
     </div>
 
     <footer>
@@ -217,34 +212,34 @@
     </script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
-$(document).ready(function () {
-$('#region').change(function () {
-    var regionId = $(this).val();
+    <script>
+        $(document).ready(function () {
+            $('#region').change(function () {
+                var regionId = $(this).val();
 
-    if (!regionId) {
-        $('#country').empty(); 
-        return;
-    }
+                if (!regionId) {
+                    $('#country').empty();
+                    return;
+                }
 
-    $.ajax({
-        url: '/get-countries/' + regionId,
-        type: 'GET',
-        success: function (data) {
-            $('#country').empty();
-            $.each(data, function (key, value) {
-                $('#country').append('<option value="' + key + '">' + value + '</option>');
+                $.ajax({
+                    url: '/get-countries/' + regionId,
+                    type: 'GET',
+                    success: function (data) {
+                        $('#country').empty();
+                        $.each(data, function (key, value) {
+                            $('#country').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                    error: function () {
+                        console.log('Error al cargar países');
+                    }
+                });
             });
-        },
-        error: function () {
-            console.log('Error al cargar países');
-        }
-    });
-});
-});
-</script>
+        });
+    </script>
 </body>
 
 
