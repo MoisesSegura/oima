@@ -1,64 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>OIMA | Información Nutricional</title>
-
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#376697">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="theme-color" content="#ffffff">
-
-        <link rel="stylesheet" type="text/css" href="https://cdn.materialdesignicons.com/3.5.95/css/materialdesignicons.min.css">
-
-        <link rel="stylesheet" type="text/css" href="/css/index.css">
-
-                    </head>
-    <body>
-            <div class="nav" role="navigation">
-    <a class="logo" href="/">OIMA / MIOA</a>
-    <ul class="nav__list">
-        <li><a class="nav__list--link " href="/">Inicio</a></li>
-        <li><a class="nav__list--link " href="/es/oima">OIMA</a></li>
-        <li><a class="nav__list--link " href="/es/repositorio/publicaciones">Repositorio</a></li>
-        <li><a class="nav__list--link
-            "
-               href="/es/catalogo">Catálogo</a></li>
-        <li class="d-none d-md-block"><a class="nav__list--link " href="/es/blog/eventos">Blog</a></li>
-        <li class="d-none d-md-block"><a class="nav__list--link " href="/es/contacto">Contacto</a></li>
-
-        <li class="nav-item dropdown d-md-none">
-            <a id="nav-collapse-trigger" class="nav__list--link nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más <i class="mdi mdi-chevron-down"></i></a>
-            <div class="dropdown-menu" aria-labelledby="nav-collapse-trigger">
-                <a class="nav__list--link " href="/es/blog/eventos">Blog</a>
-                <a class="nav__list--link " href="/es/contacto">Contacto</a>
-            </div>
-        </li>
-    </ul>
-    <div class="nav--others">
-                                    <a class="text-decoration-none lang--select" href="/es/change-language/en">EN</a>
-                <a class="text-decoration-none lang--select" href="/es/change-language/pt">PT</a>
-
-                        
-        
-        <button class="btn btn--clear search--trigger"><i class="mdi mdi-magnify"></i></button>
-        <div class="search__box-container">
-            <div class="search__box">
-                <form action="/es/buscar" method="get">
-                    <div class="input--wrap-nav">
-                        <input type="text" name="q" placeholder="Ingrese su búsqueda">
-                    </div>
-                    <button type="submit" class="btn btn--small btn--green">IR</button>
-                </form>
-                <button class="btn btn--clear search--trigger"><i class="mdi mdi-close"></i></button>
-            </div>
-        </div>
-    </div>
-</div>            <div class="content">
+@include('widgets.header')
+@include('widgets.navbar')            
+<div class="content">
         <div class="container">
             <div class="d-flex justify-content-between">
                 <div class="backbot">
