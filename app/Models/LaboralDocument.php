@@ -20,13 +20,15 @@ class LaboralDocument extends Model implements TranslatableContract
 
     public $translatedAttributes = ['title','file_real','file_real_name','delete_file'];
 
-    public function regiontranslation(): BelongsTo
-    {
-        return $this->belongsTo(RegionTranslation::class, 'region_id');
-    }
-
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class, 'region_id');
     }
+
+    public function regiontranslation(): BelongsTo
+    {
+        return $this->belongsTo(RegionTranslation::class, 'region');
+    }
+
+
 }

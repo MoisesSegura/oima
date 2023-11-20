@@ -38,7 +38,7 @@ class Country extends Model //implements TranslatableContract
         return $this->hasMany(Organization::class, 'country_id');
     }
 
-    public function persons(): HasMany
+    public function persons(): hasMany
     {
         return $this->hasMany(Person::class, 'country_id');
     }

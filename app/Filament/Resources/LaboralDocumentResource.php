@@ -23,6 +23,8 @@ use App\Filament\Traits\Translatable;
 
 class LaboralDocumentResource extends Resource
 {
+
+
     protected static ?string $model = LaboralDocument::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
@@ -54,10 +56,31 @@ class LaboralDocumentResource extends Resource
                         ->searchable(),
 
                         Select::make('category')
-                        ->options([
-                            'documentos tecnico' => 'Documentos Tecnico',
-                            'informes regionales' => 'Informes Regionales',
-                        ])
+                        ->options(function () {
+                            $options = [
+                                1 => 'Documentos Técnico',
+                                2 => 'Informes Regionales',
+                            ];
+                            if (app()->getLocale() === 'en') {
+                                $options = [
+                                    1 => 'Technical Documents',
+                                    2 => 'Regional Reports',
+                                ];
+                            } else if (app()->getLocale() === 'pt') {
+                                $options = [
+                                    1 => 'Documentos Técnicos',
+                                    2 => 'Relatórios Regionais',
+                                ];
+                            }
+                            return $options;
+                        })
+
+
+                        // Select::make('category')
+                        // ->options([
+                        //     '1' => 'Documentos Tecnico',
+                        //     '2' => 'Informes Regionales',
+                        // ])
 
                     ])
                     ]),
@@ -119,8 +142,8 @@ class LaboralDocumentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('place')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('region')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('region.name')
+                //     ->searchable(),
             ])
             ->filters([
                 //

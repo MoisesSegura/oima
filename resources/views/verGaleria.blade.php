@@ -1,5 +1,6 @@
 @include('widgets.header')
 @include('widgets.navbar')
+
     <div class="content">
         <div class="container">
             <div class="d-flex justify-content-between">
@@ -11,16 +12,16 @@
                     <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
                     <ul class="share--links">
                         <li><a class="share--link" target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/requisitos/banano/costa-rica"><img
+                                href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/galeria/banano/costa-rica"><img
                                     src="/img/fb-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://wa.me/?text=https://www.mioa.org/es/requisitos/banano/costa-rica"><img
+                                href="https://wa.me/?text=https://www.mioa.org/es/galeria/banano/costa-rica"><img
                                     src="/img/wa-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://twitter.com/home?status=https://www.mioa.org/es/requisitos/banano/costa-rica "><img
+                                href="https://twitter.com/home?status=https://www.mioa.org/es/galeria/banano/costa-rica "><img
                                     src="/img/tw-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/requisitos/banano/costa-rica&title=&summary=&source="><img
+                                href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/galeria/banano/costa-rica&title=&summary=&source="><img
                                     src="/img/li-icon.svg"></a></li>
                     </ul>
                 </div>
@@ -28,14 +29,14 @@
             <div class="row">
                 <div class="col-md-4 d-none d-md-block text-center">
                     <p class="card--text">Conocido como</p>
-                    <h3 class="card--title">{{$productDetail->known_name}}</h3>
+                    <h3 class="card--title">{{ $productDetail->known_name }}</h3>
                     <img src="{{ asset($productDetail->product->image) }}" alt="{{ $productDetail->product->name }}"
-                        class="img-responsive">
+                        class="figure-img img-fluid rounded">
                 </div>
                 <div class="col-md-8">
-                    <div class="section__header d-flex">
+                    <div class="section__header">
                         <h5 class="title text-center text-md-left">
-                            Requisitos para la importación y exportación
+                            Galería
                         </h5>
                         <div class="selectors__container">
                             <div class="selectors">
@@ -43,6 +44,7 @@
                                     <select class="select" name="region" id="region-validate">
                                         <option selected value="1">Región Central</option>
                                         <option value="2">Región Norte</option>
+                                        <option value="5">Región Cono Sur</option>
                                     </select>
                                 </div>
                                 <div class="select--wrapper">
@@ -61,46 +63,22 @@
                         </div>
                     </div>
 
-                    <div class="content--requisitos container">
-                        <div class="row">
-
-                        @foreach ($contents as $content)
-
-                        <div class="col-md-12">
-                                <h5 class="title title--sideline">{{ __($content->title) }}</h5>
-                                <div class="txt--gray">
-                                    <p style="text-align:justify">
-                                    {!! $content->text !!}
-                                    </p>
-
-                                  
-                                </div>
-                            </div>
-
+                    <div class="container content__container">
+                        <div class="gallery row">
+                        @foreach ($galleries as $gallerie)
+                            <figure class="figure gallery__figure col-md-4">
+                                <img src="{{ asset($gallerie->image) }}"
+                                    class="figure-img img-fluid rounded" alt="{{ $productDetail->product->name }}">
+                                <figcaption class="figure-caption">{{ __($gallerie->title) }}</figcaption>
+                            </figure>
                         @endforeach
-
-                         
-
-                            <div class="col-md-12 section--border-top-md">
-                                <h5 class="title title--sideline">Links externos</h5>
-                                <ul class="card__list list--circle bullets--gray list--green-md">
-                                @foreach ($links as $link)
-                                    <li><a class="txt--gray"
-                                            href="{{ $link->url }}">{{ $link->url }}</a>
-                                    </li>
-                                @endforeach
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-
-        <div class="text-center mb-5 d-md-none">
+        <div class="text-center mb-5">
             <a href="/es/producto/banano/costa-rica" class="btn btn--green">Volver</a>
         </div>
     </div>
@@ -171,7 +149,7 @@
         $(".selected-country").on("change", function () {
             var val = $(this).val();
             if (val !== "") {
-                var url = "/es/requisitos/banano/temp";
+                var url = "/es/galeria/banano/temp";
                 url = url.replace("temp", val);
                 window.location.href = url;
             }

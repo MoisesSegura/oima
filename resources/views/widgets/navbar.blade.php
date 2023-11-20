@@ -3,7 +3,7 @@
     <ul class="nav__list"> 
         <li><a class="nav__list--link  active " href="{{ route('home')}}">Inicio</a></li>
         <li><a class="nav__list--link " href="oima.html">OIMA</a></li>
-        <li><a class="nav__list--link " href="repositorio/publicaciones.html">Repositorio</a></li>
+        <li><a class="nav__list--link " href="{{ route('publicaciones')}}">Repositorio</a></li>
         <li><a class="nav__list--link" href="{{ route('frutas')}}">Catálogo</a></li>
         <li class=" d-none d-md-block"><a class="nav__list--link " href="{{ route('eventos')}}">Blog</a></li>
         <li class="d-none d-md-block"><a class="nav__list--link " href="{{ route('contacto')}}">Contacto</a></li>

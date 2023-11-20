@@ -147,7 +147,6 @@ class CatalogController extends Controller
     {
         $product = ProductDetail::findOrFail($id);
      
-
         return view('verProducto', compact('product'));
     }
 
@@ -166,7 +165,6 @@ class CatalogController extends Controller
             $contents = $requirement->expImpContent;
             $links = $requirement->Links;
     
-            // Puedes acceder al atributo 'title' de ExpImpContent en tu vista
             return view('verRequisitos', compact('contents','productDetail','links'));
         } else {
             // Manejar el caso en que no haya requisito asociado
@@ -184,13 +182,53 @@ class CatalogController extends Controller
 
   // Verificar si existe información agronómica
   if ($agronomicInformations->isNotEmpty()) {
-      // Puedes acceder a los atributos 'title' y 'text' en tu vista
+      
       return view('verInfoAgronomica', compact('agronomicInformations','productDetail'));
   } else {
       // Manejar el caso en que no haya información agronómica asociada
       return view('verInfoAgronomica');
   }
     }
+
+    public function showNutrition($id)
+    {
+        // Obtén la instancia de ProductDetail por ID
+        $productDetail = ProductDetail::find($id);
+
+        // Verificar si la instancia de ProductDetail existe
+        if ($productDetail) {
+            // Accede a los modelos relacionados
+            $nutritionalProperties = $productDetail->nutritionalProperty;
+            $nutritionalContents = $productDetail->nutritionalContent;
+
+
+            // devolverlos a la vista
+            return view('verInfoNutricional', compact('nutritionalProperties', 'nutritionalContents','productDetail'));
+        } else {
+            // Manejar el caso en el que no se encuentre el ProductDetail con el ID dado
+
+            return redirect()->route('verInfoNutricional');
+        }
+    }
+
+    public function showGallery($id)
+    {
+        //instancia de ProductDetail por ID
+    $productDetail = ProductDetail::find($id);
+
+    // Verificar si la instancia de ProductDetail existe
+    if ($productDetail) {
+        // Accede a la relación de galerías
+        $galleries = $productDetail->galleries;
+
+        // devolver las galerías a la vista
+        return view('verGaleria', compact('galleries', 'productDetail'));
+    } else {
+        // Manejar el caso en el que no se encuentre el ProductDetail con el ID dado
+        return redirect()->route('verGaleria');
+    }
+    }
+    
     
 
     public function getCountries()

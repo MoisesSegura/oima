@@ -282,7 +282,7 @@
                                 <p class="card--text">Información Agronómica</p>
                             </a>
 
-                            <a href="/es/infoNutricional/Aguacate/costa-rica" class="card card--link card--centered">
+                            <a href="{{ route('verInfoNutricional', ['id' => $product->id]) }}" class="card card--link card--centered">
                                 <p class="card--text">Información Nutricional</p>
                             </a>
 

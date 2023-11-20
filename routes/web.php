@@ -30,6 +30,7 @@ Route::get('/producto/{id}', [App\Http\Controllers\CatalogController::class, 'sh
 Route::get('/requisitos/{id}', [App\Http\Controllers\CatalogController::class, 'showRequirements'])->name('verRequisitos');
 Route::get('/infoAgronomica/{id}', [App\Http\Controllers\CatalogController::class, 'showAgronomic'])->name('verInfoAgronomica');
 Route::get('/infoNutricional/{id}', [App\Http\Controllers\CatalogController::class, 'showNutrition'])->name('verInfoNutricional');
+Route::get('/galeria/{id}', [App\Http\Controllers\CatalogController::class, 'showGallery'])->name('verGaleria');
 
 Route::get('/contacto', [App\Http\Controllers\ContactController::class, 'Contact'])->name('contacto');
 Route::post('/enviar-mensaje', 'ContactController@enviarMensaje');
@@ -40,6 +41,17 @@ Route::get('/sima-media', [App\Http\Controllers\BlogController::class, 'SimaMedi
 Route::get('/eventos/{id}', [App\Http\Controllers\BlogController::class,'showEvent'])->name('showEvent');
 Route::get('/noticias/{id}', [App\Http\Controllers\BlogController::class,'showNew'])->name('showNew');
 Route::get('/sima-media/{id}', [App\Http\Controllers\BlogController::class,'showSimaMedia'])->name('showSimaMedia');
+
+Route::get('/publicaciones', [App\Http\Controllers\RepositoryController::class, 'publications'])->name('publicaciones');
+Route::get('/publicaciones/{id}', [App\Http\Controllers\RepositoryController::class, 'showPublication'])->name('verPublicacion');
+Route::get('/presentaciones', [App\Http\Controllers\RepositoryController::class, 'presentations'])->name('presentaciones');
+Route::get('/documentos-tecnicos', [App\Http\Controllers\RepositoryController::class, 'technicalDocuments'])->name('documentos-tecnicos');
+Route::get('/informes-regionales', [App\Http\Controllers\RepositoryController::class, 'regionalReports'])->name('informes-regionales');
+Route::get('/diccionario', [App\Http\Controllers\RepositoryController::class, 'dictionary'])->name('diccionario');
+Route::get('/diccionario/{id}', [App\Http\Controllers\RepositoryController::class, 'showDictionary'])->name('verDiccionario');
+Route::get('/videos', [App\Http\Controllers\RepositoryController::class, 'videos'])->name('videos');
+Route::get('/normas-procedimientos', [App\Http\Controllers\RepositoryController::class, 'procedureNorms'])->name('normas-procedimientos');
+
 
 
 
