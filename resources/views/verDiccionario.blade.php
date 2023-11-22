@@ -73,67 +73,26 @@
         <h4 class="title d-md-none text-center">Nombre común por países</h4>
 
         <ul class="list--countries" id="countries">
-            <li>
-                <p><span class="flag flag--cr"></span> <span class="txt--gray">Costa Rica</span></p>
-                <p class="country--product">Aguacate</p>
-            </li>
-            
-            <li>
-                <p><span class="flag flag--sv"></span> <span class="txt--gray">El Salvador</span></p>
-                <p class="country--product">Aguacate</p>
-            </li>
-            <li>
-                <p><span class="flag flag--gt"></span> <span class="txt--gray">Guatemala</span></p>
-                <p class="country--product">Aguacate</p>
-            </li>
-            <li>
-                <p><span class="flag flag--hn"></span> <span class="txt--gray">Honduras</span></p>
-                <p class="country--product">Palta</p>
-            </li>
-            <li>
-                <p><span class="flag flag--ni"></span> <span class="txt--gray">Nicaragua</span></p>
-                <p class="country--product">Aguacate</p>
-            </li>
-            <li>
-                <p><span class="flag flag--pa"></span> <span class="txt--gray">Panamá</span></p>
-                <p class="country--product">Aguacate</p>
-            </li>
-            <li>
-                <p><span class="flag flag--do"></span> <span class="txt--gray">República Dominicana</span></p>
-                <p class="country--product">Palta</p>
-            </li>
-        </ul>
+    @foreach($countryNames as $countryName)
+   
+        <li>
+            <p>
+                <span class="flag flag--{{ strtolower($countryName->country_iso) }}"></span>
+                <span class="txt--gray"> {{ $countryName->country_name }} </span>
+            </p>
+            <p class="country--product">{{ $countryName->concatenated_known_names }}</p>
+        </li>
+    @endforeach
+</ul>
+
 
         <div class="text-center mb-5">
             <a href="javascript:history.back()" class="txt--blue"><strong>Volver</strong></a>
         </div>
     </div>
 
-    <footer>
-        <div>
-            <a class="logo">OIMA/MIOA</a>
-            <img class="d-none d-md-block" src="/img/map-white.png" width="100" />
-        </div>
-        <div class="d-none d-md-block">
-            <p><strong>Explora</strong></p>
-            <ul class="footer__list footer__links ">
-                <li><a href="/es/">Inicio</a></li>
-                <li><a href="/es/repositorio">Repositorio</a></li>
-                <li><a href="/es/blog">Blog</a></li>
-                <li><a href="/es/oima">OIMA</a></li>
-                <li><a href="/es/catalogo">Catálogo</a></li>
-                <li><a href="/es/contacto">Contacto</a></li>
-            </ul>
-        </div>
-        <hr class="d-md-none">
-        <div>
-            <p><strong>Contáctanos</strong></p>
-            <ul class="footer__list">
-                <!-- <li><a href="tel:+50622160232"><i class="mdi mdi-phone"></i> +(506) 2216 0232</a></li> -->
-                <li><a href="mailto:oima@iica.int"><i class="mdi mdi-email"></i> oima@iica.int</a></li>
-            </ul>
-        </div>
-    </footer>
+    @include('widgets.footer')
+    
     <script type="text/javascript" src="/js/main.js"></script>
     <script>
         $("#region-dictionary").on("change", function () {

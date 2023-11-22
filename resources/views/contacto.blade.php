@@ -16,8 +16,8 @@
         <div class="hero--txt">
             <h1 class="section--title d-none d-md-block">Contacto</h1>
             <ul class="card__list list--circle bullets--gray">
-                <li>Presidente OIMA <br><strong>{{ $contact->contact_president }}</strong></li>
-                <li>Secretaria Técnica de OIMA <br><strong>{{ $contact->contact_secretary }}</strong></li>
+                <li>Presidencia de OIMA <br><strong>{{ $contact->contact_president }}</strong></li>
+                <li>Secretaría Técnica de OIMA <br><strong>{{ $contact->contact_secretary }}</strong></li>
                 <li>Teléfono <br><strong>{{ $contact->contact_phone }}</strong></li>
                 <li>Correo <br><strong>{{ $contact->contact_email }}</strong></li>
             </ul>

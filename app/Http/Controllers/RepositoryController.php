@@ -51,13 +51,15 @@ class RepositoryController extends Controller
 
     public function dictionary()
     {
-        $products = ProductDetail::select(
+        $productsUnsorted = ProductDetail::select(
             'product_detail.product_id', 
             DB::raw('MAX(product_detail.id) as max_id'), 
             DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
         )
         ->groupBy('product_detail.product_id')
         ->get();
+
+        $products = $productsUnsorted->sortBy('product.name');
     
         return  view('diccionario', compact('products'));
     }
@@ -76,9 +78,33 @@ class RepositoryController extends Controller
         ->where('product_detail.product_id', $product->product_id)
         ->groupBy('product_detail.product_id')
         ->get();
+
+        $countryNames = $this->getCountryProducts( $product->product_id);
     
-        return view('verDiccionario', compact('product', 'relatedProducts'));
+        return view('verDiccionario', compact('product', 'relatedProducts','countryNames'));
     }
+
+
+    public function getCountryProducts($product_id)
+{
+    $products = ProductDetail::select(
+        'product_detail.product_id', 
+        'product_detail.country_id',
+        'country.name as country_name',
+        'info_country.iso as country_iso', // Agregar el campo iso
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->join('country', 'product_detail.country_id', '=', 'country.id')
+    ->join('info_country', 'country.flag_id', '=', 'info_country.id') // Unir con info_country
+    ->where('product_detail.product_id', $product_id) // Condición para el product_id específico
+    ->groupBy('product_detail.product_id', 'product_detail.country_id', 'country.name', 'info_country.iso')
+    ->orderBy('country.name') // Ordenar por el nombre del país
+    ->get();
+
+    return $products;
+}
+
     
 
     public function videos(Request $request){

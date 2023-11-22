@@ -1,7 +1,7 @@
-@include('widgets.header')
-@include('widgets.navbar')     
+    @include('widgets.header')
+    @include('widgets.navbar')
     <div class="content">
-        
+
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item"><a class="nav-link " href="{{ route('eventos')}}">Eventos</a></li>
@@ -33,92 +33,70 @@
         </form>
 
         <div class="my-2">
-                    <div class="blog__list" id="blog-entries">
+            <div class="blog__list" id="blog-entries">
 
-                        @php
-                        $currentYear = null;
-                        @endphp
+                @php
+                $currentYear = null;
+                @endphp
 
-                        @foreach ($news as $new)
-                        @php
-                        $newYear = \Carbon\Carbon::parse($new->date)->year;
-                        @endphp
+                @foreach ($news as $new)
+                @php
+                $newYear = \Carbon\Carbon::parse($new->date)->year;
+                @endphp
 
-                        @if ($newYear != $currentYear)
-                        {{-- Cambio de año, muestra un nuevo encabezado --}}
-                        <h3 class="blog__list-title">{{ $newYear }}</h3>
-                        @php
-                        $currentYear = $newYear;
-                        @endphp
-                        @endif
+                @if ($newYear != $currentYear)
+                {{-- Cambio de año, muestra un nuevo encabezado --}}
+                <h3 class="blog__list-title">{{ $newYear }}</h3>
+                @php
+                $currentYear = $newYear;
+                @endphp
+                @endif
 
-                        <div class="card--event card--blog mb-4">
-                            <div class="card--event__img">
-                                <img src="{{ asset($new->image) }}" alt="{{ $new->name }}">
-                            </div>
-                            <div class="card--blog__text">
-                                <h4 class="card--title w-100 text-left">{{ __($new->title) }}</h4>
-                                <p class="card--subtitle w-100 text-left">{{
-                                    \Carbon\Carbon::parse($new->date)->isoFormat('D [-] MMMM YYYY') }}</p>
-                            
-                                <a class="btn btn--green" href="{{ route('showNew', ['id' => $new->id]) }}">Ver Noticia</a>
-                            </div>
-                        </div>
-                        @endforeach
-
+                <div class="card--event card--blog mb-4">
+                    <div class="card--event__img">
+                        <img src="{{ asset($new->image) }}" alt="{{ $new->name }}">
                     </div>
-                    <div class="text-center mb-5">
-                        <button class="btn btn--green" id="more-results">Cargar más</button>
+                    <div class="card--blog__text">
+                        <h4 class="card--title w-100 text-left">{{ __($new->title) }}</h4>
+                        <p class="card--subtitle w-100 text-left">{{
+                            \Carbon\Carbon::parse($new->date)->isoFormat('D [-] MMMM YYYY') }}</p>
+
+                        <a class="btn btn--green" href="{{ route('showNew', ['id' => $new->id]) }}">Ver Noticia</a>
                     </div>
                 </div>
-        
-      
+                @endforeach
+
+            </div>
+            <div class="text-center mb-5">
+                <button class="btn btn--green" id="more-results">Cargar más</button>
+            </div>
+        </div>
+
+
 
     </div>
 
 
-        <footer>
-    <div>
-        <a class="logo">OIMA/MIOA</a>
-        <img class="d-none d-md-block" src="../../img/map-white.png" width="100"/> 
-    </div>
-    <div class="d-none d-md-block">
-        <p><strong>Explora</strong></p>
-        <ul class="footer__list footer__links ">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../repositorio.html">Repositorio</a></li>
-            <li><a href="eventos.html">Blog</a></li>
-            <li><a href="../oima.html">OIMA</a></li>
-            <li><a href="../catalogo/Frutas.html">Catálogo</a></li>
-            <li><a href="../contacto.html">Contacto</a></li>
-        </ul>
-    </div>
-    <hr class="d-md-none">
-    <div>
-        <p><strong>Contáctanos</strong></p>
-        <ul class="footer__list">
-            <!-- <li><a href="tel:+50622160232"><i class="mdi mdi-phone"></i> +(506) 2216 0232</a></li> -->
-            <li><a href="mailto:oima@iica.int"><i class="mdi mdi-email"></i> oima@iica.int</a></li>
-        </ul>
-    </div>
-</footer>
-        <script type="text/javascript" src="../../js/main.js"></script>
-            <script>
+    @include('widgets.footer')
+
+    
+    <script type="text/javascript" src="../../js/main.js"></script>
+    <script>
         var is_ajax = false;
         var page = 2;
         var query = "";
-        query = query.replace(/&amp;/g,'&');
+        query = query.replace(/&amp;/g, '&');
 
         var cantPages = 2;
 
         $("#more-results").on('click', function () {
-            if (currentYear === undefined){
+            if (currentYear === undefined) {
                 currentYear = 0;
             }
             if (is_ajax === false) {
                 is_ajax = true;
                 $.ajax({
-                    url: "/es/ajax/blog/noticias/"+currentYear+"/"+ page + "?"+query,
+                    url: "/es/ajax/blog/noticias/" + currentYear + "/" + page + "?" + query,
                     method: "GET"
                 }).done(function (data) {
                     is_ajax = false;
@@ -133,16 +111,17 @@
         });
 
     </script>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
-            <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-            gtag('config', 'UA-151598454-1');
-            </script>
+        gtag('config', 'UA-151598454-1');
+    </script>
     </body>
 
-<!-- Mirrored from www.mioa.org/es/blog/noticias by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Oct 2023 23:24:30 GMT -->
-</html>
+    <!-- Mirrored from www.mioa.org/es/blog/noticias by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Oct 2023 23:24:30 GMT -->
+
+    </html>

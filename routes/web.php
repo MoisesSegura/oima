@@ -24,6 +24,10 @@ Route::get('/hortalizas', [App\Http\Controllers\CatalogController::class, 'Veget
 Route::get('/granos', [App\Http\Controllers\CatalogController::class, 'Grains'])->name('granos');
 Route::get('/legumbres', [App\Http\Controllers\CatalogController::class, 'Legumes'])->name('legumbres');
 
+Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
+Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'showOrganization'])->name('verOrganizacion');
+Route::get('/historia', [App\Http\Controllers\oimaController::class, 'history'])->name('historia');
+
 Route::get('/get-countries/{regionId}', [App\Http\Controllers\CatalogController::class, 'getCountriesByRegion']);
 Route::get('/filter-products',  [App\Http\Controllers\CatalogController::class, 'filterProducts'])->name('filterProducts');
 Route::get('/producto/{id}', [App\Http\Controllers\CatalogController::class, 'showProduct'])->name('verProducto');
@@ -51,6 +55,12 @@ Route::get('/diccionario', [App\Http\Controllers\RepositoryController::class, 'd
 Route::get('/diccionario/{id}', [App\Http\Controllers\RepositoryController::class, 'showDictionary'])->name('verDiccionario');
 Route::get('/videos', [App\Http\Controllers\RepositoryController::class, 'videos'])->name('videos');
 Route::get('/normas-procedimientos', [App\Http\Controllers\RepositoryController::class, 'procedureNorms'])->name('normas-procedimientos');
+
+
+
+
+
+
 
 
 

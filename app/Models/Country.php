@@ -32,13 +32,18 @@ class Country extends Model //implements TranslatableContract
         return $this->belongsTo(Region::class, 'region_id');
     }
 
+    public function flag(): BelongsTo
+    {
+        return $this->belongsTo(InfoCountry::class, 'flag_id');
+    }
 
-    public function organizations(): HasMany
+
+    public function organizations()
     {
         return $this->hasMany(Organization::class, 'country_id');
     }
 
-    public function persons(): hasMany
+    public function persons()
     {
         return $this->hasMany(Person::class, 'country_id');
     }
