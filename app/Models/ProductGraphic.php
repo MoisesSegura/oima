@@ -26,4 +26,9 @@ class ProductGraphic extends Model implements TranslatableContract
     {
         return $this->belongsTo(ProductDetail::class);
     }
+
+    public function values()
+    {
+        return $this->hasMany(ProductDetailGraphicValue::class, 'product_detail_graphic_id');
+    }
 }

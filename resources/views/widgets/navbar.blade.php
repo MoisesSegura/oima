@@ -1,5 +1,5 @@
 <div class="nav" role="navigation">
-    <a class="logo" href="https://www.mioa.org/">OIMA / MIOA</a>
+    <a class="logo" href="{{ route('home')}}">OIMA / MIOA</a>
     <ul class="nav__list">
         <li>
             <a class="nav__list--link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home')}}">Inicio</a>

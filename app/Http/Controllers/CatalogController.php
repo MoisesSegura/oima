@@ -9,7 +9,10 @@ use App\Models\Country;
 use App\Models\Region;
 use App\Models\ProductDetail;
 use App\Models\Category;
+use App\Models\ProductGraphic;
+use App\Models\ProductDetailGraphicValue;
 use Illuminate\Support\Facades\DB;
+
 
 class CatalogController extends Controller
 {
@@ -146,8 +149,59 @@ class CatalogController extends Controller
     public function showProduct($id)
     {
         $product = ProductDetail::findOrFail($id);
+
+        $knownNames = $this->getCountryProducts($product->product_id);
+
+        $graphic = ProductGraphic::where('product_detail_id', $product->id)->first();
+
+        // Verificar si se encontró un registro de ProductGraphic
+        if ($graphic) {
+            // Acceder a los valores asociados a través de la relación definida en el modelo
+            $values = $graphic->values;
+    
+            $puntos = [];
+    
+            foreach ($values as $value) {
+                $puntos[] = ['name' => $value->month, 'y' => floatval($value->value)];
+            }
+    
+            $data = json_encode($puntos);
+        } else {
+            // Manejar el caso en que no se encontró un registro de ProductGraphic
+            $data = json_encode([]);
+        }
      
-        return view('verProducto', compact('product'));
+        return view('verProducto', compact('product','knownNames','data','graphic'));
+    }
+
+
+    
+
+
+    public function getCountryProducts($product_id)
+    {
+        $products = ProductDetail::select(
+            'product_detail.product_id', 
+            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names'),
+            DB::raw('GROUP_CONCAT(DISTINCT country.name ORDER BY country.name SEPARATOR ", ") as concatenated_countries')
+        )
+        ->join('country', 'product_detail.country_id', '=', 'country.id')
+        ->where('product_detail.product_id', $product_id) 
+        ->groupBy('product_detail.product_id')
+        ->orderBy('concatenated_countries') // Ordenar por la columna concatenada
+        ->get();
+    
+        // Modificar la salida según tus necesidades
+        $formattedProducts = [];
+        foreach ($products as $product) {
+            $formattedProduct = $product->concatenated_known_names;
+            if ($product->concatenated_countries) {
+                $formattedProduct .= ' (' . $product->concatenated_countries . ')';
+            }
+            $formattedProducts[] = $formattedProduct;
+        }
+    
+        return $formattedProducts;
     }
 
     public function showRequirements($id)
