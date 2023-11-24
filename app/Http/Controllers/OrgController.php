@@ -14,4 +14,16 @@ use App\Models\Country;
 class OrgController extends Controller
 {
 
+    public function changeLanguage($locale)
+    {
+ 
+            // Establece el idioma
+            app()->setLocale('es');
+
+        // Redirige de vuelta a la página anterior o a la página de inicio
+        return redirect()->back();
+    }
+
+
+
 }

@@ -32,30 +32,13 @@
                     <img class="card__icon mb-3 d-none d-md-block" src="../img/stats-icon.svg" alt="">
                     <h3 class="title text-center">OIMA en Números</h3>
                     <ul class="list--stats">
+                        @foreach ($stats as $stat)
                         <li>
-                            <span class="number">33</span>
-                            <p>Pa&iacute;ses&nbsp;<small>miembros</small></p>
+                            <span class="number"> {!! $stat->value !!}  </span>
+                            <p>  {!! $stat->text !!} </p>
                         </li>
-                        <li>
-                            <span class="number">5</span>
-                            <p>Regiones&nbsp;</p>
-                        </li>
-                        <li>
-                            <span class="number">21</span>
-                            <p style="margin-right:-35px">A&ntilde;os trabajando en apoyo a los SIMA</p>
-                        </li>
-                        <li>
-                            <span class="number">39</span>
-                            <p style="margin-right:-35px">Productos de la regi&oacute;n central, catalogados</p>
-                        </li>
-                        <li>
-                            <span class="number">24</span>
-                            <p style="margin-right:-35px">Mejores pr&aacute;cticas regionales identificadas</p>
-                        </li>
-                        <li>
-                            <span class="number">6</span>
-                            <p>Socios estrat&eacute;gicos regionales</p>
-                        </li>
+                        @endforeach
+                      
                     </ul>
                 </div>
             </div>
@@ -76,109 +59,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-    <!-- <section class="blog--home">
-
-        <div class="blog__tabs">
-            <h3 class="title">Blog</h3>
-            <hr>
-            <ul class="nav nav-tabs" id="carousel-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#events" id="events-tab" data-toggle="tab" role="tab"
-                        aria-controls="events" aria-selected="true">Eventos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#news" id="news-tab" data-toggle="tab" role="tab" aria-controls="news"
-                        aria-selected="false">Noticias OIMA</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#media" id="media-tab" data-toggle="tab" role="tab" aria-controls="media"
-                        aria-selected="false">SIMA en los medios</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="events" role="tabpanel" aria-labelledby="events-tab">
-                <ul class="blog--carousel js-equal-height-parent">
-                    @foreach ($events as $event)
-                    <li class="blog--carousel__card js-equal-height">
-                        <div class="card--img">
-                            <img src="{{ asset($event->image) }}">
-                        </div>
-                        <div class="card--content">
-                            <p class="txt--blue">{{ __($event->name) }}</p>
-                            <p>{{ \Carbon\Carbon::parse($event->start)->format('Y-m-d') }}</p>
-                            <p class="txt--gray">
-                                {{ __($event->name) }}
-                            </p>
-                            <a href="" class="btn btn--green">Ver evento</a>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="text-center">
-                    <a class="btn--green-mobile" href="">Ver todos</a>
-                </div>
-            </div>
-
-
-
-            <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
-                <ul class="blog--carousel js-equal-height-parent">
-                    @foreach ($news as $new)
-                    <li class="blog--carousel__card js-equal-height">
-                        <div class="card--img">
-                            <img src="{{ asset($new->image) }}">
-                        </div>
-                        <div class="card--content">
-                            <p class="txt--blue">{{ __($new->title) }}</p>
-                            <p>{{ \Carbon\Carbon::parse($new->start)->format('Y-m-d') }}</p>
-                            <p class="txt--gray">
-                                {{ __($new->title) }}
-                            </p>
-                            <a href=" " class="btn btn--green">Ver noticia</a>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="text-center">
-                    <a class="btn--green-mobile" href=" ">Ver todos</a>
-                </div>
-            </div>
-
-
-            <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="media-tab">
-                <ul class="blog--carousel js-equal-height-parent">
-                    @foreach ($simas as $sima)
-                    <li class="blog--carousel__card js-equal-height">
-                        <div class="card--img">
-                            <img src="{{ asset($sima->image) }}">
-                        </div>
-                        <div class="card--content">
-                            <p class="txt--blue">{{ __($sima->title) }}</p>
-                            <p>{{ \Carbon\Carbon::parse($sima->start)->format('Y-m-d') }}</p>
-                            <p class="txt--gray">
-                                {{ __($sima->title) }}
-                            </p>
-                            <a href="" class="btn btn--green">Ver artículo</a>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="text-center">
-                    <a class="btn--green-mobile" href="">Ver todos</a>
-                </div>
-
-            </div>
-        </div>
-        </div>
-
-        </div>
-    </section> -->
 
 
 
