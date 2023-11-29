@@ -14,7 +14,7 @@
                 <div class="title--repository d-none d-md-flex ">
                     <h4 class="title">
                         
-                        Publicaciones
+                    @lang('locale.publicaciones')
 
                     </h4>
                     <p class="txt--gray"></p>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="search--container">
                         <h4 class="title d-md-none">
-                            Publicaciones
+                        @lang('locale.publicaciones')
 
                         </h4>
                         <input type="hidden" class="input input--search" name="category" value="">
@@ -48,7 +48,7 @@
                             <hr>
                             <p class="card--text"></p>
                             <p class="card--text"></p>
-                            <a class="btn-transform" href="{{ route('verPublicacion', ['id' => $publication->id]) }}">Ver información</a>
+                            <a class="btn-transform" href="{{ route('verPublicacion', ['id' => $publication->id]) }}">@lang('locale.verinfo')</a>
                             <a class="btn btn--white-blue btn--small"
                                 href="{{ $publication->file_real }}"
                                 download="{{ $publication->file_real_name }}" target="_blank"><i class="mdi mdi-download"></i></a>

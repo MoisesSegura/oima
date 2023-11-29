@@ -17,7 +17,7 @@
                     <h4 class="title">
 
 
-                        Documentos Técnicos
+                    @lang('locale.documentos')
 
 
 
@@ -40,7 +40,7 @@
                         <h4 class="title d-md-none">
 
 
-                            Documentos laborales
+                        @lang('locale.documentos')
 
 
 
@@ -79,7 +79,7 @@
                             <p class="card--text"> {{ $report->place }} </p>
                             <a class="btn btn--green btn--small"
                                 href="{{ $report->file_real }}"
-                                target="_blank">Ver</a>
+                                target="_blank">@lang('locale.ver')</a>
                             <a class="btn btn--white-blue btn--small"
                                 href="{{ $report->file_real }}"
                                 download="{{ $report->file_real_name }}"

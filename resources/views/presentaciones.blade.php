@@ -14,7 +14,7 @@
                 <div class="title--repository d-none d-md-flex ">
                     <h4 class="title">
 
-                        Presentaciones
+                    @lang('locale.presentaciones')
 
                     </h4>
                     <p class="txt--gray"></p>
@@ -25,7 +25,7 @@
                     <div class="search--container">
                         <h4 class="title d-md-none">
 
-                            Presentaciones
+                        @lang('locale.presentaciones')
 
                         </h4>
                         <input type="hidden" class="input input--search" name="category" value="">
@@ -53,7 +53,7 @@
                             <p class="card--text"> {{ $presentation->author }} </p>
                             <a class="btn btn--green btn--small"
                                 href="{{ $presentation->file_real }}"
-                                target="_blank">Ver</a>
+                                target="_blank">@lang('locale.ver')</a>
                             <a class="btn btn--white-blue btn--small"
                                 href="{{ $presentation->file_real }}"
                                 download="{{ $presentation->file_real_name }}" target="_blank"><i

@@ -1,21 +1,21 @@
 @include('widgets.header')
 @include('widgets.navbar')
     <div class="content">
-        <h1 class="section--title title--underline txt--blue text-center d-md-none">Catálogo</h1>
+    <h1 class="section--title title--underline txt--blue text-center d-md-none">@lang('locale.catalogoProductos')</h1>
         <div class="hero hero-has-text">
             <div class="hero--txt">
-                <h2 class="section--title txt--blue d-none d-md-block text-uppercase">Catálogo</h2>
-                <h4 class="txt--blue d-none d-md-block pl-3">Conozca el producto que busca</h4>
+                <h2 class="section--title txt--blue d-none d-md-block text-uppercase">@lang('locale.catalogoProductos')</h2>
+                <h4 class="txt--blue d-none d-md-block pl-3">@lang('locale.conozca')</h4>
                 <div class="txt--gray pl-3">
 
                 </div>
             </div>
         </div>
-        <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">Buscar producto</h2>
+        <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
         <form id="f_1" name="f_1" action="{{ route('filterProducts') }}" method="GET">
             <div class="search--container">
                 <div class="selectors__container">
-                    <h3 class="txt--blue title--underline">Buscar producto</h3>
+                    <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
                     <div class="selectors">
                         <div class="select--wrapper">
 
@@ -53,12 +53,13 @@
                 <li class="nav-item"><a href="{{ route('granos')}}" class="nav-link " id="cat5-tab" aria-controls="cat5"
                         aria-selected="false">Granos</a></li>
 
-                <li class="nav-item"><a href="" class="nav-link " id="cat6-tab" aria-controls="cat6"
+                <li class="nav-item"><a href="{{ route('legumbres')}}" class="nav-link " id="cat6-tab" aria-controls="cat6"
                         aria-selected="false">Legumbres</a></li>
 
             </ul>
         </div>
     </div>
+
     <div class="tab-content bg-white">
         <div class="tab-pane fade show active">
             <div class="card__container js-equal-height-parent" id="products">

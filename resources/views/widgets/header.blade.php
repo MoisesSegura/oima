@@ -17,6 +17,9 @@
         href="https://cdn.materialdesignicons.com/3.5.95/css/materialdesignicons.min.css">
 
         <link rel="stylesheet" type="text/css" href="../css/index.css">
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     </head>
     <body>

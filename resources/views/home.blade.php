@@ -20,7 +20,7 @@
             <br/>
 
 
-            <h3 class="title">Nuestro Próposito</h3>
+            <h3 class="title">@lang('locale.proposito')</h3>
 
             <p class="txt--black">{{ __($site->oima_purpose) }}</p>
         </div>
@@ -30,7 +30,7 @@
             <div class="col-md-5 order-2-mobile">
                 <div class="card--stats js-equal-height-ref">
                     <img class="card__icon mb-3 d-none d-md-block" src="../img/stats-icon.svg" alt="">
-                    <h3 class="title text-center">OIMA en Números</h3>
+                    <h3 class="title text-center">@lang('locale.metricas')</h3>
                     <ul class="list--stats">
                         @foreach ($stats as $stat)
                         <li>
@@ -45,7 +45,7 @@
             <div class="col-md-7 order-1-mobile">
                 <div class="card--md-only card--achievements js-equal-height card--expansible">
                     <img class="card__icon mb-3 d-none d-md-block" src="../img/achievements-icon.svg" alt="">
-                    <h3 class="title">Nuestros Logros</h3>
+                    <h3 class="title">@lang('locale.logros')</h3>
                     <ul class="list--achievements card__list list--circle bullets--blue">
 
                         @foreach ($achievements as $achievement)
@@ -65,21 +65,21 @@
     <section class="home__resources">
         <div class="card__resources card-repository">
             <div class="card--content">
-                <h4 class="title">Repositorio de Documentos</h4>
+                <h4 class="title">@lang('locale.repositorio')</h4>
                 <p class="txt--gray">{{ __($extras->document_repository) }}</p>
                 <a class="btn btn--green" href="repositorio.html">Ver Repositorio</a>
             </div>
         </div>
         <div class="card__resources card-catalog">
             <div class="card--content">
-                <h4 class="title">Catálogo de productos</h4>
+                <h4 class="title">@lang('locale.catalogo')</h4>
                 <p class="txt--gray">{{ __($extras->catalog) }}</p>
             <a class="btn btn--green" href="">Ver Catálogo</a>
 
             </div>
         </div>
         <div class="card__links">
-            <h4 class="title">Herramientas adicionales</h4>
+            <h4 class="title">@lang('locale.herramientas')</h4>
             <div class="card__links__container">
                 <a class="link--resources d-none d-md-block" target="_blank"
                     href="http://www.simmagro.sieca.int/">{{$tool->name}}</a>
@@ -94,7 +94,7 @@
     <section class="lead lead-small">
 
         <div class="lead__content">
-            <h3 class="title">Secretaría Técnica</h3>
+            <h3 class="title">@lang('locale.secretaria')</h3>
         </div>
         <img class="lead__img" src="../img/logo-iica.png" alt="Logo IICA">
     </section>

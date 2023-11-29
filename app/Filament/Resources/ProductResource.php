@@ -167,17 +167,5 @@ class ProductResource extends Resource
         return ['name', 'category.name'];
     }
 
-    public static function getGlobalSearchResultDetails(Model $record): array
-    {
-        /** @var Post $record */
-        $details = [];
-
-        if ($record->author) {
-            $details['Category'] = $record->category->name;
-        }
-
-
-
-        return $details;
-    }
+   
 }

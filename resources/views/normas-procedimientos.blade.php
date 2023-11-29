@@ -12,7 +12,7 @@
                 <div class="title--repository d-none d-md-flex ">
                     <h4 class="title">
 
-                        Normas de Procedimiento
+                    @lang('locale.normas')
                     </h4>
                     <p class="txt--gray"></p>
                 </div>
@@ -22,7 +22,7 @@
                     <div class="search--container">
                         <h4 class="title d-md-none">
 
-                            Normas de procedimientos
+                        @lang('locale.normas')
                         </h4>
                         <input type="hidden" class="input input--search" name="category" value="">
                         <div class="input__wrap input__wrap--search">
@@ -43,7 +43,7 @@
                             <hr>
                             <a class="btn btn--small btn--green"
                                 href="{{ __($norm->file_real) }}"
-                                target="_blank">Ver</a>
+                                target="_blank">@lang('locale.ver')</a>
                             <a class="btn btn--small btn--white-blue"
                                 href="{{ __($norm->file_real) }}"
                                 download="{{ __($norm->file_real_name) }}" target="_blank"><i

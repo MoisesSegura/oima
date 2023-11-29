@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('form', Form::class);
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
 
 Route::get('/change-language/{locale}', function ($locale = null) {
@@ -16,10 +16,16 @@ Route::get('/change-language/{locale}', function ($locale = null) {
     return redirect()->back();
 })->name('change-language');
 
+Route::get('/locale/{locale}', function ($locale) {
+    session()->put('locale', $locale);
+    return redirect()->back();
+ 
+})->name('locale');;
+
+
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
-Route::get('/changeLanguage/{locale}', [App\Http\Controllers\OrgController::class,'changeLanguage'])->name('change-language');
 
 
 Route::get('/frutas', [App\Http\Controllers\CatalogController::class, 'Catalog'])->name('frutas');

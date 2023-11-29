@@ -15,7 +15,7 @@ use App\Models\OrganizationDelegate;
 use App\Models\OrganizationExternal;
 use App\Models\OrganizationPrice;
 use App\Models\Country;
-
+use App\Models\Region;
 
 class oimaController extends Controller
 {
@@ -37,8 +37,10 @@ class oimaController extends Controller
 
         $countries = Country::with('region', 'organizations')->orderBy('name')->get();
 
+        $regions = Region::all();
 
-        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries'));
+
+        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions'));
     }
 
     public function showOrganization($id)

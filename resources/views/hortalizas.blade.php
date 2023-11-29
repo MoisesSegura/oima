@@ -1,17 +1,17 @@
 @include('widgets.header')
 @include('widgets.navbar')
     <div class="content">
-        <h1 class="section--title title--underline txt--blue text-center d-md-none">Catálogo</h1>
+        <h1 class="section--title title--underline txt--blue text-center d-md-none">@lang('locale.catalogoProductos')</h1>
         <div class="hero hero-has-text">
             <div class="hero--txt">
-                <h2 class="section--title txt--blue d-none d-md-block text-uppercase">Catálogo</h2>
-                <h4 class="txt--blue d-none d-md-block pl-3">Conozca el producto que busca</h4>
+                <h2 class="section--title txt--blue d-none d-md-block text-uppercase">@lang('locale.catalogoProductos')</h2>
+                <h4 class="txt--blue d-none d-md-block pl-3">@lang('locale.conozca')</h4>
                 <div class="txt--gray pl-3">
 
                 </div>
             </div>
         </div>
-        <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">Buscar producto</h2>
+        <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
         <form id="f_1" name="f_1">
             <div class="search--container">
                 <div class="selectors__container">

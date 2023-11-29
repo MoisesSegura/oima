@@ -13,7 +13,7 @@
                 <div class="title--repository d-none d-md-flex ">
                     <h4 class="title">
 
-                        Documentos Técnicos
+                    @lang('locale.documentos')
 
                     </h4>
                     <p class="txt--gray"></p>
@@ -47,11 +47,9 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
 
                     <li class="nav-item"><a class="nav-link document-category {{ request()->routeIs('documentos-tecnicos') ? 'active' : '' }}"
-                            href="{{ route('documentos-tecnicos')}}" id="document-cat-1">Documentos
-                            técnicos</a></li>
+                            href="{{ route('documentos-tecnicos')}}" id="document-cat-1">@lang('locale.documentos')</a></li>
                     <li class="nav-item"><a class="nav-link document-category {{ request()->routeIs('informes-regionales') ? 'active' : '' }}"
-                            href="{{ route('informes-regionales')}}" id="document-cat-2">Informes
-                            regionales</a></li>
+                            href="{{ route('informes-regionales')}}" id="document-cat-2">@lang('locale.informes')</a></li>
                 </ul>
             </div>
             <div class="mt-1 mb-5">
@@ -66,7 +64,7 @@
                             <p class="card--text">{{ $document->place }}</p>
                             <a class="btn btn--green btn--small"
                                 href="{{ $document->file_real }}"
-                                target="_blank">Ver</a>
+                                target="_blank">@lang('locale.ver')</a>
                             <a class="btn btn--white-blue btn--small"
                                 href="{{ $document->file_real }}"
                                 download="{{ $document->file_real_name }}" target="_blank"><i

@@ -15,7 +15,7 @@
 
 
 
-                        Diccionario
+                    @lang('locale.diccionario')
 
 
 
@@ -30,7 +30,7 @@
 
 
 
-                            Diccionario
+                        @lang('locale.diccionario')
 
 
 
@@ -56,7 +56,7 @@
                             <hr>
                             <p class="card--text">{{ $product->concatenated_known_names }}</p>
                             <p class="card--text">{{ $product->product->family_name }}</p>
-                            <p class="txt--blue">Ver</p>
+                            <p class="txt--blue">@lang('locale.ver')</p>
                         </div>
                     </a>
                     @endforeach

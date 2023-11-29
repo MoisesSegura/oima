@@ -13,7 +13,7 @@
                 <div class="title--repository d-none d-md-flex ">
                     <h4 class="title">
 
-                        Videos
+                    @lang('locale.videos')
 
                     </h4>
                     <p class="txt--gray">Aquí encontrará videos relacionados con OIMA y sus miembros</p>
@@ -24,7 +24,7 @@
                     <div class="search--container">
                         <h4 class="title d-md-none">
 
-                            Videos
+                        @lang('locale.videos')
 
                         </h4>
                         <input type="hidden" class="input input--search" name="category" value="">
@@ -51,7 +51,7 @@
                         <p class="card--text">
                             {{ __($video->description) }}
                         </p>
-                        <p class="txt--blue">Ver</p>
+                        <p class="txt--blue">@lang('locale.ver')</p>
                     </a>
                 @endforeach
 
