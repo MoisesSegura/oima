@@ -70,30 +70,14 @@
 
 
 
-                @foreach ($reports as $report)
-                    <div class="card--repository">
-                        <div class="card--content">
-                            <h4 class="card--title"> {{ __($report->title) }}  </h4>
-                            <hr>
-                            <p class="card--text">{{ $report->author }}</p>
-                            <p class="card--text"> {{ $report->place }} </p>
-                            <a class="btn btn--green btn--small"
-                                href="{{ $report->file_real }}"
-                                target="_blank">@lang('locale.ver')</a>
-                            <a class="btn btn--white-blue btn--small"
-                                href="{{ $report->file_real }}"
-                                download="{{ $report->file_real_name }}"
-                                target="_blank"><i class="mdi mdi-download"></i></a>
-                        </div>
-                    </div>
-                @endforeach
+                @include('partials.reports')
 
 
 
                 </div>
 
                 <div class="text-center mb-5">
-                    <button id="more-results" class="btn btn--green">Cargar más</button>
+                    <button id="more-results" class="btn btn--green"  data-page="2">@lang('locale.botonCargar')</button>
                 </div>
             </div>
 
@@ -135,59 +119,27 @@
 
 
     <script type="text/javascript" src="/js/main.js"></script>
+ 
+
     <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "region=6&amp;category=2";
-        query = query.replace(/&amp;/g, '&');
+        document.addEventListener('DOMContentLoaded', function () {
+            let page = 2; 
 
-        var cantPages = 21;
-
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                var url = "/es/ajax/repositorio/documentos-tecnicos/" + page + "?" + query
-                is_ajax = true;
-                $.ajax({
-                    url: url,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#blog-entries").append(data);
-
-                    setEqualHeight()
-
-
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
-
-        function setEqualHeight() {
-            $('.js-equal-height-parent').each(function () {
-                var refHeight = 0;
-                var $items = $(this).find('.js-equal-height');
-
-                if ($(this).find('.js-equal-height-ref').length > 0) {
-                    refHeight = $(this).find('.js-equal-height-ref').outerHeight();
-                } else {
-                    $($items, this).each(function () {
-                        // If this box is higher than the cached highest then store it
-                        if ($(this).height() > refHeight) {
-                            refHeight = $(this).height();
-                        }
+            document.getElementById('more-results').addEventListener('click', function () {
+             
+                axios.get('/get-more-reports', { params: { page: page } })
+                    .then(function (response) {
+                      
+                        document.getElementById('blog-entries').insertAdjacentHTML('beforeend', response.data);
+                        page++; 
+                    })
+                    .catch(function (error) {
+                        console.error('Error al cargar más reportes', error);
                     });
-                }
-                $items.each(function () {
-                    $(this).css('height', refHeight);
-                })
-            })
-        }
-
+            });
+        });
     </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

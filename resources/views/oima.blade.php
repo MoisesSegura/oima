@@ -46,19 +46,19 @@
             <ul class="nav nav-tabs" id="carousel-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" href="#category-1" id="category-1-tab" data-toggle="tab" role="tab"
-                        aria-controls="#category-1" aria-selected="true">Comité Ejecutivo</a>
+                        aria-controls="#category-1" aria-selected="true">{{$categories[0]->name}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#category-2" id="category-2-tab" data-toggle="tab" role="tab"
-                        aria-controls="#category-2" aria-selected="true">Delegados</a>
+                        aria-controls="#category-2" aria-selected="true">{{$categories[1]->name}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#category-3" id="category-3-tab" data-toggle="tab" role="tab"
-                        aria-controls="#category-3" aria-selected="true">Secretaría Técnica</a>
+                        aria-controls="#category-3" aria-selected="true">{{$categories[2]->name}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#category-4" id="category-4-tab" data-toggle="tab" role="tab"
-                        aria-controls="#category-4" aria-selected="true">Premio al Servicio Distinguido</a>
+                        aria-controls="#category-4" aria-selected="true">{{$categories[3]->name}}</a>
                 </li>
             </ul>
         </div>
@@ -173,14 +173,14 @@
                         <a class="country--link text-center"
                             href="{{ route('verOrganizacion', ['id' => $organization->id]) }}">
                             <span class="flag flag--{{ strtolower($country->flag->iso) }}"></span>
-                            <span>{{ $country->name }}</span>
+                            <span>{{ $country->flag->name }}</span>
                         </a>
                     </li>
                     @endforeach
                     @else
                     <li class="region-{{ $country->region->id }}">
                         <span class="flag flag--{{ strtolower($country->flag->iso) }}"></span>
-                        <span>{{ $country->name }}</span>
+                        <span>{{ $country->flag->name }}</span>
 
                     </li>
                     @endif

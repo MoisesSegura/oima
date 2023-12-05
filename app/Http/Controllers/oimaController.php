@@ -16,6 +16,7 @@ use App\Models\OrganizationExternal;
 use App\Models\OrganizationPrice;
 use App\Models\Country;
 use App\Models\Region;
+use App\Models\PersonCategory;
 
 class oimaController extends Controller
 {
@@ -35,12 +36,14 @@ class oimaController extends Controller
 
         $achievement = Achievement::all();
 
-        $countries = Country::with('region', 'organizations')->orderBy('name')->get();
+        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
 
         $regions = Region::all();
 
+        $categories = PersonCategory::all();
 
-        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions'));
+
+        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
     }
 
     public function showOrganization($id)

@@ -4,9 +4,9 @@
 
                 <div>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" href="{{ route('eventos')}}">Eventos</a></li>
-                        <li class="nav-item"><a class="nav-link " href="{{ route('noticias')}}">Noticias OIMA</a></li>
-                        <li class="nav-item"><a class="nav-link " href="{{ route('sima-media')}}">SIMA en los medios</a>
+                        <li class="nav-item"><a class="nav-link active" href="{{ route('eventos')}}">@lang('locale.eventos')</a></li>
+                        <li class="nav-item"><a class="nav-link " href="{{ route('noticias')}}">@lang('locale.oimablog')</a></li>
+                        <li class="nav-item"><a class="nav-link " href="{{ route('sima-media')}}">@lang('locale.simamedia')</a>
                         </li>
                     </ul>
                 </div>
@@ -17,7 +17,7 @@
                             <div class="selectors">
                                 <div class="select--wrapper">
                                     <select class="select" name="year">
-                                        <option value="">Todos los años</option>
+                                        <option value="">   @lang('locale.todosblog')</option>
 
                                         @for ($year = date('Y'); $year >= 2019; $year--)
                                         <option value="{{ $year }}">{{ $year }}</option>
@@ -71,7 +71,7 @@
 
                     </div>
                     <div class="text-center mb-5">
-                        <button class="btn btn--green" id="more-results">Cargar más</button>
+                        <button class="btn btn--green" id="more-results">@lang('locale.botonCargar')</button>
                     </div>
                 </div>
 
@@ -83,36 +83,7 @@
 
             
             <script type="text/javascript" src="../../js/main.js"></script>
-            <script>
-                var is_ajax = false;
-                var page = 2;
-                var query = "";
-                query = query.replace(/&amp;/g, '&');
-
-                var cantPages = 3;
-
-                $("#more-results").on('click', function () {
-                    if (currentYear === undefined) {
-                        currentYear = 0;
-                    }
-                    if (is_ajax === false) {
-                        is_ajax = true;
-                        $.ajax({
-                            url: "/es/ajax/blog/eventos/" + currentYear + "/" + page + "?" + query,
-                            method: "GET"
-                        }).done(function (data) {
-                            is_ajax = false;
-                            page++;
-                            $("#blog-entries").append(data);
-
-                            if (cantPages < page) {
-                                $("#more-results").css("display", "none");
-                            }
-                        });
-                    }
-                });
-
-            </script>
+        
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

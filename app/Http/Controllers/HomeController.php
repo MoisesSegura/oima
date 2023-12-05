@@ -14,6 +14,7 @@ use App\Models\SimaMedia;
 use App\Models\Extra;
 use App\Models\AdditionalTool;
 use App\Models\Statistic;
+use App\Models\Region;
 class HomeController extends Controller
 {
     
@@ -38,7 +39,9 @@ class HomeController extends Controller
         
         $stats = $this->getStatistic();
 
-        return view('home', compact('organizations', 'achievements','site','events','news','simas','extras','tool','stats'));
+        $regions = Region::all();
+
+        return view('home', compact('organizations', 'achievements','site','events','news','simas','extras','tool','stats','regions'));
     }
 
     public function getStatistic()

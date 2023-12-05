@@ -4,12 +4,12 @@
 
     <div class="content">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div>
         <h1 class="title title--underline  txt--blue text-center d-md-none">Historia de OIMA</h1>
         <div class="hero hero-has-text hero-history">
             <div class="hero--txt p-3 d-none d-md-block">
-                <h1 class="title">Historia de OIMA</h1>
+                <h1 class="title">{{ __($history->title) }}</h1>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                     <img src="/img/history-1.svg">
                 </figure>
                 <div class="card--history">
-                    <h4 class="title title--sideline">Definición</h4>
+                    <h4 class="title title--sideline">@lang('locale.definicion')</h4>
                     <p class="txt--gray">
 
                     {!! __($history->definition) !!}
@@ -32,7 +32,7 @@
                     <img src="/img/history-2.svg">
                 </figure>
                 <div class="card--history">
-                    <h4 class="title title--sideline">Origen</h4>
+                    <h4 class="title title--sideline">@lang('locale.origen')</h4>
                     <p class="txt--gray">
 
                     {!! __($history->origin) !!}
@@ -45,7 +45,7 @@
                     <img src="/img/history-3.svg">
                 </figure>
                 <div class="card--history">
-                    <h4 class="title title--sideline">Estrategia</h4>
+                    <h4 class="title title--sideline">@lang('locale.estrategia')</h4>
                     <p class="txt--gray">
 
                     {!! __($history->strategy) !!}
@@ -58,7 +58,7 @@
                     <img src="/img/history-4.svg">
                 </figure>
                 <div class="card--history">
-                    <h4 class="title title--sideline">Nacimiento</h4>
+                    <h4 class="title title--sideline">@lang('locale.nacimiento')</h4>
                     <p class="txt--gray">
 
                     {!! __($history->birth) !!}
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a href="/es/oima" class="btn btn--green">Volver</a>
+            <a href="{{ route('oima') }}" class="btn btn--green">@lang('locale.volver')</a>
         </div>
     </div>
 

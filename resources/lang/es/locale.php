@@ -5,8 +5,9 @@ return [
    //navBar
    'inicio' => 'Inicio',
    'oima' => 'OIMA',
-   'repo' => 'repositorio',
+   'repo' => 'Repositorio',
    'catalogonav' => 'Catálogo',
+   'contactoNav' => 'Contáctenos',
 
    //traduccion etiquetas pagina Home
    'proposito' => 'Nuestro Propósito',
@@ -16,6 +17,8 @@ return [
    'catalogo' => 'Catálogo de Productos',
    'secretaria' => 'Secretaría Técnica',
    'herramientas' => 'Herramientas Adicionales',
+   'verCata' => 'Ver catálogo',
+   'verRepo' => 'Ver repositorio',
 
 
    //traduccion secion OIMA
@@ -32,10 +35,15 @@ return [
    'verHistoria' => 'VER HISTORIA COMPLETA',
    'masInfo' => '¿Más información?',
    'contactar' => 'CONTACTAR A OIMA',
+   'misionvision'=> 'Misión y visión',
 
+   //historia
+   'definicion'=> 'Definición',
+   'origen'=> 'Origen',
+   'estrategia'=> 'Estrategia',
+   'nacimiento'=> 'Nacimiento',
+   'volver'=> 'volver',
 
-   //botones del navbar
-   'contactoNav' => 'Contáctanos',
 
 
    //seccion repositorio
@@ -49,14 +57,24 @@ return [
    'normas' => 'Normas de procedimiento',
    'buscar' => 'Buscar',
    'region' => 'Región',
-   'verinfo'=> 'VER INFORMACIÓN',
-   'ver'=> 'Ver',
+   'verinfo' => 'VER INFORMACIÓN',
+   'ver' => 'Ver',
 
 
    //seccion catalogo
    'catalogoProductos' => 'Catálogo',
    'conozca' => 'Conozca el producto que busca',
    'buscarProd' => 'Buscar producto',
+   'frutas' => 'Frutas',
+   'hortalizas' => 'Hortalizas',
+   'granos' => 'Granos',
+   'legumbres' => 'Legumbres',
+
+   //seccion de blog
+   'todosblog' => 'Todos los años',
+   'eventos' => 'Próximos eventos',
+   'oimablog' => 'Boletines OIMA',
+   'simamedia' => 'SIMA en los medios',
 
 
    //seccion de contacto
@@ -65,17 +83,22 @@ return [
    'secretariaTec' => 'Secretaría Técnica de OIMA',
    'tel' => 'Teléfono ',
    'correo' => 'Correo',
-   'enviar'=> 'Enviar un mensaje',
-   'nombre'=> 'Nombre',
-   'pais'=> 'País',
-   'EnviarCorreo'=> 'Correo electrónico',
-   'mensaje'=> 'Mensaje',
+   'enviar' => 'Enviar un mensaje',
+   'nombre' => 'Nombre',
+   'pais' => 'País',
+   'EnviarCorreo' => 'Correo electrónico',
+   'mensaje' => 'Mensaje',
 
    'nombreComp' => 'Nombre completo',
-   'seleccpais'=> 'Seleccionar un país',
-   'ingresecorreo'=> 'Ingrese su correo',
-   'ingreseMensaje'=> 'ingrese el cuerpo del mensaje',
-   'env'=> 'Enviar',
+   'seleccpais' => 'Seleccionar un país',
+   'ingresecorreo' => 'Ingrese su correo',
+   'ingreseMensaje' => 'ingrese el cuerpo del mensaje',
+   'env' => 'Enviar',
+
+   //otros
+
+   'botonCargar' => 'Cargar más',
+   'regiones' => 'Regiones',
 
 
 

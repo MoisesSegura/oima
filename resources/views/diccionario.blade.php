@@ -20,7 +20,7 @@
 
 
                     </h4>
-                    <p class="txt--gray"></p>
+                    <p class="txt--black"> {{$extras->dictionary}}</p>
                 </div>
                 <form method="get">
                     <div>
@@ -47,29 +47,39 @@
                 <div class="card__container js-equal-height-parent" id="blog-entries">
 
 
-                    @foreach ($products as $product)
-                    <a href="{{ route('verDiccionario', ['id' => $product->max_id]) }}" class="card card--flex card--link">
-                        <img src="{{ asset($product->product->image) }}" alt="{{ $product->product->name }}"
-                            class="card--flex__img">
-                        <div class="card--flex__content">
-                            <h4 class="card--title">{{ __($product->product->name) }}</h4>
-                            <hr>
-                            <p class="card--text">{{ $product->concatenated_known_names }}</p>
-                            <p class="card--text">{{ $product->product->family_name }}</p>
-                            <p class="txt--blue">@lang('locale.ver')</p>
-                        </div>
-                    </a>
-                    @endforeach
+                @include('partials.dictionaries')
 
 
                 </div>
 
                 <div class="text-center mb-5">
-                    <button id="more-results" class="btn btn--green">Cargar más</button>
+                    <button id="more-results" class="btn btn--green" data-page="2">@lang('locale.botonCargar')</button>
                 </div>
             </div>
 
         </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let page = 2; 
+
+            document.getElementById('more-results').addEventListener('click', function () {
+         
+                axios.get('/get-more-dictionaries', { params: { page: page } })
+                    .then(function (response) {
+                
+                        document.getElementById('blog-entries').insertAdjacentHTML('beforeend', response.data);
+                        page++;
+                    })
+                    .catch(function (error) {
+                        console.error('Error al cargar más productos', error);
+                    });
+            });
+        });
+    </script>
+
 
         <section class="about__mission xs-blue-line">
             <div class="card__links card-xs">
@@ -108,59 +118,9 @@
 
     
     <script type="text/javascript" src="/js/main.js"></script>
-    <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "";
-        query = query.replace(/&amp;/g, '&');
-
-        var cantPages = 4;
-
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                var url = "/es/ajax/repositorio/diccionario/" + page + "?" + query
-                is_ajax = true;
-                $.ajax({
-                    url: url,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#blog-entries").append(data);
-
-                    setEqualHeight()
+    
 
 
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
-
-        function setEqualHeight() {
-            $('.js-equal-height-parent').each(function () {
-                var refHeight = 0;
-                var $items = $(this).find('.js-equal-height');
-
-                if ($(this).find('.js-equal-height-ref').length > 0) {
-                    refHeight = $(this).find('.js-equal-height-ref').outerHeight();
-                } else {
-                    $($items, this).each(function () {
-                        // If this box is higher than the cached highest then store it
-                        if ($(this).height() > refHeight) {
-                            refHeight = $(this).height();
-                        }
-                    });
-                }
-                $items.each(function () {
-                    $(this).css('height', refHeight);
-                })
-            })
-        }
-
-    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

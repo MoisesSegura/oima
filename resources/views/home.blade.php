@@ -1,15 +1,40 @@
 @include('widgets.header')
 @include('widgets.navbar')
 <div class="content">
-    <div class="hero hero--home">
-        <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png"/>
+    <!-- <div class="hero hero--home">
+        <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
         <div class="hero--home-overlay">
             <h1>{{ __($site->banner_title) }}</h1>
             <h3>{{ __($site->banner_subtitle) }}</h3>
 
 
         </div>
+    </div> -->
+
+    <div class="hero hero--home">
+        <div class="single-item">
+            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
+            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
+            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
+        </div>
+        <div class="hero--home-overlay">
+            <h1>{{ __($site->banner_title) }}</h1>
+            <h3>{{ __($site->banner_subtitle) }}</h3>
+        </div>
     </div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.single-item').slick({
+                prevArrow: '<button type="button" class="slick-prev"><</button>',
+                nextArrow: '<button type="button" class="slick-next">></button>'
+            });
+        });
+    </script>
 
     <section class="lead">
         <img class="lead__img" src="../img/map-color.png" alt="Logo oima">
@@ -17,7 +42,7 @@
             <h3 class="title">{{ __($site->know_oima_title) }}</h3>
 
             <p class="txt--gray"> {!! __($site->know_oima_description) !!}</p>
-            <br/>
+            <br />
 
 
             <h3 class="title">@lang('locale.proposito')</h3>
@@ -31,7 +56,102 @@
                 <div class="card--stats js-equal-height-ref">
                     <img class="card__icon mb-3 d-none d-md-block" src="../img/stats-icon.svg" alt="">
                     <h3 class="title text-center">@lang('locale.metricas')</h3>
+
                     <ul class="list--stats">
+                        <li>
+                            <span class="number">{!! $stats[0]->value !!}</span>
+                            {!! $stats[0]->text !!}
+                        </li>
+                        <li>
+                            <a class="custom-tooltip" data-title="@lang('locale.regiones'):
+
+                                    @foreach($regions as $region)
+                                        {{ $region->name }}
+                                    @endforeach">
+                                <span class="number">{!! $stats[1]->value !!}</span>
+                                {!! __($stats[1]->text) !!}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="metric-link" href="{{ route('historia')}}">
+                                <span class="number">{!! $stats[2]->value !!}</span>
+                                {!! $stats[2]->text !!}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="metric-link" href="{{ route('frutas')}}">
+                                <span class="number">{!! $stats[3]->value !!}</span>
+                                {!! $stats[3]->text !!}
+                            </a>
+                        </li>
+                        <li>
+                            <span class="number">{!! $stats[4]->value !!}</span>
+                            {!! $stats[4]->text !!}
+                        </li>
+                        <li>
+                            <span class="number">{!! $stats[5]->value !!}</span>
+                            {!! $stats[5]->text !!}
+                        </li>
+                    </ul>
+
+                    <style>
+                        .custom-tooltip:hover::before {
+                            content: attr(data-title);
+                            background-color: #fff;
+                            color: #000;
+                            position: absolute;
+                            left: 50%;
+                            bottom: 100%;
+                            transform: translateX(-50%);
+                            padding: 2rem;
+                            border: 1px solid #ccc;
+                            border-radius: 0.5rem;
+                            font-size: 1rem;
+                            opacity: 0;
+                            pointer-events: none;
+                            transition: opacity 0.5s ease-in-out;
+                            margin-bottom: 8px;
+
+                        }
+
+                        .custom-tooltip:hover::before {
+                            opacity: 1;
+                        }
+
+                        .metric-link {
+                            text-decoration: none;
+                            /* Elimina el subrayado */
+                            color: inherit;
+                        }
+
+
+                        .slick-next,
+                        .slick-prev {
+                            font-size: 1rem;
+                            color: #ffffff;
+                            background-color: rgba(55, 102, 151, 0.5);
+                            border-radius: 50%;
+                            width: 3rem;
+                            height: 3rem;
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+
+                        }
+
+                        .slick-next {
+                            right: 100px;
+                            /* Ajusta la posición derecha */
+                        }
+
+                        .slick-prev {
+                            left: 100px;
+                            /* Ajusta la posición izquierda */
+                        }
+                    </style>
+
+                    <!-- <ul class="list--stats">
                         @foreach ($stats as $stat)
                         <li>
                             <span class="number"> {!! $stat->value !!}  </span>
@@ -39,7 +159,7 @@
                         </li>
                         @endforeach
                       
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="col-md-7 order-1-mobile">
@@ -67,14 +187,14 @@
             <div class="card--content">
                 <h4 class="title">@lang('locale.repositorio')</h4>
                 <p class="txt--gray">{{ __($extras->document_repository) }}</p>
-                <a class="btn btn--green" href="repositorio.html">Ver Repositorio</a>
+                <a class="btn btn--green" href="{{ route('publicaciones')}}">@lang('locale.verRepo')</a>
             </div>
         </div>
         <div class="card__resources card-catalog">
             <div class="card--content">
                 <h4 class="title">@lang('locale.catalogo')</h4>
                 <p class="txt--gray">{{ __($extras->catalog) }}</p>
-            <a class="btn btn--green" href="">Ver Catálogo</a>
+                <a class="btn btn--green" href="{{ route('frutas')}}">@lang('locale.verCata')</a>
 
             </div>
         </div>
@@ -107,11 +227,11 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
+    window.datawindow.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'UA-151598454-1');
+    gtagg151598454 - 1');
 </script>
 </body>
 

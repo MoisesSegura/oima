@@ -3,7 +3,7 @@
     <div class="content">
         <div class="d-flex justify-content-between">
             <div class="backbot">
-                <a href="/es/producto/Aguacate" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+                <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
             </div>
             <div class="sharebot ">
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -87,7 +87,7 @@
 
 
         <div class="text-center mb-5">
-            <a href="javascript:history.back()" class="txt--blue"><strong>Volver</strong></a>
+            <a href="javascript:history.back()" class="txt--blue"><strong>@lang('locale.volver')</strong></a>
         </div>
     </div>
 

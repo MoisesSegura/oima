@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Form;;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RepositoryController;
 
 // Route::get('form', Form::class);
 
@@ -65,6 +66,11 @@ Route::get('/diccionario/{id}', [App\Http\Controllers\RepositoryController::clas
 Route::get('/videos', [App\Http\Controllers\RepositoryController::class, 'videos'])->name('videos');
 Route::get('/normas-procedimientos', [App\Http\Controllers\RepositoryController::class, 'procedureNorms'])->name('normas-procedimientos');
 
+
+Route::get('/get-more-presentations', [RepositoryController::class, 'getMorePresentations'])->name('getMorePresentations');
+Route::get('/get-more-documents', [RepositoryController::class, 'getMoreDocuments'])->name('getMoreDocuments');
+Route::get('/get-more-reports', [RepositoryController::class, 'getMoreReports'])->name('getMoreReports');
+Route::get('/get-more-dictionaries', [RepositoryController::class, 'getMoreDictionaries'])->name('getMoreDictionaries');
 
 
 

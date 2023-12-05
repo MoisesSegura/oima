@@ -1,24 +1,59 @@
 <div class="nav" role="navigation">
     <a class="logo" href="{{ route('home')}}">OIMA / MIOA</a>
     <ul class="nav__list">
-        <li>
+        <li> 
             <a class="nav__list--link {{ request()->routeIs('home') ? 'active' : '' }}"
-                href="{{ route('home')}}">Inicio</a>
+                href="{{ route('home')}}">@lang('locale.inicio')</a>
         </li>
 
-        <li>
-            <a  class="nav__list--link {{ request()->routeIs('oima') ? 'active' : '' }}"
-                href="{{ route('oima')}}">OIMA</a>
+        <!-- <li>
+            <a class="nav__list--link {{ request()->routeIs('oima') ? 'active' : '' }}"
+                href="{{ route('oima')}}">@lang('locale.oima')</a>
+        </li> -->
+
+        <li >
+            <div class="headerdrop">
+                <div class="dropdown" data-dropdown>
+                    <a class="drop nav__list--link {{ request()->routeIs('oima') ? 'active' : '' }}" data-dropdown-button>@lang('locale.oima')</a>
+                    <div class="dropdown-menu information-grid">
+                        <div>
+                            <div class="dropdown-heading">Informacion institucional</div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('oima')}}" class="drop">@lang('locale.principios')</a>
+                                <a href="#" class="drop">@lang('locale.quienes')</a>
+                                <a href="#" class="drop">@lang('locale.paisesMiembros')</a>
+                                <a href="#" class="drop">@lang('locale.logros')</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown-heading">Funcionamiento</div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('oima')}}#mision-vision" class="drop">@lang('locale.misionvision')</a>
+                                <a href="#" class="drop">@lang('locale.comiteEjecutivo')</a>
+                                <a href="{{ route('historia')}}" class="drop">@lang('locale.historia')</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="dropdown-heading">Ayuda</div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('contacto')}}#contactar" class="drop">@lang('locale.contactoNav')</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </li>
 
         <li>
             <a class="nav__list--link {{ request()->routeIs(['publicaciones','presentaciones','documentos-tecnicos','diccionario','videos','normas-procedimientos']) ? 'active' : '' }}"
-                href="{{ route('publicaciones')}}">Repositorio</a>
+                href="{{ route('publicaciones')}}">@lang('locale.repo')</a>
         </li>
 
         <li>
             <a class="nav__list--link {{ request()->routeIs(['frutas','hortalizas','granos','legumbres']) ? 'active' : '' }}"
-                href="{{ route('frutas')}}">Catálogo</a>
+                href="{{ route('frutas')}}">@lang('locale.catalogonav')</a>
         </li>
 
         <li class=" d-none d-md-block">
@@ -28,54 +63,23 @@
 
         <li class="d-none d-md-block">
             <a class="nav__list--link {{ request()->routeIs('contacto') ? 'active' : '' }}"
-                href="{{ route('contacto')}}">Contacto</a>
+                href="{{ route('contacto')}}">@lang('locale.contacto')</a>
         </li>
-        
-     
 
-       
-        <!-- <div class="headerdrop">
-            <div class="dropdown" data-dropdown>
-            <a class="drop" data-dropdown-button>Information</a>
-                <div class="dropdown-menu information-grid">
-                    <div>
-                        <div class="dropdown-heading">Informacion institucional</div>
-                        <div class="dropdown-drops">
-                            <a href="#" class="drop">@lang('locale.principios')</a>
-                            <a href="#" class="drop">@lang('locale.quienes')</a>
-                            <a href="#" class="drop">@lang('locale.paisesMiembros')</a>
-                            <a href="#" class="drop">@lang('locale.logros')</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="dropdown-heading">Funcionamiento</div>
-                        <div class="dropdown-drops">
-                            <a href="#mision-vision" class="drop">Mision y Vision</a>
-                            <a href="#" class="drop">@lang('locale.comiteEjecutivo')</a>
-                            <a href="#" class="drop">@lang('locale.historia')</a>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="dropdown-heading">Ayuda</div>
-                        <div class="dropdown-drops">
-                            <a href="#" class="drop">@lang('locale.contactoNav')</a>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
 
-        </div> -->
       
+    </ul>
 
 
         <style>
             .headerdrop {
-                background-color: #F3F3F3;
+                /* background-color: rgba(55, 102, 151, 0);
                 display: flex;
-                align-items: baseline;
-                padding: .5rem;
-                gap: 1rem;
+                align-items: baseline; */
+                /* gap: 1rem;
+                padding: .5rem; */
+                padding: 1rem;
+               
             }
 
             .drop {
@@ -83,10 +87,11 @@
                 border: none;
                 text-decoration: none;
                 color: #777;
-                font-family: inherit;
-                font-size: inherit;
+                /* font-family: inherit;
+                font-size: inherit; */
                 cursor: pointer;
                 padding: 0;
+                /* font-weight: bold;  */
             }
 
             .dropdown.active>.drop,
@@ -156,7 +161,7 @@
 
         </script>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         // Manejar el clic en los enlaces del menú
         $('.dropdown-drops a').on('click', function(event) {
@@ -172,19 +177,17 @@
             }, 1000); // El valor 1000 es la duración de la animación en milisegundos
         });
     });
-</script>
+</script> -->
 
 
 
 
 
 
-    </ul>
     <div class="nav--others">
         <a class="text-decoration-none lang--select" href="locale/es">ES</a>
         <a class="text-decoration-none lang--select" href="locale/en">EN</a>
         <a class="text-decoration-none lang--select" href="locale/pt">PT</a>
-        <!-- <p>Current Language: {{ app()->getLocale() }}</p> -->
         <button class="btn btn--clear search--trigger"><i class="mdi mdi-magnify"></i></button>
         <div class="search__box-container">
             <div class="search__box">

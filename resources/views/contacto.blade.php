@@ -24,6 +24,8 @@
         </div>
     </div>
 
+    <div id="contactar"></div>
+
 
     <section class="contact__form ">
         <div class="card--form">

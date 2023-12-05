@@ -10,23 +10,21 @@ class BlogController extends Controller
 {
     public function Events(Request $request){
         
-        $events = Event::all();
-        $news = OimaNew::all();
-        $simaMedias = SimaMedia::all();
+        $events = Event::orderBy('year', 'desc')->get();
   
-        return view('eventos', compact('events','news','simaMedias'));
+        return view('eventos', compact('events'));
     }
 
     public function News(Request $request){
         
-        $news = OimaNew::all();
+        $news = OimaNew::orderBy('year', 'desc')->get();
   
         return view('noticias', compact('news'));
     }
 
     public function SimaMedia(Request $request){
         
-        $simaMedias = SimaMedia::all();
+        $simaMedias = SimaMedia::orderBy('year', 'desc')->get();
   
         return view('sima-media', compact('simaMedias'));
     }

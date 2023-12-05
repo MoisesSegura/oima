@@ -7,7 +7,7 @@
 
         <div class="container--repository open">
             <div class="back d-md-none">
-                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> Volver</a>
+                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> @lang('Volver')</a>
             </div>
             <div class="header--repository">
                 <div class="title--repository d-none d-md-flex ">
@@ -16,7 +16,7 @@
                     @lang('locale.videos')
 
                     </h4>
-                    <p class="txt--gray">Aquí encontrará videos relacionados con OIMA y sus miembros</p>
+                    <p class="txt--black"> {{$extras->videos}} </p>
                 </div>
                 <form method="get">
                     <div>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="text-center mb-5">
-                    <button id="more-results" class="btn btn--green">Cargar más</button>
+                    <button id="more-results" class="btn btn--green">@lang('locale.botonCargar')</button>
                 </div>
             </div>
 
@@ -99,60 +99,7 @@
     @include('widgets.footer')
 
     
-    <script type="text/javascript" src="/js/main.js"></script>
-    <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "";
-        query = query.replace(/&amp;/g, '&');
-
-        var cantPages = 3;
-
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                var url = "/es/ajax/repositorio/videos/" + page + "?" + query
-                is_ajax = true;
-                $.ajax({
-                    url: url,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#blog-entries").append(data);
-
-                    setEqualHeight()
-
-
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
-
-        function setEqualHeight() {
-            $('.js-equal-height-parent').each(function () {
-                var refHeight = 0;
-                var $items = $(this).find('.js-equal-height');
-
-                if ($(this).find('.js-equal-height-ref').length > 0) {
-                    refHeight = $(this).find('.js-equal-height-ref').outerHeight();
-                } else {
-                    $($items, this).each(function () {
-                        // If this box is higher than the cached highest then store it
-                        if ($(this).height() > refHeight) {
-                            refHeight = $(this).height();
-                        }
-                    });
-                }
-                $items.each(function () {
-                    $(this).css('height', refHeight);
-                })
-            })
-        }
-
-    </script>
+  
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

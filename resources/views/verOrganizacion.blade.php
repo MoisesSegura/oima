@@ -3,7 +3,7 @@
 
     <div class="content">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div>
         <h1 class="section--title title--underline txt--blue text-center d-md-none">{{ __($organization->country->name) }}</h1>
         <div class="hero hero--flag" style="background-image:url(/img/flags/{{ strtolower($organization->country->flag->iso) }}.svg)">

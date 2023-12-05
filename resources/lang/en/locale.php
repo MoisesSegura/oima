@@ -2,6 +2,15 @@
 
 return [
 
+
+      //navBar
+   'inicio' => 'Home',
+   'oima' => 'MIOA',
+   'repo' => 'Repository',
+   'catalogonav' => 'Catalog',
+   'contactoNav' => 'Contact us',
+
+
     //traduccion etiquetas pagina Home
 
     'proposito' => 'Our Porpuse',
@@ -11,13 +20,15 @@ return [
     'catalogo' => 'Products Catalog',
     'secretaria' => 'Technical Secretariat',
     'herramientas' => 'Additional Tools',
+    'verCata' => 'See catalog',
+    'verRepo' => 'see repository',
 
 
     //traduccion secion OIMA
 
     'principios' => 'Our principles',
     'quienes' => 'Who we are?',
-    'paisesMiembros' => 'member countries',
+    'paisesMiembros' => 'Member countries',
     'enAmerica' => 'along America',
     'todos' => 'All',
     'mision' => 'Mission',
@@ -27,9 +38,15 @@ return [
     'verHistoria' => 'SEE FULL HISTORY',
     'masInfo' => 'More Information?',
     'contactar' => 'CONTACT MIOA',
+    'misionvision'=> 'Mission & vision',
 
-    //botones del navbar
-    'contactoNav' => 'Contact us',
+    //historia
+    'definicion' => 'Definition',
+    'origen' => 'Origin',
+    'estrategia' => 'Strategy',
+    'nacimiento' => 'Birth',
+    'volver' => 'Back',
+
 
 
     //secccion de repositorio
@@ -51,6 +68,16 @@ return [
     'catalogoProductos' => 'Catalog',
     'conozca' => 'Information about the product you are looking for',
     'buscarProd' => 'Search product',
+    'frutas'=> 'Fruits',
+    'hortalizas'=> 'Vegetables',
+    'granos'=> 'Grains',
+    'legumbres'=> 'Pulses',
+
+    //seccion de blog
+    'todosblog'=> 'All years',
+    'eventos' => 'Upcoming Events',
+    'oimablog' => 'MIOA Newsletters',
+    'simamedia' => 'MIS in the Media',
 
     // seccion de contacto
     'contacto' => 'Contact',
@@ -69,6 +96,11 @@ return [
     'ingresecorreo' => 'Enter your email',
     'ingreseMensaje' => 'Enter the message body',
     'env'=> 'Submit',
+
+    //otros
+
+   'botonCargar'=> 'load more',
+   'regiones' => 'Regions',
 
 
 

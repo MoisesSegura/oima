@@ -17,7 +17,7 @@
                     @lang('locale.publicaciones')
 
                     </h4>
-                    <p class="txt--gray"></p>
+                    <p class="txt--black"> {{$extras->publications}}</p>
                 </div>
                 <form method="get">
                     <div>

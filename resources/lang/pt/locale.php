@@ -2,6 +2,12 @@
 
 return [
 
+  'inicio' => 'Início',
+  'oima' => 'OIMA',
+  'repo' => 'Repositório',
+  'catalogonav' => 'Catálogo',
+  'contactoNav' => 'Contate-nos',
+
   //traduccion etiquetas pagina Home
   'proposito' => 'Nosso Objetivo',
   'logros' => 'Nossas Conquistas',
@@ -10,6 +16,8 @@ return [
   'catalogo' => 'Catálogo de Produtos',
   'secretaria' => 'Secretaria Técnica',
   'herramientas' => 'Instrumentos Adicionais',
+  'verCata' => 'ver catálogo',
+  'verRepo' => 'ver repositório',
 
 
   //traduccion secion OIMA
@@ -26,9 +34,15 @@ return [
   'verHistoria' => 'VEJA A HISTÓRIA COMPLETA',
   'masInfo' => 'Mais Informações?',
   'contactar' => 'ENTRE EM CONTATO CON A OIMA',
+  'misionvision'=> 'Missão e Visão',
 
-  //botones del navbar
-  'contactoNav' => 'Contate-nos',
+  //historia
+  'definicion' => 'Definição',
+  'origen' => 'Origem',
+  'estrategia' => 'Estratégia',
+  'nacimiento' => 'Nascimento',
+  'volver' => 'Voltar',
+
 
   //seccion de repositorio
   'publicaciones' => 'Publicações',
@@ -49,6 +63,16 @@ return [
   'catalogoProductos' => 'Catálogo',
   'conozca' => 'Conheça o produto que procura',
   'buscarProd' => 'Pesquisa por produto',
+  'frutas' => 'Frutas',
+  'hortalizas' => 'Hortaliças',
+  'granos' => 'Grão',
+  'legumbres' => 'Legumes',
+
+  //seccion de blog
+  'todosblog' => 'Todos os anos',
+  'eventos' => 'Próximos Eventos',
+  'oimablog' => 'Boletins OIMA',
+  'simamedia' => 'Sima na Mídia',
 
   //seccion de contacto
   'contacto' => 'Contato',
@@ -67,7 +91,12 @@ return [
   'seleccpais' => 'Selecione um País',
   'ingresecorreo' => 'Digite seu e-mail',
   'ingreseMensaje' => 'Entre a mensagem',
-  'env'=> 'enviar',
+  'env' => 'enviar',
+
+  //otros
+
+  'botonCargar' => 'carregar mais',
+  'regiones' => 'Regiões',
 
 
 

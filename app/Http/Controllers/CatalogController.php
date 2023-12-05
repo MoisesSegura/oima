@@ -70,7 +70,7 @@ class CatalogController extends Controller
         $fruits = ProductDetail::select(
             'product_detail.product_id', 
             DB::raw('MAX(product_detail.id) as max_id'), 
-            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR "-") as concatenated_known_names')
+            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
         )
         ->groupBy('product_detail.product_id')
         ->whereIn('product_detail.product_id', function ($query) {
@@ -91,7 +91,7 @@ class CatalogController extends Controller
         $vegetables = ProductDetail::select(
             'product_detail.product_id', 
             DB::raw('MAX(product_detail.id) as max_id'), 
-            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR "-") as concatenated_known_names')
+            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
         )
         ->groupBy('product_detail.product_id')
         ->whereIn('product_detail.product_id', function ($query) {
@@ -111,7 +111,7 @@ class CatalogController extends Controller
         $grains = ProductDetail::select(
             'product_detail.product_id', 
             DB::raw('MAX(product_detail.id) as max_id'), 
-            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR "-") as concatenated_known_names')
+            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
         )
         ->groupBy('product_detail.product_id')
         ->whereIn('product_detail.product_id', function ($query) {
@@ -132,7 +132,7 @@ class CatalogController extends Controller
         $legumes = ProductDetail::select(
             'product_detail.product_id', 
             DB::raw('MAX(product_detail.id) as max_id'), 
-            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR "-") as concatenated_known_names')
+            DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
         )
         ->groupBy('product_detail.product_id')
         ->whereIn('product_detail.product_id', function ($query) {

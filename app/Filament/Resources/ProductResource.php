@@ -77,8 +77,9 @@ class ProductResource extends Resource
 
                         Forms\Components\FileUpload::make('file_real')
                         ->label('file'),
-                        Forms\Components\FileUpload::make('image')
-                            ->image()
+                        Forms\Components\FileUpload::make('image') ->preserveFilenames()
+                        ->disk('public')
+                        ->directory('images')
                             ->required(),
                         Forms\Components\TextInput::make('scientific_name')
                             ->required()

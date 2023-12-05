@@ -43,16 +43,16 @@
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item"><a href="{{ route('frutas')}}" class="nav-link " id="cat3-tab" aria-controls="cat3"
-                        aria-selected="false">Frutas</a></li>
+                        aria-selected="false">@lang('locale.frutas')</a></li>
 
                 <li class="nav-item"><a href="{{ route('hortalizas')}}" class="nav-link active" id="cat4-tab"
-                        aria-controls="cat4" aria-selected="true">Hortalizas</a></li>
+                        aria-controls="cat4" aria-selected="true">@lang('locale.hortalizas')</a></li>
 
                 <li class="nav-item"><a href="{{ route('granos')}}" class="nav-link " id="cat5-tab" aria-controls="cat5"
-                        aria-selected="false">Granos</a></li>
+                        aria-selected="false">@lang('locale.granos')</a></li>
 
                 <li class="nav-item"><a href="{{ route('legumbres')}}" class="nav-link " id="cat6-tab" aria-controls="cat6"
-                        aria-selected="false">Legumbres</a></li>
+                        aria-selected="false">@lang('locale.legumbres')</a></li>
 
             </ul>
         </div>
@@ -68,7 +68,7 @@
                         <h4 class="card--title">{{ __($vegetableDetail->product->name) }}</h4>
                         <p class="card--text">{{ $vegetableDetail->concatenated_known_names }}</p>
                         <p class="card--text">{{ $vegetableDetail->product->family_name }}</p>
-                        <p class="txt--blue">Ver</p>
+                        <p class="txt--blue">@lang('locale.ver')</p>
                     </div>
                 </a>
                 @endforeach
