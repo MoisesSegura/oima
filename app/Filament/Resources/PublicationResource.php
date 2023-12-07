@@ -82,9 +82,13 @@ class PublicationResource extends Resource
 
                             Forms\Components\FileUpload::make('en.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/publications/files')
                             ->required(),
 
                             Forms\Components\FileUpload::make('en.image')
+                            ->disk('public')
+                            ->directory('uploads/publications/images')
                             ->required(),
                
                         ]),
@@ -98,9 +102,13 @@ class PublicationResource extends Resource
 
                             Forms\Components\FileUpload::make('es.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/publications/files')
                             ->required(),
 
                             Forms\Components\FileUpload::make('es.image')
+                            ->disk('public')
+                            ->directory('uploads/publications/images')
                             ->required(),
                            
                     ]),
@@ -114,9 +122,13 @@ class PublicationResource extends Resource
 
                             Forms\Components\FileUpload::make('pt.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/publications/files')
                             ->required(),
 
                             Forms\Components\FileUpload::make('pt.image')
+                            ->disk('public')
+                            ->directory('uploads/publications/images')
                             ->required(),
 
                            

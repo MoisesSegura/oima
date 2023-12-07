@@ -1,6 +1,6 @@
 @foreach ($products as $product)
 <a href="{{ route('verDiccionario', ['id' => $product->max_id]) }}" class="card card--flex card--link">
-    <img src="{{ asset($product->product->image) }}" alt="{{ $product->product->name }}" class="card--flex__img">
+<img src="{{ asset(trim('/uploads/' . $product->product->image, '/')) }}" alt="{{ $product->product->name }}" class="card--flex__img">
     <div class="card--flex__content">
         <h4 class="card--title">{{ __($product->product->name) }}</h4>
         <hr>

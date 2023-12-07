@@ -8,6 +8,9 @@ return [
    'repo' => 'Repositorio',
    'catalogonav' => 'Catálogo',
    'contactoNav' => 'Contáctenos',
+   'info'=> 'Información institucional',
+   'funcionamiento'=> 'funcionamiento',
+   'ayuda'=> 'Ayuda',
 
    //traduccion etiquetas pagina Home
    'proposito' => 'Nuestro Propósito',
@@ -59,6 +62,11 @@ return [
    'region' => 'Región',
    'verinfo' => 'VER INFORMACIÓN',
    'ver' => 'Ver',
+   'otrosNom'=> 'Otros nombres comunes',
+   'nombrecien'=> 'Nombre científico',
+   'familia'=> 'Familia',
+   'otros'=> 'Otros nombres del producto',
+   'verEn'=> 'ver en catálogo',
 
 
    //seccion catalogo
@@ -69,12 +77,19 @@ return [
    'hortalizas' => 'Hortalizas',
    'granos' => 'Granos',
    'legumbres' => 'Legumbres',
+ 
 
    //seccion de blog
    'todosblog' => 'Todos los años',
    'eventos' => 'Próximos eventos',
    'oimablog' => 'Boletines OIMA',
    'simamedia' => 'SIMA en los medios',
+   'verEvento'=> 'ver evento',
+   'verNoticia'=> 'ver noticia',
+   'verNoticiaComp'=> 'Ver noticia completa',
+   'desc'=> 'Descripción',
+   'idiomadisp'=> 'Idiomas disponibles',
+   'contactblog'=> 'contactar',
 
 
    //seccion de contacto

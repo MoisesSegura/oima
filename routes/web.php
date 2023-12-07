@@ -10,12 +10,12 @@ use App\Http\Controllers\RepositoryController;
 //Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
 
-Route::get('/change-language/{locale}', function ($locale = null) {
-    if (isset($locale) && in_array($locale, config('app.languages'))) {
-        app()->setLocale($locale);
-    }
-    return redirect()->back();
-})->name('change-language');
+// Route::get('/change-language/{locale}', function ($locale = null) {
+//     if (isset($locale) && in_array($locale, config('app.languages'))) {
+//         app()->setLocale($locale);
+//     }
+//     return redirect()->back();
+// })->name('change-language');
 
 Route::get('/locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -35,6 +35,7 @@ Route::get('/granos', [App\Http\Controllers\CatalogController::class, 'Grains'])
 Route::get('/legumbres', [App\Http\Controllers\CatalogController::class, 'Legumes'])->name('legumbres');
 
 Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
+Route::get('/oima-funcionamiento', [App\Http\Controllers\oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
 Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'showOrganization'])->name('verOrganizacion');
 Route::get('/historia', [App\Http\Controllers\oimaController::class, 'history'])->name('historia');
 

@@ -15,6 +15,7 @@ use App\Models\Extra;
 use App\Models\AdditionalTool;
 use App\Models\Statistic;
 use App\Models\Region;
+use App\Models\CarouselOima;
 class HomeController extends Controller
 {
     
@@ -41,7 +42,9 @@ class HomeController extends Controller
 
         $regions = Region::all();
 
-        return view('home', compact('organizations', 'achievements','site','events','news','simas','extras','tool','stats','regions'));
+        $carousel = CarouselOima::all();
+
+        return view('home', compact('organizations', 'achievements','site','events','news','simas','extras','tool','stats','regions','carousel'));
     }
 
     public function getStatistic()

@@ -7,7 +7,7 @@
 
         <div class="container--repository open">
             <div class="back d-md-none">
-                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> Volver</a>
+                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> @lang('locale.Volver')</a>
             </div>
             <div class="header--repository">
                 <div class="title--repository d-none d-md-flex ">
@@ -20,7 +20,9 @@
 
 
                     </h4>
-                    <p class="txt--black"> {{$extras->dictionary}}</p>
+                    <div class="repo-subtitle">
+                    <p class="txt--black"> {{$extras->directory}}</p>
+                    </div>
                 </div>
                 <form method="get">
                     <div>

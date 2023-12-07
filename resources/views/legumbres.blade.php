@@ -63,7 +63,7 @@
                 @foreach ($legumes as $legumeDetail)
                     <a href="" class="card card--flex card--link js-equal-height">
                         <img src="{{ asset($legumeDetail->product->image) }}"
-                            alt="{{ $legumeDetail->product->name }}" class="card--flex__img">
+                            alt="{{ asset(trim('/uploads/' . $legumeDetail->product->image, '/')) }}" class="card--flex__img">
                         <div class="card--flex__content">
                             <h4 class="card--title">{{ __($legumeDetail->product->name) }}</h4>
                             <p class="card--text">{{ $legumeDetail->concatenated_known_names }}</p>

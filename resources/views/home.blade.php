@@ -13,9 +13,9 @@
 
     <div class="hero hero--home">
         <div class="single-item">
-            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
-            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
-            <img src="../uploads/principal_banner/cbba7a4b30741aa41395fee3ce68163743e296ee.png" />
+        @foreach ($carousel as $carousel)
+            <img src="{{ asset('/uploads/' . ltrim($carousel->image, '/')) }}">
+        @endforeach
         </div>
         <div class="hero--home-overlay">
             <h1>{{ __($site->banner_title) }}</h1>
@@ -142,12 +142,12 @@
 
                         .slick-next {
                             right: 100px;
-                            /* Ajusta la posición derecha */
+                           
                         }
 
                         .slick-prev {
                             left: 100px;
-                            /* Ajusta la posición izquierda */
+                          
                         }
                     </style>
 

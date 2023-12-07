@@ -14,7 +14,9 @@
 
                     @lang('locale.normas')
                     </h4>
+                    <div class="repo-subtitle">
                     <p class="txt--black"> {{$extras->procedure_norms}}</p>
+                    </div>
                 </div>
                 <form method="get">
                     <div>

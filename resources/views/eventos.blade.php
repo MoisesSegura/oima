@@ -56,15 +56,14 @@
 
                         <div class="card--event card--blog mb-4">
                             <div class="card--event__img">
-                                <img src="{{ asset($event->image) }}" alt="{{ $event->name }}">
+                                <img src="{{ asset('/uploads/' . ltrim($event->image, '/')) }}" alt="{{ $event->name }}">
                             </div>
                             <div class="card--blog__text">
                                 <h4 class="card--title w-100 text-left">{{ __($event->name) }}</h4>
                                 <p class="card--subtitle w-100 text-left">{{
                                     \Carbon\Carbon::parse($event->start)->isoFormat('D [-] MMMM') }}</p>
                                 <!-- <p class="card--text w-100 text-left">{!! \Illuminate\Support\Str::limit($event->description, 20) !!}</p> -->
-                                <a class="btn btn--green" href="{{ route('showEvent', ['id' => $event->id]) }}">Ver
-                                    Evento</a>
+                                <a class="btn btn--green" href="{{ route('showEvent', ['id' => $event->id]) }}"> @lang('locale.verEvento') </a>
                             </div>
                         </div>
                         @endforeach

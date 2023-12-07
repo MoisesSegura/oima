@@ -61,7 +61,7 @@
                 <div class="card__container js-equal-height-parent" id="products">
                     @foreach ($grains as $grainDetail)
                     <a href="" class="card card--flex card--link js-equal-height">
-                        <img src="{{ asset($grainDetail->product->image) }}"
+                        <img src="{{ asset(trim('/uploads/' . $grainDetail->product->image, '/')) }}"
                             alt="{{ $grainDetail->product->name }}" class="card--flex__img">
                         <div class="card--flex__content">
                             <h4 class="card--title">{{ __($grainDetail->product->name) }}</h4>

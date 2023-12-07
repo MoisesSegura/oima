@@ -34,7 +34,7 @@ class SocialMediaResource extends Resource
                 Forms\Components\FileUpload::make('icon')
                     ->required()
                     ->disk('public')
-                    ->directory('social_media'),
+                    ->directory('uploads/social_media'),
             ]);
     }
 

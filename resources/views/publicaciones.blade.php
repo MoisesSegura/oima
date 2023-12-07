@@ -17,7 +17,10 @@
                     @lang('locale.publicaciones')
 
                     </h4>
+                    <div class="repo-subtitle">
                     <p class="txt--black"> {{$extras->publications}}</p>
+                    </div>
+               
                 </div>
                 <form method="get">
                     <div>
@@ -40,7 +43,7 @@
 
                 @foreach ($publications as $publication)
                     <div class="card--repository">
-                        <img src="{{ asset($publication->image) }}"
+                        <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}"
                             alt="{{ $publication->title }}"
                             class="card__img">
                         <div class="card--content">

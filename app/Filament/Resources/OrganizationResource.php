@@ -44,8 +44,10 @@ class OrganizationResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('image')
-                   // ->image(),
+                Forms\Components\FileUpload::make('image')
+                   ->image()
+                   ->disk('public')
+                   ->directory('uploads/organization_image')
             ]);
     }
 

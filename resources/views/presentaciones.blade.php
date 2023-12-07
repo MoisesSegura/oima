@@ -17,7 +17,9 @@
                     @lang('locale.presentaciones')
 
                 </h4>
+                <div class="repo-subtitle">
                 <p class="txt--black"> {{$extras->presentations}}</p>
+                </div>
             </div>
             <form method="get">
                 <div>

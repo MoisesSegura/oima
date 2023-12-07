@@ -2,12 +2,12 @@
 @include('widgets.navbar')
     <div class="content">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div>
 
 
 
-        <div class="hero hero-has-text hero--event" style="background-image:url('{{ asset($event->image) }}')">
+        <div class="hero hero-has-text hero--event" style="background-image:url('{{ asset('/uploads/' . ltrim($event->image, '/')) }}')">
             <!-- <img src="{{ asset($event->image) }}" alt="{{ $event->name }}"> -->
 
             <div class="hero--txt">
@@ -28,7 +28,7 @@
                         </li>
                     </ul>
                 </div>
-                <a class="btn btn--green" href="../../contacto.html">CONTACTAR</a>
+                <a class="btn btn--green" href="../../contacto.html">@lang('locale.contactblog')</a>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <h2 class="title title--sideline">Descripción</h2>
+                        <h2 class="title title--sideline">@lang('locale.desc')</h2>
                         <div class="txt--gray">
                             @if($event->description)
                             {!! $event->description !!}
@@ -49,7 +49,7 @@
 
                     <div class="col-md-6">
                         <div class="card--md-only">
-                            <h2 class="title title--sideline">Idiomas disponibles</h2>
+                            <h2 class="title title--sideline">@lang('locale.idiomadisp')</h2>
                             <div class="txt--gray">
                                 <ul>
                                     @foreach ($event->languages as $language)

@@ -41,6 +41,8 @@ class RecentResource extends Resource
 
                             Forms\Components\FileUpload::make('en.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/recent')
                             ->required(),
 
                
@@ -52,6 +54,8 @@ class RecentResource extends Resource
 
                             Forms\Components\FileUpload::make('es.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/recent')
                             ->required(),
                            
                     ]),
@@ -62,6 +66,8 @@ class RecentResource extends Resource
 
                             Forms\Components\FileUpload::make('pt.file_real')
                             ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/recent')
                             ->required(),
 
                            

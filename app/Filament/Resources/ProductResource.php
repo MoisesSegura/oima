@@ -42,21 +42,21 @@ class ProductResource extends Resource
                         ->schema([
                             Forms\Components\TextInput::make('en.name'),
 
-                            Forms\Components\Hidden::make('en.file_real')
+                            Forms\Components\FileUpload::make('en.file_real')
                             ->default('default'),
                
                         ]),
                     Tabs\Tab::make('Es')
                         ->schema([
                             Forms\Components\TextInput::make('es.name'),
-                            Forms\Components\Hidden::make('es.file_real')
+                            Forms\Components\FileUpload::make('es.file_real')
                             ->default('default'),
                            
                     ]),
                     Tabs\Tab::make('Pt')
                         ->schema([
                             Forms\Components\TextInput::make('pt.name'),
-                            Forms\Components\Hidden::make('pt.file_real')
+                            Forms\Components\FileUpload::make('pt.file_real')
                             ->default('default'),
                            
                     ]),
@@ -75,11 +75,9 @@ class ProductResource extends Resource
                             ->searchable()
                             ->required(),
 
-                        Forms\Components\FileUpload::make('file_real')
-                        ->label('file'),
-                        Forms\Components\FileUpload::make('image') ->preserveFilenames()
+                        Forms\Components\FileUpload::make('image')
                         ->disk('public')
-                        ->directory('images')
+                        ->directory('uploads/products/images')
                             ->required(),
                         Forms\Components\TextInput::make('scientific_name')
                             ->required()

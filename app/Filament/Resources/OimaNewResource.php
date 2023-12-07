@@ -57,8 +57,9 @@ class OimaNewResource extends Resource
             Forms\Components\DateTimePicker::make('date')
             ->required(),
             Forms\Components\FileUpload::make('image')
-            ->image()
-            ->required(),
+            ->disk('public')
+            ->directory('uploads/news')
+            ->image(),
             Forms\Components\Toggle::make('delete_image'),
             Forms\Components\TextInput::make('year')
             ->required()

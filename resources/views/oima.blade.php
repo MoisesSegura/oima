@@ -1,7 +1,15 @@
 @include('widgets.header')
 @include('widgets.navbar')
 
-
+<!-- <div class="sharebot ">
+    <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
+    <ul class="share--links">
+    @foreach ($socialmedia as $media)
+    <li><a class="share--link" target="_blank" href="{{ $media->url }}"><img src="{{ $media->icon }}"></a></li>
+    {{ $media->icon }}
+    @endforeach
+    </ul>
+</div>  -->
 <div class="content">
     <section class="section--about">
         <div class="container">
@@ -16,7 +24,7 @@
                         @endforeach
 
                     </p>
-                    <img class="w-100 d-none d-md-block" src="{{ asset($oima->image) }}">
+                    <img class="w-100 d-none d-md-block" src="{{ asset('/uploads/' . ltrim($oima->image, '/')) }}">
                 </div>
 
                 <div class="col-md-6 about__values values--desktop d-none d-md-block">
@@ -25,7 +33,7 @@
                         @foreach ($workprinciple as $workprinciple)
 
                         <li>
-                            <img class="icon" src="{{ asset($workprinciple->image) }}">
+                            <img class="icon" src="{{ asset('/uploads/' . ltrim($workprinciple->image, '/')) }}">
                             <p class="txt--black">{{ __($workprinciple->text) }}</p>
                         </li>
 
@@ -35,8 +43,10 @@
 
             </div>
         </div>
-
+<div id="Quienes-somos"></div>
     </section>
+
+
 
     <section class="blog--home">
 
@@ -140,8 +150,9 @@
                     @endforeach
                 </ul>
             </div>
+            <div id="Miembros"></div>
         </div>
-
+       
     </section>
 
 
@@ -188,56 +199,9 @@
                 </ul>
             </div>
         </div>
+        <div id="Logros"></div>
     </section>
 
-    <div id="mision-vision"></div>
-
-
-
-    <section class="about__mission">
-        <div class="card--mission">
-            <div class="d-none d-md-block">
-                <img src="../img/target.png" alt="">
-            </div>
-            <div class="card--mission_text">
-                <h3 class="title txt-underline my-3">@lang('locale.mision')</h3>
-                <p class="txt--black text-justify my-1">
-
-                    {!! __($oima->mision) !!}
-
-                </p>
-            </div>
-            <div class="card--mission_text">
-                <h3 class="title txt-underline my-3">@lang('locale.vision')</h3>
-                <p class="txt--black text-justify my-1">
-                    {!! __($oima->vision) !!}
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="about__comitee">
-        @foreach ($executivecommitee as $exec)
-        <img src="{{ asset($exec->image) }}">
-        @endforeach
-        <div>
-            <div class="card--comitee">
-                <h4 class="title">@lang('locale.comiteEjecutivo')</h4>
-                <div class="txt--black">
-                    @foreach ($executivecommitee as $executivecommitee)
-                    {{ __($executivecommitee->description) }}
-                    @endforeach
-                </div>
-            </div>
-            <div class="card--history">
-                <h4 class="title">@lang('locale.historia')</h4>
-                <div class="txt--black">
-                    <p> {!! __($oima->description) !!} </p>
-                    <a class="btn btn--green" href="{{ route('historia') }}">@lang('locale.verHistoria')</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="about__achievements">
         <div class="card--achievements card--achievements-internal card--expansible">

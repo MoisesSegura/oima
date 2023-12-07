@@ -54,13 +54,12 @@
 
             <div class="card--blog-alt card---blog mb-4">
                 <div class="card--blog-alt__img">
-                    <img src="{{ asset($simaMedia->image) }}" alt="{{ $simaMedia->alt_text }}">
+                    <img src="{{ asset('/uploads/' . ltrim($simaMedia->image, '/')) }}" alt="{{ $simaMedia->alt_text }}">
                 </div>
                 <div class="card--blog-alt__text card--blog__text">
                     <h4 class="card--title w-100 text-left">{{ $simaMedia->title }}</h4>
                     <!-- <p class="card--text w-100 text-left">{{ $simaMedia->short_description }}</p> -->
-                    <a class="txt--blue" href="{{ route('showSimaMedia', ['id' => $simaMedia->id]) }}">Ver
-                        noticia completa</a>
+                    <a class="txt--blue" href="{{ route('showSimaMedia', ['id' => $simaMedia->id]) }}"> @lang('locale.verNoticiaComp') </a>
                 </div>
             </div>
             @endforeach

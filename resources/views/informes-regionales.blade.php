@@ -23,7 +23,9 @@
 
 
                     </h4>
-                    <p class="txt--gray"></p>
+                    <div class="repo-subtitle">
+                    <p class="txt--black"> {{$extras->laboral_documents}}</p>
+                    </div>
                 </div>
                 <form method="get">
                     <div>

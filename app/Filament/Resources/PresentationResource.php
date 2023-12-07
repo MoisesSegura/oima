@@ -37,6 +37,8 @@ class PresentationResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->disk('public')
+                    ->directory('uploads/presentations')
                     ->required(),
 
                 Tabs::make('lang form') 
@@ -49,6 +51,8 @@ class PresentationResource extends Resource
 
                             Forms\Components\FileUpload::make('en.file_real')
                             ->label('File')
+                            ->disk('public')
+                            ->directory('uploads/files/presentations')
                             ->required(),
                
                         ]),
@@ -59,6 +63,8 @@ class PresentationResource extends Resource
 
                             Forms\Components\FileUpload::make('es.file_real')
                             ->label('File')
+                            ->disk('public')
+                            ->directory('uploads/files/presentations')
                             ->required(),
 
                            
@@ -70,6 +76,8 @@ class PresentationResource extends Resource
 
                             Forms\Components\FileUpload::make('pt.file_real')
                             ->label('File')
+                            ->disk('public')
+                            ->directory('uploads/files/presentations')
                             ->required(),
 
                            

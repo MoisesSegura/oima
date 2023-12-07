@@ -28,7 +28,9 @@ class BannerResource extends Resource
         return $form
         ->schema([
             Forms\Components\FileUpload::make('image')
-            ->required(),
+            ->required()
+            ->disk('public')
+            ->directory('uploads/banners'),
 
                 Forms\Components\Select::make('category_id')
                 ->label('BannerCategory')

@@ -10620,3 +10620,13 @@ footer .footer__links li:before {
           padding: 1px;
       }
         
+      .repo-subtitle {
+        word-wrap: break-word;
+        width: 40rem;
+    }
+    
+    
+    .repo-subtitle {
+        overflow-wrap: break-word;
+    }
+    

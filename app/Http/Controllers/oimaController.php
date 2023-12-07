@@ -18,6 +18,8 @@ use App\Models\Country;
 use App\Models\Region;
 use App\Models\PersonCategory;
 
+use App\Models\SocialMedia;
+
 class oimaController extends Controller
 {
     
@@ -28,7 +30,7 @@ class oimaController extends Controller
 
         $history = History::all();
 
-        $person = Person::all();
+        $person = Person::all()->sortBy('name');
 
         $oima = Oima::all();
 
@@ -42,8 +44,38 @@ class oimaController extends Controller
 
         $categories = PersonCategory::all();
 
+        $socialmedia = SocialMedia::all();
 
-        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
+
+        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories','socialmedia'));
+    }
+
+
+    public function oimaFuncionamiento(Request $request){
+
+        
+        $workprinciple = WorkPrinciple::all();
+
+        $history = History::all();
+
+        $person = Person::all();
+
+        $oima = Oima::First();
+
+        $executivecommitee = ExecutiveCommitee::all();
+
+        $achievement = Achievement::all();
+
+        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
+
+        $regions = Region::all();
+
+        $categories = PersonCategory::all();
+
+        $socialmedia = SocialMedia::all();
+
+
+        return view('oima-funcionamiento', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories','socialmedia'));
     }
 
     public function showOrganization($id)

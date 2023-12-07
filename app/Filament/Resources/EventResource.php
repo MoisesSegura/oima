@@ -82,8 +82,11 @@ class EventResource extends Resource
                 Forms\Components\DatePicker::make('start')  ->seconds(false)
                 ->required(),
                 Forms\Components\DatePicker::make('end'),
-                Forms\Components\FileUpload::make('image')->nullable()
-                ->image(),
+                Forms\Components\FileUpload::make('image')
+                ->disk('public')
+                ->directory('uploads/events')
+                ->image()
+                ->nullable(),
                 Forms\Components\Toggle::make('delete_image'),
                 Forms\Components\TextInput::make('year')
                 ->required()

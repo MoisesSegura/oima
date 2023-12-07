@@ -2,11 +2,11 @@
 @include('widgets.navbar')
     <div class="content">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div> <img class="w-100 d-md-none" src="../../../uploads/news/96b30d16117b2c6c8c7093c2bb2cdfb00a20076b.jpg"
             alt="Uso de tecnologías de información en los mercados agrícolas fortalecería comercio de alimentos y transparencia, afirman IICA y OIMA">
 
-        <div class="hero hero-has-text hero--full" style="background-image:url('{{ asset($new->image) }}')">
+        <div class="hero hero-has-text hero--full" style="background-image:url('{{ asset('/uploads/' . ltrim($new->image, '/')) }}')">
             <div class="hero--txt">
                 <h1 class="section--title txt--blue d-none d-md-block text-uppercase">{{ __($new->title) }}</h1>
                 <p class="txt--gray"><small> {{\Carbon\Carbon::parse($new->start)->isoFormat('D [-] MMMM') }}, {{
