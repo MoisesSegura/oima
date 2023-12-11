@@ -76,9 +76,32 @@ return [
   'hortalizas' => 'Hortaliças',
   'granos' => 'Grão',
   'legumbres' => 'Legumes',
-  'desc'=> 'Descrição',
-  'idiomadisp'=> 'Idiomas disponíveis',
-  'contactblog'=> 'contato',
+  'desc' => 'Descrição',
+  'idiomadisp' => 'Idiomas disponíveis',
+  'contactblog' => 'contato',
+
+  //ver producto
+  'conocido' => 'Conhecido como',
+  'verdiccionario' => 'Ver no dicionário',
+  'export' => 'Exportação',
+  'import' => 'Importação',
+  'infoagro' => 'Informação Agronômica',
+  'infonutri' => 'Informação Nutricional',
+  'vergaleria' => 'Ver Galeria de fotos',
+  'verrequisitos' => 'Ver requisitos',
+
+  'aspectos' => 'Aspectos de mercado de',
+  'presentacion' => 'Apresentação do mercado',
+  'principales' => 'Principais produtores e provedores',
+  'estacionalidad' => 'Dados do Índice de Sazonalidade',
+  'masinfo' => ' More Information',
+  'biblio' => 'Bibliography',
+  'vertoda' => 'Ver tudo',
+
+  //ver requirimiento
+  'requisitos' => 'Requisitos para importação e exportação',
+  'linkEx' => 'Links externos',
+  'galeria' => 'Galeria',
 
 
   //seccion de blog

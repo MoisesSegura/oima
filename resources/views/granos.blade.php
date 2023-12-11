@@ -12,7 +12,7 @@
             </div>
         </div>
         <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
-        <form id="f_1" name="f_1">
+        <form id="f_1" name="f_1" action="{{ route('filterGrains') }}" method="GET">
             <div class="search--container">
                 <div class="selectors__container">
                     <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
@@ -73,43 +73,15 @@
                     @endforeach
                 </div>
             </div>
-            <div class="text-center mb-5">
+            <!-- <div class="text-center mb-5">
                 <button class="btn btn--green" id="more-results">Cargar más</button>
-            </div>
+            </div> -->
         </div>
     </div>
 
     @include('widgets.footer')
     
-    <script type="text/javascript" src="../../js/main.js"></script>
-    <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "";
-        query = query.replace(/&amp;/g, '&');
-
-        var cantPages = 1;
-
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                is_ajax = true;
-                $.ajax({
-                    url: "/es/ajax/getProducts/5/" + page + "?" + query,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#products").append(data);
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
-
-
-    </script>
+   
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
     <script>
@@ -124,31 +96,75 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#region').change(function () {
-                var regionId = $(this).val();
+    $(document).ready(function () {
+    // Cuando cambia la selección de la región
+    $('#region').change(function () {
+        var regionId = $(this).val();
 
-                if (!regionId) {
-                    $('#country').empty();
-                    return;
-                }
+        // Si no se selecciona ninguna región, no hacemos nada
+        if (!regionId) {
+            $('#country').empty(); // Limpiamos la lista de países
+            return;
+        }
 
-                $.ajax({
-                    url: '/get-countries/' + regionId,
-                    type: 'GET',
-                    success: function (data) {
-                        $('#country').empty();
-                        $.each(data, function (key, value) {
-                            $('#country').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                    error: function () {
-                        console.log('Error al cargar países');
-                    }
+        // Realizamos una solicitud AJAX para obtener los países de la región
+        $.ajax({
+            url: '/get-countries/' + regionId, 
+            type: 'GET',
+            success: function (data) {
+                // Limpiamos la lista de países y agregamos los nuevos
+                $('#country').empty();
+                $.each(data, function (key, value) {
+                    $('#country').append('<option value="' + key + '">' + value + '</option>');
                 });
-            });
+            },
+            error: function () {
+                console.log('Error al cargar países');
+            }
         });
+    });
+
+    
+    // Cuando se envía el formulario de filtrado
+    $('#f_1').submit(function (e) {
+        e.preventDefault(); // Evita que el formulario se envíe de forma convencional
+
+        // Realizamos una solicitud AJAX para filtrar las frutas
+        $.ajax({
+            url: '/filter-grains',
+            type: 'GET',
+            data: $('#f_1').serialize(), // Serializamos los datos del formulario
+            success: function (data) {
+
+                // Limpiamos la lista de productos
+                $('#products').empty();
+
+                // Iteramos sobre los datos recibidos y mostramos los productos
+                $.each(data, function (index, fruit) {
+    var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
+        '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
+        '<div class="card--flex__content">' +
+        '<h4 class="card--title">' + fruit.product.name + '</h4>' +
+        '<p class="card--text">' + fruit.known_name + '</p>' +
+        '<p class="card--text">' + fruit.product.family_name + '</p>' +
+        '<p class="txt--blue">@lang('locale.ver')</p>' +
+        '</div>' +
+        '</a>';
+    
+    $('#products').append(cardHtml);
+});
+
+
+            },
+            error: function () {
+                console.log('Error al filtrar granos');
+            }
+        });
+    });
+});
+        
     </script>
+
 </body>
 
 

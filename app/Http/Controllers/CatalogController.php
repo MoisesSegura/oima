@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Country;
+use App\Models\InfoCountry;
 use App\Models\Region;
 use App\Models\ProductDetail;
 use App\Models\Category;
@@ -79,7 +80,7 @@ class CatalogController extends Controller
                 ->join('product_category', 'product.category_id', '=', 'product_category.id')
                 ->where('product_category.slug', 'Frutas');
         })
-        ->get();
+        ->get()->sortBy('product.name');
 
     return $fruits;
     }
@@ -100,7 +101,7 @@ class CatalogController extends Controller
                 ->join('product_category', 'product.category_id', '=', 'product_category.id')
                 ->where('product_category.slug', 'Hortalizas');
         })
-        ->get();
+        ->get()->sortBy('product.name');
 
     return $vegetables;
     }
@@ -120,7 +121,7 @@ class CatalogController extends Controller
                 ->join('product_category', 'product.category_id', '=', 'product_category.id')
                 ->where('product_category.slug', 'Granos');
         })
-        ->get();
+        ->get()->sortBy('product.name');
 
     return $grains;
     }
@@ -141,7 +142,7 @@ class CatalogController extends Controller
                 ->join('product_category', 'product.category_id', '=', 'product_category.id')
                 ->where('product_category.slug', 'Legumbres');
         })
-        ->get();
+        ->get()->sortBy('product.name');
 
     return $legumes;
     }
@@ -207,10 +208,8 @@ class CatalogController extends Controller
     public function showRequirements($id)
     {
 
-        // Obtener el objeto ProductDetail por su ID
         $productDetail = ProductDetail::findOrFail($id);
     
-        // Obtener el requisito asociado al ProductDetail
         $requirement = $productDetail->impRequirement;
     
         // Verificar si existe el requisito
@@ -352,5 +351,78 @@ public function filterProducts(Request $request)
     // Return the results or pass them to a view
     return view('frutas', compact('filteredProducts'));
 }
+
+public function filterFruits(Request $request)
+{
+    // Obtener el parámetro de la solicitud
+    $countryId = $request->input('country');
+
+    // Realizar la consulta para obtener las frutas filtradas por país
+    $filteredFruits = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Frutas');
+            });
+        })
+        ->get();
+
+    return response()->json($filteredFruits);
+}
+
+public function filterVegetables(Request $request)
+{
+    // Obtener el parámetro de la solicitud
+    $countryId = $request->input('country');
+
+  
+    $filteredFruits = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Hortalizas');
+            });
+        })
+        ->get();
+
+    return response()->json($filteredFruits);
+}
+
+public function filterGrains(Request $request)
+{
+    // Obtener el parámetro de la solicitud
+    $countryId = $request->input('country');
+
+   
+    $filteredFruits = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Granos');
+            });
+        })
+        ->get();
+
+    return response()->json($filteredFruits);
+}
+
+public function filterPulses(Request $request)
+{
+    // Obtener el parámetro de la solicitud
+    $countryId = $request->input('country');
+
+    
+    $filteredFruits = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Legumbres');
+            });
+        })
+        ->get();
+
+    return response()->json($filteredFruits);
+}
+
 
 }

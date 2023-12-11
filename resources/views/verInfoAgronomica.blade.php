@@ -4,8 +4,8 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <div class="backbot">
-                    <a href="/es/producto/banano/costa-rica" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
-                        Volver</a>
+                    <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
+                        @lang('locale.volver')</a>
                 </div>
                 <div class="sharebot ">
                     <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -27,15 +27,15 @@
             </div>
             <div class="row">
                 <div class="col-md-4 d-none d-md-block text-center">
-                    <p class="card--text">Conocido como</p>
+                    <p class="card--text">@lang('locale.conocido')</p>
                     <h3 class="card--title">{{$productDetail->known_name}}</h3>
-                    <img src="/uploads/products/images/551b766e0fde817b10a7451cfb4d03af7d76e67e.jpeg" alt="Banano"
+                    <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}"
                         class="img-responsive">
                 </div>
                 <div class="col-md-8">
                     <div class="section__header">
                         <h5 class="title text-center text-md-left">
-                            Información Agronómica
+                        @lang('locale.infoagro')
                         </h5>
                         <div class="selectors__container">
                             <div class="selectors">
@@ -93,7 +93,7 @@
         </div>
 
         <div class="text-center mb-5">
-            <a href="/es/producto/banano/costa-rica" class="btn btn--green">Volver</a>
+            <a href="javascript:history.back()" class="btn btn--green">@lang('locale.volver')</a>
         </div>
     </div>
 
@@ -117,53 +117,7 @@
 
 
     <script type="text/javascript" src="/js/main.js"></script>
-    <script>
-        function fillCountries() {
-            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-            var slug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-            var lang = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "es";
-            $("#country").empty();
-            if (lang === "es") {
-                var html = '<option value="">País</option>';
-            } else {
-                var html = '<option value="">Country</option>';
-            }
-            if (data !== false) {
-                for (var i = 0; i < data.countries.length; i++) {
-                    if (slug === false) {
-                        html += "<option value='" + data.countries[i].id + "'>" + data.countries[i].trans_name + "</option>";
-                    } else {
-                        html += "<option value='" + data.countries[i].slug + "'>" + data.countries[i].trans_name + "</option>";
-                    }
-                }
-            }
-            $("#country").append(html);
-        }
 
-        $("#region-validate").on("change", function () {
-            var val = $(this).val();
-            if (val !== "") {
-                $.ajax({
-                    url: "/es/ajax/getCountriesDetailed/" + val + "/banano",
-                }).done(function (data) {
-                    fillCountries(data, true, "es");
-                });
-
-            } else {
-                fillCountries();
-            }
-        })
-
-        $(".selected-country").on("change", function () {
-            var val = $(this).val();
-            if (val !== "") {
-                var url = "/es/infoAgronomica/banano/temp";
-                url = url.replace("temp", val);
-                window.location.href = url;
-            }
-        });
-
-    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

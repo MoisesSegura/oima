@@ -152,7 +152,9 @@ class ProductDetailResource extends Resource
                         Forms\Components\TextInput::make('locale'),
                         Forms\Components\TextInput::make('title'),
                         Forms\Components\TextInput::make('subtitle'),
-                        Forms\Components\FileUpload::make('image')->nullable(),
+                        Forms\Components\FileUpload::make('image')->nullable()
+                        ->disk('public')
+                        ->directory('uploads/products/commercialChains'),
                     ])   ->grid(3),
                 ]),
 

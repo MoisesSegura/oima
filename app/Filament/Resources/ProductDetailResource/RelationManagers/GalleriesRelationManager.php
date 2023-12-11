@@ -46,7 +46,7 @@ class GalleriesRelationManager extends RelationManager
             ]),
 
             Forms\Components\FileUpload::make('image'),
-            Forms\Components\Toggle::make('delete_image')
+     
 
 
         ])->Columns('full');
@@ -104,8 +104,10 @@ class GalleriesRelationManager extends RelationManager
                         
                     ]),
         
-                    Forms\Components\FileUpload::make('image'),
-                    Forms\Components\Toggle::make('delete_image')
+                    Forms\Components\FileUpload::make('image')
+                    ->disk('public')
+                    ->directory('uploads/products/galleries'),
+                
 
                 ]),
                 Tables\Actions\DeleteAction::make(),

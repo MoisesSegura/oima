@@ -5,8 +5,8 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <div class="backbot">
-                    <a href="/es/producto/banano/costa-rica" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
-                        Volver</a>
+                    <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
+                        @lang('locale.volver')</a>
                 </div>
                 <div class="sharebot ">
                     <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -28,15 +28,15 @@
             </div>
             <div class="row">
                 <div class="col-md-4 d-none d-md-block text-center">
-                    <p class="card--text">Conocido como</p>
+                    <p class="card--text">@lang('locale.conocido')</p>
                     <h3 class="card--title">{{ $productDetail->known_name }}</h3>
-                    <img src="{{ asset($productDetail->product->image) }}" alt="{{ $productDetail->product->name }}"
+                    <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}"
                         class="figure-img img-fluid rounded">
                 </div>
                 <div class="col-md-8">
                     <div class="section__header">
                         <h5 class="title text-center text-md-left">
-                            Galería
+                           @lang('locale.galeria')
                         </h5>
                         <div class="selectors__container">
                             <div class="selectors">
@@ -67,7 +67,7 @@
                         <div class="gallery row">
                         @foreach ($galleries as $gallerie)
                             <figure class="figure gallery__figure col-md-4">
-                                <img src="{{ asset($gallerie->image) }}"
+                                <img src="{{ asset(trim('/uploads/' . $gallerie->image, '/')) }}"
                                     class="figure-img img-fluid rounded" alt="{{ $productDetail->product->name }}">
                                 <figcaption class="figure-caption">{{ __($gallerie->title) }}</figcaption>
                             </figure>
@@ -79,7 +79,7 @@
         </div>
 
         <div class="text-center mb-5">
-            <a href="/es/producto/banano/costa-rica" class="btn btn--green">Volver</a>
+            <a href="javascript:history.back()" class="btn btn--green">@lang('locale.volver')</a>
         </div>
     </div>
 

@@ -20528,25 +20528,25 @@ $(document).ready(function() {
 
    $('.blog--carousel').slick(blogCarouselOptions);
 
-   $("#region").on("change", function() {
-       var val = $(this).val();
-       var lang = $(this).attr("data-lang");
-       var slug = $(this).attr('data-slug') === "true" ? true : false;
+//    $("#region").on("change", function() {
+//        var val = $(this).val();
+//        var lang = $(this).attr("data-lang");
+//        var slug = $(this).attr('data-slug') === "true" ? true : false;
 
-       if (val !== "") {
-           $.ajax({
-               url: "/" + lang + "/ajax/getCountries/" + val,
-           }).done(function(data) {
+//        if (val !== "") {
+//            $.ajax({
+//                url: "/" + lang + "/ajax/getCountries/" + val,
+//            }).done(function(data) {
 
-               fillCountries(data, slug, lang);
+//                fillCountries(data, slug, lang);
 
-               document.getElementById("f_1").submit();
-           });
+//                document.getElementById("f_1").submit();
+//            });
 
-       } else {
-           fillCountries();
-       }
-   })
+//        } else {
+//            fillCountries();
+//        }
+//    })
 
    $(".video--container").on('click', function(e) {
        $(this).addClass('no-overlay');
@@ -78695,25 +78695,25 @@ $(document).ready(function() {
 
     $('.blog--carousel').slick(blogCarouselOptions);
 
-    $("#region").on("change", function() {
-        var val = $(this).val();
-        var lang = $(this).attr("data-lang");
-        var slug = $(this).attr('data-slug') === "true" ? true : false;
+    // $("#region").on("change", function() {
+    //     var val = $(this).val();
+    //     var lang = $(this).attr("data-lang");
+    //     var slug = $(this).attr('data-slug') === "true" ? true : false;
 
-        if (val !== "") {
-            $.ajax({
-                url: "/" + lang + "/ajax/getCountries/" + val,
-            }).done(function(data) {
+    //     if (val !== "") {
+    //         $.ajax({
+    //             url: "/" + lang + "/ajax/getCountries/" + val,
+    //         }).done(function(data) {
 
-                fillCountries(data, slug, lang);
+    //             fillCountries(data, slug, lang);
 
-                document.getElementById("f_1").submit();
-            });
+    //             document.getElementById("f_1").submit();
+    //         });
 
-        } else {
-            fillCountries();
-        }
-    })
+    //     } else {
+    //         fillCountries();
+    //     }
+    // })
 
     $(".video--container").on('click', function(e) {
         $(this).addClass('no-overlay');

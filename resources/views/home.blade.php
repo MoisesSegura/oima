@@ -211,11 +211,13 @@
             </div>
         </div>
     </section>
+    
     <section class="lead lead-small">
-
+        <a href="https://iica.int/es">
         <div class="lead__content">
             <h3 class="title">@lang('locale.secretaria')</h3>
-        </div>
+        </div> 
+        </a>
         <img class="lead__img" src="../img/logo-iica.png" alt="Logo IICA">
     </section>
 

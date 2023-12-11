@@ -8,9 +8,9 @@ return [
    'repo' => 'Repositorio',
    'catalogonav' => 'Catálogo',
    'contactoNav' => 'Contáctenos',
-   'info'=> 'Información institucional',
-   'funcionamiento'=> 'funcionamiento',
-   'ayuda'=> 'Ayuda',
+   'info' => 'Información institucional',
+   'funcionamiento' => 'funcionamiento',
+   'ayuda' => 'Ayuda',
 
    //traduccion etiquetas pagina Home
    'proposito' => 'Nuestro Propósito',
@@ -38,14 +38,14 @@ return [
    'verHistoria' => 'VER HISTORIA COMPLETA',
    'masInfo' => '¿Más información?',
    'contactar' => 'CONTACTAR A OIMA',
-   'misionvision'=> 'Misión y visión',
+   'misionvision' => 'Misión y visión',
 
    //historia
-   'definicion'=> 'Definición',
-   'origen'=> 'Origen',
-   'estrategia'=> 'Estrategia',
-   'nacimiento'=> 'Nacimiento',
-   'volver'=> 'volver',
+   'definicion' => 'Definición',
+   'origen' => 'Origen',
+   'estrategia' => 'Estrategia',
+   'nacimiento' => 'Nacimiento',
+   'volver' => 'volver',
 
 
 
@@ -62,11 +62,11 @@ return [
    'region' => 'Región',
    'verinfo' => 'VER INFORMACIÓN',
    'ver' => 'Ver',
-   'otrosNom'=> 'Otros nombres comunes',
-   'nombrecien'=> 'Nombre científico',
-   'familia'=> 'Familia',
-   'otros'=> 'Otros nombres del producto',
-   'verEn'=> 'ver en catálogo',
+   'otrosNom' => 'Otros nombres comunes',
+   'nombrecien' => 'Nombre científico',
+   'familia' => 'Familia',
+   'otros' => 'Otros nombres del producto',
+   'verEn' => 'ver en catálogo',
 
 
    //seccion catalogo
@@ -77,19 +77,43 @@ return [
    'hortalizas' => 'Hortalizas',
    'granos' => 'Granos',
    'legumbres' => 'Legumbres',
- 
+
+   //ver producto
+   'conocido' => 'Conocido como',
+   'verdiccionario' => 'Ver en diccionario',
+   'export' => 'Exportación',
+   'import' => 'Importación',
+   'infoagro' => 'Información Agronómica',
+   'infonutri' => 'Información Nutricional',
+   'vergaleria' => 'Ver Galería Fotográfica',
+   'verrequisitos' => 'Ver requisitos',
+
+   'aspectos' => 'Aspectos de Mercado de',
+   'presentacion' => 'Presentación en el mercado',
+   'principales' => 'Principales productores y abastecedores',
+   'estacionalidad' => 'Datos Índice de Estacionalidad',
+   'masinfo' => 'Más Información',
+   'biblio' => 'Bibliografía',
+   'vertoda' => 'Ver toda',
+
+   //ver requirimiento
+   'requisitos' => 'Requisitos para la importación y exportación',
+   'linkEx' => 'Links externos',
+   'galeria' => 'Galería',
+
+
 
    //seccion de blog
    'todosblog' => 'Todos los años',
    'eventos' => 'Próximos eventos',
    'oimablog' => 'Boletines OIMA',
    'simamedia' => 'SIMA en los medios',
-   'verEvento'=> 'ver evento',
-   'verNoticia'=> 'ver noticia',
-   'verNoticiaComp'=> 'Ver noticia completa',
-   'desc'=> 'Descripción',
-   'idiomadisp'=> 'Idiomas disponibles',
-   'contactblog'=> 'contactar',
+   'verEvento' => 'ver evento',
+   'verNoticia' => 'ver noticia',
+   'verNoticiaComp' => 'Ver noticia completa',
+   'desc' => 'Descripción',
+   'idiomadisp' => 'Idiomas disponibles',
+   'contactblog' => 'contactar',
 
 
    //seccion de contacto

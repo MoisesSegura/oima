@@ -30,6 +30,10 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+        integrity="sha512-qz4nZ9A3vi2aVe4j1AyH6GUEtEt+JLr5HaeOCtkH6dPL4IqnDW+24OtnUpD56QO+wudw+V6+5+U/cM1Vt0Iq9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 
 
     </head>

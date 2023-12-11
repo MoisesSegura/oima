@@ -54,6 +54,10 @@ class PersonResource extends Resource
                 ->options(PersonCategory::all()->pluck('name', 'id'))
                 ->searchable()
                 ->required(),
+
+                Forms\Components\FileUpload::make('photo')
+                ->disk('public')
+                ->directory('uploads/person_photos'),
        
 
             Tabs::make('lang form') 

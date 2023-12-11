@@ -1,15 +1,8 @@
 @include('widgets.header')
 @include('widgets.navbar')
 
-<!-- <div class="sharebot ">
-    <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
-    <ul class="share--links">
-    @foreach ($socialmedia as $media)
-    <li><a class="share--link" target="_blank" href="{{ $media->url }}"><img src="{{ $media->icon }}"></a></li>
-    {{ $media->icon }}
-    @endforeach
-    </ul>
-</div>  -->
+
+
 <div class="content">
     <section class="section--about">
         <div class="container">
@@ -100,6 +93,9 @@
                     @if($individual->category_id == 2)
                     <li class="card--people">
                         <div class="card--content">
+                        <div class="portrait">
+                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
+                        </div>
                             <h3>{{ $individual->name }}</h3>
                             <p class="txt--black">{{ $individual->title }}</p>
                             <p class="txt--black">{{ $individual->position }}</p>
@@ -119,6 +115,9 @@
                     @if($individual->category_id == 3)
                     <li class="card--people">
                         <div class="card--content">
+                        <div class="portrait">
+                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
+                        </div>
                             <h3>{{ $individual->name }}</h3>
                             <p class="txt--black">{{ $individual->title }}</p>
                             <p class="txt--black">{{ $individual->position }}</p>
@@ -138,6 +137,9 @@
                     @if($individual->category_id == 4)
                     <li class="card--people">
                         <div class="card--content">
+                        <div class="portrait">
+                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
+                        </div>
                             <h3>{{ $individual->name }}</h3>
                             <p class="txt--black">{{ $individual->title }}</p>
                             <p class="txt--black">{{ $individual->position }}</p>
@@ -155,7 +157,23 @@
        
     </section>
 
+    <style>
+.portrait {
+    overflow: hidden;
+    /* border-radius: 50%; */
+    margin: 0 auto;
+    width: 10rem;
+    height: 10rem;
+}
 
+.portrait-image {
+    max-width: 100%; /* La imagen no superará el tamaño del contenedor */
+    max-height: 100%; /* La imagen no superará el tamaño del contenedor */
+    display: block;
+    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente al ancho */
+}
+</style>
 
     <section>
         <div class="countries">

@@ -82,6 +82,28 @@ return [
    'legumbres' => 'Pulses',
 
 
+   //ver producto
+   'conocido' => 'Known as',
+   'verdiccionario' => 'See in dictionary',
+   'export' => 'Export',
+   'import' => 'Import',
+   'infoagro' => 'Agronomic Information',
+   'infonutri' => 'Nutritional Information',
+   'vergaleria' => 'Go to image Gallery',
+   'verrequisitos' => 'See Requirements',
+
+   'aspectos' => 'Market Aspects of',
+   'presentacion' => 'Presentation in the market',
+   'principales' => 'Main producers and suppliers',
+   'estacionalidad' => 'Seasonal Index Data',
+   'masinfo' => 'More Information',
+   'biblio' => 'Bibliography',
+   'vertoda'=> 'See all',
+
+     //ver requirimiento
+     'requisitos' => 'Import and export requirements',
+     'linkEx' => 'External links',
+     'galeria' => 'Gallery',
 
    //seccion de blog
    'todosblog' => 'All years',
@@ -91,9 +113,9 @@ return [
    'verEvento' => 'see event',
    'verNoticia' => 'see article',
    'verNoticiaComp' => 'See full story',
-   'desc'=> 'Description',
-   'idiomadisp'=> 'Available languages',
-   'contactblog'=> 'contact',
+   'desc' => 'Description',
+   'idiomadisp' => 'Available languages',
+   'contactblog' => 'contact',
 
 
    // seccion de contacto

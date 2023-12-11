@@ -28,7 +28,7 @@
                 <div class="card--product__title d-md-none">
                     <h3 class="card--title">Aguacate</h3>
                 </div>
-                <img src="{{ asset($product->product->image) }}" alt=""
+                <img src="{{ asset(trim('/uploads/' . $product->product->image, '/')) }}" alt=""
                     class="card--product__img">
                 <div class="card--product__content">
                     <div class="px-3 card--product__title d-none d-md-block">

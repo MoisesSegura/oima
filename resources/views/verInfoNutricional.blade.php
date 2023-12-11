@@ -4,8 +4,8 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <div class="backbot">
-                <a href="/es/producto/banano/costa-rica" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
-                    Volver</a>
+                <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
+                @lang('locale.volver')</a>
             </div>
             <div class="sharebot ">
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -27,15 +27,15 @@
         </div>
         <div class="row">
             <div class="col-md-4 d-none d-md-block text-center">
-                <p class="card--text">Conocido como</p>
+                <p class="card--text">@lang('locale.conocido')</p>
                 <h3 class="card--title">{{ $productDetail->known_name }}</h3>
-                <img src="{{ asset($productDetail->product->image) }}" alt="{{ $productDetail->product->name }}" class="img-responsive">
+                <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}" class="img-responsive">
              
             </div>
             <div class="col-md-8">
                 <div class="section__header">
                     <h5 class="title text-center text-md-left">
-                        Información Nutricional
+                    @lang('locale.infonutri')
                     </h5>
                     <div class="selectors__container">
                         <div class="selectors">
@@ -176,7 +176,7 @@
 
 
     <div class="text-center mb-5 d-md-none">
-        <a href="/es/producto/banano/costa-rica" class="btn btn--green">Volver</a>
+        <a href="javascript:history.back()" class="btn btn--green">@lang('locale.volver')</a>
     </div>
 </div>
 

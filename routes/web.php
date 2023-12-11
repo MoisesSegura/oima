@@ -34,6 +34,11 @@ Route::get('/hortalizas', [App\Http\Controllers\CatalogController::class, 'Veget
 Route::get('/granos', [App\Http\Controllers\CatalogController::class, 'Grains'])->name('granos');
 Route::get('/legumbres', [App\Http\Controllers\CatalogController::class, 'Legumes'])->name('legumbres');
 
+Route::get('/filter-fruits', [App\Http\Controllers\CatalogController::class, 'filterFruits'])->name('filterFruits');
+Route::get('/filter-vegetables', [App\Http\Controllers\CatalogController::class, 'filterVegetables'])->name('filterVegetables');
+Route::get('/filter-grains', [App\Http\Controllers\CatalogController::class, 'filterGrains'])->name('filterGrains');
+Route::get('/filter-pulses', [App\Http\Controllers\CatalogController::class, 'filterPulses'])->name('filterPulses');
+
 Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
 Route::get('/oima-funcionamiento', [App\Http\Controllers\oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
 Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'showOrganization'])->name('verOrganizacion');

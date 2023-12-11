@@ -19,6 +19,7 @@ use App\Models\Region;
 use App\Models\PersonCategory;
 
 use App\Models\SocialMedia;
+use App\Models\Event;
 
 class oimaController extends Controller
 {

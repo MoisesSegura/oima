@@ -1,7 +1,7 @@
-@include('widgets.header')
-@include('widgets.navbar')
+    @include('widgets.header')
+    @include('widgets.navbar')
     <div class="content">
-    <h1 class="section--title title--underline txt--blue text-center d-md-none">@lang('locale.catalogoProductos')</h1>
+        <h1 class="section--title title--underline txt--blue text-center d-md-none">@lang('locale.catalogoProductos')</h1>
         <div class="hero hero-has-text">
             <div class="hero--txt">
                 <h2 class="section--title txt--blue d-none d-md-block text-uppercase">@lang('locale.catalogoProductos')</h2>
@@ -12,7 +12,8 @@
             </div>
         </div>
         <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
-        <form id="f_1" name="f_1" action="{{ route('filterProducts') }}" method="GET">
+       
+        <form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET">
             <div class="search--container">
                 <div class="selectors__container">
                     <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
@@ -47,8 +48,8 @@
                 <li class="nav-item"><a href="{{ route('frutas')}}" class="nav-link active" id="cat3-tab"
                         aria-controls="cat3" aria-selected="true">@lang('locale.frutas')</a></li>
 
-                <li class="nav-item"><a href="{{ route('hortalizas')}}" class="nav-link " id="cat4-tab"
-                        aria-controls="cat4" aria-selected="false">@lang('locale.hortalizas')</a></li>
+                <li class="nav-item"><a href="{{ route('hortalizas')}}" class="nav-link " id="cat4-tab" aria-controls="cat4"
+                        aria-selected="false">@lang('locale.hortalizas')</a></li>
 
                 <li class="nav-item"><a href="{{ route('granos')}}" class="nav-link " id="cat5-tab" aria-controls="cat5"
                         aria-selected="false">@lang('locale.granos')</a></li>
@@ -65,8 +66,8 @@
             <div class="card__container js-equal-height-parent" id="products">
                 @foreach ($fruits as $fruitDetail)
                 <a href="" class="card card--flex card--link js-equal-height">
-                    <img src="{{ asset(trim('/uploads/' . $fruitDetail->product->image, '/')) }}" alt="{{ $fruitDetail->product->name }}"
-                        class="card--flex__img"> 
+                    <img src="{{ asset(trim('/uploads/' . $fruitDetail->product->image, '/')) }}"
+                        alt="{{ $fruitDetail->product->name }}" class="card--flex__img">
                     <div class="card--flex__content">
                         <h4 class="card--title">{{ __($fruitDetail->product->name) }}</h4>
                         <p class="card--text">{{ $fruitDetail->concatenated_known_names }}</p>
@@ -77,76 +78,92 @@
                 @endforeach
             </div>
         </div>
-        <div class="text-center mb-5">
+        <!-- <div class="text-center mb-5">
             <button class="btn btn--green" id="more-results">Cargar más</button>
-        </div>
+        </div> -->
 
     </div>
-    </div>
+   
+   
 
     @include('widgets.footer')
-    
-    <script type="text/javascript" src="../../js/main.js"></script>
-    <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "";
-        query = query.replace(/&amp;/g, '&');
-
-        var cantPages = 2;
-
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                is_ajax = true;
-                $.ajax({
-                    url: "/es/ajax/getProducts/3/" + page + "?" + query,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#products").append(data);
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
 
 
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            // Cuando cambia la selección de la región
-            $('#region').change(function () {
-                var regionId = $(this).val();
+    $(document).ready(function () {
+    // Cuando cambia la selección de la región
+    $('#region').change(function () {
+        var regionId = $(this).val();
 
-                // Si no se selecciona ninguna región, no hacemos nada
-                if (!regionId) {
-                    $('#country').empty(); // Limpiamos la lista de países
-                    return;
-                }
+        // Si no se selecciona ninguna región, no hacemos nada
+        if (!regionId) {
+            $('#country').empty(); // Limpiamos la lista de países
+            return;
+        }
 
-                // Realizamos una solicitud AJAX para obtener los países de la región
-                $.ajax({
-                    url: '/get-countries/' + regionId, // Reemplaza con la ruta correcta en tu aplicación
-                    type: 'GET',
-                    success: function (data) {
-                        // Limpiamos la lista de países y agregamos los nuevos
-                        $('#country').empty();
-                        $.each(data, function (key, value) {
-                            $('#country').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                    error: function () {
-                        console.log('Error al cargar países');
-                    }
+        // Realizamos una solicitud AJAX para obtener los países de la región
+        $.ajax({
+            url: '/get-countries/' + regionId,
+            type: 'GET',
+            success: function (data) {
+                // Limpiamos la lista de países y agregamos los nuevos
+                $('#country').empty();
+                $.each(data, function (key, value) {
+                    $('#country').append('<option value="' + key + '">' + value + '</option>');
                 });
-            });
+            },
+            error: function () {
+                console.log('Error al cargar países');
+            }
         });
+    });
+
+    
+    // Cuando se envía el formulario de filtrado
+    $('#f_1').submit(function (e) {
+        e.preventDefault(); // Evita que el formulario se envíe de forma convencional
+
+        // Realizamos una solicitud AJAX para filtrar las frutas
+        $.ajax({
+            url: '/filter-fruits',
+            type: 'GET',
+            data: $('#f_1').serialize(), // Serializamos los datos del formulario
+            success: function (data) {
+
+                // Limpiamos la lista de productos
+                $('#products').empty();
+
+                // Iteramos sobre los datos recibidos y mostramos los productos
+                $.each(data, function (index, fruit) {
+    var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
+        '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
+        '<div class="card--flex__content">' +
+        '<h4 class="card--title">' + fruit.product.name + '</h4>' +
+        '<p class="card--text">' + fruit.known_name + '</p>' +
+        '<p class="card--text">' + fruit.product.family_name + '</p>' +
+        '<p class="txt--blue">@lang('locale.ver')</p>' +
+        '</div>' +
+        '</a>';
+    
+    $('#products').append(cardHtml);
+});
+
+
+
+
+            },
+            error: function () {
+                console.log('Error al filtrar frutas');
+            }
+        });
+    });
+});
+
+
+        
     </script>
 
 
@@ -159,7 +176,7 @@
 
         gtag('config', 'UA-151598454-1');
     </script>
-</body>
+    </body>
 
 
-</html>
+    </html>

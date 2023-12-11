@@ -30,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
+
+        view()->composer('*', function ($view) {
+            $view->with('socialmedia', \App\Models\SocialMedia::all());
+        });
     }
 }

@@ -108,9 +108,15 @@ class SiteTextResource extends Resource
                             Forms\Components\TextInput::make('contact_president')
                                 ->required()
                                 ->maxLength(255),
+                                Forms\Components\FileUpload::make('president_photo')
+                                ->disk('public')
+                                ->directory('uploads/person_photos'),
                             Forms\Components\TextInput::make('contact_secretary')
                                 ->required()
                                 ->maxLength(255),
+                                Forms\Components\FileUpload::make('secretary_photo')
+                                ->disk('public')
+                                ->directory('uploads/person_photos'),
                             Forms\Components\TextInput::make('contact_phone')
                                 ->tel()
                                 ->required()

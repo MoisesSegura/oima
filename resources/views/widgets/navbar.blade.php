@@ -1,5 +1,51 @@
 <div class="nav" role="navigation">
     <a class="logo" href="{{ route('home')}}">OIMA / MIOA</a>
+
+    <div class="social-media-container">
+    <ul class="social-media-list">
+        @foreach ($socialmedia as $media)
+            <li>
+                <a class="share--link" target="_blank" href="{{ $media->url }}">
+                    <img src="{{ asset(trim('/uploads/' . $media->icon, '/')) }}" alt="{{ $media->icon }}">
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</div>
+
+
+<style>
+
+.social-media-container {
+    display: flex;
+    justify-content: center;
+}
+
+.social-media-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: .5rem; /* Espaciado entre cada ícono de red social */
+}
+
+.share--link {
+    display: block;
+    width: 2rem; /* Ajusta el ancho según tus necesidades */
+    height: 2rem; /* Ajusta la altura según tus necesidades */
+    overflow: hidden;
+}
+
+.share--link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la posición y el tamaño de la imagen */
+    border-radius: 50%; /* Para hacer imágenes redondas */
+}
+
+
+
+</style>
     <ul class="nav__list">
         <li>
             <a class="nav__list--link {{ request()->routeIs('home') ? 'active' : '' }}"

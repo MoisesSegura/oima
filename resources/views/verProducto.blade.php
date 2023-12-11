@@ -3,7 +3,7 @@
 <div class="content">
     <div class="d-flex justify-content-between">
         <div class="backbot">
-            <a href="/es/catalogo" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div>
         <div class="sharebot ">
             <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -26,11 +26,11 @@
     <div class="card card--product">
         <div class="card--product__title d-md-none">
 
-            <p class="card--text">Conocido como</p>
+            <p class="card--text">@lang('locale.Conocido')</p>
             <h3 class="card--title">{{$product->known_name}}</h3>
 
         </div>
-        <img src="{{ asset($product->product->image) }}" alt="{{ $product->product->name }}" class="card--product__img">
+        <img src="{{ asset(trim('/uploads/' . $product->product->image, '/')) }}" alt="{{ $product->product->name }}" class="card--product__img">
         <div class="card--product__content">
             <div class="px-3 card--product__title d-none d-md-block">
 
@@ -40,7 +40,7 @@
             </div>
             <ul class="card__list bullets--gray list--circle">
                 <li>
-                    <p class="card--title">Otros nombres comunes</p>
+                    <p class="card--title">@lang('locale.otrosNom')</p>
 
                     <p class="card--text">
                         @foreach($knownNames as $knownName)
@@ -53,11 +53,11 @@
                             class="mdi mdi-arrow-right"></i></a>
                 </li>
                 <li>
-                    <p class="card--title">Nombre científico</p>
+                    <p class="card--title">@lang('locale.nombrecien')</p>
                     <p class="card--text">{{$product->product->scientific_name}}</p>
                 </li>
                 <li>
-                    <p class="card--title">Familia</p>
+                    <p class="card--title">@lang('locale.familia')</p>
                     <p class="card--text">{{$product->product->family_name}}</p>
                 </li>
             </ul>
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="row card--md-only">
                 <div class="col-12">
-                    <h3 class="title title--sideline title--underline-md">Aspectos de Mercado de Costa Rica</h3>
+                    <h3 class="title title--sideline title--underline-md">@lang('locale.aspectos')</h3>
 
                     <h3 class="title text-center d-md-none">Tamaño</h3>
                     <p class="txt--small txt--gray text-center d-md-none">(Variedad: Aguacate)</p>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <h3 class="title text-center">Presentación en el mercado</h3>
+                        <h3 class="title text-center">@lang('locale.presentacion')</h3>
                         <div class="card card--centered no-border-md max-w-md-none">
                             <ul class="list__responsive">
 
@@ -208,7 +208,7 @@
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <h3 class="title text-center mt-4 mt-md-0">Principales productores y abastecedores</h3>
+                        <h3 class="title text-center mt-4 mt-md-0">@lang('locale.principales')</h3>
                         <div class="card card--centered no-border-md">
                             <div class="card--text">
                                 <p style="text-align:justify">
@@ -219,7 +219,7 @@
                             <ul class="card__list bullets--blue list--arrows">
 
                                 <li>
-                                    <p><strong>Exportación</strong></p>
+                                    <p><strong>@lang('locale.export')</strong></p>
                                     <p class="card--text">
                                         {{ $product->exports }}
 
@@ -228,7 +228,7 @@
                                 </li>
 
                                 <li>
-                                    <p><strong>Importación</strong></p>
+                                    <p><strong>@lang('locale.import')</strong></p>
                                     <p class="card--text">
                                         {{ $product->imports }}
 
@@ -245,7 +245,7 @@
 
                 <div class="col-12">
                     <div class="card--md-only">
-                        <h3 class="title title--sideline title--underline-md">Datos Índice de Estacionalidad</h3>
+                        <h3 class="title title--sideline title--underline-md">@lang('locale.estacionalidad')</h3>
 
                         @if(!empty($graphic))
                         <div class="x-scroll__container">
@@ -307,7 +307,7 @@
                         },
 
                         series: [{
-                            name: 'Estacionalidad',
+                            name: '',
 
                             data: <?= $data ?>
   }]
@@ -327,7 +327,7 @@
 
                         <a href="{{ route('verRequisitos', ['id' => $product->id]) }}"
                             class="card card--link card--centered">
-                            <p class="card--text">Ver requisitos</p>
+                            <p class="card--text">@lang('locale.verrequisitos')</p>
                         </a>
                     </div>
                 </div>
@@ -344,21 +344,21 @@
                 </div>
                 <div class="col-md-5">
                     <div class="card--md-only">
-                        <h3 class="title title--sideline title--underline-md">Más Información</h3>
+                        <h3 class="title title--sideline title--underline-md">@lang('locale.masinfo')</h3>
 
                         <a href="{{ route('verInfoAgronomica', ['id' => $product->id]) }}"
                             class="card card--link card--centered">
-                            <p class="card--text">Información Agronómica</p>
+                            <p class="card--text">@lang('locale.infoagro')</p>
                         </a>
 
                         <a href="{{ route('verInfoNutricional', ['id' => $product->id]) }}"
                             class="card card--link card--centered">
-                            <p class="card--text">Información Nutricional</p>
+                            <p class="card--text">@lang('locale.infonutri')</p>
                         </a>
 
                         <a href="{{ route('verGaleria', ['id' => $product->id]) }}"
                             class="card card--link card--centered">
-                            <p class="card--text">Ver Galería Fotográfica</p>
+                            <p class="card--text">@lang('locale.vergaleria')</p>
                         </a>
 
                     </div>
@@ -366,7 +366,7 @@
 
                 <div class="col-md-7">
                     <div class="card--md-only">
-                        <h3 class="title title--sideline title--underline-md">Bibliografía</h3>
+                        <h3 class="title title--sideline title--underline-md">@lang('locale.biblio')</h3>
 
                         <div class="card card--full-md no-border-md card--centered see-more-container">
                             <div class="card--text see-more-text">
@@ -378,7 +378,7 @@
 
                             </div>
 
-                            <a href="#" class="txt--blue text-center see-more">Ver toda</a>
+                            <a href="#" class="txt--blue text-center see-more">@lang('locale.vertoda')</a>
 
                         </div>
 
@@ -412,7 +412,7 @@
                 </ul>
             </div>
         </div>
-        <a href="{{ route('frutas') }}" class="btn btn--green">Volver</a>
+        <a href="{{ route('frutas') }}" class="btn btn--green">@lang('locale.volver')</a>
     </div>
 
 </div>
