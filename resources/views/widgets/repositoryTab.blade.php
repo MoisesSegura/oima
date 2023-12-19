@@ -9,9 +9,9 @@
             <a class="nav-link {{ request()->routeIs('presentaciones') ? 'active' : '' }}" href="{{ route('presentaciones')}}">@lang('locale.presentaciones')</a>
         </li>
         
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs(['documentos-tecnicos', 'informes-regionales']) ? 'active' : '' }}" href="{{ route('documentos-tecnicos') }}">@lang('locale.documentos')</a>
-        </li>
+        </li> -->
         
         <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('diccionario') ? 'active' : '' }}" href="{{ route('diccionario')}}">@lang('locale.diccionario')</a>

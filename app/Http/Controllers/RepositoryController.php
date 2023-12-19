@@ -14,13 +14,20 @@ use Illuminate\Support\Facades\DB;
 
 class RepositoryController extends Controller
 {
-    public function publications(Request $request){
+  
+    public function publications(Request $request){  //publicaciones y documentos tecnicos
 
-    $publications = Publication::all();
+    $totalPublications = LaboralDocument::count();
+
+    $publications = Publication::orderByDesc('created_at')->take(6)->get();
+
+    $totalDocuments = LaboralDocument::count();
+
+    $documents = LaboralDocument::orderByDesc('created_at')->where('category', 1)->take(6)->get();
 
     $extras = $this->getExtras();
  
-    return view('publicaciones', compact('publications','extras'));
+    return view('publicaciones', compact('publications','documents','extras','totalPublications', 'totalDocuments'));
     }
 
     public function showPublication($id)
@@ -30,17 +37,21 @@ class RepositoryController extends Controller
         return view('verPublicacion', compact('publication'));
     }
 
-    public function presentations(Request $request){
+    public function presentations(Request $request){ //presentaciones y reportes regionales
 
-     // Obtén el número total de presentaciones
+   
      $totalPresentations = Presentation::count();
 
-     // Obtén la primera página de presentaciones
+    
      $presentations = Presentation::orderByDesc('created_at')->take(6)->get();
+
+     $totalDocuments = LaboralDocument::count();
+
+     $reports = LaboralDocument::orderByDesc('created_at')->where('category', 2)->take(6)->get();
 
      $extras = $this->getExtras();
 
-     return view('presentaciones', compact('presentations', 'totalPresentations','extras'));
+     return view('presentaciones', compact('presentations', 'totalPresentations','extras', 'reports','totalDocuments'));
     }
 
     public function technicalDocuments(Request $request){
@@ -161,7 +172,7 @@ class RepositoryController extends Controller
 
     //metodos pr obtener mas registros
 
-    public function getMorePresentations(Request $request)
+    public function getMorePresentations(Request $request) //presentaciones e informes regionales
 {
     try {
         $page = $request->input('page');
@@ -173,14 +184,16 @@ class RepositoryController extends Controller
         // Obtén las presentaciones para la página actual
         $presentations = Presentation::orderByDesc('created_at')->skip($skip)->take($perPage)->get();
 
-        return view('partials.presentations', compact('presentations'))->render();
+        $reports = LaboralDocument::orderByDesc('created_at')->where('category', 2)->skip($skip)->take($perPage)->get();
+
+        return view('partials.presentations&reports', compact('presentations','reports'))->render();
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
 
 
-public function getMoreDocuments(Request $request)
+public function getMoreDocuments(Request $request)   //publicaciones y documentos tecnicos
 {
     try {
         $page = $request->input('page');
@@ -190,7 +203,9 @@ public function getMoreDocuments(Request $request)
 
         $documents = LaboralDocument::orderByDesc('created_at')->where('category', 1)->skip($skip)->take($perPage)->get();
 
-        return view('partials.documents', compact('documents'))->render();
+        $publications = Publication::orderByDesc('created_at')->skip($skip)->take($perPage)->get();
+
+        return view('partials.publications&documents', compact('documents','publications'))->render();
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
@@ -235,6 +250,188 @@ public function getMoreDictionaries(Request $request)
     ->take($perPage);
 
     return view('partials.dictionaries')->with('products', $products)->render();
+}
+
+
+public function buscarProductos(Request $request)
+{
+    $nombreProducto = $request->input('name');
+
+    $productosUnsorted = ProductDetail::select(
+        'product_detail.product_id', 
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->leftJoin('product_translation', 'product_detail.product_id', '=', 'product_translation.product_id')
+    ->where('product_translation.name', 'LIKE', '%' . $nombreProducto . '%')
+    ->groupBy('product_detail.product_id')
+    ->get();
+
+    $products = $productosUnsorted->sortBy('product_translation.name');
+
+    $extras = $this->getExtras();
+
+    return view('diccionario', compact('products', 'extras'));
+}
+
+public function buscarVideos(Request $request)
+{
+    $nombreVideo = $request->input('name');
+
+    $idioma =  app()->getLocale();
+
+    $videosUnsorted = Video::select(
+        'video.id',
+        'video_translation.name',
+        'video_translation.description',
+      
+    )
+    ->leftJoin('video_translation', function ($join) use ($idioma) {
+        $join->on('video.id', '=', 'video_translation.video_id')
+             ->where('video_translation.locale', '=', $idioma);
+    })
+    ->where('video_translation.name', 'LIKE', '%' . $nombreVideo . '%')
+    ->groupBy('video.id','video_translation.name','video_translation.description')
+    ->get();
+
+    $videos = $videosUnsorted->sortBy('video_translation.name');
+
+    $extras = $this->getExtras();
+
+    return view('videos', compact('videos', 'extras'));
+}
+
+public function buscarNormas(Request $request)
+{
+    $nombreNorma = $request->input('name');
+
+    $idioma =  app()->getLocale();
+
+    $normsUnsorted = ProcedureNorm::select(
+        'procedure_norm.id',
+        'procedure_norm_translation.name',
+        'procedure_norm_translation.file_real',
+        'procedure_norm_translation.file_real_name',
+      
+    )
+    ->leftJoin('procedure_norm_translation', function ($join) use ($idioma) {
+        $join->on('procedure_norm.id', '=', 'procedure_norm_translation.procedure_norm_id')
+             ->where('procedure_norm_translation.locale', '=', $idioma);
+    })
+    ->where('procedure_norm_translation.name', 'LIKE', '%' . $nombreNorma . '%')
+    ->groupBy('procedure_norm.id','procedure_norm_translation.name','procedure_norm_translation.file_real', 'procedure_norm_translation.file_real_name')
+    ->get();
+
+    $norms = $normsUnsorted->sortBy('procedure_norm_translation.name');
+
+    $extras = $this->getExtras();
+
+    return view('normas-procedimientos', compact('norms', 'extras'));
+}
+
+public function buscarPublicacionesDocumentos(Request $request)
+{
+    $nombre = $request->input('name');
+
+    $idioma =  app()->getLocale();
+
+    $publicUnsorted = Publication::select(
+        'publication.id',
+        'publication_translation.image',
+        'publication_translation.title',
+        'publication_translation.file_real',
+        'publication_translation.file_real_name',
+      
+    )
+    ->leftJoin('publication_translation', function ($join) use ($idioma) {
+        $join->on('publication.id', '=', 'publication_translation.publication_id')
+             ->where('publication_translation.locale', '=', $idioma);
+    })
+    ->where('publication_translation.title', 'LIKE', '%' . $nombre . '%')
+    ->groupBy('publication.id','publication_translation.image','publication_translation.title', 'publication_translation.file_real'
+    , 'publication_translation.file_real_name')
+    ->get();
+
+    $publications = $publicUnsorted->sortBy('publication_translation.title');
+
+    
+    $documentUnsorted = LaboralDocument::select(
+        'laboral_document.id',
+        'laboral_document.author',
+        'laboral_document.place',
+        'laboral_document_translation.title',
+        'laboral_document_translation.file_real',
+        'laboral_document_translation.file_real_name',
+      
+    )
+    ->leftJoin('laboral_document_translation', function ($join) use ($idioma) {
+        $join->on('laboral_document.id', '=', 'laboral_document_translation.laboral_document_id')
+             ->where('laboral_document_translation.locale', '=', $idioma);
+    })
+    ->where('laboral_document_translation.title', 'LIKE', '%' . $nombre . '%')
+    ->groupBy('laboral_document.id', 'laboral_document.author','laboral_document.place','laboral_document_translation.title', 'laboral_document_translation.file_real'
+    , 'laboral_document_translation.file_real_name')->where('laboral_document.category', 1)
+    ->get();
+
+    $documents = $documentUnsorted->sortBy('laboral_document_translation.title');
+
+    $extras = $this->getExtras();
+
+    return view('publicaciones', compact('publications', 'documents','extras'));
+}
+
+
+
+
+public function buscarPresentacionesInformes(Request $request)
+{
+    $nombre = $request->input('name');
+
+    $idioma =  app()->getLocale();
+
+    $PresUnsorted = Presentation::select(
+        'presentation.id',
+        'presentation.image',
+        'presentation.author',
+        'presentation_translation.title',
+        'presentation_translation.file_real',
+        'presentation_translation.file_real_name',
+      
+    )
+    ->leftJoin('presentation_translation', function ($join) use ($idioma) {
+        $join->on('presentation.id', '=', 'presentation_translation.presentation_id')
+             ->where('presentation_translation.locale', '=', $idioma);
+    })
+    ->where('presentation_translation.title', 'LIKE', '%' . $nombre . '%')
+    ->groupBy('presentation.id','presentation.image',  'presentation.author','presentation_translation.title', 'presentation_translation.file_real', 'presentation_translation.file_real_name')
+    ->get();
+
+    $presentations = $PresUnsorted->sortBy('presentation_translation.title');
+
+    
+    $documentUnsorted = LaboralDocument::select(
+        'laboral_document.id',
+        'laboral_document.author',
+        'laboral_document.place',
+        'laboral_document_translation.title',
+        'laboral_document_translation.file_real',
+        'laboral_document_translation.file_real_name',
+      
+    )
+    ->leftJoin('laboral_document_translation', function ($join) use ($idioma) {
+        $join->on('laboral_document.id', '=', 'laboral_document_translation.laboral_document_id')
+             ->where('laboral_document_translation.locale', '=', $idioma);
+    })
+    ->where('laboral_document_translation.title', 'LIKE', '%' . $nombre . '%')
+    ->groupBy('laboral_document.id', 'laboral_document.author','laboral_document.place','laboral_document_translation.title', 'laboral_document_translation.file_real'
+    , 'laboral_document_translation.file_real_name')->where('laboral_document.category', 2)
+    ->get();
+
+    $reports = $documentUnsorted->sortBy('laboral_document_translation.title');
+
+    $extras = $this->getExtras();
+
+    return view('presentaciones', compact('presentations', 'reports','extras'));
 }
 
 

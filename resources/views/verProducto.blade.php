@@ -26,7 +26,7 @@
     <div class="card card--product">
         <div class="card--product__title d-md-none">
 
-            <p class="card--text">@lang('locale.Conocido')</p>
+            <p class="card--text">@lang('locale.conocido')</p>
             <h3 class="card--title">{{$product->known_name}}</h3>
 
         </div>
@@ -34,7 +34,7 @@
         <div class="card--product__content">
             <div class="px-3 card--product__title d-none d-md-block">
 
-                <p class="card--text">Conocido como</p>
+                <p class="card--text">@lang('locale.conocido')</p>
                 <h3 class="card--title">{{$product->known_name}}</h3>
 
             </div>
@@ -49,7 +49,7 @@
                     </p>
 
 
-                    <a href="/es/diccionario/Aguacate" class="txt--green">Ver en diccionario <i
+                    <a href="/es/diccionario/Aguacate" class="txt--green">@lang('locale.verdiccionario')<i
                             class="mdi mdi-arrow-right"></i></a>
                 </li>
                 <li>
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="row card--md-only">
                 <div class="col-12">
-                    <h3 class="title title--sideline title--underline-md">@lang('locale.aspectos')</h3>
+                    <h3 class="title title--sideline title--underline-md">@lang('locale.aspectos') {{ $product->country->name }}</h3>
 
                     <h3 class="title text-center d-md-none">Tamaño</h3>
                     <p class="txt--small txt--gray text-center d-md-none">(Variedad: Aguacate)</p>
@@ -104,10 +104,10 @@
                         <ul class="nav nav-tabs nav--small" id="myTab" role="tablist">
                             <li class="nav-item"><a class="nav-link active" id="transversal-tab" data-toggle="tab"
                                     href="#transversal" role="tab" aria-controls="transversal"
-                                    aria-selected="true">Sección Transversal</a></li>
+                                    aria-selected="true">@lang('locale.transversal')</a></li>
                             <li class="nav-item"><a class="nav-link" id="longitudinal-tab" data-toggle="tab"
                                     href="#longitudinal" role="tab" aria-controls="longitudinal"
-                                    aria-selected="false">Sección Longitudinal</a></li>
+                                    aria-selected="false">@lang('locale.longitudinal')</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -116,9 +116,9 @@
                                 <table class="table--custom">
                                     <thead>
                                         <tr>
-                                            <th>Pequeño</th>
-                                            <th>Mediano</th>
-                                            <th>Grande</th>
+                                            <th>@lang('locale.peq')</th>
+                                            <th>@lang('locale.med')</th>
+                                            <th>@lang('locale.gra')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,9 +136,9 @@
                                 <table class="table--custom">
                                     <thead>
                                         <tr>
-                                            <th>Pequeño</th>
-                                            <th>Mediano</th>
-                                            <th>Grande</th>
+                                            <th>@lang('locale.peq')</th>
+                                            <th>@lang('locale.med')</th>
+                                            <th>@lang('locale.gra')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,23 +164,23 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Pequeño</th>
-                                    <th>Mediano</th>
-                                    <th>Grande</th>
+                                    <th>@lang('locale.peq')</th>
+                                    <th>@lang('locale.med')</th>
+                                    <th>@lang('locale.gra')</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Sección Transversal</td>
-                                    <td>Sin determinar</td>
-                                    <td>Sin determinar</td>
-                                    <td>Sin determinar</td>
+                                    <td>@lang('locale.transversal')</td>
+                                    <td>{{$product->transversal_section_little}}</td>
+                                    <td>{{$product->transversal_section_medium}}</td>
+                                    <td>{{$product->transversal_section_big}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Sección Longitudinal</td>
-                                    <td>Sin determinar</td>
-                                    <td>Sin determinar</td>
-                                    <td>Sin determinar</td>
+                                    <td>@lang('locale.longitudinal')</td>
+                                    <td>{{$product->longitudinal_section_little}}</td>
+                                    <td>{{$product->longitudinal_section_medium}}</td>
+                                    <td>{{$product->longitudinal_section_big}}</td>
                                 </tr>
                             </tbody>
 
@@ -256,7 +256,7 @@
                         <p>Fuente: {{$graphic->font}}</p>
                         <p>Años: {{$graphic->font_years}}</p>
                         @else
-                        <p>No hay datos disponibles para el gráfico.</p>
+                        <p>@lang('locale.noDatos')</p>
                         @endif
                     </div>
                 </div>
@@ -289,7 +289,9 @@
                             text: ''
                         },
                         xAxis: {
-                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                            categories: ['@lang('locale.enero')','@lang('locale.febrero')', '@lang('locale.marzo')', '@lang('locale.abril')', '@lang('locale.mayo')', 
+                            '@lang('locale.junio')', '@lang('locale.julio')', '@lang('locale.agosto')', '@lang('locale.septiembre')', '@lang('locale.octubre')', 
+                            '@lang('locale.noviembre')', '@lang('locale.diciembre')']
                         },
                         yAxis: {
                             title: {

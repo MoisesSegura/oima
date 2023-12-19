@@ -56,16 +56,6 @@ class CatalogController extends Controller
 
 
 
-    // public function getFruits()
-    // {
-
-    //     $fruits = Product::whereHas('category', function ($query) {
-    //         $query->where('category_id', '3');
-    //     })->get();
-
-    //     return $fruits;
-    // }
-
     public function getFruits()
     {
         $fruits = ProductDetail::select(
@@ -253,10 +243,15 @@ class CatalogController extends Controller
             // Accede a los modelos relacionados
             $nutritionalProperties = $productDetail->nutritionalProperty;
             $nutritionalContents = $productDetail->nutritionalContent;
+            
+            $nutritionalValues = $nutritionalProperties->flatMap(function ($nutritionalProperty) {
+                return $nutritionalProperty->nutritionalPropertyValue;
+            });
+    
 
 
             // devolverlos a la vista
-            return view('verInfoNutricional', compact('nutritionalProperties', 'nutritionalContents','productDetail'));
+            return view('verInfoNutricional', compact('nutritionalProperties', 'nutritionalContents','nutritionalValues','productDetail'));
         } else {
             // Manejar el caso en el que no se encuentre el ProductDetail con el ID dado
 
@@ -423,6 +418,124 @@ public function filterPulses(Request $request)
 
     return response()->json($filteredFruits);
 }
+
+
+public function searchFruits(Request $request)
+{
+    // Obtener los parámetros de la solicitud
+    $countryId = $request->input('country');
+    $productName = $request->input('name');
+
+    $productosUnsorted = ProductDetail::select(
+        'product_detail.product_id', 
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->leftJoin('product_translation', 'product_detail.product_id', '=', 'product_translation.product_id')
+    ->where('product_translation.name', 'LIKE', '%' . $productName . '%')
+    ->whereHas('product', function ($query) {
+        $query->whereHas('category', function ($query) {
+            $query->where('slug', 'Frutas');
+        });
+    })
+    ->groupBy('product_detail.product_id')
+    ->get();
+
+    $fruits = $productosUnsorted->sortBy('product_translation.name');
+
+        $regions = $this->getRegions();
+
+    return view('frutas', compact('fruits','regions'));
+
+}
+
+public function searchVegetables(Request $request)
+{
+    // Obtener los parámetros de la solicitud
+    $countryId = $request->input('country');
+    $productName = $request->input('name');
+
+    $productosUnsorted = ProductDetail::select(
+        'product_detail.product_id', 
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->leftJoin('product_translation', 'product_detail.product_id', '=', 'product_translation.product_id')
+    ->where('product_translation.name', 'LIKE', '%' . $productName . '%')
+    ->whereHas('product', function ($query) {
+        $query->whereHas('category', function ($query) {
+            $query->where('slug', 'Hortalizas');
+        });
+    })
+    ->groupBy('product_detail.product_id')
+    ->get();
+
+    $vegetables = $productosUnsorted->sortBy('product_translation.name');
+
+        $regions = $this->getRegions();
+
+    return view('hortalizas', compact('vegetables','regions'));
+
+}
+
+public function searchGrains(Request $request)
+{
+    // Obtener los parámetros de la solicitud
+    $countryId = $request->input('country');
+    $productName = $request->input('name');
+
+    $productosUnsorted = ProductDetail::select(
+        'product_detail.product_id', 
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->leftJoin('product_translation', 'product_detail.product_id', '=', 'product_translation.product_id')
+    ->where('product_translation.name', 'LIKE', '%' . $productName . '%')
+    ->whereHas('product', function ($query) {
+        $query->whereHas('category', function ($query) {
+            $query->where('slug', 'Granos');
+        });
+    })
+    ->groupBy('product_detail.product_id')
+    ->get();
+
+    $grains = $productosUnsorted->sortBy('product_translation.name');
+
+        $regions = $this->getRegions();
+
+    return view('granos', compact('grains','regions'));
+
+}
+
+public function searchLegumes(Request $request)
+{
+    // Obtener los parámetros de la solicitud
+    $countryId = $request->input('country');
+    $productName = $request->input('name');
+
+    $productosUnsorted = ProductDetail::select(
+        'product_detail.product_id', 
+        DB::raw('MAX(product_detail.id) as max_id'), 
+        DB::raw('GROUP_CONCAT(DISTINCT product_detail.known_name SEPARATOR ", ") as concatenated_known_names')
+    )
+    ->leftJoin('product_translation', 'product_detail.product_id', '=', 'product_translation.product_id')
+    ->where('product_translation.name', 'LIKE', '%' . $productName . '%')
+    ->whereHas('product', function ($query) {
+        $query->whereHas('category', function ($query) {
+            $query->where('slug', 'Legumbres');
+        });
+    })
+    ->groupBy('product_detail.product_id')
+    ->get();
+
+    $legumes = $productosUnsorted->sortBy('product_translation.name');
+
+        $regions = $this->getRegions();
+
+    return view('legumbres', compact('legumes','regions'));
+
+}
+
 
 
 }

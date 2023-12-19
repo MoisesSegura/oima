@@ -11,7 +11,7 @@
             </li>
         @endforeach
     </ul>
-</div>
+    </div>
 
 
 <style>
@@ -60,34 +60,27 @@
         <li>
             <div class="headerdrop">
                 <div class="dropdown" data-dropdown>
-                    <a class="drop nav__list--link {{ request()->routeIs('oima') ? 'active' : '' }}"
+                    <a class="drop nav__list--link {{ request()->routeIs('oima','quienes','historia') ? 'active' : '' }}"
                         data-dropdown-button>@lang('locale.oima')</a>
                     <div class="dropdown-menu information-grid">
                         <div>
-                            <div class="dropdown-heading">@lang('locale.info')</div>
+                            <div class="dropdown-heading"></div>
                             <div class="dropdown-drops">
                                 <a href="{{ route('oima')}}" class="drop">@lang('locale.principios')</a>
-                                <a href="{{ route('oima')}}#Quienes-somos" class="drop">@lang('locale.quienes')</a>
-                                <a href="{{ route('oima')}}#Miembros" class="drop">@lang('locale.paisesMiembros')</a>
-                                <a href="{{ route('oima')}}#Logros" class="drop">@lang('locale.logros')</a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="dropdown-heading">@lang('locale.funcionamiento')</div>
-                            <div class="dropdown-drops">
-                                <a href="{{ route('oima-funcionamiento')}}#mision-vision"
-                                    class="drop">@lang('locale.misionvision')</a>
-                                <a href="{{ route('oima-funcionamiento')}}#Comite-Ejecutivo"
-                                    class="drop">@lang('locale.comiteEjecutivo')</a>
+                                <a href="{{ route('quienes')}}" class="drop">@lang('locale.quienes')</a>
                                 <a href="{{ route('historia')}}" class="drop">@lang('locale.historia')</a>
                             </div>
                         </div>
-                        <div>
-                            <div class="dropdown-heading">@lang('locale.ayuda')</div>
+
+                        <!-- <div>
+                            <div class="dropdown-heading"></div>
                             <div class="dropdown-drops">
-                                <a href="{{ route('contacto')}}#contactar" class="drop">@lang('locale.contactoNav')</a>
+                                <a href="{{ route('oima-funcionamiento')}}#mision-vision"
+                                    class="drop">@lang('locale.misionvision')</a>
+                              
                             </div>
-                        </div>
+                        </div> -->
+                       
 
                     </div>
                 </div>
@@ -174,7 +167,7 @@
 
         .information-grid {
             display: grid;
-            grid-template-columns: repeat(4, max-content);
+            grid-template-columns: repeat(1, max-content);
             gap: 2rem;
         }
 
@@ -204,7 +197,42 @@
 
     <script>
 
-        document.addEventListener("click", e => {
+// let timer;
+
+// document.addEventListener("mouseover", e => {
+//     const isDropdownButton = e.target.matches("[data-dropdown-button]");
+//     if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
+
+//     let currentDropdown;
+//     if (isDropdownButton) {
+//         clearTimeout(timer); // Limpiar el temporizador existente al pasar por otro botón
+//         currentDropdown = e.target.closest("[data-dropdown]");
+//         currentDropdown.classList.add("active");
+//     }
+
+//     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+//         if (dropdown === currentDropdown) return;
+//         dropdown.classList.remove("active");
+//     });
+// });
+
+// document.addEventListener("mouseover", e => {
+//     const isDropdownButton = e.target.matches("[data-dropdown-button]");
+//     const isDropdown = e.target.matches("[data-dropdown]");
+    
+//     if (isDropdownButton || isDropdown) {
+//         // Estás sobre el botón o el menú, no hagas nada
+//         return;
+//     }
+
+//     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+//         timer = setTimeout(() => {
+//             dropdown.classList.remove("active");
+//         }, 5000); // Ajusta el tiempo en milisegundos según tus necesidades
+//     });
+// });
+
+document.addEventListener("click", e => {
             const isDropdownButton = e.target.matches("[data-dropdown-button]")
             if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
 
@@ -220,25 +248,10 @@
             })
         })
 
+
+
     </script>
 
-    <!-- <script>
-    $(document).ready(function() {
-        // Manejar el clic en los enlaces del menú
-        $('.dropdown-drops a').on('click', function(event) {
-            // Evitar el comportamiento predeterminado del enlace
-            event.preventDefault();
-
-            // Obtener el identificador de la sección a la que quieres desplazarte
-            var target = $(this).attr('href');
-
-            // Realizar el desplazamiento suave hasta la sección
-            $('html, body').animate({
-                scrollTop: $(target).offset().top
-            }, 1000); // El valor 1000 es la duración de la animación en milisegundos
-        });
-    });
-</script> -->
 
 
     <div class="nav--others">

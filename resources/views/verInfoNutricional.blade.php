@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <div class="backbot">
                 <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
-                @lang('locale.volver')</a>
+                    @lang('locale.volver')</a>
             </div>
             <div class="sharebot ">
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -29,13 +29,14 @@
             <div class="col-md-4 d-none d-md-block text-center">
                 <p class="card--text">@lang('locale.conocido')</p>
                 <h3 class="card--title">{{ $productDetail->known_name }}</h3>
-                <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}" class="img-responsive">
-             
+                <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}"
+                    alt="{{ $productDetail->product->name }}" class="img-responsive">
+
             </div>
             <div class="col-md-8">
                 <div class="section__header">
                     <h5 class="title text-center text-md-left">
-                    @lang('locale.infonutri')
+                        @lang('locale.infonutri')
                     </h5>
                     <div class="selectors__container">
                         <div class="selectors">
@@ -64,33 +65,50 @@
                 <div class="content__container container">
                     <div class="row">
                         <div class="col-md-6">
-                        @foreach ($nutritionalContents as $nutritionalContent)
-                        <h5 class="title title--sideline">{{ __($nutritionalContent->title) }}</h5>
+                            @foreach ($nutritionalContents as $nutritionalContent)
+                            <h5 class="title title--sideline">{{ __($nutritionalContent->title) }}</h5>
                             <div class="txt--black content--list">
                                 <p style="text-align:justify">
 
-                                {!! __($nutritionalContent->text) !!}
+                                    {!! __($nutritionalContent->text) !!}
 
                                 </p>
 
                             </div>
-                        @endforeach
+                            @endforeach
 
                         </div>
 
-                        <!-- <div class="col-md-6">
-                            
-                            <h5 class="title title--sideline">Composición del banano en 100 g de porción comestible</h5>
+
+
+                        <div class="col-md-6">
+
+                            <h5 class="title title--sideline">{{ $productDetail->title }}</h5>
                             <div class="x-scroll__container">
                                 <table class="table--minimal">
                                     <thead>
+
                                         <tr>
                                             <th></th>
-                                            <th>Maduro</th>
-                                            <th>Verde</th>
+                                 
+                                            <th>{{ $nutritionalValues[1]->name }}</th>
+                         
                                         </tr>
+
                                     </thead>
+
                                     <tbody>
+                                        @foreach($nutritionalProperties as $property)
+                                        <tr>
+                                            <td>{{ $property->text }} {{ $property->unit }}</td>
+                                            @foreach($property->nutritionalPropertyValue as $value)
+                                            <td>{{ $value->value }}</td>
+                                            @endforeach
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                    <!-- <tbody>
                                         <tr>
                                             <td>Calorías kcal</td>
                                             <td>
@@ -163,10 +181,17 @@
                                                 -
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
+
+
+
                                 </table>
                             </div>
-                        </div> -->
+                        </div>
+
+
+
+
                     </div>
                 </div>
 

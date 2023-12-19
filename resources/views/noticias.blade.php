@@ -10,13 +10,13 @@
         </ul>
     </div>
 
-    <form method="get">
-        <div class="search--container">
+    <div class="search--container">
+        <form method="get" id="newsFilterForm">
             <div class="selectors__container">
                 <div class="selectors">
                     <div class="select--wrapper">
-                        <select class="select" name="year">
-                            <option value="">Todos los años</option>
+                        <select class="select" name="year" id="filterFormNew">
+                            <option value="">@lang('locale.todosblog')</option>
 
                             @for ($year = date('Y'); $year >= 2019; $year--)
                             <option value="{{ $year }}">{{ $year }}</option>
@@ -26,50 +26,74 @@
 
                 </div>
             </div>
+        </form>
+        
+
+            <form method="get" action="{{ route('filter.news.by.name') }}" id="newsSearch">
             <div class="input__wrap input__wrap--search">
-                <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">
+                <input type="search" class="input input--search" placeholder="Buscar" name="name" id="newName">
+            </div>
+            </form>
+
+            <div class="">
+            <a class="btn btn--green" href="#" data-bs-toggle="modal" data-bs-target="#suscripcionModal">Suscribirse</a>
+            </div>
+
+       
+    </div>
+
+
+    <div class="modal fade" id="suscripcionModal" tabindex="-1" aria-labelledby="suscripcionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="suscripcionModalLabel">@lang('locale.sus')</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+        
+                <form>
+         
+                    <div class="mb-3">
+    <label for="nombre" class="form-label">@lang('locale.nombre')</label>
+    <input type="text" class="form-control" id="nombre" name="nombre">
+</div>
+
+<div class="mb-3">
+    <label for="pais" class="form-label">@lang('locale.pais')</label>
+    <input type="text" class="form-control" id="pais" name="pais">
+</div>
+
+<div class="mb-3">
+    <label for="cargo" class="form-label">@lang('locale.cargo')</label>
+    <input type="text" class="form-control" id="cargo" name="cargo">
+</div>
+
+<div class="mb-3">
+    <label for="correo" class="form-label">@lang('locale.correo')</label>
+    <input type="text" class="form-control" id="correo" name="correo">
+</div>
+
+                  
+
+                    <button type="submit" class="btn btn-primary">@lang('locale.env')</button>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
+</div>
+
+
 
     <div class="my-2">
-        <div class="blog__list" id="blog-entries">
+        <div class="blog__list" id="newsList">
 
-            @php
-            $currentYear = null;
-            @endphp
-
-            @foreach ($news as $new)
-            @php
-            $newYear = \Carbon\Carbon::parse($new->date)->year;
-            @endphp
-
-            @if ($newYear != $currentYear)
-            {{-- Cambio de año, muestra un nuevo encabezado --}}
-            <h3 class="blog__list-title">{{ $newYear }}</h3>
-            @php
-            $currentYear = $newYear;
-            @endphp
-            @endif
-
-            <div class="card--event card--blog mb-4">
-                <div class="card--event__img">
-                    <img src="{{ asset('/uploads/' . ltrim($new->image, '/')) }}" alt="{{ $new->name }}">
-                </div>
-                <div class="card--blog__text">
-                    <h4 class="card--title w-100 text-left">{{ __($new->title) }}</h4>
-                    <p class="card--subtitle w-100 text-left">{{
-                        \Carbon\Carbon::parse($new->date)->isoFormat('D [-] MMMM YYYY') }}</p>
-
-                    <a class="btn btn--green" href="{{ route('showNew', ['id' => $new->id]) }}">@lang('locale.verNoticia')</a>
-                </div>
-            </div>
-            @endforeach
+        @include('partials.iterarNoticias')
 
         </div>
-        <div class="text-center mb-5">
+        <!-- <div class="text-center mb-5">
             <button class="btn btn--green" id="more-results">Cargar más</button>
-        </div>
+        </div> -->
     </div>
 
 
@@ -80,37 +104,50 @@
 @include('widgets.footer')
 
 
-<script type="text/javascript" src="../../js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
-    var is_ajax = false;
-    var page = 2;
-    var query = "";
-    query = query.replace(/&amp;/g, '&');
 
-    var cantPages = 2;
 
-    $("#more-results").on('click', function () {
-        if (currentYear === undefined) {
-            currentYear = 0;
-        }
-        if (is_ajax === false) {
-            is_ajax = true;
+$(document).ready(function () {
+    $('#newsFilterForm select[name="year"]').change(function () {
+        var selectedYear = $(this).val();
+
+        if (selectedYear !== "") {
             $.ajax({
-                url: "/es/ajax/blog/noticias/" + currentYear + "/" + page + "?" + query,
-                method: "GET"
-            }).done(function (data) {
-                is_ajax = false;
-                page++;
-                $("#blog-entries").append(data);
+                url: '/filter-news',
+                type: 'GET',
+                data: $('#newsFilterForm').serialize(),
+                success: function (data) {
+                  
+                    $('#newsList').empty();
 
-                if (cantPages < page) {
-                    $("#more-results").css("display", "none");
+                    $.each(data, function (index, event) {
+                       
+                        var eventHtml =  '<div class="card--event card--blog mb-4">' +
+                        '<div class="card--event__img">' +
+                        '<img src="' + '{{ asset('/uploads/') }}/' + event.image + '" alt="' + event.title + '">' +
+                        '</div>' +
+                        '<div class="card--blog__text">' +
+                        '<h4 class="card--title w-100 text-left">' + event.title + '</h4>' +
+                        '<p class="card--subtitle w-100 text-left">' + event.start_formatted + '</p>' +
+                        '<a class="btn btn--green" href="' + '{{ url('noticias') }}/' + event.id + '">' +
+                        '@lang('locale.verEvento') </a>' +
+                        '</div>' +
+                        '</div>';
+
+                        $('#newsList').append(eventHtml);
+                    });
                 }
             });
+        } else {
+            window.location.href = '{{ url('noticias') }}';
         }
     });
+});
 
 </script>
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
 <script>

@@ -10,10 +10,6 @@
     });
 </script>
 
-<div class="icon d-flex align-items-center justify-content-center">
-    <span class="fas fa-phone"></span>
-</div>
-
 
 
 

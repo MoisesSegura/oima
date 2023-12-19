@@ -21,7 +21,7 @@
                 <p class="txt--black"> {{$extras->presentations}}</p>
                 </div>
             </div>
-            <form method="get">
+            <form method="get"  action="{{ route('buscar.presentaciones.informes') }}" id="searchPresReports">
                 <div>
                 </div>
                 <div class="search--container">
@@ -41,7 +41,8 @@
         <div class="mt-1 mb-5">
             <div class="card__container js-equal-height-parent" id="blog-entries">
 
-                @include('partials.presentations')
+                @include('partials.presentations&reports')
+
 
             </div>
 

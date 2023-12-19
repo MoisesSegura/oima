@@ -38,9 +38,14 @@ Route::get('/filter-fruits', [App\Http\Controllers\CatalogController::class, 'fi
 Route::get('/filter-vegetables', [App\Http\Controllers\CatalogController::class, 'filterVegetables'])->name('filterVegetables');
 Route::get('/filter-grains', [App\Http\Controllers\CatalogController::class, 'filterGrains'])->name('filterGrains');
 Route::get('/filter-pulses', [App\Http\Controllers\CatalogController::class, 'filterPulses'])->name('filterPulses');
+Route::get('/buscar-frutas', [App\Http\Controllers\CatalogController::class, 'searchFruits'])->name('buscarFrutas');
+Route::get('/buscar-hortalizas', [App\Http\Controllers\CatalogController::class, 'searchVegetables'])->name('buscarHortalizas');
+Route::get('/buscar-granos', [App\Http\Controllers\CatalogController::class, 'searchGrains'])->name('buscarGranos');
+Route::get('/buscar-legumbres', [App\Http\Controllers\CatalogController::class, 'searchLegumes'])->name('buscarLegumbres');
 
 Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
 Route::get('/oima-funcionamiento', [App\Http\Controllers\oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
+Route::get('/quienes-somos', [App\Http\Controllers\oimaController::class, 'quienesSomos'])->name('quienes');
 Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'showOrganization'])->name('verOrganizacion');
 Route::get('/historia', [App\Http\Controllers\oimaController::class, 'history'])->name('historia');
 
@@ -53,7 +58,7 @@ Route::get('/infoNutricional/{id}', [App\Http\Controllers\CatalogController::cla
 Route::get('/galeria/{id}', [App\Http\Controllers\CatalogController::class, 'showGallery'])->name('verGaleria');
 
 Route::get('/contacto', [App\Http\Controllers\ContactController::class, 'Contact'])->name('contacto');
-Route::post('/enviar-mensaje', 'ContactController@enviarMensaje');
+// Route::post('/enviar-mensaje', 'ContactController@enviarMensaje');
 
 Route::get('/eventos', [App\Http\Controllers\BlogController::class, 'Events'])->name('eventos');
 Route::get('/noticias', [App\Http\Controllers\BlogController::class, 'News'])->name('noticias');
@@ -61,6 +66,15 @@ Route::get('/sima-media', [App\Http\Controllers\BlogController::class, 'SimaMedi
 Route::get('/eventos/{id}', [App\Http\Controllers\BlogController::class,'showEvent'])->name('showEvent');
 Route::get('/noticias/{id}', [App\Http\Controllers\BlogController::class,'showNew'])->name('showNew');
 Route::get('/sima-media/{id}', [App\Http\Controllers\BlogController::class,'showSimaMedia'])->name('showSimaMedia');
+// Route::get('/eventos/ajax', [App\Http\Controllers\BlogController::class,'getEventsByYear'])->name('eventos.ajax');
+Route::get('/filter-events',  [App\Http\Controllers\BlogController::class,'filterEvents'])->name('filter.events');
+Route::get('/filter-news',  [App\Http\Controllers\BlogController::class,'filterNews'])->name('filter.news');
+Route::get('/filter-media',  [App\Http\Controllers\BlogController::class,'filterMedia'])->name('filter.media');
+
+Route::get('/filter-events-by-name', [App\Http\Controllers\BlogController::class,'filterEventsByName'])->name('filter.events.by.name');
+Route::get('/filter-news-by-name', [App\Http\Controllers\BlogController::class,'filterNewsByName'])->name('filter.news.by.name');
+Route::get('/filter-courses-by-name', [App\Http\Controllers\BlogController::class,'filterCoursesByName'])->name('filter.courses.by.name');
+
 
 Route::get('/publicaciones', [App\Http\Controllers\RepositoryController::class, 'publications'])->name('publicaciones');
 Route::get('/publicaciones/{id}', [App\Http\Controllers\RepositoryController::class, 'showPublication'])->name('verPublicacion');
@@ -71,7 +85,11 @@ Route::get('/diccionario', [App\Http\Controllers\RepositoryController::class, 'd
 Route::get('/diccionario/{id}', [App\Http\Controllers\RepositoryController::class, 'showDictionary'])->name('verDiccionario');
 Route::get('/videos', [App\Http\Controllers\RepositoryController::class, 'videos'])->name('videos');
 Route::get('/normas-procedimientos', [App\Http\Controllers\RepositoryController::class, 'procedureNorms'])->name('normas-procedimientos');
-
+Route::get('/buscar-productos',  [App\Http\Controllers\RepositoryController::class, 'buscarProductos'])->name('buscar.productos');
+Route::get('/buscar-videos',  [App\Http\Controllers\RepositoryController::class, 'buscarVideos'])->name('buscar.videos');
+Route::get('/buscar-normas',  [App\Http\Controllers\RepositoryController::class, 'buscarNormas'])->name('buscar.normas');
+Route::get('/buscar-publicaciones-documentos',  [App\Http\Controllers\RepositoryController::class, 'buscarPublicacionesDocumentos'])->name('buscar.publicaciones.documentos');
+Route::get('/buscar-presentaciones-informes',  [App\Http\Controllers\RepositoryController::class, 'buscarPresentacionesInformes'])->name('buscar.presentaciones.informes');
 
 Route::get('/get-more-presentations', [RepositoryController::class, 'getMorePresentations'])->name('getMorePresentations');
 Route::get('/get-more-documents', [RepositoryController::class, 'getMoreDocuments'])->name('getMoreDocuments');

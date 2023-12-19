@@ -16,6 +16,7 @@ use App\Models\AdditionalTool;
 use App\Models\Statistic;
 use App\Models\Region;
 use App\Models\CarouselOima;
+use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
     
@@ -129,8 +130,6 @@ class HomeController extends Controller
 
     //     return view('home', compact('organizations', 'achievements','products'));
     // }
-
-
 
 
 

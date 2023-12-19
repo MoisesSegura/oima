@@ -45,29 +45,6 @@
 
  
 
-    <section class="about__comitee">
-        @foreach ($executivecommitee as $exec)
-        <img src="{{ asset('/uploads/' . ltrim($exec->image, '/')) }}">
-        @endforeach
-        <div>
-            <div class="card--comitee">
-                <h4 class="title">@lang('locale.comiteEjecutivo')</h4>
-                <div class="txt--black">
-                    @foreach ($executivecommitee as $executivecommitee)
-                    {{ __($executivecommitee->description) }}
-                    @endforeach
-                </div>
-            </div>
-            <div class="card--history">
-                <h4 class="title">@lang('locale.historia')</h4>
-                <div class="txt--black">
-                    <p> {!! __($oima->description) !!} </p>
-                    <a class="btn btn--green" href="{{ route('historia') }}">@lang('locale.verHistoria')</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
 
     <section class="about__more">

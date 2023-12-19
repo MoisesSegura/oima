@@ -13,9 +13,9 @@
 
     <div class="hero hero--home">
         <div class="single-item">
-        @foreach ($carousel as $carousel)
+            @foreach ($carousel as $carousel)
             <img src="{{ asset('/uploads/' . ltrim($carousel->image, '/')) }}">
-        @endforeach
+            @endforeach
         </div>
         <div class="hero--home-overlay">
             <h1>{{ __($site->banner_title) }}</h1>
@@ -73,9 +73,19 @@
                             </a>
                         </li>
 
+                        @php
+                        // Fecha de inicio
+                        $fechaInicio = new DateTime('2002-12-01'); // Formato: Año-Mes-Día
+
+                        // Fecha actual
+                        $fechaActual = new DateTime();
+
+                        // Diferencia en años
+                        $diferenciaAnios = $fechaActual->diff($fechaInicio)->y;
+                        @endphp
                         <li>
                             <a class="metric-link" href="{{ route('historia')}}">
-                                <span class="number">{!! $stats[2]->value !!}</span>
+                                <span class="number">{{ $diferenciaAnios }}</span>
                                 {!! $stats[2]->text !!}
                             </a>
                         </li>
@@ -142,12 +152,12 @@
 
                         .slick-next {
                             right: 100px;
-                           
+
                         }
 
                         .slick-prev {
                             left: 100px;
-                          
+
                         }
                     </style>
 
@@ -211,12 +221,12 @@
             </div>
         </div>
     </section>
-    
+
     <section class="lead lead-small">
         <a href="https://iica.int/es">
-        <div class="lead__content">
-            <h3 class="title">@lang('locale.secretaria')</h3>
-        </div> 
+            <div class="lead__content">
+                <h3 class="title">@lang('locale.secretaria')</h3>
+            </div>
         </a>
         <img class="lead__img" src="../img/logo-iica.png" alt="Logo IICA">
     </section>

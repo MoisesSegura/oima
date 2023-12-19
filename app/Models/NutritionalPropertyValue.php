@@ -22,9 +22,9 @@ class NutritionalPropertyValue extends Model implements TranslatableContract
 
     public $timestamps = false;
 
-    public function nutritrionalProperty()
+    public function nutritionalProperty()
     {
-        return $this->belongsTo(NutritionalProperty::class);
+        return $this->belongsTo(NutritionalProperty::class,'nutritional_property_id');
     }
     
     

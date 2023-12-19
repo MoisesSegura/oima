@@ -13,6 +13,13 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="theme-color" content="#ffffff">
 
+        <!-- CSS de Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JS de Bootstrap (requiere Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
         <link rel="stylesheet" type="text/css"
         href="https://cdn.materialdesignicons.com/3.5.95/css/materialdesignicons.min.css">
 

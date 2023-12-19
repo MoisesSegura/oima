@@ -45,10 +45,8 @@ class oimaController extends Controller
 
         $categories = PersonCategory::all();
 
-        $socialmedia = SocialMedia::all();
 
-
-        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories','socialmedia'));
+        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
     }
 
 
@@ -73,10 +71,33 @@ class oimaController extends Controller
 
         $categories = PersonCategory::all();
 
-        $socialmedia = SocialMedia::all();
+
+        return view('oima-funcionamiento', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
+    }
+
+    public function quienesSomos(Request $request){
+
+        
+        $workprinciple = WorkPrinciple::all();
+
+        $history = History::all();
+
+        $person = Person::all();
+
+        $oima = Oima::First();
+
+        $executivecommitee = ExecutiveCommitee::all();
+
+        $achievement = Achievement::all();
+
+        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
+
+        $regions = Region::all();
+
+        $categories = PersonCategory::all();
 
 
-        return view('oima-funcionamiento', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories','socialmedia'));
+        return view('quienesSomos', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
     }
 
     public function showOrganization($id)

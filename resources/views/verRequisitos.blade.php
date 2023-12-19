@@ -27,7 +27,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 d-none d-md-block text-center">
-                    <p class="card--text">@locale('locale.conocido')</p>
+                    <p class="card--text">@lang('locale.conocido')</p>
                     <h3 class="card--title">{{$productDetail->known_name}}</h3>
                     <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}"
                         class="img-responsive">

@@ -22,11 +22,11 @@ class SimaMediaResource extends Resource
 {
     protected static ?string $model = SimaMedia::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationGroup = 'Blog';
 
-    protected static ?string $navigationLabel = 'Sima Media';
+    protected static ?string $navigationLabel = 'Virtual Courses';
 
     public static function form(Form $form): Form
     {

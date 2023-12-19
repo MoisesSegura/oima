@@ -8,7 +8,6 @@
 
 
         <div class="hero hero-has-text hero--event" style="background-image:url('{{ asset('/uploads/' . ltrim($event->image, '/')) }}')">
-            <!-- <img src="{{ asset($event->image) }}" alt="{{ $event->name }}"> -->
 
             <div class="hero--txt">
                 <h2 class="section--title txt--blue d-none d-md-block">{{ __($event->name) }}</h2>

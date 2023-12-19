@@ -13,36 +13,41 @@
         </div>
         <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
        
-        <form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET">
+     
             <div class="search--container">
-                <div class="selectors__container">
-                    <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
-                    <div class="selectors">
-                        <div class="select--wrapper">
+                <form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET">
+                    <div class="selectors__container">
+                        <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
+                        <div class="selectors">
+                            <div class="select--wrapper">
 
-                            <select class="select" name="region" id="region" data-lang="es">
-                                <option value="">Región</option>
-                                @foreach ($regions as $region)
-                                <option value="{{ $region->id }}">{{ __($region->name) }}</option>
-                                @endforeach
-                            </select>
+                                <select class="select" name="region" id="region" data-lang="es">
+                                    <option value="">@lang('locale.region')</option>
+                                    @foreach ($regions as $region)
+                                    <option value="{{ $region->id }}">{{ __($region->name) }}</option>
+                                    @endforeach
+                                </select>
 
+                            </div>
+                            <div class="select--wrapper">
+                                <select class="select" name="country" id="country">
+                                    <option value="">@lang('locale.pais')</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="select--wrapper">
-                            <select class="select" name="country" id="country">
-                                <option value="">País</option>
-                            </select>
-                        </div>
+                        <button class="btn btn--green" type="submit">@lang('locale.filtro')</button>
+
                     </div>
-                    <button class="btn btn--green" type="submit">Filtrar</button>
+                </form>
 
-                </div>
+                <form method="get" action="{{ route('buscarFrutas') }}" id="fruitSearch">
                 <div class="input__wrap input__wrap--search">
-                    <input class="input input--search" placeholder="Nombre de producto común o científico" name="name"
+                    <input class="input input--search" placeholder="@lang('locale.buscarprod')" name="name"
                         value="">
                 </div>
+                </form>
             </div>
-        </form>
+        
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item"><a href="{{ route('frutas')}}" class="nav-link active" id="cat3-tab"
@@ -64,18 +69,11 @@
     <div class="tab-content bg-white">
         <div class="tab-pane fade show active">
             <div class="card__container js-equal-height-parent" id="products">
-                @foreach ($fruits as $fruitDetail)
-                <a href="" class="card card--flex card--link js-equal-height">
-                    <img src="{{ asset(trim('/uploads/' . $fruitDetail->product->image, '/')) }}"
-                        alt="{{ $fruitDetail->product->name }}" class="card--flex__img">
-                    <div class="card--flex__content">
-                        <h4 class="card--title">{{ __($fruitDetail->product->name) }}</h4>
-                        <p class="card--text">{{ $fruitDetail->concatenated_known_names }}</p>
-                        <p class="card--text">{{ $fruitDetail->product->family_name }}</p>
-                        <p class="txt--blue">@lang('locale.ver')</p>
-                    </div>
-                </a>
-                @endforeach
+
+
+            @include('partials.iterarProductos')
+
+
             </div>
         </div>
         <!-- <div class="text-center mb-5">
@@ -83,8 +81,8 @@
         </div> -->
 
     </div>
-   
-   
+
+    @include('widgets.catalogMessage')
 
     @include('widgets.footer')
 
@@ -151,9 +149,6 @@
     $('#products').append(cardHtml);
 });
 
-
-
-
             },
             error: function () {
                 console.log('Error al filtrar frutas');
@@ -165,6 +160,20 @@
 
         
     </script>
+
+<script>
+    $(document).ready(function () {
+        $('#fruitSearch').submit(function (e) {
+    
+            e.preventDefault();
+
+            var selectedCountry = $('#country').val();
+            console.log(selectedCountry);
+
+            $(this).unbind('submit').submit();
+        });
+    });
+</script>
 
 
 

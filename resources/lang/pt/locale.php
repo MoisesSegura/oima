@@ -28,13 +28,13 @@ return [
 
   'principios' => 'Nossos princípios',
   'quienes' => 'Quem somos nós?',
-  'paisesMiembros' => 'Países membros',
+  'paisesMiembros' => 'Países membros e delegações',
   'enAmerica' => 'em toda a América',
   'todos' => 'Todos',
   'mision' => 'Missão',
   'vision' => 'Visão',
   'comiteEjecutivo' => 'Comitê Executivo',
-  'historia' => 'História da OIMA',
+  'historia' => 'Nossa História',
   'verHistoria' => 'VEJA A HISTÓRIA COMPLETA',
   'masInfo' => 'Mais Informações?',
   'contactar' => 'ENTRE EM CONTATO CON A OIMA',
@@ -49,8 +49,8 @@ return [
 
 
   //seccion de repositorio
-  'publicaciones' => 'Publicações',
-  'presentaciones' => 'Apresentações',
+  'publicaciones' => 'Publicações e Documentos Técnicos',
+  'presentaciones' => 'Apresentações e Relatórios regionais',
   'documentos' => 'Documentos Técnicos',
   'informes' => 'Relatórios regionais',
   'diccionario' => 'Dicionário',
@@ -76,9 +76,11 @@ return [
   'hortalizas' => 'Hortaliças',
   'granos' => 'Grão',
   'legumbres' => 'Legumes',
-  'desc' => 'Descrição',
-  'idiomadisp' => 'Idiomas disponíveis',
-  'contactblog' => 'contato',
+  'filtro' => 'Filtrar',
+  'buscarprod' => 'Nome do produto comum ou científico',
+  'mensajefiltro' => 'Utilize o filtro por país.',
+  'cerrar' => 'Fechar',
+
 
   //ver producto
   'conocido' => 'Conhecido como',
@@ -97,6 +99,12 @@ return [
   'masinfo' => ' More Information',
   'biblio' => 'Bibliography',
   'vertoda' => 'Ver tudo',
+  'noDatos' => 'Não há dados disponíveis para o gráfico.',
+  'peq' => 'Pequeno',
+  'med' => 'Médio',
+  'gra' => 'Grande',
+  'transversal' => 'Corte transversal',
+  'longitudinal' => 'Seção Longitudinal',
 
   //ver requirimiento
   'requisitos' => 'Requisitos para importação e exportação',
@@ -106,12 +114,15 @@ return [
 
   //seccion de blog
   'todosblog' => 'Todos os anos',
-  'eventos' => 'Próximos Eventos',
-  'oimablog' => 'Boletins OIMA',
-  'simamedia' => 'Sima na Mídia',
+  'eventos' => 'Eventos',
+  'oimablog' => 'Boletim Reportando para as Américas',
+  'simamedia' => 'Cursos virtuais e treinamentos',
   'verEvento' => 'ver evento',
   'verNoticia' => 'ver notícias',
   'verNoticiaComp' => 'Ver notícias completas',
+  'desc' => 'Descrição',
+  'idiomadisp' => 'Idiomas disponíveis',
+  'contactblog' => 'contato',
 
   //seccion de contacto
   'contacto' => 'Contato',
@@ -136,6 +147,23 @@ return [
 
   'botonCargar' => 'carregar mais',
   'regiones' => 'Regiões',
+
+  'sus' => 'inscrever-se',
+  'cargo' => 'Cargo ou Posição',
+
+  //meses
+  'enero' => 'Janeiro',
+  'febrero' => 'Fevereiro',
+  'marzo' => 'Março',
+  'abril' => 'Abril',
+  'mayo' => 'Maio',
+  'junio' => 'Junho',
+  'julio' => 'Julho',
+  'agosto' => 'Agosto',
+  'septiembre' => 'Setembro',
+  'octubre' => 'Outubro',
+  'noviembre' => 'Novembro',
+  'diciembre' => 'Dezembro',
 
 
 

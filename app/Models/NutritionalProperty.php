@@ -24,12 +24,12 @@ class NutritionalProperty extends Model implements TranslatableContract
 
     public function productdetail()
     {
-        return $this->belongsTo(ProductDetail::class);
+        return $this->belongsTo(ProductDetail::class,'product_detail_id');
     }
 
     public function nutritionalPropertyValue()
 {
-    return $this->belongsTo(NutritionalPropertyValue::class);
+    return $this->hasMany(NutritionalPropertyValue::class,'nutritional_property_id');
 }
 
 }

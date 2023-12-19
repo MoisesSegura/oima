@@ -82,7 +82,7 @@ class ProductDetail extends Model implements TranslatableContract
 
     public function nutritionalProperty()
     {
-        return $this->hasMany(NutritionalProperty::class);
+        return $this->hasMany(NutritionalProperty::class,'product_detail_id');
     }
 
     public function nutritionalPropertyValue()

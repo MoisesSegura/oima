@@ -16,9 +16,14 @@
                     @lang('locale.videos')
 
                     </h4>
-                    <p class="txt--black"> {{$extras->videos}} </p>
+
+                    <div class="repo-subtitle">
+                    <p class="txt--black"> {{$extras->videos}}</p>
+                    </div>
+
                 </div>
-                <form method="get">
+
+                <form method="get" action="{{ route('buscar.videos') }}" id="searchVideos">
                     <div>
                     </div>
                     <div class="search--container">
@@ -39,27 +44,13 @@
                 <div class="card__container js-equal-height-parent" id="blog-entries">
 
 
-                @foreach ($videos as $video)
-                    <a data-video="{{ $video->url }}" class="card--video text-left" data-toggle="modal"
-                        href="#videoModalCenter">
-                        <figure>
-                            <img src="https://i3.ytimg.com/vi/{{ $video->url }}/maxresdefault.jpg" alt="">
-                        </figure>
-                        <h4 class="card--title title--sideline">
-                            {{ __($video->name) }}
-                        </h4>
-                        <p class="card--text">
-                            {{ __($video->description) }}
-                        </p>
-                        <p class="txt--blue">@lang('locale.ver')</p>
-                    </a>
-                @endforeach
+                @include('partials.iterarVideos')
 
                 </div>
 
-                <div class="text-center mb-5">
+                <!-- <div class="text-center mb-5">
                     <button id="more-results" class="btn btn--green">@lang('locale.botonCargar')</button>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -82,7 +73,7 @@
 
 
 
-
+    <script type="text/javascript" src="/js/main.js"></script>
 
     <!-- Modal -->
     <div class="modal fade modal-video" id="videoModalCenter" tabindex="-1" role="dialog" aria-hidden="true">

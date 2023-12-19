@@ -10,13 +10,14 @@
         </ul>
     </div>
 
-    <form method="get">
-        <div class="search--container">
+   
+    <div class="search--container">
+        <form method="get" id="mediaFilterForm">
             <div class="selectors__container">
                 <div class="selectors">
                     <div class="select--wrapper">
                         <select class="select" name="year">
-                            <option value="">Todos los años</option>
+                            <option value="">@lang('locale.todosblog')</option>
 
                             @for ($year = date('Y'); $year >= 2019; $year--)
                             <option value="{{ $year }}">{{ $year }}</option>
@@ -26,43 +27,22 @@
 
                 </div>
             </div>
+           
+        </form>
+
+        <form method="get" action="{{ route('filter.courses.by.name') }}" id="coursesSearch">
             <div class="input__wrap input__wrap--search">
                 <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
 
     <div class="my-2">
-        <div class="blog__list" id="blog-entries">
-            @php
-            $currentYear = null;
-            @endphp
+        <div class="blog__list" id="mediaList">
+          
+        @include('partials.iterarCursos')
 
-            @foreach ($simaMedias as $simaMedia)
-            @php
-            $mediaYear = \Carbon\Carbon::parse($simaMedia->date)->year;
-            @endphp
-
-            @if ($mediaYear != $currentYear)
-            {{-- Cambio de año, muestra un nuevo encabezado --}}
-            <h3 class="blog__list-title">{{ $mediaYear }}</h3>
-            @php
-            $currentYear = $mediaYear;
-            @endphp
-            @endif
-
-            <div class="card--blog-alt card---blog mb-4">
-                <div class="card--blog-alt__img">
-                    <img src="{{ asset('/uploads/' . ltrim($simaMedia->image, '/')) }}" alt="{{ $simaMedia->alt_text }}">
-                </div>
-                <div class="card--blog-alt__text card--blog__text">
-                    <h4 class="card--title w-100 text-left">{{ $simaMedia->title }}</h4>
-                    <!-- <p class="card--text w-100 text-left">{{ $simaMedia->short_description }}</p> -->
-                    <a class="txt--blue" href="{{ route('showSimaMedia', ['id' => $simaMedia->id]) }}"> @lang('locale.verNoticiaComp') </a>
-                </div>
-            </div>
-            @endforeach
         </div>
         <div class="text-center mb-5">
         </div>
@@ -75,37 +55,51 @@
 @include('widgets.footer')
 
 
-<script type="text/javascript" src="../../js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 <script>
-    var is_ajax = false;
-    var page = 2;
-    var query = "";
-    query = query.replace(/&amp;/g, '&');
 
-    var cantPages = 1;
 
-    $("#more-results").on('click', function () {
-        if (currentYear === undefined) {
-            currentYear = 0;
-        }
-        if (is_ajax === false) {
-            is_ajax = true;
+$(document).ready(function () {
+    $('#mediaFilterForm select[name="year"]').change(function () {
+        var selectedYear = $(this).val();
+
+        if (selectedYear !== "") {
             $.ajax({
-                url: "/es/ajax/blog/sima-media/" + currentYear + "/" + page + "?" + query,
-                method: "GET"
-            }).done(function (data) {
-                is_ajax = false;
-                page++;
-                $("#blog-entries").append(data);
+                url: '/filter-media',
+                type: 'GET',
+                data: $('#mediaFilterForm').serialize(),
+                success: function (data) {
+                  
+                    $('#mediaList').empty();
 
-                if (cantPages < page) {
-                    $("#more-results").css("display", "none");
+                    $.each(data, function (index, event) {
+                       
+                        var eventHtml =  '<div class="card--blog-alt card---blog mb-4">' +
+                        '<div class="card--blog-alt__img">' +
+                        '<img src="' + '{{ asset('/uploads/') }}/' + event.image + '" alt="' + event.title + '">' +
+                        '</div>' +
+                        '<div class="card--blog-alt__text card--blog__text">' +
+                        '<h4 class="card--title w-100 text-left">' + event.title + '</h4>' +
+                        '<a class="txt--blue" href="' + '{{ url('sima-media') }}/' + event.id + '">' +
+                        '@lang('locale.verNoticiaComp') </a>' +
+                        '</div>' +
+                        '</div>';
+
+                        $('#mediaList').append(eventHtml);
+                    });
                 }
             });
+        } else {
+            window.location.href = '{{ url('sima-media') }}';
         }
     });
+});
 
 </script>
+
+
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
 <script>

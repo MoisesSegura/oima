@@ -12,14 +12,15 @@
             </div>
         </div>
         <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
-        <form id="f_1" name="f_1" action="{{ route('filterGrains') }}" method="GET">
-            <div class="search--container">
+        <div class="search--container">    
+            <form id="f_1" name="f_1" action="{{ route('filterGrains') }}" method="GET">
+            
                 <div class="selectors__container">
                     <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
                     <div class="selectors">
                         <div class="select--wrapper">
                             <select class="select" name="region" id="region" data-lang="es">
-                                <option value="">Región</option>
+                                <option value="">@lang('locale.region')</option>
                                 @foreach ($regions as $region)
                                 <option value="{{ $region->id }}">{{ __($region->name) }}</option>
                                 @endforeach
@@ -27,19 +28,25 @@
                         </div>
                         <div class="select--wrapper">
                             <select class="select" name="country" id="country">
-                                <option value="">País</option>
+                                <option value="">@lang('locale.pais')</option>
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn--green" type="submit">Filtrar</button>
+                    <button class="btn btn--green" type="submit">@lang('locale.filtro')</button>
 
                 </div>
+                          
+            </form>
+
+            <form method="get" action="{{ route('buscarGranos') }}" id="grainSearch">
                 <div class="input__wrap input__wrap--search">
-                    <input class="input input--search" placeholder="Nombre de producto común o científico" name="name"
+                    <input class="input input--search" placeholder="@lang('locale.buscarprod')" name="name"
                         value="">
                 </div>
-            </div>
-        </form>
+                </form>
+
+        </div>
+
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item"><a href="{{ route('frutas')}}" class="nav-link " id="cat3-tab" aria-controls="cat3"
@@ -60,7 +67,7 @@
             <div class="tab-pane fade show active">
                 <div class="card__container js-equal-height-parent" id="products">
                     @foreach ($grains as $grainDetail)
-                    <a href="" class="card card--flex card--link js-equal-height">
+                    <a href="#" class="card card--flex card--link js-equal-height"  data-bs-toggle="modal" data-bs-target="#mensajeModal">
                         <img src="{{ asset(trim('/uploads/' . $grainDetail->product->image, '/')) }}"
                             alt="{{ $grainDetail->product->name }}" class="card--flex__img">
                         <div class="card--flex__content">
@@ -79,6 +86,7 @@
         </div>
     </div>
 
+    @include('widgets.catalogMessage')
     @include('widgets.footer')
     
    
@@ -97,22 +105,22 @@
 
     <script>
     $(document).ready(function () {
-    // Cuando cambia la selección de la región
+  
     $('#region').change(function () {
         var regionId = $(this).val();
 
-        // Si no se selecciona ninguna región, no hacemos nada
+
         if (!regionId) {
-            $('#country').empty(); // Limpiamos la lista de países
+            $('#country').empty(); 
             return;
         }
 
-        // Realizamos una solicitud AJAX para obtener los países de la región
+     
         $.ajax({
             url: '/get-countries/' + regionId, 
             type: 'GET',
             success: function (data) {
-                // Limpiamos la lista de países y agregamos los nuevos
+                // Limpia la lista de países y agregamos los nuevos
                 $('#country').empty();
                 $.each(data, function (key, value) {
                     $('#country').append('<option value="' + key + '">' + value + '</option>');
@@ -124,19 +132,18 @@
         });
     });
 
-    
-    // Cuando se envía el formulario de filtrado
-    $('#f_1').submit(function (e) {
-        e.preventDefault(); // Evita que el formulario se envíe de forma convencional
 
-        // Realizamos una solicitud AJAX para filtrar las frutas
+    $('#f_1').submit(function (e) {
+        e.preventDefault(); 
+
+     
         $.ajax({
             url: '/filter-grains',
             type: 'GET',
             data: $('#f_1').serialize(), // Serializamos los datos del formulario
             success: function (data) {
 
-                // Limpiamos la lista de productos
+                // Limpia la lista de productos
                 $('#products').empty();
 
                 // Iteramos sobre los datos recibidos y mostramos los productos

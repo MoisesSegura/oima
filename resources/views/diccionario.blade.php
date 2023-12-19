@@ -24,7 +24,7 @@
                     <p class="txt--black"> {{$extras->directory}}</p>
                     </div>
                 </div>
-                <form method="get">
+                <form method="get" action="{{ route('buscar.productos') }}" id="searchForm">
                     <div>
                     </div>
                     <div class="search--container">
@@ -119,7 +119,7 @@
     @include('widgets.footer')
 
     
-    <script type="text/javascript" src="/js/main.js"></script>
+
     
 
 

@@ -8,7 +8,7 @@
 
         <div class="container--repository open">
             <div class="back d-md-none">
-                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> Volver</a>
+                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
             </div>
             <div class="header--repository">
                 <div class="title--repository d-none d-md-flex ">
@@ -22,7 +22,7 @@
                     </div>
                
                 </div>
-                <form method="get">
+                <form method="get" action="{{ route('buscar.publicaciones.documentos') }}" id="searchPubliDocument">
                     <div>
                     </div>
                     <div class="search--container">
@@ -41,27 +41,14 @@
             <div class="mt-1 mb-5">
                 <div class="card__container js-equal-height-parent" id="blog-entries">
 
-                @foreach ($publications as $publication)
-                    <div class="card--repository">
-                        <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}"
-                            alt="{{ $publication->title }}"
-                            class="card__img">
-                        <div class="card--content">
-                            <h4 class="card--title">{{ __($publication->title) }}</h4>
-                            <hr>
-                            <p class="card--text"></p>
-                            <p class="card--text"></p>
-                            <a class="btn-transform" href="{{ route('verPublicacion', ['id' => $publication->id]) }}">@lang('locale.verinfo')</a>
-                            <a class="btn btn--white-blue btn--small"
-                                href="{{ $publication->file_real }}"
-                                download="{{ $publication->file_real_name }}" target="_blank"><i class="mdi mdi-download"></i></a>
-                        </div>
-                    </div>
-                @endforeach
+            
+
+                @include('partials.publications&documents')
 
                 </div>
 
                 <div class="text-center mb-5">
+                    <button id="more-results" class="btn btn--green"  data-page="2">@lang('locale.botonCargar')</button>
                 </div>
             </div>
 
@@ -101,61 +88,28 @@
 
     @include('widgets.footer')
 
-    
+  
+
     <script type="text/javascript" src="/js/main.js"></script>
-    <script>
-        var is_ajax = false;
-        var page = 2;
-        var query = "";
-        query = query.replace(/&amp;/g, '&');
 
-        var cantPages = 1;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let page = 2; 
 
-        $("#more-results").on('click', function () {
-            if (is_ajax === false) {
-                var url = "/es/ajax/repositorio/publicaciones/" + page + "?" + query
-                is_ajax = true;
-                $.ajax({
-                    url: url,
-                    method: "GET"
-                }).done(function (data) {
-                    is_ajax = false;
-                    page++;
-                    $("#blog-entries").append(data);
-
-                    setEqualHeight()
-
-
-
-                    if (cantPages < page) {
-                        $("#more-results").css("display", "none");
-                    }
-                });
-            }
-        });
-
-        function setEqualHeight() {
-            $('.js-equal-height-parent').each(function () {
-                var refHeight = 0;
-                var $items = $(this).find('.js-equal-height');
-
-                if ($(this).find('.js-equal-height-ref').length > 0) {
-                    refHeight = $(this).find('.js-equal-height-ref').outerHeight();
-                } else {
-                    $($items, this).each(function () {
-                        // If this box is higher than the cached highest then store it
-                        if ($(this).height() > refHeight) {
-                            refHeight = $(this).height();
-                        }
-                    });
-                }
-                $items.each(function () {
-                    $(this).css('height', refHeight);
+        document.getElementById('more-results').addEventListener('click', function () {
+         
+            axios.get('/get-more-documents', { params: { page: page } })
+                .then(function (response) {
+                  
+                    document.getElementById('blog-entries').insertAdjacentHTML('beforeend', response.data);
+                    page++; 
                 })
-            })
-        }
-
-    </script>
+                .catch(function (error) {
+                    console.error('Error al cargar más documentos', error);
+                });
+        });
+    });
+</script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!--    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
             <script>

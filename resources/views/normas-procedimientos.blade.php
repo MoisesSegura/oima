@@ -18,7 +18,7 @@
                     <p class="txt--black"> {{$extras->procedure_norms}}</p>
                     </div>
                 </div>
-                <form method="get">
+                <form method="get"  action="{{ route('buscar.normas') }}" id="searchNorms">
                     <div>
                     </div>
                     <div class="search--container">
@@ -38,21 +38,8 @@
                 <div class="card__container js-equal-height-parent" id="blog-entries">
 
 
-                    @foreach ($norms as $norm)
-                    <div class="card--repository">
-                        <div class="card--content">
-                            <h4 class="card--title">{{ __($norm->name) }}</h4>
-                            <hr>
-                            <a class="btn btn--small btn--green"
-                                href="{{ __($norm->file_real) }}"
-                                target="_blank">@lang('locale.ver')</a>
-                            <a class="btn btn--small btn--white-blue"
-                                href="{{ __($norm->file_real) }}"
-                                download="{{ __($norm->file_real_name) }}" target="_blank"><i
-                                    class="mdi mdi-download"></i></a>
-                        </div>
-                    </div>
-                    @endforeach
+                @include('partials.iterarNormas')
+
 
                 </div>
 
