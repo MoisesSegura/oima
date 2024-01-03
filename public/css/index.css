@@ -6873,6 +6873,11 @@ hr {
       margin-top: 60px; } }
 .img-responsive {
   width: 100%; }
+
+.oimaLogo{
+  width: 50px;
+  padding: 5px;
+}
 .logo {
   color: transparent;
   text-indent: -999px;
@@ -8245,6 +8250,7 @@ p {
 .list--achievements {
   position: relative;
   margin: 20px;
+  margin-left: 5px;
   height: calc(100% - 60px);
   overflow: hidden; }
 .list--achievements li {
@@ -8972,10 +8978,11 @@ p {
   background-color: #376697;
   color: #FFFFFF; }
 .nav .logo {
-    margin-left: 10px; }
+    margin-right: 20px; 
+  }
 @media (min-width: 768px) {
       .nav .logo {
-        margin-left: 70px; } }
+        margin-right: 20px; } }
 .nav__list {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -23,7 +23,11 @@ Route::get('/locale/{locale}', function ($locale) {
  
 })->name('locale');;
 
-
+Route::get('/ver', function () {
+  
+    return view('verProductoRegionSur');
+ 
+});
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
@@ -42,6 +46,9 @@ Route::get('/buscar-frutas', [App\Http\Controllers\CatalogController::class, 'se
 Route::get('/buscar-hortalizas', [App\Http\Controllers\CatalogController::class, 'searchVegetables'])->name('buscarHortalizas');
 Route::get('/buscar-granos', [App\Http\Controllers\CatalogController::class, 'searchGrains'])->name('buscarGranos');
 Route::get('/buscar-legumbres', [App\Http\Controllers\CatalogController::class, 'searchLegumes'])->name('buscarLegumbres');
+
+Route::get('/get-countries-products/{product}', [App\Http\Controllers\CatalogController::class, 'getCountriesWithRegions']);
+
 
 Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
 Route::get('/oima-funcionamiento', [App\Http\Controllers\oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');

@@ -145,6 +145,10 @@ class CatalogController extends Controller
 
         $graphic = ProductGraphic::where('product_detail_id', $product->id)->first();
 
+        $regions = $this->getRegions();
+
+        $countriesWithRegions = $this->getCountriesWithRegions($product);
+
         // Verificar si se encontró un registro de ProductGraphic
         if ($graphic) {
             // Acceder a los valores asociados a través de la relación definida en el modelo
@@ -162,7 +166,7 @@ class CatalogController extends Controller
             $data = json_encode([]);
         }
      
-        return view('verProducto', compact('product','knownNames','data','graphic'));
+        return view('verProducto', compact('product','knownNames','data','graphic', 'regions','countriesWithRegions'));
     }
 
 
@@ -536,6 +540,26 @@ public function searchLegumes(Request $request)
 
 }
 
+public function getCountriesWithRegions($product)
+{
+    // Obtener el país asociado al producto
+    $country = $product->country;
+
+    // Verificar si se encontró un país asociado al producto
+    if ($country) {
+        // Obtener la región asociada al país
+        $region = $country->region;
+
+        $countriesWithRegions = [
+            'country' => $country->name,
+            'region' => $region ? $region->name : null,
+        ];
+
+        return [$countriesWithRegions];
+    }
+
+    return [];
+}
 
 
 }

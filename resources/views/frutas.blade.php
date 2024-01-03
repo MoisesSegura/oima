@@ -92,22 +92,19 @@
 
     <script>
     $(document).ready(function () {
-    // Cuando cambia la selección de la región
     $('#region').change(function () {
         var regionId = $(this).val();
 
-        // Si no se selecciona ninguna región, no hacemos nada
         if (!regionId) {
-            $('#country').empty(); // Limpiamos la lista de países
+            $('#country').empty(); 
             return;
         }
 
-        // Realizamos una solicitud AJAX para obtener los países de la región
         $.ajax({
             url: '/get-countries/' + regionId,
             type: 'GET',
             success: function (data) {
-                // Limpiamos la lista de países y agregamos los nuevos
+
                 $('#country').empty();
                 $.each(data, function (key, value) {
                     $('#country').append('<option value="' + key + '">' + value + '</option>');
@@ -120,21 +117,17 @@
     });
 
     
-    // Cuando se envía el formulario de filtrado
     $('#f_1').submit(function (e) {
-        e.preventDefault(); // Evita que el formulario se envíe de forma convencional
+        e.preventDefault(); 
 
-        // Realizamos una solicitud AJAX para filtrar las frutas
         $.ajax({
             url: '/filter-fruits',
             type: 'GET',
-            data: $('#f_1').serialize(), // Serializamos los datos del formulario
+            data: $('#f_1').serialize(), 
             success: function (data) {
 
-                // Limpiamos la lista de productos
                 $('#products').empty();
 
-                // Iteramos sobre los datos recibidos y mostramos los productos
                 $.each(data, function (index, fruit) {
     var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
         '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
@@ -174,6 +167,7 @@
         });
     });
 </script>
+
 
 
 

@@ -13,7 +13,7 @@
         </div>
         <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
         <div class="search--container">
-            <form id="f_1" name="f_1">
+            <form id="f_1" name="f_1"  action="{{ route('filterPulses') }}" method="GET">
            
                 <div class="selectors__container">
                     <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
@@ -133,22 +133,20 @@
 
     <script>
         $(document).ready(function () {
-            // Cuando cambia la selección de la región
+      
             $('#region').change(function () {
                 var regionId = $(this).val();
 
-                // Si no se selecciona ninguna región, no hacemos nada
                 if (!regionId) {
-                    $('#country').empty(); // Limpiamos la lista de países
+                    $('#country').empty(); 
                     return;
                 }
 
-                // Realizamos una solicitud AJAX para obtener los países de la región
                 $.ajax({
-                    url: '/get-countries/' + regionId, // Reemplaza con la ruta correcta en tu aplicación
+                    url: '/get-countries/' + regionId, 
                     type: 'GET',
                     success: function (data) {
-                        // Limpiamos la lista de países y agregamos los nuevos
+            
                         $('#country').empty();
                         $.each(data, function (key, value) {
                             $('#country').append('<option value="' + key + '">' + value + '</option>');

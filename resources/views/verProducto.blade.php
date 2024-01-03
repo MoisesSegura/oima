@@ -49,7 +49,7 @@
                     </p>
 
 
-                    <a href="/es/diccionario/Aguacate" class="txt--green">@lang('locale.verdiccionario')<i
+                    <a href="{{ route('verDiccionario', ['id' => $product->id]) }}" class="txt--green">@lang('locale.verdiccionario')<i
                             class="mdi mdi-arrow-right"></i></a>
                 </li>
                 <li>
@@ -66,26 +66,27 @@
     <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
         <div class="search--container">
             <div class="selectors__container">
-                <div class="selectors">
-                    <div class="select--wrapper">
-                        <select class="select" name="region" id="region-validate">
-                            <option value="">Región</option>
-                            <option selected value="1">Región Central</option>
-                        </select>
-                    </div>
-                    <div class="select--wrapper">
-                        <select class="select selected-country" name="country" id="country">
-                            <option value="">País</option>
-                            <option selected value="costa-rica">Costa Rica</option>
-                            <option value="el-salvador">El Salvador</option>
-                            <option value="guatemala">Guatemala</option>
-                            <option value="honduras">Honduras</option>
-                            <option value="nicaragua">Nicaragua</option>
-                            <option value="panamaa">Panamá</option>
-                            <option value="repaablica-dominicana">República Dominicana</option>
-                        </select>
-                    </div>
-                </div>
+
+            <div class="selectors">
+    <div class="select--wrapper">
+        <select class="select" name="region" id="region-validate">
+            <option value="">Región</option>
+            @foreach($countriesWithRegions as $country)
+                <option value="{{ $country['region'] }}">{{ $country['region'] }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="select--wrapper">
+        <select class="select selected-country" name="country" id="country">
+            <option value="">País</option>
+            @foreach($countriesWithRegions as $country)
+                <option value="{{ $country['country'] }}">{{ $country['country'] }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+                
             </div>
         </div>
     </div>

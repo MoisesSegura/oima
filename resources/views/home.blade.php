@@ -236,15 +236,7 @@
 @include('widgets.footer')
 
 <script type="text/javascript" src="../js/main.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
-<script>
-    window.datawindow.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtagg151598454 - 1');
-</script>
 </body>
 
 </html>

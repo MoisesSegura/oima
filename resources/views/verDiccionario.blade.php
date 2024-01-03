@@ -52,7 +52,7 @@
                             <p class="card--text">{{ $product->product->family_name }}</p>
                         </li>
                     </ul>
-                    <a href="/es/producto/Aguacate" class="btn btn--green"> @lang('locale.verEn') </a>
+                    <!-- <a href="/es/producto/Aguacate" class="btn btn--green"> @lang('locale.verEn') </a> -->
                 </div>
             </div>
         </div>

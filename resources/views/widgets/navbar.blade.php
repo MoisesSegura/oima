@@ -1,4 +1,5 @@
 <div class="nav" role="navigation">
+<!-- <img class="oimaLogo" src="{{ asset('/uploads/uploads/oimaLogo.png') }}"> -->
     <a class="logo" href="{{ route('home')}}">OIMA / MIOA</a>
 
     <div class="social-media-container">
@@ -52,11 +53,6 @@
                 href="{{ route('home')}}">@lang('locale.inicio')</a>
         </li>
 
-        <!-- <li>
-            <a class="nav__list--link {{ request()->routeIs('oima') ? 'active' : '' }}"
-                href="{{ route('oima')}}">@lang('locale.oima')</a>
-        </li> -->
-
         <li>
             <div class="headerdrop">
                 <div class="dropdown" data-dropdown>
@@ -108,6 +104,13 @@
                 href="{{ route('contacto')}}">@lang('locale.contacto')</a>
         </li>
 
+        <li class="nav-item dropdown d-md-none">
+            <a id="nav-collapse-trigger" class="nav__list--link nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más <i class="mdi mdi-chevron-down"></i></a>
+            <div class="dropdown-menu" aria-labelledby="nav-collapse-trigger">
+                <a class="nav__list--link " href="{{ route('eventos')}}">Blog</a>
+                <a class="nav__list--link active" href="{{ route('contacto')}}">@lang('locale.contacto')</a>
+            </div>
+        </li>
 
 
     </ul>
@@ -197,56 +200,60 @@
 
     <script>
 
-// let timer;
+let timer;
 
-// document.addEventListener("mouseover", e => {
-//     const isDropdownButton = e.target.matches("[data-dropdown-button]");
-//     if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return;
+document.addEventListener("mouseover", e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");
+    const isDropdown = e.target.matches("[data-dropdown]");
+    const isDropdownItem = e.target.matches("[data-dropdown-item]");
 
-//     let currentDropdown;
-//     if (isDropdownButton) {
-//         clearTimeout(timer); // Limpiar el temporizador existente al pasar por otro botón
-//         currentDropdown = e.target.closest("[data-dropdown]");
-//         currentDropdown.classList.add("active");
-//     }
+    if (isDropdownButton) {
+        clearTimeout(timer);
+        const currentDropdown = e.target.closest("[data-dropdown]");
+        currentDropdown.classList.add("active");
+    } else if (isDropdown || isDropdownItem) {
+        clearTimeout(timer);
+    }
 
-//     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-//         if (dropdown === currentDropdown) return;
-//         dropdown.classList.remove("active");
-//     });
-// });
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("active");
+        }
+    });
+});
 
-// document.addEventListener("mouseover", e => {
-//     const isDropdownButton = e.target.matches("[data-dropdown-button]");
-//     const isDropdown = e.target.matches("[data-dropdown]");
-    
-//     if (isDropdownButton || isDropdown) {
-//         // Estás sobre el botón o el menú, no hagas nada
-//         return;
-//     }
+document.addEventListener("mouseout", e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");
+    const isDropdown = e.target.matches("[data-dropdown]");
 
-//     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-//         timer = setTimeout(() => {
-//             dropdown.classList.remove("active");
-//         }, 5000); // Ajusta el tiempo en milisegundos según tus necesidades
-//     });
-// });
+    if (isDropdownButton || isDropdown) {
+        return;
+    }
 
-document.addEventListener("click", e => {
-            const isDropdownButton = e.target.matches("[data-dropdown-button]")
-            if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        timer = setTimeout(() => {
+            dropdown.classList.remove("active");
+        }, 10000); // Ajusta el tiempo en milisegundos según tus necesidades
+    });
+});
 
-            let currentDropdown
-            if (isDropdownButton) {
-                currentDropdown = e.target.closest("[data-dropdown]")
-                currentDropdown.classList.toggle("active")
-            }
 
-            document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-                if (dropdown === currentDropdown) return
-                dropdown.classList.remove("active")
-            })
-        })
+
+// document.addEventListener("click", e => {
+//             const isDropdownButton = e.target.matches("[data-dropdown-button]")
+//             if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
+
+//             let currentDropdown
+//             if (isDropdownButton) {
+//                 currentDropdown = e.target.closest("[data-dropdown]")
+//                 currentDropdown.classList.toggle("active")
+//             }
+
+//             document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+//                 if (dropdown === currentDropdown) return
+//                 dropdown.classList.remove("active")
+//             })
+//         })
 
 
 
