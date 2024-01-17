@@ -25,7 +25,7 @@ Route::get('/locale/{locale}', function ($locale) {
 
 Route::get('/ver', function () {
   
-    return view('verProductoRegionSur');
+    return view('verProductoSur');
  
 });
 
@@ -65,6 +65,8 @@ Route::get('/infoNutricional/{id}', [App\Http\Controllers\CatalogController::cla
 Route::get('/galeria/{id}', [App\Http\Controllers\CatalogController::class, 'showGallery'])->name('verGaleria');
 
 Route::get('/contacto', [App\Http\Controllers\ContactController::class, 'Contact'])->name('contacto');
+Route::post('/enviar-correo', [App\Http\Controllers\ContactController::class, 'enviarCorreo'])->name('enviar-correo');
+
 // Route::post('/enviar-mensaje', 'ContactController@enviarMensaje');
 
 Route::get('/eventos', [App\Http\Controllers\BlogController::class, 'Events'])->name('eventos');
@@ -97,6 +99,12 @@ Route::get('/buscar-videos',  [App\Http\Controllers\RepositoryController::class,
 Route::get('/buscar-normas',  [App\Http\Controllers\RepositoryController::class, 'buscarNormas'])->name('buscar.normas');
 Route::get('/buscar-publicaciones-documentos',  [App\Http\Controllers\RepositoryController::class, 'buscarPublicacionesDocumentos'])->name('buscar.publicaciones.documentos');
 Route::get('/buscar-presentaciones-informes',  [App\Http\Controllers\RepositoryController::class, 'buscarPresentacionesInformes'])->name('buscar.presentaciones.informes');
+Route::get('/buscar-informes-regionales',  [App\Http\Controllers\RepositoryController::class, 'buscarInformesRegionales'])->name('buscar.informes');
+
+Route::get('/filtrar-videos',  [App\Http\Controllers\RepositoryController::class,'filtrarVideos'])->name('filtrar-videos');
+Route::get('/filtrar-presentaciones',  [App\Http\Controllers\RepositoryController::class,'filtrarPresentaciones'])->name('filtrar-presentaciones');
+Route::get('/filtrar-informes',  [App\Http\Controllers\RepositoryController::class,'filtrarInformes'])->name('filtrar-informes');
+Route::get('/filtrar-publicaciones',  [App\Http\Controllers\RepositoryController::class,'filtrarPublicaciones'])->name('filtrar-publicaciones');
 
 Route::get('/get-more-presentations', [RepositoryController::class, 'getMorePresentations'])->name('getMorePresentations');
 Route::get('/get-more-documents', [RepositoryController::class, 'getMoreDocuments'])->name('getMoreDocuments');

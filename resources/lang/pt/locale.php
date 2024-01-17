@@ -29,7 +29,7 @@ return [
   'principios' => 'Nossos princípios',
   'quienes' => 'Quem somos nós?',
   'paisesMiembros' => 'Países membros e delegações',
-  'enAmerica' => 'em toda a América',
+  'enAmerica' => 'em toda América',
   'todos' => 'Todos',
   'mision' => 'Missão',
   'vision' => 'Visão',
@@ -40,6 +40,11 @@ return [
   'contactar' => 'ENTRE EM CONTATO CON A OIMA',
   'misionvision' => 'Missão e Visão',
 
+  'org' => 'Organização',
+  'delegados' => 'Delegados',
+  'consultaprecios' => 'Consulta de preços',
+  'enlaceexterno' => 'Enlaces externos',
+
   //historia
   'definicion' => 'Definição',
   'origen' => 'Origem',
@@ -49,8 +54,9 @@ return [
 
 
   //seccion de repositorio
-  'publicaciones' => 'Publicações e Documentos Técnicos',
+  'publicaciones' => 'Publicações e documentos técnicos',
   'presentaciones' => 'Apresentações e Relatórios regionais',
+  'pres' => 'Apresentações',
   'documentos' => 'Documentos Técnicos',
   'informes' => 'Relatórios regionais',
   'diccionario' => 'Dicionário',
@@ -65,6 +71,14 @@ return [
   'familia' => 'Família',
   'otros' => 'Otros nombres del producto',
   'verEn' => 'ver en catálogo',
+
+  'descargar' => 'baixar',
+  'detallespubli' => 'Detalhes da publicação',
+  'resumen' => 'Resumo',
+  'signatura' => 'Assinatura topográfica',
+  'fechaven' => 'Data de expiração',
+  'nodisp' => 'Não disponível ',
+
 
 
 
@@ -105,6 +119,17 @@ return [
   'gra' => 'Grande',
   'transversal' => 'Corte transversal',
   'longitudinal' => 'Seção Longitudinal',
+
+  //ver producto SUR
+  'infoGeneral' => 'Informações gerais do produto em Argentina',
+  'caract' => 'Características',
+  'comerc' => 'Comercialização no mercado interno',
+  'variedad' => 'Variedades principais',
+  'procedencia' => 'Origem',
+  'unidad' => 'Unidade de Vendas',
+  'impPF' => 'Importação (Produto Fresco)',
+  'expPF' => 'Exportação (produto fresco)',
+  'galeriade' => 'Galeria de fotos de ',
 
   //ver requirimiento
   'requisitos' => 'Requisitos para importação e exportação',

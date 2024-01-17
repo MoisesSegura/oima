@@ -29,7 +29,7 @@ return [
    'principios' => 'Nuestros Principios',
    'quienes' => '¿Quiénes somos?',
    'paisesMiembros' => 'Países miembros y delegaciones',
-   'enAmerica' => 'en toda a América',
+   'enAmerica' => 'en toda América',
    'todos' => 'Todos',
    'mision' => 'Misión',
    'vision' => 'Visión',
@@ -39,6 +39,11 @@ return [
    'masInfo' => '¿Más información?',
    'contactar' => 'CONTACTAR A OIMA',
    'misionvision' => 'Misión y visión',
+   'org' => 'Organización',
+   'delegados' => 'Delegados',
+   'consultaprecios' => 'Consulta de Precios',
+   'enlaceexterno' => 'Enlaces Externos',
+
 
    //historia
    'definicion' => 'Definición',
@@ -51,8 +56,9 @@ return [
 
    //seccion repositorio
 
-   'publicaciones' => 'Publicaciones y Documentos Técnicos',
+   'publicaciones' => 'Publicaciones y documentos técnicos',
    'presentaciones' => 'Presentaciones e Informes regionales',
+   'pres' => 'Presentaciones',
    'documentos' => 'Documentos Técnicos',
    'informes' => 'Informes regionales',
    'diccionario' => 'Diccionario',
@@ -67,6 +73,14 @@ return [
    'familia' => 'Familia',
    'otros' => 'Otros nombres del producto',
    'verEn' => 'ver en catálogo',
+
+   'descargar' => 'descargar',
+   'detallespubli' => 'Detalles de la publicación',
+   'resumen' => 'Resumen',
+   'signatura' => 'Signatura topográfica',
+   'fechaven' => 'Fecha de vencimiento',
+   'nodisp' => 'No disponible',
+
 
 
    //seccion catalogo
@@ -105,6 +119,17 @@ return [
    'gra' => 'Grande',
    'transversal' => 'Sección Transversal',
    'longitudinal' => 'Sección Longitudinal',
+
+   //ver producto SUR
+   'infoGeneral' => 'Información General del producto en',
+   'caract' => 'Características',
+   'comerc' => 'Comercialización en mercado interno',
+   'variedad' => 'Variedades principales',
+   'procedencia' => 'Procedencia / Origen',
+   'unidad' => 'Unidad de venta / Comercialización',
+   'impPF' => 'Importación (Producto Fresco)',
+   'expPF' => 'Exportación (Producto Fresco)',
+   'galeriade' => 'Galería de fotografías de',
 
    //ver requirimiento
    'requisitos' => 'Requisitos para la importación y exportación',

@@ -147,13 +147,17 @@
     width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
     height: auto; /* Permite que la altura se ajuste automáticamente al ancho */
 }
+
+small{
+    color: black;
+}
 </style>
 
     <section>
         <div class="countries">
             <div class="country--filters">
                 <h5><span class="number">{{ $countries->count() }}</span><span
-                        class="title__text">@lang('locale.paisesMiembros')<small>@lang('locale.enAmerica')</small></span>
+                        class="title__text">@lang('locale.paisesMiembros')<small style="color: black;">@lang('locale.enAmerica')</small></span>
                 </h5>
                 <div class="country--filters__nav-container d-none d-md-block">
                     <ul class="country--filters__nav">

@@ -77,7 +77,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('en.title')
                             ->maxLength(255),
 
-                            Forms\Components\RichEditor::make('en.description') 
+                            Forms\Components\MarkdownEditor::make('en.description') 
                             ->required(),
 
                             Forms\Components\FileUpload::make('en.file_real')
@@ -97,7 +97,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('es.title')
                             ->maxLength(255),
 
-                            Forms\Components\RichEditor::make('es.description')
+                            Forms\Components\MarkdownEditor::make('es.description')
                             ->required(),
 
                             Forms\Components\FileUpload::make('es.file_real')
@@ -117,7 +117,7 @@ class PublicationResource extends Resource
                             Forms\Components\TextInput::make('pt.title')
                             ->maxLength(255),
 
-                            Forms\Components\RichEditor::make('pt.description')
+                            Forms\Components\MarkdownEditor::make('pt.description')
                             ->required(),
 
                             Forms\Components\FileUpload::make('pt.file_real')

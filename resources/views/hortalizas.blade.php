@@ -66,18 +66,9 @@
         <div class="tab-content bg-white">
     <div class="tab-pane fade show active">
         <div class="card__container js-equal-height-parent" id="products">
-        @foreach ($vegetables as $vegetableDetail)
-                <a href="#" class="card card--flex card--link js-equal-height"  data-bs-toggle="modal" data-bs-target="#mensajeModal">
-                    <img src="{{ asset(trim('/uploads/' . $vegetableDetail->product->image, '/')) }}" alt="{{ $vegetableDetail->product->name }}"
-                        class="card--flex__img">
-                    <div class="card--flex__content">
-                        <h4 class="card--title">{{ __($vegetableDetail->product->name) }}</h4>
-                        <p class="card--text">{{ $vegetableDetail->concatenated_known_names }}</p>
-                        <p class="card--text">{{ $vegetableDetail->product->family_name }}</p>
-                        <p class="txt--blue">@lang('locale.ver')</p>
-                    </div>
-                </a>
-                @endforeach
+
+        @include('partials.iterarProductos')
+        
         </div>
     </div>
     <!-- <div class="text-center mb-5">

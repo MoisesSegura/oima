@@ -20,6 +20,8 @@ use Filament\Forms\Components\DateTimePicker;
 
 class SimaMediaResource extends Resource
 {
+
+
     protected static ?string $model = SimaMedia::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -27,6 +29,9 @@ class SimaMediaResource extends Resource
     protected static ?string $navigationGroup = 'Blog';
 
     protected static ?string $navigationLabel = 'Virtual Courses';
+
+    protected static ?string $modelLabel = 'Virtual Courses';
+
 
     public static function form(Form $form): Form
     {
@@ -78,6 +83,8 @@ class SimaMediaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+
+
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                 ->wrap(),

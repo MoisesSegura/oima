@@ -35,9 +35,9 @@
             </div>
             </form>
 
-            <div class="">
+            <!-- <div class="">
             <a class="btn btn--green" href="#" data-bs-toggle="modal" data-bs-target="#suscripcionModal">Suscribirse</a>
-            </div>
+            </div> -->
 
        
     </div>
@@ -159,6 +159,5 @@ $(document).ready(function () {
 </script>
 </body>
 
-<!-- Mirrored from www.mioa.org/es/blog/noticias by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Oct 2023 23:24:30 GMT -->
 
 </html>

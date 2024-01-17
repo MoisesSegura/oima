@@ -43,6 +43,11 @@ return [
   'contactar' => 'CONTACT MIOA',
   'misionvision' => 'Mission & vision',
 
+  'org' => 'Organization',
+  'delegados' => 'Delegates',
+  'consultaprecios' => 'Price Consultation',
+  'enlaceexterno' => 'External Links',
+
   //historia
   'definicion' => 'Definition',
   'origen' => 'Origin',
@@ -54,8 +59,9 @@ return [
 
   //secccion de repositorio
 
-  'publicaciones' => 'Publications and Technical Documents',
+  'publicaciones' => 'Publications and technical documents',
   'presentaciones' => 'Presentations and Regional reports',
+  'pres' => 'Presentations',
   'documentos' => 'Technical Documents',
   'informes' => 'Regional reports',
   'diccionario' => 'Dictionary',
@@ -70,6 +76,14 @@ return [
   'familia' => 'Family',
   'otros' => 'Other product names',
   'verEn' => 'see in catalog',
+
+  'descargar' => 'download',
+  'detallespubli' => 'Publication Details',
+  'resumen' => 'Summary',
+  'signatura' => 'Topographic signature',
+  'fechaven' => 'Expire Date',
+  'nodisp' => 'Not available',
+
 
 
   //seccion catalogo
@@ -109,6 +123,17 @@ return [
   'gra' => 'Large',
   'transversal' => 'Cross Section',
   'longitudinal' => 'Longitudinal Section',
+
+  //ver producto SUR
+  'infoGeneral' => 'General Product Information in',
+  'caract' => 'Characteristics',
+  'comerc' => 'Domestic market commercialization',
+  'variedad' => 'Main varieties',
+  'procedencia' => 'Origin Place',
+  'unidad' => 'Sales unit',
+  'impPF' => 'Import (Fresh Product)',
+  'expPF' => 'Export (Fresh Product)',
+  'galeriade' => 'Photo gallery of',
 
   //ver requirimiento
   'requisitos' => 'Import and export requirements',

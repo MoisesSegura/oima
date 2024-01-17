@@ -45,13 +45,10 @@ class RepositoryController extends Controller
     
      $presentations = Presentation::orderByDesc('created_at')->take(6)->get();
 
-     $totalDocuments = LaboralDocument::count();
-
-     $reports = LaboralDocument::orderByDesc('created_at')->where('category', 2)->take(6)->get();
-
+  
      $extras = $this->getExtras();
 
-     return view('presentaciones', compact('presentations', 'totalPresentations','extras', 'reports','totalDocuments'));
+     return view('presentaciones', compact('presentations', 'totalPresentations','extras'));
     }
 
     public function technicalDocuments(Request $request){
@@ -184,9 +181,9 @@ class RepositoryController extends Controller
         // Obtén las presentaciones para la página actual
         $presentations = Presentation::orderByDesc('created_at')->skip($skip)->take($perPage)->get();
 
-        $reports = LaboralDocument::orderByDesc('created_at')->where('category', 2)->skip($skip)->take($perPage)->get();
+    
 
-        return view('partials.presentations&reports', compact('presentations','reports'))->render();
+        return view('partials.presentations&reports', compact('presentations'))->render();
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
@@ -220,9 +217,9 @@ public function getMoreReports(Request $request)
       
         $skip = ($page - 1) * $perPage;
 
-        $documents = LaboralDocument::orderByDesc('created_at')->where('category', 2)->skip($skip)->take($perPage)->get();
+        $reports = LaboralDocument::orderByDesc('created_at')->where('category', 2)->skip($skip)->take($perPage)->get();
 
-        return view('partials.documents', compact('documents'))->render();
+        return view('partials.reports', compact('reports'))->render();
     } catch (\Exception $e) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
@@ -409,6 +406,38 @@ public function buscarPresentacionesInformes(Request $request)
     $presentations = $PresUnsorted->sortBy('presentation_translation.title');
 
     
+    // $documentUnsorted = LaboralDocument::select(
+    //     'laboral_document.id',
+    //     'laboral_document.author',
+    //     'laboral_document.place',
+    //     'laboral_document_translation.title',
+    //     'laboral_document_translation.file_real',
+    //     'laboral_document_translation.file_real_name',
+      
+    // )
+    // ->leftJoin('laboral_document_translation', function ($join) use ($idioma) {
+    //     $join->on('laboral_document.id', '=', 'laboral_document_translation.laboral_document_id')
+    //          ->where('laboral_document_translation.locale', '=', $idioma);
+    // })
+    // ->where('laboral_document_translation.title', 'LIKE', '%' . $nombre . '%')
+    // ->groupBy('laboral_document.id', 'laboral_document.author','laboral_document.place','laboral_document_translation.title', 'laboral_document_translation.file_real'
+    // , 'laboral_document_translation.file_real_name')->where('laboral_document.category', 2)
+    // ->get();
+
+    // $reports = $documentUnsorted->sortBy('laboral_document_translation.title');
+
+    $extras = $this->getExtras();
+
+    return view('presentaciones', compact('presentations','extras'));
+}
+
+public function buscarInformesRegionales(Request $request)
+{
+    $nombre = $request->input('name');
+
+    $idioma =  app()->getLocale();
+
+    
     $documentUnsorted = LaboralDocument::select(
         'laboral_document.id',
         'laboral_document.author',
@@ -431,8 +460,82 @@ public function buscarPresentacionesInformes(Request $request)
 
     $extras = $this->getExtras();
 
-    return view('presentaciones', compact('presentations', 'reports','extras'));
+    return view('informes-regionales', compact('reports','extras'));
 }
+
+public function filtrarVideos(Request $request)
+{
+    $year = $request->input('year');
+
+    // Verificar si la opción "Todos los blogs" está seleccionada
+    if (!$year) {
+        // Obtener todos los videos sin filtrar por año
+        $videos = Video::all()->sortByDesc('created_at');
+    } else {
+        // Filtrar videos por año
+        $videos = Video::whereYear('created_at', $year)->get()->sortByDesc('created_at');
+    }
+
+    $extras = $this->getExtras();
+
+    // Puedes pasar los resultados a la vista
+    return view('videos', compact('videos', 'extras'));
+}
+
+public function filtrarPresentaciones(Request $request)
+{
+    $year = $request->input('year');
+
+    if (!$year) {
+      
+        $presentations = Presentation::all()->sortByDesc('created_at');
+    } else {
+        $presentations = Presentation::whereYear('created_at', $year)->get()->sortByDesc('created_at');
+    }
+
+    $extras = $this->getExtras();
+
+    return view('presentaciones', compact('presentations', 'extras'));
+}
+
+public function filtrarInformes(Request $request)
+{
+    $year = $request->input('year');
+
+    if (!$year) {
+
+        $reports = LaboralDocument::all()->sortByDesc('created_at')->where('category', 2);
+    } else {
+
+        $reports = LaboralDocument::whereYear('created_at', $year)->where('category', 2)->get()->sortByDesc('created_at');
+    }
+
+    $extras = $this->getExtras();
+
+    return view('informes-regionales', compact('reports', 'extras'));
+}
+
+public function filtrarPublicaciones(Request $request)
+{
+    $year = $request->input('year');
+
+    if (!$year) {
+
+        $documents = LaboralDocument::all()->sortByDesc('created_at')->where('category', 1);
+        $publications = Publication::all()->sortByDesc('created_at');
+
+    } else {
+
+        $documents = LaboralDocument::whereYear('created_at', $year)->where('category', 2)->get()->sortByDesc('created_at');
+        $publications = Publication::whereYear('created_at', $year)->get()->sortByDesc('created_at');
+    }
+
+    $extras = $this->getExtras();
+
+    return view('publicaciones', compact('documents', 'publications','extras'));
+}
+
+
 
 
 }

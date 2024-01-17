@@ -56,6 +56,11 @@ class ProductDetail extends Model implements TranslatableContract
         return $this->belongsTo(ImpRequirement::class,'requirement_id');
     }
 
+    public function offercalendar()
+    {
+        return $this->belongsTo(OfferCalendar::class,'offer_calendar_id');
+    }
+
 
 
 

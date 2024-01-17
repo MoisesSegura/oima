@@ -6,7 +6,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ request()->routeIs('presentaciones') ? 'active' : '' }}" href="{{ route('presentaciones')}}">@lang('locale.presentaciones')</a>
+            <a class="nav-link {{ request()->routeIs('presentaciones','informes-regionales') ? 'active' : '' }}" href="{{ route('presentaciones')}}">@lang('locale.presentaciones')</a>
         </li>
         
         <!-- <li class="nav-item">

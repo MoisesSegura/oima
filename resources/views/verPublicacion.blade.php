@@ -3,11 +3,11 @@
 
     <div class="content">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>  @lang('locale.volver')</a>
         </div>
         <div class="header--publication">
             <div class="card--repository card--publication">
-                <img src="{{ asset($publication->image) }}" class="card__img">
+                <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}" class="card__img"> 
                 <div class="card--content">
                     <h3 class="title">
 
@@ -23,7 +23,7 @@
                     </div>
                     <a class="btn btn--green"
                         href="/uploads/publications/files/e27501d4b9f6eb77cb292a1b717931a0b8718e5d.pdf" download="3.pdf"
-                        target="_blank">Descargar</a>
+                        target="_blank"> @lang('locale.descargar')</a>
                 </div>
             </div>
         </div>
@@ -33,14 +33,14 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card--publication">
-                        <h3 class="title title--sideline">Detalles de la publicación</h3>
+                        <h3 class="title title--sideline"> @lang('locale.detallespubli')</h3>
                         <ul>
-                            <li><strong>Signatura topográfica:</strong> {{ $publication->topographic_signature }} </li>
-                            <li><strong>Fecha de vencimiento:</strong>
+                            <li><strong> @lang('locale.signatura'):</strong> {{ $publication->topographic_signature }} </li>
+                            <li><strong> @lang('locale.fechaven'):</strong>
                             @if ($publication->expiration_date)
                                 {{ $publication->expiration_date }}
                             @else
-                                No disponible
+                            @lang('locale.nodisp')
                             @endif
                         </li>
 
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <h3 class="title title--sideline">Resumen</h3>
+                    <h3 class="title title--sideline"> @lang('locale.resumen')</h3>
                     <div class="txt--gray">
                         <p>
 

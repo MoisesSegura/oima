@@ -74,6 +74,15 @@
                 
                         document.getElementById('blog-entries').insertAdjacentHTML('beforeend', response.data);
                         page++;
+
+                        // Verifica si hay más elementos en la respuesta
+                        if (response.data.trim() === "") {
+                            // Si la respuesta está vacía, oculta el botón
+                            document.getElementById('more-results').style.display = 'none';
+                        } else {
+                            // Si hay más elementos, muestra el botón
+                            document.getElementById('more-results').style.display = 'block';
+                        }
                     })
                     .catch(function (error) {
                         console.error('Error al cargar más productos', error);

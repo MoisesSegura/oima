@@ -8,7 +8,8 @@
 
     <div class="container--repository open">
         <div class="back d-md-none">
-            <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> Volver</a>
+            <a href="javascript:history.back()" class="title"><i class="mdi mdi-chevron-left"></i>
+                @lang('locale.volver')</a>
         </div>
         <div class="header--repository">
             <div class="title--repository d-none d-md-flex ">
@@ -18,13 +19,16 @@
 
                 </h4>
                 <div class="repo-subtitle">
-                <p class="txt--black"> {{$extras->presentations}}</p>
+                    <p class="txt--black"> {{$extras->presentations}}</p>
                 </div>
             </div>
-            <form method="get"  action="{{ route('buscar.presentaciones.informes') }}" id="searchPresReports">
-                <div>
-                </div>
-                <div class="search--container">
+
+
+            <div class="search--container">
+                <form method="get" action="{{ route('buscar.presentaciones.informes') }}" id="searchPresReports">
+                    <div>
+                    </div>
+
                     <h4 class="title d-md-none">
 
                         @lang('locale.presentaciones')
@@ -32,10 +36,39 @@
                     </h4>
                     <input type="hidden" class="input input--search" name="category" value="">
                     <div class="input__wrap input__wrap--search">
-                        <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">
+                        <input type="search" class="input input--search" placeholder="@lang('locale.buscar')"
+                            name="name" value="">
                     </div>
-                </div>
-            </form>
+                </form>
+
+                <form method="get" action="{{ route('filtrar-presentaciones') }}" id="filtrarPres">
+                    <div class="selectors__container">
+                        <div class="selectors">
+                            <div class="select--wrapper">
+                                <select class="select" name="year" id="yearSelect">
+                                    <option value="">@lang('locale.todosblog')</option>
+                                    @for ($year = date('Y'); $year >= 2019; $year--)
+                                    <option value="{{ $year }}">{{ $year }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+        </div>
+
+        <div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+                <li class="nav-item"><a class="nav-link document-category active" href="{{ route('presentaciones')}}"
+                        id="document-cat-1"> @lang('locale.pres')</a></li>
+                <li class="nav-item"><a class="nav-link document-category " href="{{ route('informes-regionales')}}"
+                        id="document-cat-2"> @lang('locale.informes')</a></li>
+            </ul>
         </div>
 
         <div class="mt-1 mb-5">
@@ -54,22 +87,50 @@
     </div>
 
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            let page = 2; // Inicializa la página en 2 (ya que la primera página ya se cargó)
+            let page = 2;
 
             document.getElementById('more-results').addEventListener('click', function () {
-                // Realiza una solicitud AJAX para obtener más presentaciones
+
                 axios.get('/get-more-presentations', { params: { page: page } })
                     .then(function (response) {
-                        // Agrega las nuevas presentaciones al contenedor
+
                         document.getElementById('blog-entries').insertAdjacentHTML('beforeend', response.data);
-                        page++; // Incrementa el número de página para la próxima solicitud
+                        page++;
+
+                        // Verifica si hay más elementos en la respuesta
+                        if (response.data.trim() === "") {
+                            // Si la respuesta está vacía, oculta el botón
+                            document.getElementById('more-results').style.display = 'none';
+                        } else {
+                            // Si hay más elementos, muestra el botón
+                            document.getElementById('more-results').style.display = 'block';
+                        }
+
                     })
                     .catch(function (error) {
-                        console.error('Error al cargar más presentaciones', error);
-                    });                    
+                        console.error('Error al cargar más documentos', error);
+                    });
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById('yearSelect').addEventListener('change', function () {
+            document.getElementById('filtrarPres').submit();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var yearSelect = document.getElementById('yearSelect');
+            var storedYear = sessionStorage.getItem('selectedYear');
+
+            if (storedYear) {
+                yearSelect.value = storedYear;
+            }
+
+            yearSelect.addEventListener('change', function () {
+                sessionStorage.setItem('selectedYear', yearSelect.value);
             });
         });
     </script>
@@ -109,9 +170,6 @@
 
 
 @include('widgets.footer')
-
-
-<script type="text/javascript" src="/js/main.js"></script>
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-17L57FSXE7"></script>

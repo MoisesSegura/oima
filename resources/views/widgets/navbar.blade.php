@@ -159,10 +159,15 @@
             opacity: 0;
             pointer-events: none;
             transform: translateY(-10px);
-            transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+            transition: opacity 150ms ease-in-out, transform 1500ms ease-in-out;
         }
 
         .dropdown.active>.drop+.dropdown-menu {
+            opacity: 1;
+            pointer-events: auto;
+            
+        }
+        .dropdown.active>.drop+.dropdown-menu:hover {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
@@ -233,7 +238,7 @@ document.addEventListener("mouseout", e => {
     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
         timer = setTimeout(() => {
             dropdown.classList.remove("active");
-        }, 10000); // Ajusta el tiempo en milisegundos según tus necesidades
+        }, 1000000000); // Ajusta el tiempo en milisegundos según tus necesidades
     });
 });
 

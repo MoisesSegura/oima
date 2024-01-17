@@ -19,39 +19,39 @@ class CatalogController extends Controller
 {
     public function Catalog(Request $request){
         
-        $fruits = $this->getFruits();
+        $products = $this->getFruits();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
 
-        return view('frutas', compact('fruits','countries','regions'));
+        return view('frutas', compact('products','countries','regions'));
     }
 
 
     public function Vegetables(Request $request){
         
-        $vegetables = $this->getVegetables();
+        $products = $this->getVegetables();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
 
-        return view('hortalizas', compact('vegetables','countries','regions'));
+        return view('hortalizas', compact('products','countries','regions'));
     }
 
     public function Grains(Request $request){
         
-        $grains = $this->getGrains();
+        $products = $this->getGrains();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
 
-        return view('granos', compact('grains','countries','regions'));
+        return view('granos', compact('products','countries','regions'));
     }
 
     public function Legumes(Request $request){
         
-        $legumes = $this->getLegumes();
+        $products = $this->getLegumes();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
 
-        return view('legumbres', compact('countries','regions','legumes'));
+        return view('legumbres', compact('products','regions','legumes'));
     }
 
 
@@ -140,14 +140,10 @@ class CatalogController extends Controller
     public function showProduct($id)
     {
         $product = ProductDetail::findOrFail($id);
-
+    
         $knownNames = $this->getCountryProducts($product->product_id);
-
+    
         $graphic = ProductGraphic::where('product_detail_id', $product->id)->first();
-
-        $regions = $this->getRegions();
-
-        $countriesWithRegions = $this->getCountriesWithRegions($product);
 
         // Verificar si se encontró un registro de ProductGraphic
         if ($graphic) {
@@ -165,8 +161,39 @@ class CatalogController extends Controller
             // Manejar el caso en que no se encontró un registro de ProductGraphic
             $data = json_encode([]);
         }
-     
-        return view('verProducto', compact('product','knownNames','data','graphic', 'regions','countriesWithRegions'));
+
+        $regions = $this->getRegions();
+    
+        $region = $product->country->region; 
+    
+        $countriesWithRegions = $this->getCountriesWithRegions($product);
+    
+        // Verificar el valor del campo 'slug' de la región
+        switch ($region->slug) {
+            case 'norte':
+                return $this->showNorteView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+            case 'sur':
+                return $this->showSurView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+            default:
+                return $this->showDefaultView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+        }
+    }
+    
+    // Métodos para mostrar vistas específicas según la región
+
+    private function showNorteView($product, $knownNames, $graphic, $data,$countriesWithRegions,$regions)
+    {
+        return view('verProductoNorte', compact('product', 'knownNames', 'data', 'graphic', 'regions', 'countriesWithRegions'));
+    }
+    
+    private function showSurView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions)
+    {
+        return view('verProductoSur', compact('product', 'knownNames', 'data', 'graphic', 'regions', 'countriesWithRegions'));
+    }
+    
+    private function showDefaultView($product, $knownNames, $graphic, $data, $countriesWithRegions, $regions)
+    {
+        return view('verProducto', compact('product', 'knownNames', 'data', 'graphic', 'regions', 'countriesWithRegions'));
     }
 
 
@@ -445,11 +472,11 @@ public function searchFruits(Request $request)
     ->groupBy('product_detail.product_id')
     ->get();
 
-    $fruits = $productosUnsorted->sortBy('product_translation.name');
+    $products = $productosUnsorted->sortBy('product_translation.name');
 
         $regions = $this->getRegions();
 
-    return view('frutas', compact('fruits','regions'));
+    return view('frutas', compact('products','regions'));
 
 }
 
@@ -474,11 +501,11 @@ public function searchVegetables(Request $request)
     ->groupBy('product_detail.product_id')
     ->get();
 
-    $vegetables = $productosUnsorted->sortBy('product_translation.name');
+    $products = $productosUnsorted->sortBy('product_translation.name');
 
         $regions = $this->getRegions();
 
-    return view('hortalizas', compact('vegetables','regions'));
+    return view('hortalizas', compact('products','regions'));
 
 }
 
@@ -503,11 +530,11 @@ public function searchGrains(Request $request)
     ->groupBy('product_detail.product_id')
     ->get();
 
-    $grains = $productosUnsorted->sortBy('product_translation.name');
+    $products = $productosUnsorted->sortBy('product_translation.name');
 
         $regions = $this->getRegions();
 
-    return view('granos', compact('grains','regions'));
+    return view('granos', compact('products','regions'));
 
 }
 
@@ -532,11 +559,11 @@ public function searchLegumes(Request $request)
     ->groupBy('product_detail.product_id')
     ->get();
 
-    $legumes = $productosUnsorted->sortBy('product_translation.name');
+    $products = $productosUnsorted->sortBy('product_translation.name');
 
         $regions = $this->getRegions();
 
-    return view('legumbres', compact('legumes','regions'));
+    return view('legumbres', compact('products','regions'));
 
 }
 

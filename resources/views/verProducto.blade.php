@@ -63,6 +63,7 @@
             </ul>
         </div>
     </div>
+    
     <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
         <div class="search--container">
             <div class="selectors__container">
@@ -158,7 +159,7 @@
 
                     <div class="d-none d-md-flex container__size">
                         <figure class="figure">
-                            <img src="/img/size-icon.png" class="figure-img img-fluid" alt="icono">
+                            <img src="/uploads/uploads/size-icon.png" class="figure-img img-fluid" alt="icono">
                             <figcaption class="title text-center">Tamaño</figcaption>
                         </figure>
                         <table class="table--sizes">
@@ -336,13 +337,13 @@
                 </div>
                 <div class="col-12 d-md-none">
                     <div class="card--md-only">
-                        <h3 class="title title--sideline title--underline-md">Galería de fotografías de Costa Rica
+                        <h3 class="title title--sideline title--underline-md">Galería de fotografías de {{ $product->country->name }}
                         </h3>
 
                         <div class="gallery__carousel">
                         </div>
 
-                        <a href="/es/galeria/Aguacate/costa-rica" class="btn btn--green">Ver galería completa</a>
+                        <a href="/es/galeria/Aguacate/costa-rica" class="btn btn--green">@lang('locale.vergaleria')</a>
                     </div>
                 </div>
                 <div class="col-md-5">

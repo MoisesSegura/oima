@@ -18,9 +18,9 @@
             <div class="row">
                 <div class="col-md-7 mx-auto mb-5">
                     <div class="card-organization">
-                        <h3 class="title title--sideline">Organización</h3>
+                        <h3 class="title title--sideline">@lang('locale.org')</h3>
                         <p class="title mx-3"> {{ __($organization->name) }} </p>
-                        <h3 class="title title--sideline">Delegados</h3>
+                        <h3 class="title title--sideline">@lang('locale.delegados')</h3>
                         <ul class="card__list list--circle bullets--gray">
                         @foreach ($delegates as $delegate)
                             <li class="text--blue"> {{ $delegate->name }} <br>
@@ -35,7 +35,7 @@
                     <div class="card-organization">
 
 
-                        <h3 class="title title--sideline">Consulta de Precios</h3>
+                        <h3 class="title title--sideline">@lang('locale.consultaprecios')</h3>
                         <ul class="card__list list--circle bullets-gray">
                             @foreach ($prices as $price)
                             <li><a class="text--green"
@@ -45,7 +45,7 @@
                             @endforeach
                         </ul>
 
-                        <h3 class="title title--sideline">Enlaces Externos</h3>
+                        <h3 class="title title--sideline">@lang('locale.enlaceexterno')</h3>
                         <ul class="card__list list--circle bullets-gray">
 
                         @foreach ($links as $link)
