@@ -1,7 +1,7 @@
 
 @foreach ($presentations as $presentation)
     <div class="card--repository">
-        <img src="{{ asset('/uploads/' . ltrim($presentation->image, '/')) }}" alt="{{ $presentation->title }}" class="card__img">
+    @if($presentation->image)<img src="{{ asset('/uploads/' . ltrim($presentation->image, '/')) }}" alt="" class="card__img">@endif
         <div class="card--content">
             <h4 class="card--title">{{ __($presentation->title) }}</h4>
             <hr>

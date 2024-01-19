@@ -60,7 +60,7 @@ return [
   //secccion de repositorio
 
   'publicaciones' => 'Publications and technical documents',
-  'presentaciones' => 'Presentations and Regional reports',
+  'presentaciones' => 'Presentations',
   'pres' => 'Presentations',
   'documentos' => 'Technical Documents',
   'informes' => 'Regional reports',

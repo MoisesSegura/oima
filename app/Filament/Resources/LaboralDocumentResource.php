@@ -99,6 +99,10 @@ class LaboralDocumentResource extends Resource
                             ->disk('public')
                             ->directory('uploads/files/laboral_documents')
                             ->required(),
+                            Forms\Components\FileUpload::make('en.image')
+                            ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/files/laboral_documents')
 
                
                         ]),
@@ -112,6 +116,10 @@ class LaboralDocumentResource extends Resource
                             ->disk('public')
                             ->directory('uploads/files/laboral_documents')
                             ->required(),
+                            Forms\Components\FileUpload::make('en.image')
+                            ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/files/laboral_documents')
 
                            
                     ]),
@@ -125,6 +133,10 @@ class LaboralDocumentResource extends Resource
                             ->disk('public')
                             ->directory('uploads/files/laboral_documents')
                             ->required(),
+                            Forms\Components\FileUpload::make('en.image')
+                            ->label('file')
+                            ->disk('public')
+                            ->directory('uploads/files/laboral_documents')
 
                     ]),
                     

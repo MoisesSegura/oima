@@ -57,7 +57,7 @@ return [
    //seccion repositorio
 
    'publicaciones' => 'Publicaciones y documentos técnicos',
-   'presentaciones' => 'Presentaciones e Informes regionales',
+   'presentaciones' => 'Presentaciones',
    'pres' => 'Presentaciones',
    'documentos' => 'Documentos Técnicos',
    'informes' => 'Informes regionales',

@@ -1,7 +1,7 @@
 @foreach ($publications as $publication)
 <div class="card--repository">
-    <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}" alt="{{ $publication->title }}"
-        class="card__img">
+    @if($publication->image) <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}" alt=""
+        class="card__img">@endif
     <div class="card--content">
         <h4 class="card--title">{{ __($publication->title) }}</h4>
         <hr>
@@ -17,6 +17,8 @@
 
 @foreach ($documents as $document)
 <div class="card--repository">
+    @if($document->image) <img src="{{ asset(trim('/uploads/' . $document->image, '/')) }}" alt=""
+        class="card__img">@endif
     <div class="card--content">
         <h4 class="card--title"> {{ __($document->title) }} </h4>
         <hr>

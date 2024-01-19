@@ -5,7 +5,7 @@
         <div class="hero hero-has-text">
             <div class="hero--txt">
                 <h2 class="section--title txt--blue d-none d-md-block text-uppercase">@lang('locale.catalogoProductos')</h2>
-                <h4 class="txt--blue d-none d-md-block pl-3">@lang('locale.conozca')</h4>
+                <h4 class="txt--blue d-none d-md-block pl-3"> {{ $extras->catalog_description}}  </h4>
                 <div class="txt--gray pl-3">
 
                 </div>

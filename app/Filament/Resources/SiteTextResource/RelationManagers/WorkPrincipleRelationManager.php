@@ -22,6 +22,8 @@ class WorkPrincipleRelationManager extends RelationManager
 {
     protected static string $relationship = 'workPrinciple';
 
+    protected static ?string $title = 'Work Principles';
+
     public function getRelationship(): Builder | BelongsTo | HasMany
     {
         return $this->getOwnerRecord()->{static::getRelationshipName()}()->with(['translations']);

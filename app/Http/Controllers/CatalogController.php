@@ -11,19 +11,32 @@ use App\Models\Region;
 use App\Models\ProductDetail;
 use App\Models\Category;
 use App\Models\ProductGraphic;
+use App\Models\Extra;
 use App\Models\ProductDetailGraphicValue;
 use Illuminate\Support\Facades\DB;
 
 
 class CatalogController extends Controller
 {
+
+    public function getExtras()
+    {
+        $extra = Extra::first();
+
+        if ($extra) {
+            return $extra;
+        }
+    
+        return null; 
+    }
     public function Catalog(Request $request){
         
         $products = $this->getFruits();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
+        $extras = $this->getExtras();
 
-        return view('frutas', compact('products','countries','regions'));
+        return view('frutas', compact('products','countries','regions','extras'));
     }
 
 
@@ -32,8 +45,9 @@ class CatalogController extends Controller
         $products = $this->getVegetables();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
+        $extras = $this->getExtras();
 
-        return view('hortalizas', compact('products','countries','regions'));
+        return view('hortalizas', compact('products','countries','regions','extras'));
     }
 
     public function Grains(Request $request){
@@ -41,8 +55,9 @@ class CatalogController extends Controller
         $products = $this->getGrains();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
+        $extras = $this->getExtras();
 
-        return view('granos', compact('products','countries','regions'));
+        return view('granos', compact('products','countries','regions','extras'));
     }
 
     public function Legumes(Request $request){
@@ -50,8 +65,9 @@ class CatalogController extends Controller
         $products = $this->getLegumes();
         $countries = $this->getCountries();
         $regions = $this->getRegions();
+        $extras = $this->getExtras();
 
-        return view('legumbres', compact('products','regions','legumes'));
+        return view('legumbres', compact('products','regions','legumes','extras'));
     }
 
 

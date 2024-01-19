@@ -1,5 +1,6 @@
 @foreach ($reports as $report)
 <div class="card--repository">
+    @if($report->image) <img src="{{ asset('/uploads/' . ltrim($report->image, '/')) }}" alt="" class="card__img"> @endif
     <div class="card--content">
         <h4 class="card--title"> {{ __($report->title) }} </h4>
         <hr>

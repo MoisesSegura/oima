@@ -204,16 +204,18 @@ class SiteTextResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('locale'),
                                 Forms\Components\TextInput::make('document_repository'),
-                                Forms\Components\TextInput::make('catalog'),
+                                Forms\Components\TextInput::make('catalog')->label('catalog (home)'),
+                                Forms\Components\TextInput::make('catalog_description')->label('catalog description (catalog)'),
                                 Forms\Components\TextInput::make('contact_sended'),
                                 Forms\Components\TextInput::make('more_information'),
-                                Forms\Components\TextInput::make('publications'),
-                                Forms\Components\TextInput::make('presentations'),
-                                Forms\Components\TextInput::make('laboral_documents'),
-                                Forms\Components\TextInput::make('dictionary'),
+                                Forms\Components\TextInput::make('publications')->label('publications & technical documents (repositorio)'),
+                                Forms\Components\TextInput::make('presentations')->label('presentations (repositorio)'),
+                                Forms\Components\TextInput::make('laboral_documents')->label('regional reports  (repositorio)'),
+                                Forms\Components\TextInput::make('dictionary')->label('dictionary (repositorio)'),
+                                Forms\Components\TextInput::make('videos')->label('videos (repositorio)'),
+                                Forms\Components\TextInput::make('procedure_norms')->label('procedure norms (repositorio)'),
                                 Forms\Components\TextInput::make('meetings'),
-                                Forms\Components\TextInput::make('videos'),
-                                Forms\Components\TextInput::make('procedure_norms'),
+                               
                                 
                             ]),
                             Forms\Components\FileUpload::make('image')

@@ -22,7 +22,9 @@
                 <li>
                     <div class="contact-info">
                         <div class="contact-photo">
+                        @if($contact->contact_president)
                             <img src="{{ asset(trim('/uploads/' . $contact->president_photo, '/')) }}">
+                        @endif
                         </div>
                         <div class="contact-details">
                             @lang('locale.presidencia')<br><strong>{{ $contact->contact_president }}</strong>
@@ -32,7 +34,9 @@
                 <li>
                     <div class="contact-info">
                         <div class="contact-photo">
+                        @if($contact->contact_secretary)
                             <img src="{{ asset(trim('/uploads/' . $contact->secretary_photo, '/')) }}">
+                        @endif
                         </div>
                         <div class="contact-details">
                             @lang('locale.secretariaTec')<br><strong>{{ $contact->contact_secretary }}</strong>

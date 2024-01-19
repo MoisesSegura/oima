@@ -22,6 +22,8 @@ class StatisticsRelationManager extends RelationManager
 {
     protected static string $relationship = 'Statistics';
 
+    protected static ?string $title = 'Metrics';
+
     public function getRelationship(): Builder | HasMany
     {
         return $this->getOwnerRecord()->{static::getRelationshipName()}()->with(['translations']);

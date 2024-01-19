@@ -18,7 +18,7 @@ class LaboralDocument extends Model implements TranslatableContract
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['title','file_real','file_real_name','delete_file'];
+    public $translatedAttributes = ['title','file_real','file_real_name','delete_file','image'];
 
     public function region(): BelongsTo
     {

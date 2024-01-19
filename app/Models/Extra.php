@@ -18,6 +18,6 @@ class Extra extends Model implements TranslatableContract
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['document_repository','catalog','contact_sended', 'more_information', 'publications','presentations',
+    public $translatedAttributes = ['document_repository','catalog','catalog_description','contact_sended', 'more_information', 'publications','presentations',
     'laboral_documents','dictionary','meetings','videos','procedure_norms'];
 }

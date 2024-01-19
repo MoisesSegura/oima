@@ -70,7 +70,7 @@ class PersonResource extends Resource
                         Forms\Components\TextInput::make('en.position')
                         ->maxLength(255),
 
-                        Forms\Components\TextInput::make('en.description')
+                        Forms\Components\RichEditor::make('en.description')
                         ->maxLength(255),
 
                     
@@ -85,7 +85,7 @@ class PersonResource extends Resource
                         Forms\Components\TextInput::make('es.position')
                         ->maxLength(255),
 
-                        Forms\Components\TextInput::make('es.description')
+                        Forms\Components\RichEditor::make('es.description')
                         ->maxLength(255),
 
                        
@@ -98,7 +98,7 @@ class PersonResource extends Resource
                         Forms\Components\TextInput::make('pt.position')
                         ->maxLength(255),
 
-                        Forms\Components\TextInput::make('pt.description')
+                        Forms\Components\RichEditor::make('pt.description')
                         ->maxLength(255),
 
                        

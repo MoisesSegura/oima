@@ -18,14 +18,14 @@
                 <h4 class="title">
 
 
-                    @lang('locale.presentaciones')
+                    @lang('locale.informes')
 
 
 
 
                 </h4>
                 <div class="repo-subtitle">
-                    <p class="txt--black"> {{$extras->presentations}}</p>
+                    <p class="txt--black"> {{$extras->laboral_documents}}</p>
                 </div>
             </div>
             <div class="search--container">

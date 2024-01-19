@@ -7,12 +7,12 @@
 
 
     <section class="section--about">
-    <div id="Quienes-somos"></div>
-        
+        <div id="Quienes-somos"></div>
+
     </section>
 
 
-  
+
 
 
     <section class="blog--home">
@@ -46,13 +46,18 @@
                     @foreach($person as $individual)
                     @if($individual->category_id == 1)
                     <li class="card--people">
+                        <div class="portrait">
+                            @if($individual->photo)
+                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                            @endif
+                        </div>
                         <div class="card--content">
                             <h3>{{ $individual->name }}</h3>
-                            <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p>
+                            <!-- <p class="txt--black">{{ $individual->title }}</p>
+                            <p class="txt--black">{{ $individual->position }}</p> -->
                             <p class="txt--black">{{ $individual->description }}</p>
-                            <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p>
+                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
+                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
 
                         </div>
                     </li>
@@ -88,16 +93,19 @@
                     @foreach($person as $individual)
                     @if($individual->category_id == 3)
                     <li class="card--people">
+                    <div class="portrait">
+                                @if($individual->photo)
+                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                @endif
+                            </div>
                         <div class="card--content">
-                        <div class="portrait">
-                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
-                        </div>
+                          
                             <h3>{{ $individual->name }}</h3>
-                            <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p>
+                            <!-- <p class="txt--black">{{ $individual->title }}</p>
+                            <p class="txt--black">{{ $individual->position }}</p> -->
                             <p class="txt--black">{{ $individual->description }}</p>
-                            <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p>
+                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
+                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
                         </div>
                     </li>
                     @endif
@@ -110,16 +118,18 @@
                     @foreach($person as $individual)
                     @if($individual->category_id == 4)
                     <li class="card--people">
+                    <div class="portrait">
+                                @if($individual->photo)
+                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                @endif
+                            </div>
                         <div class="card--content">
-                        <div class="portrait">
-                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
-                        </div>
                             <h3>{{ $individual->name }}</h3>
-                            <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p>
+                            <!-- <p class="txt--black">{{ $individual->title }}</p>
+                            <p class="txt--black">{{ $individual->position }}</p> -->
                             <p class="txt--black">{{ $individual->description }}</p>
-                            <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p>
+                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
+                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
                         </div>
                     </li>
                     @endif
@@ -128,36 +138,43 @@
             </div>
             <div id="Miembros"></div>
         </div>
-       
+
     </section>
 
     <style>
-.portrait {
-    overflow: hidden;
-    /* border-radius: 50%; */
-    margin: 0 auto;
-    width: 10rem;
-    height: 10rem;
-}
 
-.portrait-image {
-    max-width: 100%; /* La imagen no superará el tamaño del contenedor */
-    max-height: 100%; /* La imagen no superará el tamaño del contenedor */
-    display: block;
-    width: 100%; /* Asegura que la imagen ocupe todo el contenedor */
-    height: auto; /* Permite que la altura se ajuste automáticamente al ancho */
-}
 
-small{
-    color: black;
-}
-</style>
+        .portrait {
+            overflow: hidden;
+            /* border-radius: 50%; */
+            margin: 0 auto;
+            width: 15rem;
+            height: 15rem;
+        }
+
+        .portrait-image {
+            max-width: 100%;
+            /* La imagen no superará el tamaño del contenedor */
+            max-height: 100%;
+            /* La imagen no superará el tamaño del contenedor */
+            display: block;
+            width: 100%;
+            /* Asegura que la imagen ocupe todo el contenedor */
+            height: auto;
+            /* Permite que la altura se ajuste automáticamente al ancho */
+        }
+
+        small {
+            color: black;
+        }
+    </style>
 
     <section>
         <div class="countries">
             <div class="country--filters">
                 <h5><span class="number">{{ $countries->count() }}</span><span
-                        class="title__text">@lang('locale.paisesMiembros')<small style="color: black;">@lang('locale.enAmerica')</small></span>
+                        class="title__text">@lang('locale.paisesMiembros')<small
+                            style="color: black;">@lang('locale.enAmerica')</small></span>
                 </h5>
                 <div class="country--filters__nav-container d-none d-md-block">
                     <ul class="country--filters__nav">
