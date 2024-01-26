@@ -38,7 +38,7 @@
                         <h5 class="title text-center text-md-left">
                            @lang('locale.galeria')
                         </h5>
-                        <div class="selectors__container">
+                        <!-- <div class="selectors__container">
                             <div class="selectors">
                                 <div class="select--wrapper">
                                     <select class="select" name="region" id="region-validate">
@@ -60,7 +60,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="container content__container">

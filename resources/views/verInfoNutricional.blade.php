@@ -38,7 +38,7 @@
                     <h5 class="title text-center text-md-left">
                         @lang('locale.infonutri')
                     </h5>
-                    <div class="selectors__container">
+                    <!-- <div class="selectors__container">
                         <div class="selectors">
                             <div class="select--wrapper">
                                 <select class="select" name="region" id="region-validate">
@@ -59,18 +59,18 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="content__container container">
                     <div class="row">
                         <div class="col-md-6">
                             @foreach ($nutritionalContents as $nutritionalContent)
-                            <h5 class="title title--sideline">{{ __($nutritionalContent->title) }}</h5>
+                            <h5 class="title title--sideline">{{  $nutritionalContent->title ?? '' }}</h5>
                             <div class="txt--black content--list">
                                 <p style="text-align:justify">
 
-                                    {!! __($nutritionalContent->text) !!}
+                                    {!! __($nutritionalContent->text) ?? '' !!}
 
                                 </p>
 
@@ -83,16 +83,16 @@
 
                         <div class="col-md-6">
 
-                            <h5 class="title title--sideline">{{ $productDetail->title }}</h5>
+                            <h5 class="title title--sideline">{{ $productDetail->title ?? '' }}</h5>
                             <div class="x-scroll__container">
                                 <table class="table--minimal">
                                     <thead>
 
                                         <tr>
                                             <th></th>
-                                 
-                                            <th>{{ $nutritionalValues[1]->name }}</th>
-                         
+
+                                            <th>{{ $nutritionalValues[1]->name ?? ''}}</th>
+
                                         </tr>
 
                                     </thead>
@@ -100,9 +100,9 @@
                                     <tbody>
                                         @foreach($nutritionalProperties as $property)
                                         <tr>
-                                            <td>{{ $property->text }} {{ $property->unit }}</td>
+                                            <td>{{ $property->text ?? ''}} {{ $property->unit ?? ''}}</td>
                                             @foreach($property->nutritionalPropertyValue as $value)
-                                            <td>{{ $value->value }}</td>
+                                            <td>{{ $value->value ?? ''}}</td>
                                             @endforeach
                                         </tr>
                                         @endforeach

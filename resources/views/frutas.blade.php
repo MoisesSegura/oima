@@ -15,30 +15,9 @@
        
      
             <div class="search--container">
-                <form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET">
-                    <div class="selectors__container">
-                        <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
-                        <div class="selectors">
-                            <div class="select--wrapper">
+                
+                @include('widgets.filtroCatalogo')
 
-                                <select class="select" name="region" id="region" data-lang="es">
-                                    <option value="">@lang('locale.region')</option>
-                                    @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}">{{ __($region->name) }}</option>
-                                    @endforeach
-                                </select>
-
-                            </div>
-                            <div class="select--wrapper">
-                                <select class="select" name="country" id="country">
-                                    <option value="">@lang('locale.pais')</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="btn btn--green" type="submit">@lang('locale.filtro')</button>
-
-                    </div>
-                </form>
 
                 <form method="get" action="{{ route('buscarFrutas') }}" id="fruitSearch">
                 <div class="input__wrap input__wrap--search">
@@ -150,7 +129,6 @@
     });
 });
 
-
         
     </script>
 
@@ -166,9 +144,29 @@
             $(this).unbind('submit').submit();
         });
     });
+
 </script>
 
+<script>
+    // Función para almacenar el valor del país en una cookie
+    function storeCountry() {
+        var selectedCountry = document.getElementById('country').value;
+        document.cookie = "selectedCountry=" + selectedCountry;
+    }
 
+    // Función para cargar el valor almacenado en la cookie al cargar la página
+    window.onload = function () {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.startsWith('selectedCountry=')) {
+                var storedCountry = cookie.substring('selectedCountry='.length);
+                document.getElementById('country').value = storedCountry;
+                break;  // Rompe el bucle después de encontrar la primera coincidencia
+            }
+        }
+    };
+</script>
 
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>

@@ -77,8 +77,7 @@ class OimaNewResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
-                ->searchable()
+                Tables\Columns\TextColumn::make('title') ->sortable()
                 ->wrap(),
                 Tables\Columns\TextColumn::make('date')
                     ->dateTime()

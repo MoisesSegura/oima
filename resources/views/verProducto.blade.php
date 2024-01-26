@@ -3,7 +3,8 @@
 <div class="content">
     <div class="d-flex justify-content-between">
         <div class="backbot">
-            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i>
+                @lang('locale.volver')</a>
         </div>
         <div class="sharebot ">
             <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
@@ -30,7 +31,8 @@
             <h3 class="card--title">{{$product->known_name}}</h3>
 
         </div>
-        <img src="{{ asset(trim('/uploads/' . $product->product->image, '/')) }}" alt="{{ $product->product->name }}" class="card--product__img">
+        <img src="{{ asset(trim('/uploads/' . $product->product->image, '/')) }}" alt="{{ $product->product->name }}"
+            class="card--product__img">
         <div class="card--product__content">
             <div class="px-3 card--product__title d-none d-md-block">
 
@@ -49,8 +51,8 @@
                     </p>
 
 
-                    <a href="{{ route('verDiccionario', ['id' => $product->id]) }}" class="txt--green">@lang('locale.verdiccionario')<i
-                            class="mdi mdi-arrow-right"></i></a>
+                    <a href="{{ route('verDiccionario', ['id' => $product->id]) }}"
+                        class="txt--green">@lang('locale.verdiccionario')<i class="mdi mdi-arrow-right"></i></a>
                 </li>
                 <li>
                     <p class="card--title">@lang('locale.nombrecien')</p>
@@ -63,31 +65,31 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
         <div class="search--container">
             <div class="selectors__container">
 
-            <div class="selectors">
-    <div class="select--wrapper">
-        <select class="select" name="region" id="region-validate">
-            <option value="">Región</option>
-            @foreach($countriesWithRegions as $country)
-                <option value="{{ $country['region'] }}">{{ $country['region'] }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="select--wrapper">
-        <select class="select selected-country" name="country" id="country">
-            <option value="">País</option>
-            @foreach($countriesWithRegions as $country)
-                <option value="{{ $country['country'] }}">{{ $country['country'] }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
+                <!-- <div class="selectors">
+                    <div class="select--wrapper">
+                        <select class="select" name="region" id="region-validate">
+                            <option value="">Región</option>
+                            @foreach($countriesWithRegions as $country)
+                            <option value="{{ $country['region'] }}">{{ $country['region'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="select--wrapper">
+                        <select class="select selected-country" name="country" id="country">
+                            <option value="">País</option>
+                            @foreach($countriesWithRegions as $country)
+                            <option value="{{ $country['country'] }}">{{ $country['country'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div> -->
 
-                
+
             </div>
         </div>
     </div>
@@ -97,7 +99,8 @@
         <div class="container">
             <div class="row card--md-only">
                 <div class="col-12">
-                    <h3 class="title title--sideline title--underline-md">@lang('locale.aspectos') {{ $product->country->name }}</h3>
+                    <h3 class="title title--sideline title--underline-md">@lang('locale.aspectos') {{
+                        $product->country->name }}</h3>
 
                     <h3 class="title text-center d-md-none">Tamaño</h3>
                     <p class="txt--small txt--gray text-center d-md-none">(Variedad: Aguacate)</p>
@@ -291,9 +294,9 @@
                             text: ''
                         },
                         xAxis: {
-                            categories: ['@lang('locale.enero')','@lang('locale.febrero')', '@lang('locale.marzo')', '@lang('locale.abril')', '@lang('locale.mayo')', 
-                            '@lang('locale.junio')', '@lang('locale.julio')', '@lang('locale.agosto')', '@lang('locale.septiembre')', '@lang('locale.octubre')', 
-                            '@lang('locale.noviembre')', '@lang('locale.diciembre')']
+                            categories: ['@lang('locale.enero')', '@lang('locale.febrero')', '@lang('locale.marzo')', '@lang('locale.abril')', '@lang('locale.mayo')',
+                                '@lang('locale.junio')', '@lang('locale.julio')', '@lang('locale.agosto')', '@lang('locale.septiembre')', '@lang('locale.octubre')',
+                                '@lang('locale.noviembre')', '@lang('locale.diciembre')']
                         },
                         yAxis: {
                             title: {
@@ -337,7 +340,8 @@
                 </div>
                 <div class="col-12 d-md-none">
                     <div class="card--md-only">
-                        <h3 class="title title--sideline title--underline-md">Galería de fotografías de {{ $product->country->name }}
+                        <h3 class="title title--sideline title--underline-md">Galería de fotografías de {{
+                            $product->country->name }}
                         </h3>
 
                         <div class="gallery__carousel">

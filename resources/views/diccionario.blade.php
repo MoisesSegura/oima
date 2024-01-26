@@ -21,7 +21,7 @@
 
                     </h4>
                     <div class="repo-subtitle">
-                    <p class="txt--black"> {{$extras->directory}}</p>
+                    <p class="txt--black"> {{$extras->dictionary}}</p>
                     </div>
                 </div>
                 <form method="get" action="{{ route('buscar.productos') }}" id="searchForm">

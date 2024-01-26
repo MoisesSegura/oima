@@ -184,7 +184,7 @@
                         </div>
                         <div class="card no-border-md card--full-md"
                             style="background-color:#076495!important;color:white">
-                            <p>   {{$product->exports}}</p>
+                            <p>   {{$product->exports}} </p>
                         </div>
                     </div>
                 </div>

@@ -58,7 +58,7 @@
         </div>
         <div class="d-flex justify-content-around align-items-center">
             <h3 class="title d-none d-md-block"> @lang('locale.otros') </h3>
-            <div class="selectors__container">
+            <!-- <div class="selectors__container">
                 <div class="selectors">
                     <div class="select--wrapper">
                         <select class="select" name="region" id="region-dictionary">
@@ -67,7 +67,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <h4 class="title d-md-none text-center">Nombre común por países</h4>

@@ -238,7 +238,7 @@ document.addEventListener("mouseout", e => {
     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
         timer = setTimeout(() => {
             dropdown.classList.remove("active");
-        }, 1000000000); // Ajusta el tiempo en milisegundos según tus necesidades
+        }, 1000000000); 
     });
 });
 
@@ -275,7 +275,7 @@ document.addEventListener("mouseout", e => {
             href="{{ route('locale', ['locale' => 'pt']) }}">Português</a>
 
 
-        <button class="btn btn--clear search--trigger"><i class="mdi mdi-magnify"></i></button>
+        <!-- <button class="btn btn--clear search--trigger"><i class="mdi mdi-magnify"></i></button>
         <div class="search__box-container">
             <div class="search__box">
                 <form action="https://www.mioa.org/es/buscar" method="get">
@@ -286,6 +286,6 @@ document.addEventListener("mouseout", e => {
                 </form>
                 <button class="btn btn--clear search--trigger"><i class="mdi mdi-close"></i></button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

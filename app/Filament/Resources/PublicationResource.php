@@ -148,8 +148,7 @@ class PublicationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title') ->wrap()
-                ->searchable(),
+                Tables\Columns\TextColumn::make('title') ->wrap(),
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('isbn')

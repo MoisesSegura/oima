@@ -67,7 +67,7 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        return view('legumbres', compact('products','regions','legumes','extras'));
+        return view('legumbres', compact('products','countries','regions','extras'));
     }
 
 
@@ -161,9 +161,9 @@ class CatalogController extends Controller
     
         $graphic = ProductGraphic::where('product_detail_id', $product->id)->first();
 
-        // Verificar si se encontró un registro de ProductGraphic
+
         if ($graphic) {
-            // Acceder a los valores asociados a través de la relación definida en el modelo
+ 
             $values = $graphic->values;
     
             $puntos = [];
@@ -174,7 +174,7 @@ class CatalogController extends Controller
     
             $data = json_encode($puntos);
         } else {
-            // Manejar el caso en que no se encontró un registro de ProductGraphic
+ 
             $data = json_encode([]);
         }
 
@@ -195,7 +195,7 @@ class CatalogController extends Controller
         }
     }
     
-    // Métodos para mostrar vistas específicas según la región
+   
 
     private function showNorteView($product, $knownNames, $graphic, $data,$countriesWithRegions,$regions)
     {
@@ -248,46 +248,31 @@ class CatalogController extends Controller
         $productDetail = ProductDetail::findOrFail($id);
     
         $requirement = $productDetail->impRequirement;
-    
-        // Verificar si existe el requisito
-        if ($requirement) {
-            // Obtener los contenidos asociados al requisito
+      
             $contents = $requirement->expImpContent;
             $links = $requirement->Links;
     
             return view('verRequisitos', compact('contents','productDetail','links'));
-        } else {
-            // Manejar el caso en que no haya requisito asociado
-            return view('verRequisitos');
-        }
+
+
     }
 
     public function showAgronomic($id)
     {
-  // Obtener el objeto ProductDetail por su ID
+
   $productDetail = ProductDetail::findOrFail($id);
 
-  // Obtener la colección de información agronómica asociada al ProductDetail
   $agronomicInformations = $productDetail->agronomics;
-
-  // Verificar si existe información agronómica
-  if ($agronomicInformations->isNotEmpty()) {
       
       return view('verInfoAgronomica', compact('agronomicInformations','productDetail'));
-  } else {
-      // Manejar el caso en que no haya información agronómica asociada
-      return view('verInfoAgronomica');
-  }
+
     }
 
     public function showNutrition($id)
     {
-        // Obtén la instancia de ProductDetail por ID
+  
         $productDetail = ProductDetail::find($id);
-
-        // Verificar si la instancia de ProductDetail existe
-        if ($productDetail) {
-            // Accede a los modelos relacionados
+    
             $nutritionalProperties = $productDetail->nutritionalProperty;
             $nutritionalContents = $productDetail->nutritionalContent;
             
@@ -295,33 +280,18 @@ class CatalogController extends Controller
                 return $nutritionalProperty->nutritionalPropertyValue;
             });
     
-
-
-            // devolverlos a la vista
             return view('verInfoNutricional', compact('nutritionalProperties', 'nutritionalContents','nutritionalValues','productDetail'));
-        } else {
-            // Manejar el caso en el que no se encuentre el ProductDetail con el ID dado
-
-            return redirect()->route('verInfoNutricional');
-        }
+    
     }
 
     public function showGallery($id)
     {
-        //instancia de ProductDetail por ID
     $productDetail = ProductDetail::find($id);
-
-    // Verificar si la instancia de ProductDetail existe
-    if ($productDetail) {
-        // Accede a la relación de galerías
+        
         $galleries = $productDetail->galleries;
 
-        // devolver las galerías a la vista
         return view('verGaleria', compact('galleries', 'productDetail'));
-    } else {
-        // Manejar el caso en el que no se encuentre el ProductDetail con el ID dado
-        return redirect()->route('verGaleria');
-    }
+ 
     }
     
     
@@ -344,22 +314,6 @@ class CatalogController extends Controller
     return response()->json($countries);
 }
 
-
-
-// public function getFruits()
-// {
-//     $fruits = ProductDetail::select('product_detail.product_id', 'product_detail.id', 'product_detail.known_name')
-//     ->groupBy('product_detail.product_id', 'product_detail.id', 'product_detail.known_name')
-//     ->whereIn('product_detail.product_id', function ($query) {
-//         $query->select('product.id')
-//             ->from('product')
-//             ->join('product_category', 'product.category_id', '=', 'product_category.id')
-//             ->where('product_category.slug', 'Frutas');
-//     })
-//     ->get();
-
-// return $fruits;
-// }
 
 public function filterProducts(Request $request)
 {
@@ -408,7 +362,7 @@ public function filterFruits(Request $request)
             });
         })
         ->get();
-
+ 
     return response()->json($filteredFruits);
 }
 

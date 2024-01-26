@@ -36,6 +36,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\Filter;
+use Filament\Forms\Get;
 
 class ProductDetailResource extends Resource
 {
@@ -60,7 +61,7 @@ class ProductDetailResource extends Resource
 
                                 Section::make('Product')
                                     ->schema([
-                                        Forms\Components\Select::make('country_id')
+                                        Forms\Components\Select::make('country_id')->live()
                                             ->label('Country')
                                             ->options(Country::all()->pluck('name', 'id'))
                                             ->searchable()
@@ -68,8 +69,8 @@ class ProductDetailResource extends Resource
 
                                         Forms\Components\Select::make('product_id')
                                             ->label('Product')
-                                            ->options(ProductTranslation::all()->pluck('name', 'product_id'))
-                                            //->options(ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id'))
+                                            // ->options(ProductTranslation::all()->pluck('name', 'product_id'))
+                                            ->options(ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id'))
                                             ->searchable()
                                             ->required(),
 
@@ -79,150 +80,158 @@ class ProductDetailResource extends Resource
 
                                     ])->columns(['sm' => 1, 'xl' => 3]),
 
-
-                                Section::make('Cross Section')
-                                    ->schema([
-                                        Forms\Components\TextInput::make('transversal_section_little')->label('Little')
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('transversal_section_medium')->label('Medium')
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('transversal_section_big')->label('Big')
-                                            ->maxLength(255),
-                                    ])->columns(['sm' => 1, 'xl' => 3]),
-
-                                Section::make('Longitudinal Section')
-                                    ->schema([
-                                        Forms\Components\TextInput::make('longitudinal_section_little')->label('Little')
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('longitudinal_section_medium')->label('Medium')
-                                            ->maxLength(255),
-                                        Forms\Components\TextInput::make('longitudinal_section_big')->label('Big')
-                                            ->maxLength(255),
-                                    ])->columns(['sm' => 1, 'xl' => 3]),
-
-
-                                Section::make('Main producers and suppliers')
-                                    ->schema([
-                                        Forms\Components\RichEditor::make('principals')->label('producers and suppliers')
-                                            ->columnSpanFull(),
-                                        Forms\Components\Textarea::make('exports')
-                                            ->columnSpanFull(),
-                                        Forms\Components\Textarea::make('imports')
-                                            ->columnSpanFull(),
-
-                                    ])->columns(['sm' => 1, 'xl' => 3]),
-
-                                // Section::make('Bibliography') ->relationship('bibliography')
-                                // ->schema([             
-                                //     Tabs::make('lang form')
-                                //     ->tabs([
-                                //         Tabs\Tab::make('En') 
-                                //             ->schema([
-                                //         Forms\Components\RichEditor::make('en.text')
-                                //             ]),
-                                //         Tabs\Tab::make('Es')
-                                //             ->schema([
-                                //         Forms\Components\RichEditor::make('es.text')                       
-                                //         ]),
-                                //         Tabs\Tab::make('Pt')
-                                //             ->schema([
-                                //         Forms\Components\RichEditor::make('pt.text')
-                                //         ]),
-                                //     ]),
-                                // ])->Columns('full'),
-
-
                                 Section::make('Bibliography')
                                     ->relationship('bibliography')
                                     ->schema([
                                         Repeater::make('translations')->collapsed()
                                             ->relationship('translations')
                                             ->schema([
-                                                Forms\Components\TextInput::make('locale'),
+                                                Select::make('locale')
+                                                    ->options(function () {
+                                                        $options = [
+                                                            'en' => 'English',
+                                                            'es' => 'Español',
+                                                            'pt' => 'Português',
+                                                        ];
+                                                        return $options;
+                                                    }),
                                                 Forms\Components\RichEditor::make('text'),
                                             ]),
                                     ]),
 
-                                Section::make('Commercial Chain')
-                                    ->relationship('commercialChain')
+                                Section::make('America Central')
                                     ->schema([
-                                        Repeater::make('translations')->collapsed()
-                                            ->relationship('translations')
+
+                                        Section::make('Cross Section')
                                             ->schema([
-                                                Forms\Components\TextInput::make('locale'),
-                                                Forms\Components\TextInput::make('title'),
-                                                Forms\Components\TextInput::make('subtitle'),
-                                                Forms\Components\FileUpload::make('image')->nullable()
-                                                    ->disk('public')
-                                                    ->directory('uploads/products/commercialChains'),
-                                            ])->grid(3),
-                                    ]),
+                                                Forms\Components\TextInput::make('transversal_section_little')->label('Little')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('transversal_section_medium')->label('Medium')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('transversal_section_big')->label('Big')
+                                                    ->maxLength(255),
+                                            ])->columns(['sm' => 1, 'xl' => 3]),
 
-
-                                Forms\Components\TextInput::make('nutricional_font')
-                                    ->maxLength(255),
-
-                                Section::make('Requirements')
-                                    ->relationship('impRequirement')
-                                    ->schema([
-                                        Repeater::make('translations')->collapsed()
-                                            ->relationship('translations')
+                                        Section::make('Longitudinal Section')
                                             ->schema([
-                                                Forms\Components\TextInput::make('locale'),
-                                                Forms\Components\TextInput::make('title'),
-                                                Forms\Components\TextInput::make('subtitle'),
-                                            ])
-                                    ]),
+                                                Forms\Components\TextInput::make('longitudinal_section_little')->label('Little')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('longitudinal_section_medium')->label('Medium')
+                                                    ->maxLength(255),
+                                                Forms\Components\TextInput::make('longitudinal_section_big')->label('Big')
+                                                    ->maxLength(255),
+                                            ])->columns(['sm' => 1, 'xl' => 3]),
 
 
+                                        Section::make('Main producers and suppliers')
+                                            ->schema([
+                                                Forms\Components\RichEditor::make('principals')->label('producers and suppliers')
+                                                    ->columnSpanFull(),
+                                                Forms\Components\Textarea::make('exports')
+                                                    ->columnSpanFull(),
+                                                Forms\Components\Textarea::make('imports')
+                                                    ->columnSpanFull(),
+
+                                            ])->columns(['sm' => 1, 'xl' => 3]),
+
+
+                                        Section::make('Commercial Chain')
+                                            ->relationship('commercialChain')
+                                            ->schema([
+                                                Repeater::make('translations')->collapsed()
+                                                    ->relationship('translations')
+                                                    ->schema([
+                                                        Select::make('locale')
+                                                            ->options(function () {
+                                                                $options = [
+                                                                    'en' => 'English',
+                                                                    'es' => 'Español',
+                                                                    'pt' => 'Português',
+                                                                ];
+                                                                return $options;
+                                                            }),
+                                                        Forms\Components\TextInput::make('title'),
+                                                        Forms\Components\TextInput::make('subtitle'),
+                                                        Forms\Components\FileUpload::make('image')->required()
+                                                            ->disk('public')
+                                                            ->directory('uploads/products/commercialChains'),
+                                                    ])->grid(3),
+                                            ]),
+
+
+                                        Forms\Components\TextInput::make('nutricional_font')
+                                            ->maxLength(255),
+
+                                        Section::make('Requirements')
+                                            ->relationship('impRequirement')
+                                            ->schema([
+                                                Repeater::make('translations')->collapsed()
+                                                    ->relationship('translations')
+                                                    ->schema([
+                                                        Select::make('locale')
+                                                            ->options(function () {
+                                                                $options = [
+                                                                    'en' => 'English',
+                                                                    'es' => 'Español',
+                                                                    'pt' => 'Português',
+                                                                ];
+                                                                return $options;
+                                                            }),
+                                                        Forms\Components\TextInput::make('title'),
+                                                        Forms\Components\TextInput::make('subtitle'),
+                                                    ])
+                                            ]),
+
+                                    ])->hidden(fn(Get $get) => !in_array($get('country_id'), ['3', '7', '9', '6', '5', '8', '10', '19']))
+                                // PRODUCTOS AMETICA CENTRAL
                             ]),
 
-                            Tabs\Tab::make('Otros')
+                        Tabs\Tab::make('Otros')
                             ->schema([
 
-                                Tabs::make('Mis formularios') 
-                                ->tabs([
-                                    Tabs\Tab::make('Es') 
-                                        ->schema([
-                                            Forms\Components\MarkdownEditor::make('es.characteristics')->label('Características del Producto'), //
-                                            Forms\Components\RichEditor::make('es.national_production')->label('procedencia / origen'),//procedencia origen
-                                            Forms\Components\RichEditor::make('es.commercialization')->label('comercializacion en mercado interno'),
-                                            Forms\Components\RichEditor::make('es.varieties')->label('Principales variedades'),//
-                                            Forms\Components\RichEditor::make('es.salesunit')->label('Unidad de venta'),// 
+                                Tabs::make('Mis formularios')
+                                    ->tabs([
+                                        Tabs\Tab::make('Es')
+                                            ->schema([
+                                                Forms\Components\MarkdownEditor::make('es.characteristics')->label('Características del Producto'), //
+                                                Forms\Components\RichEditor::make('es.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('es.commercialization')->label('comercializacion en mercado interno'),
+                                                Forms\Components\RichEditor::make('es.varieties')->label('Principales variedades'), //
+                                                Forms\Components\RichEditor::make('es.salesunit')->label('Unidad de venta'), // 
 
-                                            Forms\Components\RichEditor::make('es.imports'),
-                                            Forms\Components\RichEditor::make('es.exports'),                  
-                
-                                          
-                                        ]),
-                                    Tabs\Tab::make('En')
-                                        ->schema([
-                                            Forms\Components\RichEditor::make('en.characteristics')->label('Características del Producto'), //
-                                            Forms\Components\RichEditor::make('en.national_production')->label('procedencia / origen'),//procedencia origen
-                                            Forms\Components\RichEditor::make('en.commercialization')->label('comercializacion en mercado interno'),
-                                            Forms\Components\RichEditor::make('en.varieties')->label('Principales variedades'),//
-                                            Forms\Components\RichEditor::make('en.salesunit')->label('Unidad de venta'),// 
+                                                Forms\Components\RichEditor::make('es.imports'),
+                                                Forms\Components\RichEditor::make('es.exports'),
 
-                                            Forms\Components\RichEditor::make('en.imports'),
-                                            Forms\Components\RichEditor::make('en.exports'),
-                                           
-                                           
+
+                                            ]),
+                                        Tabs\Tab::make('En')
+                                            ->schema([
+                                                Forms\Components\RichEditor::make('en.characteristics')->label('Características del Producto'), //
+                                                Forms\Components\RichEditor::make('en.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('en.commercialization')->label('comercializacion en mercado interno'),
+                                                Forms\Components\RichEditor::make('en.varieties')->label('Principales variedades'), //
+                                                Forms\Components\RichEditor::make('en.salesunit')->label('Unidad de venta'), // 
+
+                                                Forms\Components\RichEditor::make('en.imports'),
+                                                Forms\Components\RichEditor::make('en.exports'),
+
+
+                                            ]),
+                                        Tabs\Tab::make('Pt')
+                                            ->schema([
+                                                Forms\Components\RichEditor::make('pt.characteristics')->label('Características del Producto'), //
+                                                Forms\Components\RichEditor::make('pt.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('pt.commercialization')->label('comercializacion en mercado interno'),
+                                                Forms\Components\RichEditor::make('pt.varieties')->label('Principales variedades'), //
+                                                Forms\Components\RichEditor::make('pt.salesunit')->label('Unidad de venta'), // 
+
+                                                Forms\Components\RichEditor::make('pt.imports'),
+                                                Forms\Components\RichEditor::make('pt.exports'),
+
+
+                                            ]),
+
                                     ]),
-                                    Tabs\Tab::make('Pt')
-                                        ->schema([
-                                            Forms\Components\RichEditor::make('pt.characteristics')->label('Características del Producto'), //
-                                            Forms\Components\RichEditor::make('pt.national_production')->label('procedencia / origen'),//procedencia origen
-                                            Forms\Components\RichEditor::make('pt.commercialization')->label('comercializacion en mercado interno'),
-                                            Forms\Components\RichEditor::make('pt.varieties')->label('Principales variedades'),//
-                                            Forms\Components\RichEditor::make('pt.salesunit')->label('Unidad de venta'),// 
-
-                                            Forms\Components\RichEditor::make('pt.imports'),
-                                            Forms\Components\RichEditor::make('pt.exports'),
-                                            
-                                           
-                                    ]),
-                                    
-                                ]),
 
                                 // Section::make('Offer Calendar')
                                 // ->relationship('offercalendar')
@@ -236,8 +245,10 @@ class ProductDetailResource extends Resource
                                 //             Forms\Components\TextInput::make('texto'),
                                 //         ]),
                                 // ]),
-                            ]),
+                            ])
+                            ->hidden(fn(Get $get) => in_array($get('country_id'), ['3', '7', '9', '6', '5', '8', '10', '19'])),
 
+                        // cost3 hon7 pan9 guat6 salva5 nica8 rep10 beli19
 
                     ]),
 
@@ -259,14 +270,20 @@ class ProductDetailResource extends Resource
 
             ->columns([
                 Tables\Columns\TextColumn::make('country.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('product.name')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('product.name'),
 
             ])
             ->filters([
+                SelectFilter::make('Country')
+                    ->relationship('country', 'name')
+                    ->searchable()
+                    ->preload(),
+
+                // SelectFilter::make('Producttranslation')
+                // ->options(ProductTranslation::where('locale', app()->getLocale())->pluck('name', 'product_id'))
+
 
 
             ])

@@ -23,12 +23,6 @@ Route::get('/locale/{locale}', function ($locale) {
  
 })->name('locale');;
 
-Route::get('/ver', function () {
-  
-    return view('verProductoSur');
- 
-});
-
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 

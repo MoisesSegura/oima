@@ -28,7 +28,7 @@
                                 </select>
                         </div>
                         <div class="select--wrapper">
-                            <select class="select" name="country" id="country">
+                            <select class="select" name="country" id="country" onchange="storeCountry()">
                                 <option value="">@lang('locale.pais')</option>
                             </select>
                         </div>
@@ -153,6 +153,7 @@
         });
     });
 });
+
         
     </script>
 
@@ -169,6 +170,28 @@
             $(this).unbind('submit').submit();
         });
     });
+
+</script>
+
+<script>
+    // Función para almacenar el valor del país en una cookie
+    function storeCountry() {
+        var selectedCountry = document.getElementById('country').value;
+        document.cookie = "selectedCountry=" + selectedCountry;
+    }
+
+    // Función para cargar el valor almacenado en la cookie al cargar la página
+    window.onload = function () {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.startsWith('selectedCountry=')) {
+                var storedCountry = cookie.substring('selectedCountry='.length);
+                document.getElementById('country').value = storedCountry;
+                break;  // Rompe el bucle después de encontrar la primera coincidencia
+            }
+        }
+    };
 </script>
 
 

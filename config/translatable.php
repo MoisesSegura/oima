@@ -81,7 +81,7 @@ return [
     | is used first. So "es" will be checked before "es_MX".
     |
     */
-    'fallback_locale' => null,//default: 'en'
+    'fallback_locale' => 'es',//default: 'en'
 
     /*
     |--------------------------------------------------------------------------

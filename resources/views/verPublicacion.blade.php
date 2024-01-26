@@ -22,7 +22,7 @@
                         <p> {{ $publication->topographic_signature }} </p>
                     </div>
                     <a class="btn btn--green"
-                        href="/uploads/publications/files/e27501d4b9f6eb77cb292a1b717931a0b8718e5d.pdf" download="3.pdf"
+                        href="{{ asset('/uploads/' . ltrim($publication->file_real, '/')) }}" download="{{ ($publication->file_real_name) }}"
                         target="_blank"> @lang('locale.descargar')</a>
                 </div>
             </div>

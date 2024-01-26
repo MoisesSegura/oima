@@ -48,61 +48,55 @@ class SiteTextResource extends Resource
             ->tabs([
                 Tabs\Tab::make('General') 
                 ->schema([
-               
-                    // Forms\Components\TextInput::make('oima_id')
-                    //             ->numeric(),
-                    //         Forms\Components\TextInput::make('history_id')
-                    //             ->numeric(),
-                    //         Forms\Components\TextInput::make('executive_commitee_id')
-                    //             ->numeric(),
-                    //         Forms\Components\TextInput::make('extra_id')
-                    //             ->numeric(),
+
+
+                    Tabs::make('oima') 
+                    ->tabs([
+                    Tabs\Tab::make('Es') 
+                        ->schema([
+                            Forms\Components\TextInput::make('es.banner_title'),
+                            Forms\Components\TextInput::make('es.banner_subtitle'),
+                            Forms\Components\TextInput::make('es.know_oima_title'),
+                            Forms\Components\RichEditor::make('es.know_oima_description'),
+                            Forms\Components\TextInput::make('es.catalog_title')->required(),
+                            Forms\Components\TextInput::make('es.catalog_subtitle')->required(),
+                            Forms\Components\RichEditor::make('es.catalog_description'),
+                            Forms\Components\TextInput::make('es.oima_purpose')->required(),
+    
+                            ]),
+                        Tabs\Tab::make('En')
+                            ->schema([
+                                Forms\Components\TextInput::make('en.banner_title'),
+                                Forms\Components\TextInput::make('en.banner_subtitle'),
+                                Forms\Components\TextInput::make('en.know_oima_title'),
+                                Forms\Components\RichEditor::make('en.know_oima_description'),
+                                Forms\Components\TextInput::make('en.catalog_title')->required(),
+                                Forms\Components\TextInput::make('en.catalog_subtitle')->required(),
+                                Forms\Components\RichEditor::make('en.catalog_description'),
+                                Forms\Components\TextInput::make('en.oima_purpose')->required(),
+                               
+                        ]),
+                        Tabs\Tab::make('Pt')
+                            ->schema([
+                                Forms\Components\TextInput::make('pt.banner_title'),
+                                Forms\Components\TextInput::make('pt.banner_subtitle'),
+                                Forms\Components\TextInput::make('pt.know_oima_title'),
+                                Forms\Components\RichEditor::make('pt.know_oima_description'),
+                                Forms\Components\TextInput::make('pt.catalog_title')->required(),
+                                Forms\Components\TextInput::make('pt.catalog_subtitle')->required(),
+                                Forms\Components\RichEditor::make('pt.catalog_description'),
+                                Forms\Components\TextInput::make('pt.oima_purpose')->required(),
+                               
+                        ]),
+                        
+                    ]), 
+
+                    
+    
 
                             Forms\Components\Toggle::make('active')
                                 ->required(),
-                            Forms\Components\FileUpload::make('image')->multiple()
-                                ->image(),
-
-                            Tabs::make('Mis formularios') 
-                                ->tabs([
-                                Tabs\Tab::make('Es') 
-                                    ->schema([
-                                        Forms\Components\TextInput::make('es.banner_title'),
-                                        Forms\Components\TextInput::make('es.banner_subtitle'),
-                                        Forms\Components\TextInput::make('es.know_oima_title'),
-                                        Forms\Components\RichEditor::make('es.know_oima_description'),
-                                        Forms\Components\TextInput::make('es.catalog_title')->required(),
-                                        Forms\Components\TextInput::make('es.catalog_subtitle')->required(),
-                                        Forms\Components\RichEditor::make('es.catalog_description'),
-                                        Forms\Components\TextInput::make('es.oima_purpose')->required(),
-                
-                                        ]),
-                                    Tabs\Tab::make('En')
-                                        ->schema([
-                                            Forms\Components\TextInput::make('en.banner_title'),
-                                            Forms\Components\TextInput::make('en.banner_subtitle'),
-                                            Forms\Components\TextInput::make('en.know_oima_title'),
-                                            Forms\Components\RichEditor::make('en.know_oima_description'),
-                                            Forms\Components\TextInput::make('en.catalog_title')->required(),
-                                            Forms\Components\TextInput::make('en.catalog_subtitle')->required(),
-                                            Forms\Components\RichEditor::make('en.catalog_description'),
-                                            Forms\Components\TextInput::make('en.oima_purpose')->required(),
-                                           
-                                    ]),
-                                    Tabs\Tab::make('Pt')
-                                        ->schema([
-                                            Forms\Components\TextInput::make('pt.banner_title'),
-                                            Forms\Components\TextInput::make('pt.banner_subtitle'),
-                                            Forms\Components\TextInput::make('pt.know_oima_title'),
-                                            Forms\Components\RichEditor::make('pt.know_oima_description'),
-                                            Forms\Components\TextInput::make('pt.catalog_title')->required(),
-                                            Forms\Components\TextInput::make('pt.catalog_subtitle')->required(),
-                                            Forms\Components\RichEditor::make('pt.catalog_description'),
-                                            Forms\Components\TextInput::make('pt.oima_purpose')->required(),
-                                           
-                                    ]),
-                                    
-                                ])->columns('full'), 
+                        
                 
 
                             Forms\Components\TextInput::make('contact_president')
@@ -141,7 +135,15 @@ class SiteTextResource extends Resource
                                 Repeater::make('translations') ->collapsible()
                                 ->relationship('translations')
                                 ->schema([
-                                    Forms\Components\TextInput::make('locale'),
+                                    Select::make('locale')
+                                    ->options(function () {
+                                        $options = [
+                                            'en' => 'English',
+                                            'es' => 'Español',
+                                            'pt' => 'Português',
+                                        ];
+                                        return $options;
+                                    }),
                                     Forms\Components\TextInput::make('title'),
                                     Forms\Components\RichEditor::make('description'),
                                     Forms\Components\RichEditor::make('mision'),
@@ -163,7 +165,16 @@ class SiteTextResource extends Resource
                                 Repeater::make('translations')->collapsed()
                                 ->relationship('translations')
                                 ->schema([
-                                    Forms\Components\TextInput::make('locale'),
+                                   
+                                Select::make('locale')
+                                ->options(function () {
+                                    $options = [
+                                        'en' => 'English',
+                                        'es' => 'Español',
+                                        'pt' => 'Português',
+                                    ];
+                                    return $options;
+                                }),
                                     Forms\Components\TextInput::make('title'),
                                     Forms\Components\RichEditor::make('short_description'),
                                     Forms\Components\RichEditor::make('definition'),
@@ -183,7 +194,15 @@ class SiteTextResource extends Resource
                             Repeater::make('translations')
                             ->relationship('translations')
                             ->schema([
-                                Forms\Components\TextInput::make('locale'),
+                                Select::make('locale')
+                                ->options(function () {
+                                    $options = [
+                                        'en' => 'English',
+                                        'es' => 'Español',
+                                        'pt' => 'Português',
+                                    ];
+                                    return $options;
+                                }),
                                 Forms\Components\TextInput::make('title'),
                                 Forms\Components\RichEditor::make('description'),
                             ]),
@@ -202,7 +221,15 @@ class SiteTextResource extends Resource
                             Repeater::make('translations')
                             ->relationship('translations')
                             ->schema([
-                                Forms\Components\TextInput::make('locale'),
+                                Select::make('locale')
+                                ->options(function () {
+                                    $options = [
+                                        'en' => 'English',
+                                        'es' => 'Español',
+                                        'pt' => 'Português',
+                                    ];
+                                    return $options;
+                                }),
                                 Forms\Components\TextInput::make('document_repository'),
                                 Forms\Components\TextInput::make('catalog')->label('catalog (home)'),
                                 Forms\Components\TextInput::make('catalog_description')->label('catalog description (catalog)'),

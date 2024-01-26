@@ -108,8 +108,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('name')
-                ->sortable(),
+                Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('scientific_name')

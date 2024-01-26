@@ -11,16 +11,16 @@
                     <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
                     <ul class="share--links">
                         <li><a class="share--link" target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/requisitos/banano/costa-rica"><img
+                                href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/"><img
                                     src="/img/fb-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://wa.me/?text=https://www.mioa.org/es/requisitos/banano/costa-rica"><img
+                                href="https://wa.me/?text=https://www.mioa.org/"><img
                                     src="/img/wa-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://twitter.com/home?status=https://www.mioa.org/es/requisitos/banano/costa-rica "><img
+                                href="https://twitter.com/home?status=https://www.mioa.org/es/"><img
                                     src="/img/tw-icon.svg"></a></li>
                         <li><a class="share--link" target="_blank"
-                                href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/requisitos/banano/costa-rica&title=&summary=&source="><img
+                                href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/"><img
                                     src="/img/li-icon.svg"></a></li>
                     </ul>
                 </div>
@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-4 d-none d-md-block text-center">
                     <p class="card--text">@lang('locale.conocido')</p>
-                    <h3 class="card--title">{{$productDetail->known_name}}</h3>
+                    <h3 class="card--title">{{$productDetail->known_name ?? ''}}</h3>
                     <img src="{{ asset(trim('/uploads/' . $productDetail->product->image, '/')) }}" alt="{{ $productDetail->product->name }}"
                         class="img-responsive">
                 </div>
@@ -37,7 +37,7 @@
                         <h5 class="title text-center text-md-left">
                           @lang('locale.requisitos')
                         </h5>
-                        <div class="selectors__container">
+                        <!-- <div class="selectors__container">
                             <div class="selectors">
                                 <div class="select--wrapper">
                                     <select class="select" name="region" id="region-validate">
@@ -58,7 +58,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="content--requisitos container">
@@ -67,10 +67,10 @@
                         @foreach ($contents as $content)
 
                         <div class="col-md-12">
-                                <h5 class="title title--sideline">{{ __($content->title) }}</h5>
+                                <h5 class="title title--sideline">{{ __($content->title) ?? ''}}</h5>
                                 <div class="txt--gray">
                                     <p style="text-align:justify">
-                                    {!! $content->text !!}
+                                    {!! __($content->text) ?? '' !!}
                                     </p>
 
                                   
@@ -86,7 +86,7 @@
                                 <ul class="card__list list--circle bullets--gray list--green-md">
                                 @foreach ($links as $link)
                                     <li><a class="txt--gray"
-                                            href="{{ $link->url }}">{{ $link->url }}</a>
+                                            href="{{ $link->url }}">{{ $link->url ?? ''}}</a>
                                     </li>
                                 @endforeach
                                     </li>
@@ -101,7 +101,7 @@
 
 
         <div class="text-center mb-5 d-md-none">
-            <a href="/es/producto/banano/costa-rica" class="btn btn--green">Volver</a>
+            <a href="/es/producto/banano/costa-rica" class="btn btn--green">  @lang('locale.volver')</a>
         </div>
     </div>
 
