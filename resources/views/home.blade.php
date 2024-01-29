@@ -75,7 +75,7 @@
 
                         @php
                         // Fecha de inicio
-                        $fechaInicio = new DateTime('2002-12-01'); // Formato: Año-Mes-Día
+                        $fechaInicio = new DateTime('2000-06-01'); // Formato: Año-Mes-Día
 
                         // Fecha actual
                         $fechaActual = new DateTime();

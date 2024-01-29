@@ -13,19 +13,19 @@
 
         </ul>
 
-     
+
         <div class="social-media-container">
-    <ul class="social-media-list">
-        @foreach ($socialmedia as $media)
-            <li>
-                <a class="share--link" target="_blank" href="{{ $media->url }}">
-                    <img src="{{ asset(trim('/uploads/' . $media->icon, '/')) }}" alt="{{ $media->icon }}">
-                </a>
-            </li>
-        @endforeach
-    </ul>
-    </div>
-    
+            <ul class="social-media-list">
+                @foreach ($socialmedia as $media)
+                <li>
+                    <a class="share--link" target="_blank" href="{{ $media->url }}">
+                        <img src="{{ asset(trim('/uploads/' . $media->icon, '/')) }}" alt="{{ $media->icon }}">
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+
 
     </div>
 </footer>

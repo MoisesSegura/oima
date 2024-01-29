@@ -444,9 +444,11 @@ public function searchFruits(Request $request)
 
     $products = $productosUnsorted->sortBy('product_translation.name');
 
-        $regions = $this->getRegions();
+    $regions = $this->getRegions();
 
-    return view('frutas', compact('products','regions'));
+    $extras = $this->getExtras();
+
+    return view('frutas', compact('products','regions', 'extras'));
 
 }
 
@@ -473,9 +475,11 @@ public function searchVegetables(Request $request)
 
     $products = $productosUnsorted->sortBy('product_translation.name');
 
-        $regions = $this->getRegions();
+    $regions = $this->getRegions();
 
-    return view('hortalizas', compact('products','regions'));
+    $extras = $this->getExtras();
+
+    return view('hortalizas', compact('products','regions', 'extras'));
 
 }
 
@@ -502,9 +506,11 @@ public function searchGrains(Request $request)
 
     $products = $productosUnsorted->sortBy('product_translation.name');
 
-        $regions = $this->getRegions();
+    $regions = $this->getRegions();
 
-    return view('granos', compact('products','regions'));
+    $extras = $this->getExtras();
+
+    return view('granos', compact('products','regions', 'extras'));
 
 }
 
@@ -531,9 +537,11 @@ public function searchLegumes(Request $request)
 
     $products = $productosUnsorted->sortBy('product_translation.name');
 
-        $regions = $this->getRegions();
+    $extras = $this->getExtras();
 
-    return view('legumbres', compact('products','regions'));
+    $regions = $this->getRegions();
+
+    return view('legumbres', compact('products','regions', 'extras'));
 
 }
 

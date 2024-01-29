@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
-use Filament\Forms\Components\MarkdownEditor;
 use Illuminate\Database\Eloquent\Model; //global search
 use App\Filament\Traits\Translatable;
 

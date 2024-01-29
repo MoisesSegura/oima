@@ -30,7 +30,10 @@ class SimaMediaContentRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         return $form
-        ->schema([             
+        ->schema([            
+            Forms\Components\TextInput::make('video')->label('video (link)')
+            ->maxLength(255),
+            
             Tabs::make('New Content') 
             ->tabs([
                 Tabs\Tab::make('Es') 
@@ -41,8 +44,6 @@ class SimaMediaContentRelationManager extends RelationManager
                         ->maxLength(255),
                     Forms\Components\TextInput::make('es.video_description')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('es.video')
-                        ->maxLength(255),  
            
                     ]),
                 Tabs\Tab::make('En')
@@ -53,8 +54,6 @@ class SimaMediaContentRelationManager extends RelationManager
                     Forms\Components\RichEditor::make('en.text')
                         ->maxLength(255),
                     Forms\Components\TextInput::make('en.video_description')
-                        ->maxLength(255),
-                    Forms\Components\TextInput::make('en.video')
                         ->maxLength(255),       
                        
                 ]),
@@ -66,8 +65,6 @@ class SimaMediaContentRelationManager extends RelationManager
                         ->maxLength(255),
                     Forms\Components\TextInput::make('pt.video_description')
                         ->maxLength(255),
-                    Forms\Components\TextInput::make('pt.video')
-                        ->maxLength(255),  
 
                 ]),
                 
@@ -82,8 +79,8 @@ class SimaMediaContentRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('subtitle')
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('subtitle'),
+                Tables\Columns\TextColumn::make('video'),
             ])
             ->filters([
                 //
@@ -109,6 +106,8 @@ class SimaMediaContentRelationManager extends RelationManager
                     return $form->fill($data);
                 })
                 ->form([ 
+                    Forms\Components\TextInput::make('video')->label('video (link)')
+                    ->maxLength(255),
                     Tabs::make('lang form') 
                     ->tabs([
                         Tabs\Tab::make('En') 
@@ -119,8 +118,7 @@ class SimaMediaContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('en.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('en.video')
-                            ->maxLength(255),       
+              
                              
                         ]),
                     Tabs\Tab::make('Es')
@@ -132,8 +130,7 @@ class SimaMediaContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('es.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('es.video')
-                            ->maxLength(255),  
+            
                       
                            
                     ]),
@@ -145,8 +142,7 @@ class SimaMediaContentRelationManager extends RelationManager
                             ->maxLength(255),
                         Forms\Components\TextInput::make('pt.video_description')
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('pt.video')
-                            ->maxLength(255),  
+                
     
                     ]),
                         

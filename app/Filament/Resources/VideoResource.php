@@ -13,7 +13,6 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
 use Illuminate\Database\Eloquent\Model; //global search
@@ -39,7 +38,7 @@ class VideoResource extends Resource
                             ->maxLength(255) 
                             ->required(),
 
-                            Forms\Components\MarkdownEditor::make('en.description')
+                            Forms\Components\RichEditor::make('en.description')
                             ->maxLength(255),
                            
 
@@ -54,7 +53,7 @@ class VideoResource extends Resource
                             ->maxLength(255)
                             ->required(),
 
-                            Forms\Components\MarkdownEditor::make('es.description')
+                            Forms\Components\RichEditor::make('es.description')
                             ->maxLength(255),
                    
 
@@ -68,7 +67,7 @@ class VideoResource extends Resource
                             Forms\Components\TextInput::make('pt.name')
                             ->required(),
 
-                            Forms\Components\MarkdownEditor::make('pt.description'),
+                            Forms\Components\RichEditor::make('pt.description'),
                            
 
                             Forms\Components\TextInput::make('pt.url') 

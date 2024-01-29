@@ -193,7 +193,7 @@ class ProductDetailResource extends Resource
                                     ->tabs([
                                         Tabs\Tab::make('Es')
                                             ->schema([
-                                                Forms\Components\MarkdownEditor::make('es.characteristics')->label('Características del Producto'), //
+                                                Forms\Components\RichEditor::make('es.characteristics')->label('Características del Producto'), //
                                                 Forms\Components\RichEditor::make('es.national_production')->label('procedencia / origen'), //procedencia origen
                                                 Forms\Components\RichEditor::make('es.commercialization')->label('comercializacion en mercado interno'),
                                                 Forms\Components\RichEditor::make('es.varieties')->label('Principales variedades'), //

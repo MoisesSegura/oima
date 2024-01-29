@@ -23,12 +23,13 @@
                         <select class="select" name="region" id="region" data-lang="es">
                                     <option value="">@lang('locale.region')</option>
                                     @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}">{{ __($region->name) }}</option>
+                                    <option value="{{ $region->id }}"  {{ (isset($selectedOptions['region']) && $selectedOptions['region'] == $region->id) ? 'selected' : '' }}>
+                                        {{ __($region->name) }}</option>
                                     @endforeach
                                 </select>
                         </div>
                         <div class="select--wrapper">
-                            <select class="select" name="country" id="country" onchange="storeCountry()">
+                            <select class="select" name="country" id="country">
                                 <option value="">@lang('locale.pais')</option>
                             </select>
                         </div>
@@ -94,17 +95,16 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
-    $(document).ready(function () {
-    $('#region').change(function () {
-        var regionId = $(this).val();
-
+  $(document).ready(function () {
+    // Función para cargar países
+    function loadCountries(regionId) {
         if (!regionId) {
-            $('#country').empty(); 
+            $('#country').empty();
             return;
         }
 
         $.ajax({
-            url: '/get-countries/' + regionId, 
+            url: '/get-countries/' + regionId,
             type: 'GET',
             success: function (data) {
                 $('#country').empty();
@@ -116,43 +116,59 @@
                 console.log('Error al cargar países');
             }
         });
+    }
+
+    // Cargar países al cambiar la región
+    $('#region').change(function () {
+        var regionId = $(this).val();
+        loadCountries(regionId);
     });
 
-    
+    // Cargar países al cargar la página
+    var initialRegionId = $('#region').val();
+    loadCountries(initialRegionId);
+
+    // Al enviar el formulario
     $('#f_1').submit(function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
 
+        // Guardar opciones en el almacenamiento local
+        localStorage.setItem('selectedOptions', JSON.stringify($('#f_1').serializeArray()));
 
+        // Filtrar hortalizas
+        filterVegetables();
+    });
+
+    // Función para filtrar hortalizas
+    function filterVegetables() {
         $.ajax({
             url: '/filter-vegetables',
             type: 'GET',
             data: $('#f_1').serialize(),
             success: function (data) {
-
                 $('#products').empty();
 
-                $.each(data, function (index, fruit) {
-    var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
-        '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
-        '<div class="card--flex__content">' +
-        '<h4 class="card--title">' + fruit.product.name + '</h4>' +
-        '<p class="card--text">' + fruit.known_name + '</p>' +
-        '<p class="card--text">' + fruit.product.family_name + '</p>' +
-        '<p class="txt--blue">@lang('locale.ver')</p>' +
-        '</div>' +
-        '</a>';
-    
-    $('#products').append(cardHtml);
-});
+                $.each(data, function (index, vegetable) {
+                    var cardHtml = '<a href="' + '{{ url('producto') }}/' + vegetable.id + '" class="card card--flex card--link js-equal-height">' +
+                        '<img src="' + '{{ asset('/uploads/') }}/' + vegetable.product.image + '" alt="' + vegetable.product.name + '" class="card--flex__img">' +
+                        '<div class="card--flex__content">' +
+                        '<h4 class="card--title">' + vegetable.product.name + '</h4>' +
+                        '<p class="card--text">' + vegetable.known_name + '</p>' +
+                        '<p class="card--text">' + vegetable.product.family_name + '</p>' +
+                        '<p class="txt--blue">@lang('locale.ver')</p>' +
+                        '</div>' +
+                        '</a>';
 
-
+                    $('#products').append(cardHtml);
+                });
             },
             error: function () {
                 console.log('Error al filtrar hortalizas');
             }
         });
-    });
+    }
 });
+
 
         
     </script>
@@ -171,27 +187,6 @@
         });
     });
 
-</script>
-
-<script>
-    // Función para almacenar el valor del país en una cookie
-    function storeCountry() {
-        var selectedCountry = document.getElementById('country').value;
-        document.cookie = "selectedCountry=" + selectedCountry;
-    }
-
-    // Función para cargar el valor almacenado en la cookie al cargar la página
-    window.onload = function () {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            if (cookie.startsWith('selectedCountry=')) {
-                var storedCountry = cookie.substring('selectedCountry='.length);
-                document.getElementById('country').value = storedCountry;
-                break;  // Rompe el bucle después de encontrar la primera coincidencia
-            }
-        }
-    };
 </script>
 
 

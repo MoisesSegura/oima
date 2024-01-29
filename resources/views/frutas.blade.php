@@ -71,6 +71,7 @@
 
     <script>
     $(document).ready(function () {
+
     $('#region').change(function () {
         var regionId = $(this).val();
 

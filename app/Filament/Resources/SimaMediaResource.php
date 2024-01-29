@@ -60,9 +60,8 @@ class SimaMediaResource extends Resource
                     
                 ]),
 
-            Forms\Components\DateTimePicker::make('date')
-            ->required(),
-            Forms\Components\FileUpload::make('image')
+            Forms\Components\DatePicker::make('date')->required(),
+            Forms\Components\FileUpload::make('image')->required()
             ->image()
             ->disk('public')
             ->directory('uploads/simaMedia'),

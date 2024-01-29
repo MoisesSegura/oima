@@ -51,7 +51,7 @@
 
         <section class="about__mission xs-blue-line">
             <div class="card__links card-xs">
-                <h4 class="title">Herramientas adicionales</h4>
+                <h4 class="title">@lang('locale.herramientas')</h4>
                 <div class="card__links__container">
                     <a class="link--resources d-none d-md-block" target="_blank"
                         href="http://www.simmagro.sieca.int/">SIMMAGRO:</a>

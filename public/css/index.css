@@ -8258,7 +8258,7 @@ p {
     padding-left: 20px; }
 .list--achievements:before, .list--achievements:after {
     content: '';
-    background-color: #8DB1C5;
+    /* background-color: #8DB1C5; */
     position: absolute;
     top: 0px;
     left: 25px; }
@@ -9838,8 +9838,8 @@ section {
         background-color: #FFFFFF; } }
 .header--repository {
   display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /* display: -ms-flexbox;
+  display: flex; */
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -9852,7 +9852,7 @@ section {
 .header--repository .title--repository {
     display: -webkit-box;
     display: -ms-flexbox;
-    /* display: flex; */
+    display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -10655,5 +10655,156 @@ footer .footer__links li:before {
     
 
 
-
+    .social-media-container {
+      display: flex;
+      /* justify-content: center; */
+      margin-left: 1rem;
+  }
+  
+  .social-media-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: .5rem; /* Espaciado entre cada ícono de red social */
+  }
+  
+  .share--link {
+      display: block;
+      width: 2rem; /* Ajusta el ancho según tus necesidades */
+      height: 2rem; /* Ajusta la altura según tus necesidades */
+      overflow: hidden;
+  }
+  
+  .share--link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ajusta la posición y el tamaño de la imagen */
+      border-radius: 50%; /* Para hacer imágenes redondas */
+  }
     
+
+  /* .container-who p{
+text-align: center;
+justify-content: center;
+align-items: center;
+background-color: white;
+  }
+
+  .container-who h1{
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+  }
+
+  .wrapper-who{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-who{
+    background-color: white;
+    padding: 70px 50px 0px 50px;
+    width: 25%;
+    max-width: 350px;
+    margin: 10px;
+    border-radius: 10px
+  }
+
+  .profile-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+  }
+
+  .profile-img img{
+    width: 100%;
+    height: 100%;
+  }
+
+  .content-who{
+    text-align: center;
+  }
+
+  .content-who h3{
+    font-size: 1.4rem;
+    margin-top: 25px;
+    color: blue;
+
+  }
+
+  .content-who p{
+  color: red;
+  letter-spacing: 1px;
+  margin: 0;
+
+  } */
+
+
+
+
+.who{
+  margin: 0;
+  padding: 6rem 0 0;
+}
+  .container-who {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    margin: 0; 
+    margin-right: 40rem;
+    margin-left: 40rem;
+
+    max-height: 480px; 
+        overflow-y: auto; 
+}
+
+.container-who p{
+text-align: center;
+justify-content: center;
+align-items: center;
+  }
+
+  .container-who H3{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+      }
+
+
+
+.wrapper-who {
+  width: 200px;
+  margin: 0 15px 15px 0;
+/* 
+    width: 200px;
+    margin: 0 20px 20px 0;  */
+}
+
+.card-who {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-img img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.content-who {
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .wrapper-who {
+        width: 40%; /* Dos personas por línea en pantallas más pequeñas */
+    }
+}
+

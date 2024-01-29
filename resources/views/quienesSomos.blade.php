@@ -42,132 +42,109 @@
 
         <div class="tab-content">
             <div class="tab-pane fade show active" id="category-1" role="tabpanel" aria-labelledby="category-1-tab">
-                <ul class="blog--carousel">
-                    @foreach($person as $individual)
-                    @if($individual->category_id == 1)
-                    <li class="card--people">
-                        <div class="portrait">
-                            @if($individual->photo)
-                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
-                            @endif
+                <div class="who">
+                    <div class="container-who">
+                        @foreach($person as $individual)
+                        @if($individual->category_id == 1)
+                        <div class="wrapper-who">
+                            <div class="card-who">
+                                <div class="profile-img">
+                                    @if($individual->photo)
+                                    <img src="{{ asset('/uploads/' . $individual->photo) }}" alt="Foto del miembro">
+                                    @endif
+                                </div>
+                                <div class="content-who">
+                                    <h3>{{ $individual->name }}</h3>
+                                    <p>{{ $individual->description }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card--content">
-                            <h3>{{ $individual->name }}</h3>
-                            <!-- <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p> -->
-                            <p class="txt--black">{{ $individual->description }}</p>
-                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
-
-                        </div>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
+<!-- 
+            <div class="tab-pane fade" id="category-2" role="tabpanel" aria-labelledby="category-2-tab">
 
-            <!-- <div class="tab-pane fade" id="category-2" role="tabpanel" aria-labelledby="category-2-tab">
                 <ul class="blog--carousel">
-                    @foreach($person as $individual)
-                    @if($individual->category_id == 2)
-                    <li class="card--people">
-                        <div class="card--content">
-                        <div class="portrait">
-                       <img src="{{ asset(trim('/uploads/' . $individual->photo, '/')) }}">
+                    <div class="container-who">
+                        @foreach($person as $individual)
+                        @if($individual->category_id == 2)
+                        <div class="wrapper-who">
+                            <div class="card-who">
+                                <div class="profile-img">
+                                    @if($individual->photo)
+                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                    @endif
+                                </div>
+                                <div class="content-who">
+                                    <h3>{{ $individual->name }}</h3>
+                                    <p>{{ $individual->description }}</p>
+                                </div>
+                            </div>
                         </div>
-                            <h3>{{ $individual->name }}</h3>
-                            <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p>
-                            <p class="txt--black">{{ $individual->description }}</p>
-                            <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p>
-                        </div>
-                    </li>
-                    @endif
-                    @endforeach
+                        @endif
+                        @endforeach
+                    </div>
                 </ul>
+
+
             </div> -->
 
             <div class="tab-pane fade" id="category-3" role="tabpanel" aria-labelledby="category-3-tab">
-                <ul class="blog--carousel">
-                    @foreach($person as $individual)
-                    @if($individual->category_id == 3)
-                    <li class="card--people">
-                    <div class="portrait">
-                                @if($individual->photo)
-                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
-                                @endif
+                <div class="who">
+                    <div class="container-who">
+                        @foreach($person as $individual)
+                        @if($individual->category_id == 3)
+                        <div class="wrapper-who">
+                            <div class="card-who">
+                                <div class="profile-img">
+                                    @if($individual->photo)
+                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                    @endif
+                                </div>
+                                <div class="content-who">
+                                    <h3>{{ $individual->name }}</h3>
+                                    <p>{{ $individual->description }}</p>
+                                </div>
                             </div>
-                        <div class="card--content">
-                          
-                            <h3>{{ $individual->name }}</h3>
-                            <!-- <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p> -->
-                            <p class="txt--black">{{ $individual->description }}</p>
-                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
                         </div>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             <div class="tab-pane fade" id="category-4" role="tabpanel" aria-labelledby="category-4-tab">
-                <ul class="blog--carousel">
-                    @foreach($person as $individual)
-                    @if($individual->category_id == 4)
-                    <li class="card--people">
-                    <div class="portrait">
-                                @if($individual->photo)
-                                <img src="{{ asset('/uploads/' . $individual->photo) }}">
-                                @endif
+                <div class="who">
+                    <div class="container-who">
+                        @foreach($person as $individual)
+                        @if($individual->category_id == 4)
+                        <div class="wrapper-who">
+                            <div class="card-who">
+                                <div class="profile-img">
+                                    @if($individual->photo)
+                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                    @endif
+                                </div>
+                                <div class="content-who">
+                                    <h3>{{ $individual->name }}</h3>
+                                    <p>{{ $individual->description }}</p>
+                                </div>
                             </div>
-                        <div class="card--content">
-                            <h3>{{ $individual->name }}</h3>
-                            <!-- <p class="txt--black">{{ $individual->title }}</p>
-                            <p class="txt--black">{{ $individual->position }}</p> -->
-                            <p class="txt--black">{{ $individual->description }}</p>
-                            <!-- <p class="txt--black">{{ $individual->infocountry->name }}</p>
-                            <p class="txt--green" href="{{ $individual->email }}">{{ $individual->email }}</p> -->
                         </div>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
+                        @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div id="Miembros"></div>
             </div>
-            <div id="Miembros"></div>
-        </div>
 
     </section>
 
-    <style>
 
 
-        .portrait {
-            overflow: hidden;
-            /* border-radius: 50%; */
-            margin: 0 auto;
-            width: 15rem;
-            height: 15rem;
-        }
-
-        .portrait-image {
-            max-width: 100%;
-            /* La imagen no superará el tamaño del contenedor */
-            max-height: 100%;
-            /* La imagen no superará el tamaño del contenedor */
-            display: block;
-            width: 100%;
-            /* Asegura que la imagen ocupe todo el contenedor */
-            height: auto;
-            /* Permite que la altura se ajuste automáticamente al ancho */
-        }
-
-        small {
-            color: black;
-        }
-    </style>
 
     <section>
         <div class="countries">

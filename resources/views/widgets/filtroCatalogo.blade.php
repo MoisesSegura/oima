@@ -13,7 +13,7 @@
 
             </div>
             <div class="select--wrapper">
-            <select class="select" name="country" id="country" onchange="storeCountry()">
+            <select class="select" name="country" id="country">
                     <option value="">@lang('locale.pais')</option>
                 </select>
             </div>

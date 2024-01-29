@@ -7,7 +7,7 @@
 
         <div class="container--repository open">
             <div class="back d-md-none">
-                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> @lang('locale.Volver')</a>
+                <a href="/es/repositorio" class="title"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
             </div>
             <div class="header--repository">
                 <div class="title--repository d-none d-md-flex ">
@@ -94,7 +94,7 @@
 
         <section class="about__mission xs-blue-line">
             <div class="card__links card-xs">
-                <h4 class="title">Herramientas adicionales</h4>
+                <h4 class="title">@lang('locale.herramientas')</h4>
                 <div class="card__links__container">
                     <a class="link--resources d-none d-md-block" target="_blank"
                         href="http://www.simmagro.sieca.int/">SIMMAGRO:</a>

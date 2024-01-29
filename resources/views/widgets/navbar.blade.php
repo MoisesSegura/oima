@@ -1,8 +1,8 @@
 <div class="nav" role="navigation">
-<!-- <img class="oimaLogo" src="{{ asset('/uploads/uploads/oimaLogo.png') }}"> -->
+    <!-- <img class="oimaLogo" src="{{ asset('/uploads/uploads/oimaLogo.png') }}"> -->
     <a class="logo" href="{{ route('home')}}">OIMA / MIOA</a>
 
-    <div class="social-media-container">
+    <!-- <div class="social-media-container">
     <ul class="social-media-list">
         @foreach ($socialmedia as $media)
             <li>
@@ -12,41 +12,10 @@
             </li>
         @endforeach
     </ul>
-    </div>
-
-
-<style>
-
-.social-media-container {
-    display: flex;
-    justify-content: center;
-}
-
-.social-media-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: .5rem; /* Espaciado entre cada ícono de red social */
-}
-
-.share--link {
-    display: block;
-    width: 2rem; /* Ajusta el ancho según tus necesidades */
-    height: 2rem; /* Ajusta la altura según tus necesidades */
-    overflow: hidden;
-}
-
-.share--link img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ajusta la posición y el tamaño de la imagen */
-    border-radius: 50%; /* Para hacer imágenes redondas */
-}
+    </div> -->
 
 
 
-</style>
     <ul class="nav__list">
         <li>
             <a class="nav__list--link {{ request()->routeIs('home') ? 'active' : '' }}"
@@ -68,15 +37,6 @@
                             </div>
                         </div>
 
-                        <!-- <div>
-                            <div class="dropdown-heading"></div>
-                            <div class="dropdown-drops">
-                                <a href="{{ route('oima-funcionamiento')}}#mision-vision"
-                                    class="drop">@lang('locale.misionvision')</a>
-                              
-                            </div>
-                        </div> -->
-                       
 
                     </div>
                 </div>
@@ -85,8 +45,29 @@
         </li>
 
         <li>
-            <a class="nav__list--link {{ request()->routeIs(['publicaciones','presentaciones','documentos-tecnicos','informes-regionales','diccionario','videos','normas-procedimientos']) ? 'active' : '' }}"
-                href="{{ route('publicaciones')}}">@lang('locale.repo')</a>
+            <!-- <a class="nav__list--link {{ request()->routeIs(['publicaciones','presentaciones','documentos-tecnicos','informes-regionales','diccionario','videos','normas-procedimientos']) ? 'active' : '' }}"
+                href="{{ route('publicaciones')}}">@lang('locale.repo')</a> -->
+
+            <div class="headerdrop">
+                <div class="dropdown" data-dropdown>
+                    <a class="drop nav__list--link  {{ request()->routeIs(['publicaciones','presentaciones','documentos-tecnicos','informes-regionales','diccionario','videos','normas-procedimientos']) ? 'active' : '' }}"
+                        data-dropdown-button>@lang('locale.repo')</a>
+                    <div class="dropdown-menu information-grid">
+                        <div>
+                            <div class="dropdown-heading"></div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('publicaciones')}}" class="drop">@lang('locale.publicaciones')</a>
+                                <a href="{{ route('presentaciones')}}" class="drop">@lang('locale.presentaciones')</a>
+                                <a href="{{ route('informes-regionales')}}" class="drop">@lang('locale.informes')</a>
+                                <a href="{{ route('diccionario')}}" class="drop">@lang('locale.diccionario')</a>
+                                <a href="{{ route('videos')}}" class="drop">@lang('locale.videos')</a>
+                                <a href="{{ route('normas-procedimientos')}}" class="drop">@lang('locale.normas')</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </li>
 
         <li>
@@ -95,8 +76,29 @@
         </li>
 
         <li class=" d-none d-md-block">
-            <a class="nav__list--link  {{ request()->routeIs(['eventos','noticias','sima-media']) ? 'active' : '' }}"
-                href="{{ route('eventos')}}">Blog</a>
+            <!-- <a class="nav__list--link  {{ request()->routeIs(['eventos','noticias','sima-media']) ? 'active' : '' }}"
+                href="{{ route('eventos')}}">Blog</a> -->
+
+
+                <div class="headerdrop">
+                <div class="dropdown" data-dropdown>
+                <a class="drop nav__list--link  {{ request()->routeIs(['eventos','noticias','sima-media']) ? 'active' : '' }}"
+                data-dropdown-button>Blog</a>
+                    <div class="dropdown-menu information-grid">
+                        <div>
+                            <div class="dropdown-heading"></div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('eventos')}}" class="drop">@lang('locale.eventos')</a>
+                                <a href="{{ route('noticias')}}" class="drop">@lang('locale.oimablog')</a>
+                                <a href="{{ route('sima-media')}}" class="drop">@lang('locale.simamedia')</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
         </li>
 
         <li class="d-none d-md-block">
@@ -105,7 +107,9 @@
         </li>
 
         <li class="nav-item dropdown d-md-none">
-            <a id="nav-collapse-trigger" class="nav__list--link nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más <i class="mdi mdi-chevron-down"></i></a>
+            <a id="nav-collapse-trigger" class="nav__list--link nav-link dropdown-toggle" href="#"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más <i
+                    class="mdi mdi-chevron-down"></i></a>
             <div class="dropdown-menu" aria-labelledby="nav-collapse-trigger">
                 <a class="nav__list--link " href="{{ route('eventos')}}">Blog</a>
                 <a class="nav__list--link active" href="{{ route('contacto')}}">@lang('locale.contacto')</a>
@@ -165,8 +169,9 @@
         .dropdown.active>.drop+.dropdown-menu {
             opacity: 1;
             pointer-events: auto;
-            
+
         }
+
         .dropdown.active>.drop+.dropdown-menu:hover {
             opacity: 1;
             transform: translateY(0);
@@ -205,60 +210,60 @@
 
     <script>
 
-let timer;
+        let timer;
 
-document.addEventListener("mouseover", e => {
-    const isDropdownButton = e.target.matches("[data-dropdown-button]");
-    const isDropdown = e.target.matches("[data-dropdown]");
-    const isDropdownItem = e.target.matches("[data-dropdown-item]");
+        document.addEventListener("mouseover", e => {
+            const isDropdownButton = e.target.matches("[data-dropdown-button]");
+            const isDropdown = e.target.matches("[data-dropdown]");
+            const isDropdownItem = e.target.matches("[data-dropdown-item]");
 
-    if (isDropdownButton) {
-        clearTimeout(timer);
-        const currentDropdown = e.target.closest("[data-dropdown]");
-        currentDropdown.classList.add("active");
-    } else if (isDropdown || isDropdownItem) {
-        clearTimeout(timer);
-    }
+            if (isDropdownButton) {
+                clearTimeout(timer);
+                const currentDropdown = e.target.closest("[data-dropdown]");
+                currentDropdown.classList.add("active");
+            } else if (isDropdown || isDropdownItem) {
+                clearTimeout(timer);
+            }
 
-    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove("active");
-        }
-    });
-});
+            document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("active");
+                }
+            });
+        });
 
-document.addEventListener("mouseout", e => {
-    const isDropdownButton = e.target.matches("[data-dropdown-button]");
-    const isDropdown = e.target.matches("[data-dropdown]");
+        document.addEventListener("mouseout", e => {
+            const isDropdownButton = e.target.matches("[data-dropdown-button]");
+            const isDropdown = e.target.matches("[data-dropdown]");
 
-    if (isDropdownButton || isDropdown) {
-        return;
-    }
+            if (isDropdownButton || isDropdown) {
+                return;
+            }
 
-    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-        timer = setTimeout(() => {
-            dropdown.classList.remove("active");
-        }, 1000000000); 
-    });
-});
+            document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+                timer = setTimeout(() => {
+                    dropdown.classList.remove("active");
+                }, 1000000000);
+            });
+        });
 
 
 
-// document.addEventListener("click", e => {
-//             const isDropdownButton = e.target.matches("[data-dropdown-button]")
-//             if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
+        // document.addEventListener("click", e => {
+        //             const isDropdownButton = e.target.matches("[data-dropdown-button]")
+        //             if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
 
-//             let currentDropdown
-//             if (isDropdownButton) {
-//                 currentDropdown = e.target.closest("[data-dropdown]")
-//                 currentDropdown.classList.toggle("active")
-//             }
+        //             let currentDropdown
+        //             if (isDropdownButton) {
+        //                 currentDropdown = e.target.closest("[data-dropdown]")
+        //                 currentDropdown.classList.toggle("active")
+        //             }
 
-//             document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-//                 if (dropdown === currentDropdown) return
-//                 dropdown.classList.remove("active")
-//             })
-//         })
+        //             document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        //                 if (dropdown === currentDropdown) return
+        //                 dropdown.classList.remove("active")
+        //             })
+        //         })
 
 
 
