@@ -25,9 +25,10 @@
                     <ul class="list--icons">
                         @foreach ($workprinciple as $workprinciple)
 
+
                         <li>
                             <img class="icon" src="{{ asset('/uploads/' . ltrim($workprinciple->image, '/')) }}">
-                            <p class="txt--black">{{ __($workprinciple->text) }}</p>
+                            <p class="txt--black">{{ strip_tags($workprinciple->text) }}</p>
                         </li>
 
                         @endforeach

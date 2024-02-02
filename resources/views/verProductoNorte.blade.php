@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
+    <!-- <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
         <div class="search--container">
             <div class="selectors__container">
                 <div class="selectors">
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="product__content">

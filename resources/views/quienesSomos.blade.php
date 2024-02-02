@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ $individual->description }}</p>
+                                    <p>{{ strip_tags($individual->description) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ $individual->description }}</p>
+                                    <p>{{ strip_tags($individual->description) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ $individual->description }}</p>
+                                    <p>{{ strip_tags($individual->description) }}</p>
                                 </div>
                             </div>
                         </div>

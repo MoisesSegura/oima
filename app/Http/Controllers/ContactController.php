@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SiteText;
+use App\Models\Extra;
 use App\Models\InfoCountry;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviarCorreo;
@@ -13,10 +14,10 @@ class ContactController extends Controller
     public function Contact(Request $request){
         
         $countries = InfoCountry::all();
-
+        $extras = Extra::first();
         $contact = $this->getSiteText();
 
-        return view('contacto', compact('countries','contact'));
+        return view('contacto', compact('countries','contact','extras'));
     }
 
     public function getSiteText()

@@ -3,23 +3,56 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Queue\SerializesModels;
 
 class EnviarCorreo extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $request;
+    public $mensaje;
+    public $nombre;
+    public $pais;
+    public $email;
 
-    public function __construct($request)
+    /**
+     * Create a new message instance.
+     */
+    public function __construct($data)
     {
-        $this->request = $request;
+        $this->data = $data;
     }
 
-    public function build()
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
     {
-        return $this->view('emails.enviarCorreo');
+        return new Envelope(
+            subject: 'Enviar Correo',
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'mails.enviar-correo',
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }

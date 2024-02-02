@@ -67,7 +67,7 @@
 
             </div>
         </div>
-        <div class="card--md-only col-md-12">
+        <!-- <div class="card--md-only col-md-12">
             <div class="selectors__container" style="text-align:-webkit-center">
                 <div class="selectors">
                     <div class="select--wrapper">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 

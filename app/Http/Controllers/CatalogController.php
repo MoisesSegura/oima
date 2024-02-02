@@ -36,7 +36,9 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        return view('frutas', compact('products','countries','regions','extras'));
+        $selectedRegion = $request->input('region') ?: session('selected_region_fruits');
+
+        return view('frutas', compact('products','countries','regions','extras','selectedRegion'));
     }
 
 
@@ -47,7 +49,9 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        return view('hortalizas', compact('products','countries','regions','extras'));
+        $selectedRegion = $request->input('region');
+
+        return view('hortalizas', compact('products','countries','regions','extras','selectedRegion'));
     }
 
     public function Grains(Request $request){
@@ -57,7 +61,9 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        return view('granos', compact('products','countries','regions','extras'));
+        $selectedRegion = $request->input('region');
+
+        return view('granos', compact('products','countries','regions','extras','selectedRegion'));
     }
 
     public function Legumes(Request $request){
@@ -67,7 +73,9 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        return view('legumbres', compact('products','countries','regions','extras'));
+        $selectedRegion = $request->input('region') ?: session('selected_region_vegetables');
+
+        return view('legumbres', compact('products','countries','regions','extras','selectedRegion'));
     }
 
 
@@ -354,7 +362,7 @@ public function filterFruits(Request $request)
     $countryId = $request->input('country');
 
     // Realizar la consulta para obtener las frutas filtradas por país
-    $filteredFruits = ProductDetail::with('product')
+    $products = ProductDetail::with('product')
         ->where('product_detail.country_id', $countryId)
         ->whereHas('product', function ($query) {
             $query->whereHas('category', function ($query) {
@@ -362,8 +370,9 @@ public function filterFruits(Request $request)
             });
         })
         ->get();
- 
-    return response()->json($filteredFruits);
+
+  
+    return response()->json($products);
 }
 
 public function filterVegetables(Request $request)

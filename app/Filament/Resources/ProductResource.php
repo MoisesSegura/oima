@@ -43,21 +43,24 @@ class ProductResource extends Resource
                             Forms\Components\TextInput::make('en.name'),
 
                             Forms\Components\FileUpload::make('en.file_real')
-                            ->default('default'),
+                            ->disk('public')
+                        ->directory('uploads/products/images')
                
                         ]),
                     Tabs\Tab::make('Es')
                         ->schema([
                             Forms\Components\TextInput::make('es.name'),
                             Forms\Components\FileUpload::make('es.file_real')
-                            ->default('default'),
+                            ->disk('public')
+                            ->directory('uploads/products/images')
                            
                     ]),
                     Tabs\Tab::make('Pt')
                         ->schema([
                             Forms\Components\TextInput::make('pt.name'),
                             Forms\Components\FileUpload::make('pt.file_real')
-                            ->default('default'),
+                            ->disk('public')
+                        ->directory('uploads/products/images')
                            
                     ]),
                     

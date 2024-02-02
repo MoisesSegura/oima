@@ -9368,7 +9368,7 @@ p {
     .hero-has-text {
       padding: 80px 0 80px;
       background-image: url("../img/catalgo-hero-desktop.png");
-      background-position: left top;
+      /* background-position: left top; */
       background-size: contain;
       margin: 200px auto 50px;
       min-height: 350px; } }
@@ -9383,14 +9383,19 @@ p {
         margin: 50px auto; } }
 .hero-has-text.hero-contact {
     /* background-image: url("../img/contact-bg-mobile.png");  */
-    background-image: none; /* Eliminar la imagen de fondo */
-    background-color: rgba(55, 102, 151, 0.5);
+    
+    /* background-image: none; Eliminar la imagen de fondo */
+    /* background-color: rgba(55, 102, 151, 0.5); */
+
     border-radius: 1rem;
+
+  
   }
 @media (min-width: 768px) {
       .hero-has-text.hero-contact {
         /* background-image: url("../img/contact-bg-desktop.png");  */
-        background-image: none;
+
+        /* background-image: none; */
       }
       
       }
@@ -9426,7 +9431,7 @@ p {
   font-size: 0.9em; }
 @media (min-width: 768px) {
     .hero--txt {
-      width: 60%;
+      width: 40%;
       padding: 30px;
       -webkit-box-shadow: 0 2px 8px 0 rgba(158, 158, 158, 0.5);
               box-shadow: 0 2px 8px 0 rgba(158, 158, 158, 0.5);

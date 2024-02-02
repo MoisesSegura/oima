@@ -207,8 +207,8 @@ class SiteTextResource extends Resource
                                 Forms\Components\RichEditor::make('description'),
                             ]),
                             Forms\Components\FileUpload::make('image')
-                            ->image()
-                            ->imageEditor(),
+                            ->disk('public')
+                        ->directory('uploads/executive_commitee'),
                         ]),
                 ]),
 
@@ -246,8 +246,8 @@ class SiteTextResource extends Resource
                                 
                             ]),
                             Forms\Components\FileUpload::make('image')
-                            ->image()
-                            ->imageEditor(),
+                            ->disk('public')
+                            ->directory('uploads/extras'),
                         ]),
                 ]),
 

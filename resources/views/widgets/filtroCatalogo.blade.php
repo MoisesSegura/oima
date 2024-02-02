@@ -1,4 +1,4 @@
-<form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET">
+<form id="f_1" name="f_1" action="{{ route('filterFruits') }}" method="GET" >
     <div class="selectors__container">
         <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
         <div class="selectors">

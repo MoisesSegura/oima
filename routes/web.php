@@ -3,19 +3,9 @@
 use App\Http\Livewire\Form;;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RepositoryController;
+use Illuminate\Support\Facades\Mail;
+use  App\Mail\EnviarCorreo;
 
-// Route::get('form', Form::class);
-
-
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
-
-
-// Route::get('/change-language/{locale}', function ($locale = null) {
-//     if (isset($locale) && in_array($locale, config('app.languages'))) {
-//         app()->setLocale($locale);
-//     }
-//     return redirect()->back();
-// })->name('change-language');
 
 Route::get('/locale/{locale}', function ($locale) {
     session()->put('locale', $locale);
@@ -23,6 +13,11 @@ Route::get('/locale/{locale}', function ($locale) {
  
 })->name('locale');;
 
+Route::post('enviar-correo', function(){
+    // return request()->all();
+Mail::to('moisessegurarojaas@gmail.com')->send(new EnviarCorreo(request()->all()));
+return "correo enviado exitosamente";
+})->name('enviar-correo');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
@@ -59,9 +54,7 @@ Route::get('/infoNutricional/{id}', [App\Http\Controllers\CatalogController::cla
 Route::get('/galeria/{id}', [App\Http\Controllers\CatalogController::class, 'showGallery'])->name('verGaleria');
 
 Route::get('/contacto', [App\Http\Controllers\ContactController::class, 'Contact'])->name('contacto');
-Route::post('/enviar-correo', [App\Http\Controllers\ContactController::class, 'enviarCorreo'])->name('enviar-correo');
 
-// Route::post('/enviar-mensaje', 'ContactController@enviarMensaje');
 
 Route::get('/eventos', [App\Http\Controllers\BlogController::class, 'Events'])->name('eventos');
 Route::get('/noticias', [App\Http\Controllers\BlogController::class, 'News'])->name('noticias');
