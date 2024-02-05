@@ -7,14 +7,16 @@
                 <select class="select" name="region" id="region" data-lang="es">
                     <option value="">@lang('locale.region')</option>
                     @foreach ($regions as $region)
-                    <option value="{{ $region->id }}">{{ __($region->name) }}</option>
+                    <option value="{{ $region->id }}">
+                                {{ __($region->name) }}
+                            </option>
                     @endforeach
                 </select>
 
             </div>
             <div class="select--wrapper">
             <select class="select" name="country" id="country">
-                    <option value="">@lang('locale.pais')</option>
+                    <option value="" > @lang('locale.pais')</option>
                 </select>
             </div>
         </div>

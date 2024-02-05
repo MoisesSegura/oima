@@ -22,7 +22,7 @@
                             <select class="select" name="region" id="region" data-lang="es">
                                 <option value="">@lang('locale.region')</option>
                                 @foreach ($regions as $region)
-                                <option value="{{ $region->id }}" {{ $selectedRegion == $region->id ? 'selected' : '' }}>
+                                <option value="{{ $region->id }}">
             {{ __($region->name) }}
         </option>
                                 @endforeach

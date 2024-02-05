@@ -110,8 +110,8 @@
     }
 
     .contact-photo {
-        width: 6rem;
-        height: 6rem;
+        width: 2rem;
+        height: 2rem;
         margin-right: 1rem;
         border-radius: 50%;
         overflow: hidden;

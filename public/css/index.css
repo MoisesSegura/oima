@@ -10758,13 +10758,13 @@ background-color: white;
   .container-who {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: center; 
     margin: 0; 
-    margin-right: 40rem;
-    margin-left: 40rem;
+    margin-right: 30rem;
+    margin-left: 30rem;
 
-    max-height: 480px; 
-        overflow-y: auto; 
+    /* max-height: 480px;  */
+        /* overflow-y: auto;  */
 }
 
 .container-who p{
@@ -10784,7 +10784,7 @@ align-items: center;
 
 
 .wrapper-who {
-  width: 200px;
+  width: calc(25% - 15px);
   margin: 0 15px 15px 0;
 /* 
     width: 200px;

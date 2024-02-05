@@ -25,10 +25,7 @@
                     <a class="nav-link active" href="#category-1" id="category-1-tab" data-toggle="tab" role="tab"
                         aria-controls="#category-1" aria-selected="true">{{$categories[0]->name}}</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link " href="#category-2" id="category-2-tab" data-toggle="tab" role="tab"
-                        aria-controls="#category-2" aria-selected="true">{{$categories[1]->name}}</a>
-                </li> -->
+
                 <li class="nav-item">
                     <a class="nav-link " href="#category-3" id="category-3-tab" data-toggle="tab" role="tab"
                         aria-controls="#category-3" aria-selected="true">{{$categories[2]->name}}</a>
@@ -50,7 +47,7 @@
                             <div class="card-who">
                                 <div class="profile-img">
                                     @if($individual->photo)
-                                    <img src="{{ asset('/uploads/' . $individual->photo) }}" alt="Foto del miembro">
+                                    <img src="{{ asset('/uploads/' . $individual->photo) }}" alt="$individual->name">
                                     @endif
                                 </div>
                                 <div class="content-who">
@@ -64,33 +61,7 @@
                     </div>
                 </div>
             </div>
-<!-- 
-            <div class="tab-pane fade" id="category-2" role="tabpanel" aria-labelledby="category-2-tab">
 
-                <ul class="blog--carousel">
-                    <div class="container-who">
-                        @foreach($person as $individual)
-                        @if($individual->category_id == 2)
-                        <div class="wrapper-who">
-                            <div class="card-who">
-                                <div class="profile-img">
-                                    @if($individual->photo)
-                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
-                                    @endif
-                                </div>
-                                <div class="content-who">
-                                    <h3>{{ $individual->name }}</h3>
-                                    <p>{{ $individual->description }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach
-                    </div>
-                </ul>
-
-
-            </div> -->
 
             <div class="tab-pane fade" id="category-3" role="tabpanel" aria-labelledby="category-3-tab">
                 <div class="who">

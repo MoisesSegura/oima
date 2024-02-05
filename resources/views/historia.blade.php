@@ -6,7 +6,7 @@
         <div class="backbot">
             <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver')</a>
         </div>
-        <h1 class="title title--underline  txt--blue text-center d-md-none">Historia de OIMA</h1>
+        <h1 class="title title--underline  txt--blue text-center d-md-none">@lang('locale.historiaOIMA')</h1>
         <div class="hero hero-has-text hero-history">
             <div class="hero--txt p-3 d-none d-md-block">
                 <h1 class="title">{{ __($history->title) }}</h1>

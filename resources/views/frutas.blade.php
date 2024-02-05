@@ -106,9 +106,11 @@
             data: $('#f_1').serialize(), 
             success: function (data) {
 
+
                 $('#products').empty();
 
                 $.each(data, function (index, fruit) {
+                    console.log(fruit)
     var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
         '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
         '<div class="card--flex__content">' +
@@ -128,6 +130,9 @@
             }
         });
     });
+
+
+    
 });
 
         
@@ -150,15 +155,21 @@
 
 
 
+<script>
+    // Obtener el elemento del select de región
+    var regionSelect = document.getElementById('region');
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151598454-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    // Escuchar cambios en el select de la región
+    regionSelect.addEventListener('change', function () {
+        // Obtener el valor seleccionado de la región
+        var selectedRegion = this.value;
 
-        gtag('config', 'UA-151598454-1');
-    </script>
+        // Actualizar los enlaces con el nuevo valor de la región
+        document.getElementById('cat3-tab').href = "{{ route('frutas') }}/" + selectedRegion;
+        document.getElementById('cat4-tab').href = "{{ route('hortalizas') }}/" + selectedRegion;
+    });
+</script>
+
     </body>
 
 

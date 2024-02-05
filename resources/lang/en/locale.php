@@ -49,6 +49,7 @@ return [
   'enlaceexterno' => 'External Links',
 
   //historia
+  'historiaOIMA' => 'History of MIOA',
   'definicion' => 'Definition',
   'origen' => 'Origin',
   'estrategia' => 'Strategy',

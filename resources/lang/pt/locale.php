@@ -46,6 +46,7 @@ return [
   'enlaceexterno' => 'Enlaces externos',
 
   //historia
+  'historiaOIMA' => 'História da OIMA',
   'definicion' => 'Definição',
   'origen' => 'Origem',
   'estrategia' => 'Estratégia',

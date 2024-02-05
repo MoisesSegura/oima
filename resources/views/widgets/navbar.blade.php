@@ -71,8 +71,8 @@
         </li>
 
         <li>
-            <a class="nav__list--link {{ request()->routeIs(['frutas','hortalizas','granos','legumbres']) ? 'active' : '' }}"
-                href="{{ route('frutas')}}">@lang('locale.catalogonav')</a>
+            <a class="nav__list--link {{ request()->routeIs(['catalogo','hortalizas','granos','legumbres']) ? 'active' : '' }}"
+                href="{{ route('catalogo')}}">@lang('locale.catalogonav')</a>
         </li>
 
         <li class=" d-none d-md-block">

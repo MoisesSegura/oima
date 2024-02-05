@@ -14,6 +14,7 @@
     <h2 class="section--title text-center title--underline txt--blue d-none d-md-block">@lang('locale.buscarProd')</h2>
 
     <div class="search--container">
+        
 
         <form id="f_1" name="f_1" action="{{ route('filterVegetables') }}" method="GET">
 
@@ -25,9 +26,9 @@
                         <select class="select" name="region" id="region" data-lang="es">
                             <option value="">@lang('locale.region')</option>
                             @foreach ($regions as $region)
-                            <option value="{{ $region->id }}" {{ $selectedRegion == $region->id ? 'selected' : '' }}>
-            {{ __($region->name) }}
-        </option>
+                            <option value="{{ $region->id }}">
+                                {{ __($region->name) }}
+                            </option>
                             @endforeach
                         </select>
 

@@ -46,6 +46,7 @@ return [
 
 
    //historia
+   'historiaOIMA' => 'Historia de OIMA',
    'definicion' => 'Definición',
    'origen' => 'Origen',
    'estrategia' => 'Estrategia',

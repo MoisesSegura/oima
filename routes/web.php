@@ -21,6 +21,11 @@ return "correo enviado exitosamente";
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
+//Route::get('/initiative-{id}-{name}', [InitiativeController::class, 'detail'])->name('initiative_detail');
+
+Route::get('/catalogo', [App\Http\Controllers\CatalogController::class, 'catalogo'])->name('catalogo');
+Route::get('/filtrar-productos', [App\Http\Controllers\CatalogController::class, 'filterProducts'])->name('filtrar-productos');
+Route::get('/buscar-catalogo', [App\Http\Controllers\CatalogController::class, 'searchProducts'])->name('buscar-catalogo');
 
 Route::get('/frutas', [App\Http\Controllers\CatalogController::class, 'Catalog'])->name('frutas');
 Route::get('/hortalizas', [App\Http\Controllers\CatalogController::class, 'Vegetables'])->name('hortalizas');
@@ -46,7 +51,6 @@ Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'sh
 Route::get('/historia', [App\Http\Controllers\oimaController::class, 'history'])->name('historia');
 
 Route::get('/get-countries/{regionId}', [App\Http\Controllers\CatalogController::class, 'getCountriesByRegion'])->name('get-countries');
-Route::get('/filter-products',  [App\Http\Controllers\CatalogController::class, 'filterProducts'])->name('filterProducts');
 Route::get('/producto/{id}', [App\Http\Controllers\CatalogController::class, 'showProduct'])->name('verProducto');
 Route::get('/requisitos/{id}', [App\Http\Controllers\CatalogController::class, 'showRequirements'])->name('verRequisitos');
 Route::get('/infoAgronomica/{id}', [App\Http\Controllers\CatalogController::class, 'showAgronomic'])->name('verInfoAgronomica');

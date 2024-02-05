@@ -96,7 +96,7 @@
         <div class="container">
             <div class="card--md-only">
                 <div class="col-12">
-                    <h3 class="title title--sideline title--underline-md"> @lang('locale.infoGeneral') {{$product->country->name }}</h3>
+                    <h3 class="title title--sideline title--underline-md"> @lang('locale.infoGeneral') {!! $product->country->name !!}</h3>
                 </div>
             </div>
             <div class="card--md-only" style="background-color:#076495!important;">
@@ -110,7 +110,7 @@
                             style="color:white;background-color:#076495!important;">
                             <p style="text-align:justify">
 
-                                {{$product->characteristics}}
+                                {!! $product->characteristics !!}
 
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="card no-border-md card--full">
                             <p><span style="color:#000000">
 
-                                    {{$product->commercialization}}
+                                    {!! $product->commercialization !!}
 
 
                                 </span></p>
@@ -145,7 +145,7 @@
                                 style="color:white;background-color:#076495!important;">
                                 <p style="text-align:justify">
 
-                                    {{$product->varieties}}
+                                    {!! $product->varieties !!}
 
                                 </p>
                             </div>
@@ -154,7 +154,7 @@
                             </div>
                             <div class="card no-border-md card--full-md"
                                 style="color:white; background-color:#076495!important;">
-                                <p> {{$product->national_production}} </p>
+                                <p> {!! $product->national_production !!} </p>
                             </div>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                                 <h4 class="title"> @lang('locale.unidad') </h4>
                             </div>
                             <div class="card no-border-md card--full-md" style="background-color:#F3F3F3">
-                                <p> {{$product->salesunit}} </p>
+                                <p> {!! $product->salesunit !!} </p>
 
 
                             </div>
@@ -184,7 +184,7 @@
                         </div>
                         <div class="card no-border-md card--full-md" style="background-color:#F3F3F3">
 
-                            {{$product->imports}}
+                            {!! $product->imports !!}
 
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                         </div>
                         <div class="card no-border-md card--full-md" style="background-color:#076495!important;">
 
-                            {{$product->exports}}
+                            {!! $product->exports !!}
 
                         </div>
                     </div>

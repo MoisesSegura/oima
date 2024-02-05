@@ -22,7 +22,7 @@ class ProductDetail extends Model implements TranslatableContract
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['title','shape','color','flavor','national_production'];
+    public $translatedAttributes = ['title','shape','color','flavor','national_production','characteristics','commercialization','varieties','salesunit','imports','exports'];
 
     public function country(): BelongsTo
     {
@@ -74,6 +74,11 @@ class ProductDetail extends Model implements TranslatableContract
     {
         return $this->hasMany(ProductGraphic::class);
     }
+
+    // public function graphicValues()
+    // {
+    //     return $this->hasMany(ProductDetailGraphicValue::class,'product_detail','product_detail_graphic');
+    // }
 
     public function agronomics()
     {

@@ -183,7 +183,7 @@ class ProductDetailResource extends Resource
                                             ]),
 
                                     ])->hidden(fn(Get $get) => !in_array($get('country_id'), ['3', '7', '9', '6', '5', '8', '10', '19']))
-                                // PRODUCTOS AMETICA CENTRAL
+                                // PRODUCTOS AMERICA CENTRAL
                             ]),
 
                         Tabs\Tab::make('Otros')
@@ -274,6 +274,10 @@ class ProductDetailResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product.name'),
 
+                Tables\Columns\TextColumn::make('known_name')
+                ->searchable()
+                ->sortable(),
+
             ])
             ->filters([
                 SelectFilter::make('Country')
@@ -304,6 +308,8 @@ class ProductDetailResource extends Resource
 
             RelationManagers\SalesRelationManager::class,
             RelationManagers\GraphicsRelationManager::class,
+            // RelationManagers\GraphicValuesRelationManager::class,
+
 
             RelationGroup::make('Nutritional Information', [
                 RelationManagers\NutritionalPropertyRelationManager::class,

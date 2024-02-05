@@ -14,6 +14,7 @@ use App\Models\ProductGraphic;
 use App\Models\Extra;
 use App\Models\ProductDetailGraphicValue;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 
 class CatalogController extends Controller
@@ -29,6 +30,102 @@ class CatalogController extends Controller
     
         return null; 
     }
+    public function catalogo(Request $request){
+        
+        $fruits = $this->getFruits();
+        $vegetables = $this->getVegetables();
+        $grains = $this->getGrains();
+        $legumes = $this->getLegumes();
+
+        $countries = $this->getCountries();
+        $regions = $this->getRegions();
+        $extras = $this->getExtras();
+
+        return view('catalogo', compact('fruits','vegetables','grains','legumes','countries','regions','extras'));
+    }
+
+    public function filterProducts(Request $request)
+    {
+        $countryId = $request->input('country');
+        $productName = $request->input('name'); // Agregar la búsqueda por nombre
+    
+        $filteredData = [];
+    
+        // Frutas
+        $fruits = ProductDetail::with('product')
+            ->where('product_detail.country_id', $countryId)
+            ->whereHas('product', function ($query) use ($productName) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('slug', 'Frutas');
+                });
+                if ($productName) {
+                    // Subconsulta para filtrar por nombre traducido
+                    $query->whereHas('translations', function ($subquery) use ($productName) {
+                        $subquery->where('name', 'like', '%' . $productName . '%');
+                    });
+                }
+            })
+            ->get();
+    
+        $filteredData['fruits'] = $fruits;
+    
+        // Hortalizas
+        $vegetables = ProductDetail::with('product')
+            ->where('product_detail.country_id', $countryId)
+            ->whereHas('product', function ($query) use ($productName) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('slug', 'Hortalizas');
+                });
+                if ($productName) {
+                    // Subconsulta para filtrar por nombre traducido
+                    $query->whereHas('translations', function ($subquery) use ($productName) {
+                        $subquery->where('name', 'like', '%' . $productName . '%');
+                    });
+                }
+            })
+            ->get();
+    
+        $filteredData['vegetables'] = $vegetables;
+    
+        // Granos
+        $grains = ProductDetail::with('product')
+            ->where('product_detail.country_id', $countryId)
+            ->whereHas('product', function ($query) use ($productName) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('slug', 'Granos');
+                });
+                if ($productName) {
+                    // Subconsulta para filtrar por nombre traducido
+                    $query->whereHas('translations', function ($subquery) use ($productName) {
+                        $subquery->where('name', 'like', '%' . $productName . '%');
+                    });
+                }
+            })
+            ->get();
+        $filteredData['grains'] = $grains;
+    
+        // Legumbres
+        $pulses = ProductDetail::with('product')
+            ->where('product_detail.country_id', $countryId)
+            ->whereHas('product', function ($query) use ($productName) {
+                $query->whereHas('category', function ($query) {
+                    $query->where('slug', 'Legumbres');
+                });
+                if ($productName) {
+                    // Subconsulta para filtrar por nombre traducido
+                    $query->whereHas('translations', function ($subquery) use ($productName) {
+                        $subquery->where('name', 'like', '%' . $productName . '%');
+                    });
+                }
+            })
+            ->get();
+    
+        $filteredData['pulses'] = $pulses;
+    
+        return response()->json($filteredData);
+    }
+    
+
     public function Catalog(Request $request){
         
         $products = $this->getFruits();
@@ -36,9 +133,8 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        $selectedRegion = $request->input('region') ?: session('selected_region_fruits');
 
-        return view('frutas', compact('products','countries','regions','extras','selectedRegion'));
+        return view('frutas', compact('products','countries','regions','extras'));
     }
 
 
@@ -49,9 +145,8 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        $selectedRegion = $request->input('region');
 
-        return view('hortalizas', compact('products','countries','regions','extras','selectedRegion'));
+        return view('hortalizas', compact('products','countries','regions','extras'));
     }
 
     public function Grains(Request $request){
@@ -61,9 +156,7 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        $selectedRegion = $request->input('region');
-
-        return view('granos', compact('products','countries','regions','extras','selectedRegion'));
+        return view('granos', compact('products','countries','regions','extras'));
     }
 
     public function Legumes(Request $request){
@@ -73,9 +166,7 @@ class CatalogController extends Controller
         $regions = $this->getRegions();
         $extras = $this->getExtras();
 
-        $selectedRegion = $request->input('region') ?: session('selected_region_vegetables');
-
-        return view('legumbres', compact('products','countries','regions','extras','selectedRegion'));
+        return view('legumbres', compact('products','countries','regions','extras'));
     }
 
 
@@ -323,39 +414,6 @@ class CatalogController extends Controller
 }
 
 
-public function filterProducts(Request $request)
-{
-    $categoryId = 3; // Assuming 'Frutas' category, change as needed
-
-    $query = ProductDetail::query()
-        ->select('product_detail.product_id', 'product_detail.id', 'product_detail.known_name')
-        ->groupBy('product_detail.product_id', 'product_detail.id', 'product_detail.known_name')
-        ->whereIn('product_detail.product_id', function ($subquery) use ($categoryId) {
-            $subquery->select('product.id')
-                ->from('product')
-                ->join('product_category', 'product.category_id', '=', 'product_category.id')
-                ->where('product_category.id', $categoryId);
-        });
-
-
-    if ($request->has('country')) {
-        $countryId = $request->input('country');
-        $query->whereHas('product', function ($subquery) use ($countryId) {
-            $subquery->where('country_id', $countryId);
-        });
-    }
-
-    if ($request->has('name')) {
-        $name = $request->input('name');
-        $query->where('known_name', 'LIKE', "%$name%"); // Adjust as needed
-    }
-
-    $filteredProducts = $query->get();
-
-    // Return the results or pass them to a view
-    return view('frutas', compact('filteredProducts'));
-}
-
 public function filterFruits(Request $request)
 {
     // Obtener el parámetro de la solicitud
@@ -372,7 +430,7 @@ public function filterFruits(Request $request)
         ->get();
 
   
-    return response()->json($products);
+        return response()->json($products);
 }
 
 public function filterVegetables(Request $request)
@@ -381,7 +439,7 @@ public function filterVegetables(Request $request)
     $countryId = $request->input('country');
 
   
-    $filteredFruits = ProductDetail::with('product')
+    $filteredVegetables = ProductDetail::with('product')
         ->where('product_detail.country_id', $countryId)
         ->whereHas('product', function ($query) {
             $query->whereHas('category', function ($query) {
@@ -390,16 +448,17 @@ public function filterVegetables(Request $request)
         })
         ->get();
 
-    return response()->json($filteredFruits);
+    return response()->json($filteredVegetables);
+
+
 }
 
 public function filterGrains(Request $request)
 {
-    // Obtener el parámetro de la solicitud
     $countryId = $request->input('country');
 
-   
-    $filteredFruits = ProductDetail::with('product')
+    
+    $filteredGrains = ProductDetail::with('product')
         ->where('product_detail.country_id', $countryId)
         ->whereHas('product', function ($query) {
             $query->whereHas('category', function ($query) {
@@ -408,16 +467,14 @@ public function filterGrains(Request $request)
         })
         ->get();
 
-    return response()->json($filteredFruits);
+    return response()->json($filteredGrains);
 }
 
 public function filterPulses(Request $request)
 {
-    // Obtener el parámetro de la solicitud
     $countryId = $request->input('country');
-
     
-    $filteredFruits = ProductDetail::with('product')
+    $filteredPulses = ProductDetail::with('product')
         ->where('product_detail.country_id', $countryId)
         ->whereHas('product', function ($query) {
             $query->whereHas('category', function ($query) {
@@ -426,7 +483,89 @@ public function filterPulses(Request $request)
         })
         ->get();
 
-    return response()->json($filteredFruits);
+    return response()->json($filteredPulses);
+}
+
+
+public function searchProducts(Request $request)
+{
+    $countryId = $request->input('country');
+    $productName = $request->input('name'); // Agregar la búsqueda por nombre
+
+    $filteredData = [];
+
+    // Frutas
+    $fruits = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) use ($productName) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Frutas');
+            });
+            if ($productName) {
+                // Subconsulta para filtrar por nombre traducido
+                $query->whereHas('translations', function ($subquery) use ($productName) {
+                    $subquery->where('name', 'like', '%' . $productName . '%');
+                });
+            }
+        })
+        ->get();
+
+    $filteredData['fruits'] = $fruits;
+
+    // Hortalizas
+    $vegetables = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) use ($productName) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Hortalizas');
+            });
+            if ($productName) {
+                // Subconsulta para filtrar por nombre traducido
+                $query->whereHas('translations', function ($subquery) use ($productName) {
+                    $subquery->where('name', 'like', '%' . $productName . '%');
+                });
+            }
+        })
+        ->get();
+
+    $filteredData['vegetables'] = $vegetables;
+
+    // Granos
+    $grains = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) use ($productName) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Granos');
+            });
+            if ($productName) {
+                // Subconsulta para filtrar por nombre traducido
+                $query->whereHas('translations', function ($subquery) use ($productName) {
+                    $subquery->where('name', 'like', '%' . $productName . '%');
+                });
+            }
+        })
+        ->get();
+    $filteredData['grains'] = $grains;
+
+    // Legumbres
+    $pulses = ProductDetail::with('product')
+        ->where('product_detail.country_id', $countryId)
+        ->whereHas('product', function ($query) use ($productName) {
+            $query->whereHas('category', function ($query) {
+                $query->where('slug', 'Legumbres');
+            });
+            if ($productName) {
+                // Subconsulta para filtrar por nombre traducido
+                $query->whereHas('translations', function ($subquery) use ($productName) {
+                    $subquery->where('name', 'like', '%' . $productName . '%');
+                });
+            }
+        })
+        ->get();
+
+    $filteredData['pulses'] = $pulses;
+
+    return response()->json($filteredData);
 }
 
 
