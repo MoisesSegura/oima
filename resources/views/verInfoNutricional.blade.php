@@ -11,16 +11,16 @@
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
                 <ul class="share--links">
                     <li><a class="share--link" target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/infoNutricional/banano/costa-rica"><img
+                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/"><img
                                 src="/img/fb-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://wa.me/?text=https://www.mioa.org/es/infoNutricional/banano/costa-rica"><img
+                            href="https://wa.me/?text=https://www.mioa.org/es/"><img
                                 src="/img/wa-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://twitter.com/home?status=https://www.mioa.org/es/infoNutricional/banano/costa-rica "><img
+                            href="https://twitter.com/home?status=https://www.mioa.org/es/"><img
                                 src="/img/tw-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/infoNutricional/banano/costa-rica&title=&summary=&source="><img
+                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/"><img
                                 src="/img/li-icon.svg"></a></li>
                 </ul>
             </div>

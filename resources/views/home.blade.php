@@ -47,7 +47,7 @@
 
             <h3 class="title">@lang('locale.proposito')</h3>
 
-            <p class="txt--black">{{ __($site->oima_purpose) }}</p>
+            <p class="txt--black">{!! __($site->oima_purpose) !!}</p>
         </div>
     </section>
     <section class="card__container-home container">
@@ -180,7 +180,7 @@
 
                         @foreach ($achievements as $achievement)
                         <li class="list--expandable">
-                            <p>{{ __($achievement->text) }}</p>
+                            <p>{!! __($achievement->text) !!}</p>
                         </li>
                         @endforeach
 
