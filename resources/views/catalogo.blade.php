@@ -218,7 +218,7 @@
             // Iterar y mostrar frutas
             $.each(data.fruits, function (index, fruit) {
                 var cardHtml = '<a href="' + '{{ url('producto') }}/' + fruit.id + '" class="card card--flex card--link js-equal-height">' +
-                    '<img src="' + '{{ asset(' / uploads / ') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
+                    '<img src="' + '{{ asset('/uploads/') }}/' + fruit.product.image + '" alt="' + fruit.product.name + '" class="card--flex__img">' +
                     '<div class="card--flex__content">' +
                     '<h4 class="card--title">' + fruit.product.name + '</h4>' +
                     '<p class="card--text">' + fruit.known_name + '</p>' +
@@ -232,7 +232,7 @@
 
             $.each(data.vegetables, function (index, vegetable) {
                 var cardHtml = '<a href="' + '{{ url('producto') }}/' + vegetable.id + '" class="card card--flex card--link js-equal-height">' +
-                    '<img src="' + '{{ asset(' / uploads / ') }}/' + vegetable.product.image + '" alt="' + vegetable.product.name + '" class="card--flex__img">' +
+                    '<img src="' + '{{ asset('/uploads/') }}/' + vegetable.product.image + '" alt="' + vegetable.product.name + '" class="card--flex__img">' +
                     '<div class="card--flex__content">' +
                     '<h4 class="card--title">' + vegetable.product.name + '</h4>' +
                     '<p class="card--text">' + vegetable.known_name + '</p>' +
@@ -246,7 +246,7 @@
 
             $.each(data.grains, function (index, grain) {
                 var cardHtml = '<a href="' + '{{ url('producto') }}/' + grain.id + '" class="card card--flex card--link js-equal-height">' +
-                    '<img src="' + '{{ asset(' / uploads / ') }}/' + grain.product.image + '" alt="' + grain.product.name + '" class="card--flex__img">' +
+                    '<img src="' + '{{ asset('/uploads/') }}/' + grain.product.image + '" alt="' + grain.product.name + '" class="card--flex__img">' +
                     '<div class="card--flex__content">' +
                     '<h4 class="card--title">' + grain.product.name + '</h4>' +
                     '<p class="card--text">' + grain.known_name + '</p>' +
@@ -260,7 +260,7 @@
 
             $.each(data.legumes, function (index, legume) {
                 var cardHtml = '<a href="' + '{{ url('producto') }}/' + legume.id + '" class="card card--flex card--link js-equal-height">' +
-                    '<img src="' + '{{ asset(' / uploads / ') }}/' + legume.product.image + '" alt="' + legume.product.name + '" class="card--flex__img">' +
+                    '<img src="' + '{{ asset('/uploads/') }}/' + legume.product.image + '" alt="' + legume.product.name + '" class="card--flex__img">' +
                     '<div class="card--flex__content">' +
                     '<h4 class="card--title">' + legume.product.name + '</h4>' +
                     '<p class="card--text">' + legume.known_name + '</p>' +

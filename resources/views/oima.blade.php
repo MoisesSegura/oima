@@ -28,7 +28,7 @@
 
                         <li>
                             <img class="icon" src="{{ asset('/uploads/' . ltrim($workprinciple->image, '/')) }}">
-                            <p class="txt--black">{{ strip_tags($workprinciple->text) }}</p>
+                            <p class="txt--black">{!! $workprinciple->text !!}</p>
                         </li>
 
                         @endforeach
@@ -50,14 +50,14 @@
                 <h3 class="title txt-underline my-3">@lang('locale.mision')</h3>
                 <p class="txt--black text-justify my-1">
 
-                    {!! __($oima->mision) !!}
+                    {!! $oima->mision !!}
 
                 </p>
             </div>
             <div class="card--mission_text">
                 <h3 class="title txt-underline my-3">@lang('locale.vision')</h3>
                 <p class="txt--black text-justify my-1">
-                    {!! __($oima->vision) !!}
+                    {!! $oima->vision !!}
                 </p>
             </div>
         </div>

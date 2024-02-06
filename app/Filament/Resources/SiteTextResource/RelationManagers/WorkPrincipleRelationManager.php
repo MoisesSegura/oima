@@ -67,7 +67,7 @@ class WorkPrincipleRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('text')
             ->columns([
-                Tables\Columns\TextColumn::make('text'),
+                Tables\Columns\TextColumn::make('text')->html(),
             ])
             ->filters([
                 //

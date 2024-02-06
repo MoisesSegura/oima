@@ -67,8 +67,8 @@ class StatisticsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('text')
             ->columns([
-                Tables\Columns\TextColumn::make('text'),
-                Tables\Columns\TextColumn::make('value'),
+                Tables\Columns\TextColumn::make('text')->html(),
+                Tables\Columns\TextColumn::make('value')->html(),
             ])
             ->filters([
                 //

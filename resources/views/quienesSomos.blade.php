@@ -170,7 +170,7 @@
             <h4 class="title">@lang('locale.logros')</h4>
             <ul class="list--achievements card__list list--circle bullets--blue">
                 @foreach ($achievement as $achievement)
-                <li class="list--expandable">{{ __($achievement->text) }}</li>
+                <li class="list--expandable">{!! $achievement->text !!}</li>
                 @endforeach
 
 
@@ -190,14 +190,14 @@
                 <h4 class="title">@lang('locale.comiteEjecutivo')</h4>
                 <div class="txt--black">
                     @foreach ($executivecommitee as $executivecommitee)
-                    {{ __($executivecommitee->description) }}
+                    {!! $executivecommitee->description !!}
                     @endforeach
                 </div>
             </div>
             <div class="card--history">
                 <h4 class="title">@lang('locale.historia')</h4>
                 <div class="txt--black">
-                    <p> {!! __($oima->description) !!} </p>
+                    <p> {!! $oima->description !!} </p>
                     <a class="btn btn--green" href="{{ route('historia') }}">@lang('locale.verHistoria')</a>
                 </div>
             </div>
