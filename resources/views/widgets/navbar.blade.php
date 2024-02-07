@@ -75,14 +75,14 @@
                 href="{{ route('catalogo')}}">@lang('locale.catalogonav')</a>
         </li>
 
-        <li class=" d-none d-md-block">
+        <li class="d-none d-md-block">
             <!-- <a class="nav__list--link  {{ request()->routeIs(['eventos','noticias','sima-media']) ? 'active' : '' }}"
                 href="{{ route('eventos')}}">Blog</a> -->
 
 
                 <div class="headerdrop">
                 <div class="dropdown" data-dropdown>
-                <a class="drop nav__list--link  {{ request()->routeIs(['eventos','noticias','sima-media']) ? 'active' : '' }}"
+                <a class="drop nav__list--link  {{ request()->routeIs(['eventos','eventos','sima-media']) ? 'active' : '' }}"
                 data-dropdown-button>Blog</a>
                     <div class="dropdown-menu information-grid">
                         <div>
@@ -107,12 +107,23 @@
         </li>
 
         <li class="nav-item dropdown d-md-none">
-            <a id="nav-collapse-trigger" class="nav__list--link nav-link dropdown-toggle" href="#"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Más <i
-                    class="mdi mdi-chevron-down"></i></a>
-            <div class="dropdown-menu" aria-labelledby="nav-collapse-trigger">
-                <a class="nav__list--link " href="{{ route('eventos')}}">Blog</a>
-                <a class="nav__list--link active" href="{{ route('contacto')}}">@lang('locale.contacto')</a>
+        <div class="headerdrop">
+                <div class="dropdown" data-dropdown>
+                    <a class="drop nav__list--link {{ request()->routeIs('eventos','eventos','sima-media','contacto') ? 'active' : '' }}"
+                        data-dropdown-button>@lang('locale.masnav')</a>
+                    <div class="dropdown-menu information-grid">
+                        <div>
+                            <div class="dropdown-heading"></div>
+                            <div class="dropdown-drops">
+                                <a href="{{ route('eventos')}}" class="drop">Blog</a>
+                                <a href="{{ route('contacto')}}" class="drop">@lang('locale.contacto')</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
             </div>
         </li>
 
@@ -121,6 +132,12 @@
 
 
     <style>
+
+    @media (max-width: 767px) {
+    .nav__list--link {
+      color: black !important; /* Cambia el color del texto a negro en pantallas pequeñas */
+    }
+  }
         .headerdrop {
             /* background-color: rgba(55, 102, 151, 0);
                 display: flex;
@@ -210,60 +227,49 @@
 
     <script>
 
-        let timer;
+    let timer;
 
-        document.addEventListener("mouseover", e => {
-            const isDropdownButton = e.target.matches("[data-dropdown-button]");
-            const isDropdown = e.target.matches("[data-dropdown]");
-            const isDropdownItem = e.target.matches("[data-dropdown-item]");
+// Verificar si el dispositivo es táctil
+const isTouchDevice = 'ontouchstart' in window || navigator.msMaxTouchPoints;
 
-            if (isDropdownButton) {
-                clearTimeout(timer);
-                const currentDropdown = e.target.closest("[data-dropdown]");
-                currentDropdown.classList.add("active");
-            } else if (isDropdown || isDropdownItem) {
-                clearTimeout(timer);
-            }
+// Usar eventos adecuados según el tipo de dispositivo
+const mouseoverEvent = isTouchDevice ? 'touchstart' : 'mouseover';
+const mouseoutEvent = isTouchDevice ? 'touchend' : 'mouseout';
 
-            document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-                if (!dropdown.contains(e.target)) {
-                    dropdown.classList.remove("active");
-                }
-            });
-        });
+document.addEventListener(mouseoverEvent, e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");
+    const isDropdown = e.target.matches("[data-dropdown]");
+    const isDropdownItem = e.target.matches("[data-dropdown-item]");
 
-        document.addEventListener("mouseout", e => {
-            const isDropdownButton = e.target.matches("[data-dropdown-button]");
-            const isDropdown = e.target.matches("[data-dropdown]");
+    if (isDropdownButton) {
+        clearTimeout(timer);
+        const currentDropdown = e.target.closest("[data-dropdown]");
+        currentDropdown.classList.add("active");
+    } else if (isDropdown || isDropdownItem) {
+        clearTimeout(timer);
+    }
 
-            if (isDropdownButton || isDropdown) {
-                return;
-            }
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove("active");
+        }
+    });
+});
 
-            document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-                timer = setTimeout(() => {
-                    dropdown.classList.remove("active");
-                }, 1000000000);
-            });
-        });
+document.addEventListener(mouseoutEvent, e => {
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");
+    const isDropdown = e.target.matches("[data-dropdown]");
 
+    if (isDropdownButton || isDropdown) {
+        return;
+    }
 
-
-        // document.addEventListener("click", e => {
-        //             const isDropdownButton = e.target.matches("[data-dropdown-button]")
-        //             if (!isDropdownButton && e.target.closest("[data-dropdown]") != null) return
-
-        //             let currentDropdown
-        //             if (isDropdownButton) {
-        //                 currentDropdown = e.target.closest("[data-dropdown]")
-        //                 currentDropdown.classList.toggle("active")
-        //             }
-
-        //             document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
-        //                 if (dropdown === currentDropdown) return
-        //                 dropdown.classList.remove("active")
-        //             })
-        //         })
+    document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
+        timer = setTimeout(() => {
+            dropdown.classList.remove("active");
+        }, 1000); // Ajusta el tiempo según tus necesidades
+    });
+});
 
 
 
@@ -293,4 +299,6 @@
             </div>
         </div> -->
     </div>
+
+    
 </div>

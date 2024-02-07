@@ -12,6 +12,7 @@ return [
   'info' => 'Institutional information',
   'funcionamiento' => 'Operational',
   'ayuda' => 'Help',
+  'masnav' => 'More',
 
 
   //traduccion etiquetas pagina Home

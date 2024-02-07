@@ -9348,7 +9348,8 @@ p {
           flex-direction: column; }
 @media (min-width: 768px) {
     .hero--home-overlay {
-      width: 35%; } }
+      width: 35%; 
+    } }
 .hero--home-overlay:after {
     position: absolute;
     content: '';
@@ -10763,8 +10764,8 @@ background-color: white;
     margin-right: 30rem;
     margin-left: 30rem;
 
-    /* max-height: 480px;  */
-        /* overflow-y: auto;  */
+    /* max-height: 480px; 
+        overflow-y: auto;  */
 }
 
 .container-who p{
@@ -10786,15 +10787,13 @@ align-items: center;
 .wrapper-who {
   width: calc(25% - 15px);
   margin: 0 15px 15px 0;
-/* 
-    width: 200px;
-    margin: 0 20px 20px 0;  */
+
 }
 
 .card-who {
     border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .profile-img img {
@@ -10808,8 +10807,43 @@ align-items: center;
 }
 
 @media (max-width: 768px) {
-    .wrapper-who {
-        width: 40%; /* Dos personas por línea en pantallas más pequeñas */
-    }
+  .wrapper-who {
+      width: calc(50% - 15px);
+      flex-basis: 100%;
+  }
+
+
+  .container-who {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0 15px; 
+
+  
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Aumentar la especificidad utilizando la clase .my-slick-carousel */
+
+
+.my-slick-carousel img {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+width: 100%;
+height: auto;
+
+}
+
+
+
+.hero--home-overlay h3{
+margin-top:5rem;
+}
+
+
+
+
 }
 

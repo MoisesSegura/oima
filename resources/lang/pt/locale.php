@@ -11,6 +11,8 @@ return [
   'info' => 'Informação institucional',
   'funcionamiento' => 'Funcionamento',
   'ayuda' => 'Ajuda',
+  'masnav' => 'Más',
+
 
   //traduccion etiquetas pagina Home
   'proposito' => 'Nosso Objetivo',

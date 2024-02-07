@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ strip_tags($individual->description) }}</p>
+                                    <p>{!! $individual->description !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ strip_tags($individual->description) }}</p>
+                                    <p>{!! $individual->descriptio !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="content-who">
                                     <h3>{{ $individual->name }}</h3>
-                                    <p>{{ strip_tags($individual->description) }}</p>
+                                    <p>{!! $individual->description !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                     </ul>
                 </div>
                 <div class="text-center d-md-none">
-                    <a href="/es/oima/countries">Ver todos</a>
+                    <a href="#">Ver todos</a>
                 </div>
             </div>
             <div class="countries--container d-none d-md-block">
