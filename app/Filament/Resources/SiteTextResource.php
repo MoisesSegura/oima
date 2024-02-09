@@ -180,7 +180,7 @@ class SiteTextResource extends Resource
                                     Forms\Components\RichEditor::make('definition'),
                                     Forms\Components\RichEditor::make('origin'),
                                     Forms\Components\RichEditor::make('strategy'),
-                                    Forms\Components\MarkdownEditor::make('birth'),
+                                    Forms\Components\RichEditor::make('birth'),
                                 ]),
                             ]),
                     ]),
