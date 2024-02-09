@@ -267,7 +267,7 @@ document.addEventListener(mouseoutEvent, e => {
     document.querySelectorAll("[data-dropdown].active").forEach(dropdown => {
         timer = setTimeout(() => {
             dropdown.classList.remove("active");
-        }, 1000); // Ajusta el tiempo según tus necesidades
+        }, 1000000); // Ajusta el tiempo según tus necesidades
     });
 });
 

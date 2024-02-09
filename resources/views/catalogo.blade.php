@@ -16,7 +16,7 @@
     <div class="search--container">
 
 
-        <form id="f_1" name="f_1" action="{{ route('filtrar-productos') }}" method="GET"  style="display: flex;">
+        <form id="f_1" name="f_1" action="{{ route('filtrar-productos') }}" method="GET" class="formCatalogo">
 
             <div class="selectors__container">
                 <h3 class="txt--blue title--underline">@lang('locale.buscarProd')</h3>
@@ -44,7 +44,7 @@
             </div>
             
         
-            <div class="input__wrap input__wrap--search" style="height: 50%;  margin-top:1.5rem;  margin-left:10rem;" >
+            <div class="input__wrap input__wrap--search catalogo">
                 <input class="input input--search" placeholder="@lang('locale.buscarprod')" name="name" value="" id="searchInput" >
             </div>
          

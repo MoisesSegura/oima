@@ -10825,18 +10825,17 @@ align-items: center;
     margin-left: 10px;
 }
 
-/* Aumentar la especificidad utilizando la clase .my-slick-carousel */
+/* .my-slick-carousel home*/
 
-
-.my-slick-carousel img {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-width: 100%;
-height: auto;
-
+.single-item img {
+  width: 100%; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción original de la imagen */
+  object-fit: cover; /* Ajusta el tamaño de la imagen manteniendo su relación de aspecto */
+  object-position: center center; /* Centra la imagen horizontal y verticalmente */
+  border: 2px solid #fff; /* Añade un borde blanco de 2px, puedes ajustar según tus necesidades */
+  border-radius: 10px; /* Añade esquinas redondeadas, ajusta según tus necesidades */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Añade una sombra suave, ajusta según tus necesidades */
 }
-
-
 
 .hero--home-overlay h3{
 margin-top:5rem;
@@ -10844,6 +10843,38 @@ margin-top:5rem;
 
 
 
+/* form vista catalogo */
+.catalogo{
+  margin-top: 0 !important;
+  margin-left: 0 !important;
 
 }
 
+.formCatalogo{
+  display: inline !important;
+}
+
+.selectors__container{
+  width: 93%;
+}
+
+ /* titlulos del reposotorio */
+.repoTitleMovil{
+  display: flex;
+  white-space: pre-line;
+
+}
+
+
+
+}
+
+.catalogo{
+  height: 50%;
+  margin-top: 1.5rem ;
+  margin-left: 10rem ;
+}
+
+.formCatalogo{
+  display: flex;
+}

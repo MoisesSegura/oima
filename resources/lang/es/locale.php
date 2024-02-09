@@ -83,6 +83,8 @@ return [
    'fechaven' => 'Fecha de vencimiento',
    'nodisp' => 'No disponible',
 
+   'publiMovil' =>  "Publicaciones y\ndocumentos técnicos",
+
 
 
    //seccion catalogo

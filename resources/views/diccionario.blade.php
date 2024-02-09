@@ -28,15 +28,9 @@
                     <div>
                     </div>
                     <div class="search--container">
-                        <h4 class="title d-md-none">
 
+                        <h4 class="title d-md-none repoTitleMovil"> @lang('locale.diccionario')</h4>
 
-
-                        @lang('locale.diccionario')
-
-
-
-                        </h4>
                         <input type="hidden" class="input input--search" name="category" value="">
                         <div class="input__wrap input__wrap--search">
                             <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">

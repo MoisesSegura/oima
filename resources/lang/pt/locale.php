@@ -82,6 +82,8 @@ return [
   'fechaven' => 'Data de expiração',
   'nodisp' => 'Não disponível ',
 
+  'publiMovil' =>  "Publicações y\ndocumentos técnicos",
+
 
 
 

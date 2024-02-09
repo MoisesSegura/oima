@@ -23,22 +23,37 @@
                 <div class="col-md-6 about__values values--desktop d-none d-md-block">
                     <h3 class="title">@lang('locale.principios')</h3>
                     <ul class="list--icons">
-                        @foreach ($workprinciple as $workprinciple)
+                        @foreach ($workprinciples as $workprinciple)
 
 
                         <li>
                             <img class="icon" src="{{ asset('/uploads/' . ltrim($workprinciple->image, '/')) }}">
-                            <p class="txt--black">{!! $workprinciple->text !!}</p>
+                            <p class="txt--black">{!! strip_tags($workprinciple->text) !!}</p>
                         </li>
 
                         @endforeach
                     </ul>
                 </div>
 
+
             </div>
         </div>
-        
+
     </section>
+
+    <section class="container">
+    <div class="col-md-12 about__values values--mobile d-block d-md-none">
+        <h3 class="title">@lang('locale.principios')</h3>
+        <ul class="list--icons">
+            @foreach ($workprinciples as $work)
+                <li>
+                    <img class="icon" src="{{ asset('/uploads/' . ltrim($work->image, '/')) }}">
+                    <p class="txt--black">{!! strip_tags($work->text) !!}</p>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+</section
 
 
     <section class="about__mission">
@@ -68,7 +83,7 @@
 
 
 
-   
+
 
 </div>
 

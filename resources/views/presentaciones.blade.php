@@ -29,11 +29,8 @@
                     <div>
                     </div>
 
-                    <h4 class="title d-md-none">
-
-                        @lang('locale.presentaciones')
-
-                    </h4>
+                    <h4 class="title d-md-none repoTitleMovil"> @lang('locale.presentaciones') </h4>
+                    
                     <input type="hidden" class="input input--search" name="category" value="">
                     <div class="input__wrap input__wrap--search">
                         <input type="search" class="input input--search" placeholder="@lang('locale.buscar')"

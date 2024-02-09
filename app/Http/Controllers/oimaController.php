@@ -27,7 +27,7 @@ class oimaController extends Controller
     public function oima(Request $request){
 
         
-        $workprinciple = WorkPrinciple::all();
+        $workprinciples = WorkPrinciple::all();
 
         $history = History::all();
 
@@ -46,7 +46,7 @@ class oimaController extends Controller
         $categories = PersonCategory::all();
 
 
-        return view('oima', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
+        return view('oima', compact('workprinciples','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
     }
 
 

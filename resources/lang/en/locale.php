@@ -86,6 +86,8 @@ return [
   'fechaven' => 'Expire Date',
   'nodisp' => 'Not available',
 
+  'publiMovil' =>  "Publications and\ntechnical documents",
+
 
 
   //seccion catalogo

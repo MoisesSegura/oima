@@ -22,10 +22,9 @@
                     <div>
                     </div>
                     <div class="search--container">
-                        <h4 class="title d-md-none">
 
-                        @lang('locale.normas')
-                        </h4>
+                        <h4 class="title d-md-none repoTitleMovil">@lang('locale.normas')</h4>
+
                         <input type="hidden" class="input input--search" name="category" value="">
                         <div class="input__wrap input__wrap--search">
                             <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">

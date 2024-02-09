@@ -21,18 +21,18 @@
             <ul class="card__list list--circle bullets--gray">
                 <li>
                     <div class="contact-info">
-                        <div class="contact-photo">
+                        <!-- <div class="contact-photo">
                             @if($contact->contact_president)
                             <img src="{{ asset(trim('/uploads/' . $contact->president_photo, '/')) }}">
                             @endif
-                        </div>
+                        </div> -->
                         <div class="contact-details">
                             @lang('locale.presidencia')<br><strong>{{ $contact->contact_president }}</strong>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <div class="contact-info">
+                    <!-- <div class="contact-info">
                         <div class="contact-photo">
                             @if($contact->contact_secretary)
                             <img src="{{ asset(trim('/uploads/' . $contact->secretary_photo, '/')) }}">
@@ -41,11 +41,11 @@
                         <div class="contact-details">
                             @lang('locale.secretariaTec')<br><strong>{{ $contact->contact_secretary }}</strong>
                         </div>
-                    </div>
+                    </div> -->
                 </li>
                 <li>
                     <div class="contact-info">
-                        <div class="contact-photo2">
+                        <!-- <div class="contact-photo2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                 class="w-4 h-4">
                                 <path fill-rule="evenodd"
@@ -54,7 +54,7 @@
                             </svg>
 
 
-                        </div>
+                        </div> -->
                         <div class="contact-details">
                             @lang('locale.tel') <br><strong>{{ $contact->contact_phone }}</strong>
                         </div>
@@ -62,7 +62,7 @@
                 </li>
                 <li>
                     <div class="contact-info">
-                        <div class="contact-photo2">
+                        <!-- <div class="contact-photo2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                 class="w-4 h-4">
                                 <path
@@ -71,7 +71,7 @@
                                     d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                             </svg>
 
-                        </div>
+                        </div> -->
                         <div class="contact-details">
                             @lang('locale.correo') <br><strong>{{ $contact->contact_email }}</strong>
                         </div>
