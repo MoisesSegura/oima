@@ -129,7 +129,7 @@ class SiteTextResource extends Resource
                             ->relationship('oima')
                             ->schema([
 
-                                Forms\Components\FileUpload::make('image')->required()
+                                Forms\Components\FileUpload::make('image')->label("Imagen (Nuestros Principios)")->required()
                                 ->disk('public')
                                 ->directory('uploads/oima'),
 
@@ -188,13 +188,15 @@ class SiteTextResource extends Resource
                 
                     Tabs\Tab::make('Executive Commitee')
                     ->schema([
-                        Forms\Components\FileUpload::make('image')->required()
-                        ->disk('public')
-                    ->directory('uploads/executive_commitee'),
+                     
 
                         Section::make('Executive commitee')
                         ->relationship('executiveCommitee')
                         ->schema([
+                            Forms\Components\FileUpload::make('image')->required()->label("Imagen (Comité Ejecutivo)")
+                            ->disk('public')
+                        ->directory('uploads/executive_commitee'),
+                        
                             Repeater::make('translations')
                             ->relationship('translations')
                             ->schema([
@@ -220,6 +222,10 @@ class SiteTextResource extends Resource
                         Section::make('Extras')
                         ->relationship('extra')
                         ->schema([
+                            Forms\Components\FileUpload::make('image')->label("Imagen (Seccion Contacto)")
+                            ->disk('public')
+                            ->directory('uploads/extras'),
+
                             Repeater::make('translations')
                             ->relationship('translations')
                             ->schema([
@@ -247,9 +253,7 @@ class SiteTextResource extends Resource
                                
                                 
                             ]),
-                            Forms\Components\FileUpload::make('image')
-                            ->disk('public')
-                            ->directory('uploads/extras'),
+                          
                         ]),
                 ]),
 
