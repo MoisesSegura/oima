@@ -102,13 +102,13 @@ class SiteTextResource extends Resource
                             Forms\Components\TextInput::make('contact_president')
                                 ->required()
                                 ->maxLength(255),
-                                Forms\Components\FileUpload::make('president_photo')
+                                Forms\Components\FileUpload::make('president_photo')->required()
                                 ->disk('public')
                                 ->directory('uploads/person_photos'),
                             Forms\Components\TextInput::make('contact_secretary')
                                 ->required()
                                 ->maxLength(255),
-                                Forms\Components\FileUpload::make('secretary_photo')
+                                Forms\Components\FileUpload::make('secretary_photo')->required()
                                 ->disk('public')
                                 ->directory('uploads/person_photos'),
                             Forms\Components\TextInput::make('contact_phone')
@@ -129,7 +129,7 @@ class SiteTextResource extends Resource
                             ->relationship('oima')
                             ->schema([
 
-                                Forms\Components\FileUpload::make('image')
+                                Forms\Components\FileUpload::make('image')->required()
                                 ->disk('public')
                                 ->directory('uploads/oima'),
 
@@ -188,7 +188,10 @@ class SiteTextResource extends Resource
                 
                     Tabs\Tab::make('Executive Commitee')
                     ->schema([
-                    
+                        Forms\Components\FileUpload::make('image')->required()
+                        ->disk('public')
+                    ->directory('uploads/executive_commitee'),
+
                         Section::make('Executive commitee')
                         ->relationship('executiveCommitee')
                         ->schema([
@@ -207,9 +210,7 @@ class SiteTextResource extends Resource
                                 Forms\Components\TextInput::make('title'),
                                 Forms\Components\RichEditor::make('description'),
                             ]),
-                            Forms\Components\FileUpload::make('image')
-                            ->disk('public')
-                        ->directory('uploads/executive_commitee'),
+                            
                         ]),
                 ]),
 
