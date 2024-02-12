@@ -2,7 +2,10 @@
 
 use App\Http\Livewire\Form;;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\oimaController;
 use App\Http\Controllers\RepositoryController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Mail;
 use  App\Mail\EnviarCorreo;
 
@@ -13,51 +16,49 @@ Route::get('/locale/{locale}', function ($locale) {
  
 })->name('locale');;
 
-Route::post('enviar-correo', function(){
-    // return request()->all();
-Mail::to('moisessegurarojaas@gmail.com')->send(new EnviarCorreo(request()->all()));
-return "correo enviado exitosamente";
-})->name('enviar-correo');
+
+
+Route::post('/enviar-correo', [ContactController::class, 'enviarCorreo'])->name('enviar-correo');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'Home'])->name('home');
 
-//Route::get('/initiative-{id}-{name}', [InitiativeController::class, 'detail'])->name('initiative_detail');
 
-Route::get('/catalogo', [App\Http\Controllers\CatalogController::class, 'catalogo'])->name('catalogo');
-Route::get('/filtrar-productos', [App\Http\Controllers\CatalogController::class, 'filterProducts'])->name('filtrar-productos');
-Route::get('/buscar-catalogo', [App\Http\Controllers\CatalogController::class, 'searchProducts'])->name('buscar-catalogo');
+Route::get('/catalogo', [CatalogController::class, 'catalogo'])->name('catalogo');
+Route::get('/filtrar-productos', [CatalogController::class, 'filterProducts'])->name('filtrar-productos');
+Route::get('/buscar-catalogo', [CatalogController::class, 'searchProducts'])->name('buscar-catalogo');
 
-Route::get('/frutas', [App\Http\Controllers\CatalogController::class, 'Catalog'])->name('frutas');
-Route::get('/hortalizas', [App\Http\Controllers\CatalogController::class, 'Vegetables'])->name('hortalizas');
-Route::get('/granos', [App\Http\Controllers\CatalogController::class, 'Grains'])->name('granos');
-Route::get('/legumbres', [App\Http\Controllers\CatalogController::class, 'Legumes'])->name('legumbres');
+Route::get('/frutas', [CatalogController::class, 'Catalog'])->name('frutas');
+Route::get('/hortalizas', [CatalogController::class, 'Vegetables'])->name('hortalizas');
+Route::get('/granos', [CatalogController::class, 'Grains'])->name('granos');
+Route::get('/legumbres', [CatalogController::class, 'Legumes'])->name('legumbres');
 
-Route::get('/filter-fruits', [App\Http\Controllers\CatalogController::class, 'filterFruits'])->name('filterFruits');
-Route::get('/filter-vegetables', [App\Http\Controllers\CatalogController::class, 'filterVegetables'])->name('filterVegetables');
-Route::get('/filter-grains', [App\Http\Controllers\CatalogController::class, 'filterGrains'])->name('filterGrains');
-Route::get('/filter-pulses', [App\Http\Controllers\CatalogController::class, 'filterPulses'])->name('filterPulses');
-Route::get('/buscar-frutas', [App\Http\Controllers\CatalogController::class, 'searchFruits'])->name('buscarFrutas');
-Route::get('/buscar-hortalizas', [App\Http\Controllers\CatalogController::class, 'searchVegetables'])->name('buscarHortalizas');
-Route::get('/buscar-granos', [App\Http\Controllers\CatalogController::class, 'searchGrains'])->name('buscarGranos');
-Route::get('/buscar-legumbres', [App\Http\Controllers\CatalogController::class, 'searchLegumes'])->name('buscarLegumbres');
+Route::get('/filter-fruits', [CatalogController::class, 'filterFruits'])->name('filterFruits');
+Route::get('/filter-vegetables', [CatalogController::class, 'filterVegetables'])->name('filterVegetables');
+Route::get('/filter-grains', [CatalogController::class, 'filterGrains'])->name('filterGrains');
+Route::get('/filter-pulses', [CatalogController::class, 'filterPulses'])->name('filterPulses');
+Route::get('/buscar-frutas', [CatalogController::class, 'searchFruits'])->name('buscarFrutas');
+Route::get('/buscar-hortalizas', [CatalogController::class, 'searchVegetables'])->name('buscarHortalizas');
+Route::get('/buscar-granos', [CatalogController::class, 'searchGrains'])->name('buscarGranos');
+Route::get('/buscar-legumbres', [CatalogController::class, 'searchLegumes'])->name('buscarLegumbres');
 
-Route::get('/get-countries-products/{product}', [App\Http\Controllers\CatalogController::class, 'getCountriesWithRegions']);
+Route::get('/get-countries-products/{product}', [CatalogController::class, 'getCountriesWithRegions']);
 
 
-Route::get('/oima', [App\Http\Controllers\oimaController::class, 'oima'])->name('oima');
-Route::get('/oima-funcionamiento', [App\Http\Controllers\oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
-Route::get('/quienes-somos', [App\Http\Controllers\oimaController::class, 'quienesSomos'])->name('quienes');
-Route::get('/organizacion/{id}', [App\Http\Controllers\oimaController::class,'showOrganization'])->name('verOrganizacion');
-Route::get('/historia', [App\Http\Controllers\oimaController::class, 'history'])->name('historia');
+Route::get('/oima', [oimaController::class, 'oima'])->name('oima');
+Route::get('/oima-funcionamiento', [oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
+Route::get('/quienes-somos', [oimaController::class, 'quienesSomos'])->name('quienes');
+Route::get('/organizacion/{id}', [oimaController::class,'showOrganization'])->name('verOrganizacion');
+Route::get('/historia', [oimaController::class, 'history'])->name('historia');
+Route::get('/delegaciones', [oimaController::class, 'delegaciones'])->name('delegaciones');
 
-Route::get('/get-countries/{regionId}', [App\Http\Controllers\CatalogController::class, 'getCountriesByRegion'])->name('get-countries');
-Route::get('/producto/{id}', [App\Http\Controllers\CatalogController::class, 'showProduct'])->name('verProducto');
-Route::get('/requisitos/{id}', [App\Http\Controllers\CatalogController::class, 'showRequirements'])->name('verRequisitos');
-Route::get('/infoAgronomica/{id}', [App\Http\Controllers\CatalogController::class, 'showAgronomic'])->name('verInfoAgronomica');
-Route::get('/infoNutricional/{id}', [App\Http\Controllers\CatalogController::class, 'showNutrition'])->name('verInfoNutricional');
-Route::get('/galeria/{id}', [App\Http\Controllers\CatalogController::class, 'showGallery'])->name('verGaleria');
+Route::get('/get-countries/{regionId}', [CatalogController::class, 'getCountriesByRegion'])->name('get-countries');
+Route::get('/producto/{id}', [CatalogController::class, 'showProduct'])->name('verProducto');
+Route::get('/requisitos/{id}', [CatalogController::class, 'showRequirements'])->name('verRequisitos');
+Route::get('/infoAgronomica/{id}', [CatalogController::class, 'showAgronomic'])->name('verInfoAgronomica');
+Route::get('/infoNutricional/{id}', [CatalogController::class, 'showNutrition'])->name('verInfoNutricional');
+Route::get('/galeria/{id}', [CatalogController::class, 'showGallery'])->name('verGaleria');
 
-Route::get('/contacto', [App\Http\Controllers\ContactController::class, 'Contact'])->name('contacto');
+Route::get('/contacto', [ContactController::class, 'Contact'])->name('contacto');
 
 
 Route::get('/eventos', [App\Http\Controllers\BlogController::class, 'Events'])->name('eventos');
@@ -101,18 +102,6 @@ Route::get('/get-more-presentations', [RepositoryController::class, 'getMorePres
 Route::get('/get-more-documents', [RepositoryController::class, 'getMoreDocuments'])->name('getMoreDocuments');
 Route::get('/get-more-reports', [RepositoryController::class, 'getMoreReports'])->name('getMoreReports');
 Route::get('/get-more-dictionaries', [RepositoryController::class, 'getMoreDictionaries'])->name('getMoreDictionaries');
-
-
-
-
-
-
-
-
-
-// Route::get('/eventi', function () {
-//     return view('verEvento');
-// })->name('eventi');
 
 
 

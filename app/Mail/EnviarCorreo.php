@@ -23,7 +23,13 @@ class EnviarCorreo extends Mailable
      */
     public function __construct($data)
     {
-        $this->data = $data;
+        $this->nombre = $data['name'];
+        $this->pais = $data['country'];
+        $this->email = $data['email'];
+        $this->mensaje = $data['message'];
+
+        $this->from('correo@tudominio.com', 'Nombre del Remitente');
+
     }
 
     /**
@@ -43,6 +49,7 @@ class EnviarCorreo extends Mailable
     {
         return new Content(
             view: 'mails.enviar-correo',
+    
         );
     }
 

@@ -44,6 +44,7 @@ return [
    'delegados' => 'Delegados',
    'consultaprecios' => 'Consulta de Precios',
    'enlaceexterno' => 'Enlaces Externos',
+   'verTodo' => 'Ver todos',
 
 
    //historia

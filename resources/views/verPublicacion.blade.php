@@ -9,11 +9,7 @@
             <div class="card--repository card--publication">
                 <img src="{{ asset(trim('/uploads/' . $publication->image, '/')) }}" class="card__img"> 
                 <div class="card--content">
-                    <h3 class="title">
-
-                    {{ __($publication->title) }}
-
-                    </h3>
+                    <h3 class="title">{{ __($publication->title) }}</h3>
                     <hr class="hr--green">
                     <div class="txt--gray">
                         <p></p>
@@ -32,7 +28,7 @@
         <div class="container mb-5">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card--publication">
+                    <!-- <div class="card--publication">
                         <h3 class="title title--sideline"> @lang('locale.detallespubli')</h3>
                         <ul>
                             <li><strong> @lang('locale.signatura'):</strong> {{ $publication->topographic_signature }} </li>
@@ -45,7 +41,7 @@
                         </li>
 
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-8">
                     <h3 class="title title--sideline"> @lang('locale.resumen')</h3>

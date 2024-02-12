@@ -133,7 +133,7 @@
                     </ul>
                 </div>
                 <div class="text-center d-md-none">
-                    <a href="#">Ver todos</a>
+                    <a href="{{ route('delegaciones')}}">@lang('locale.verTodo')</a>
                 </div>
             </div>
             <div class="countries--container d-none d-md-block">

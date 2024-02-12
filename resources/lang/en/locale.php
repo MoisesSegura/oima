@@ -48,6 +48,7 @@ return [
   'delegados' => 'Delegates',
   'consultaprecios' => 'Price Consultation',
   'enlaceexterno' => 'External Links',
+  'verTodo' => 'See all',
 
   //historia
   'historiaOIMA' => 'History of MIOA',

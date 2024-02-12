@@ -18,9 +18,7 @@
                     @lang('locale.publicaciones')
 
                 </h4>
-                <div class="repo-subtitle">
-                    <p class="txt--black"> {{$extras->publications}}</p>
-                </div>
+                <div class="repo-subtitle"><p class="txt--black"> {{$extras->publications}}</p></div>
 
             </div>
             <div class="search--container">
@@ -28,13 +26,10 @@
                 <h4 class="title d-md-none repoTitleMovil">@lang('locale.publiMovil')</h4>
 
                 <form method="get" action="{{ route('buscar.publicaciones.documentos') }}" id="searchPubliDocument">
-
-                    
                     <input type="hidden" class="input input--search" name="category" value="">
                     <div class="input__wrap input__wrap--search">
                         <input type="search" class="input input--search" placeholder="Buscar" name="name" value="">
                     </div>
-
                 </form>
 
 

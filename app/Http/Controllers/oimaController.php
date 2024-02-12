@@ -122,5 +122,14 @@ class oimaController extends Controller
     }
 
 
+    public function delegaciones()
+    {
+        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
+
+        $regions = Region::all();
+
+    
+        return view('delegacionesMovil', compact('countries','regions'));
+    }
     
     }

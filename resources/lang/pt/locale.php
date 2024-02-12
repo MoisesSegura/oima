@@ -46,6 +46,7 @@ return [
   'delegados' => 'Delegados',
   'consultaprecios' => 'Consulta de preços',
   'enlaceexterno' => 'Enlaces externos',
+  'verTodo' => 'Ver todos',
 
   //historia
   'historiaOIMA' => 'História da OIMA',

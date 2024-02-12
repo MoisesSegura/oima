@@ -33,19 +33,20 @@ class ContactController extends Controller
 
     public function enviarCorreo(Request $request)
     {
- 
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'country' => 'required|string',
-            'email' => 'required|email|max:255',
-            'message' => 'required|string|max:5000',
-        ]);
 
-        // Enviar el correo
-        Mail::to($request->input('email'))->send(new EnviarCorreo($request));
+        $data = [
+            'name' => $request->input('name'),
+            'country' => $request->input('country'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
 
-       
-        return redirect()->back()->with('success', 'Correo enviado con éxito');
+
+        Mail::to('')->send(new EnviarCorreo($data));
+
+
+
+        return redirect()->back()->with('success', 'Correo enviado correctamente');
     }
 
    

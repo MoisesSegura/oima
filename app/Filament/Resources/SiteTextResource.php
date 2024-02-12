@@ -130,7 +130,8 @@ class SiteTextResource extends Resource
                             ->schema([
 
                                 Forms\Components\FileUpload::make('image')
-                                ->image(),
+                                ->disk('public')
+                                ->directory('uploads/oima'),
 
                                 Repeater::make('translations') ->collapsible()
                                 ->relationship('translations')

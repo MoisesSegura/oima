@@ -10649,15 +10649,15 @@ footer .footer__links li:before {
         
       .repo-subtitle {
         word-wrap: break-word;
-        width: 50rem;
-        padding-left: 5rem;
+        width: 35rem;
+        padding-left: 0.1rem;
     
     }
     
     
-    .repo-subtitle {
+    /* .repo-subtitle {
         overflow-wrap: break-word;
-    }
+    } */
     
 
 
@@ -10760,7 +10760,7 @@ background-color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
-    margin: 0; 
+
     margin-right: 30rem;
     margin-left: 30rem;
 
@@ -10787,7 +10787,7 @@ align-items: center;
 .wrapper-who {
   width: calc(25% - 15px);
   margin: 0 15px 15px 0;
-
+  max-width: 15rem;
 }
 
 .card-who {
@@ -10827,19 +10827,6 @@ align-items: center;
 
 /* .my-slick-carousel home*/
 
-.single-item img {
-  width: 100%; /* Ajusta el ancho según tus necesidades */
-  height: auto; /* Mantiene la proporción original de la imagen */
-  object-fit: cover; /* Ajusta el tamaño de la imagen manteniendo su relación de aspecto */
-  object-position: center center; /* Centra la imagen horizontal y verticalmente */
-  border: 2px solid #fff; /* Añade un borde blanco de 2px, puedes ajustar según tus necesidades */
-  border-radius: 10px; /* Añade esquinas redondeadas, ajusta según tus necesidades */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Añade una sombra suave, ajusta según tus necesidades */
-}
-
-.hero--home-overlay h3{
-margin-top:5rem;
-}
 
 
 

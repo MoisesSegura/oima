@@ -31,7 +31,30 @@
         $(document).ready(function () {
             $('.single-item').slick({
                 prevArrow: '<button type="button" class="slick-prev"><</button>',
-                nextArrow: '<button type="button" class="slick-next">></button>'
+                nextArrow: '<button type="button" class="slick-next">></button>',
+
+                mobileFirst: false,
+          infinite: true,
+          speed: 300,
+          centerMode: false,
+          variableWidth: false,
+          focusOnSelect: true,
+          responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                      mobileFirst: true,
+                      infinite: true,
+                      speed: 300,
+                      slidesToShow: 1,
+                      centerMode: false,
+                      variableWidth: true,
+                      focusOnSelect: true
+
+                  }
+                }
+              ]
+
             });
         });
     </script>
@@ -172,21 +195,21 @@
                     </ul> -->
                 </div>
             </div>
+            
             <div class="col-md-7 order-1-mobile">
-                <div class="card--md-only card--achievements js-equal-height card--expansible">
+                <div class="card--achievements card--achievements-internal card--expansible">
                     <img class="card__icon mb-3 d-none d-md-block" src="../img/achievements-icon.svg" alt="">
                     <h3 class="title">@lang('locale.logros')</h3>
                     <ul class="list--achievements card__list list--circle bullets--blue">
 
                         @foreach ($achievements as $achievement)
-                        <li class="list--expandable">
-                            <p>{!! __($achievement->text) !!}</p>
-                        </li>
+                        <li class="list--expandable">{!! __($achievement->text) !!}</li>
                         @endforeach
 
                     </ul>
                 </div>
             </div>
+            
         </div>
     </section>
 
