@@ -30,5 +30,9 @@ class LaboralDocument extends Model implements TranslatableContract
         return $this->belongsTo(RegionTranslation::class, 'region');
     }
 
+    public function documentTranslation(): BelongsTo
+    {
+        return $this->belongsTo(LaboralDocumentTranslation::class);
+    }
 
 }

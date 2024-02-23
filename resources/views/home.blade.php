@@ -83,7 +83,7 @@
                     <ul class="list--stats">
                         <li>
                             <span class="number">{!! $stats[0]->value !!}</span>
-                            {!! $stats[0]->text !!}
+                            {!! strip_tags($stats[0]->text) !!}
                         </li>
                         <li>
                             <a class="custom-tooltip" data-title="@lang('locale.regiones'):
@@ -108,81 +108,26 @@
                         @endphp
                         <li>
                             <a class="metric-link" href="{{ route('historia')}}">
-                                <span class="number">{{ $diferenciaAnios }}</span>
+                                <span class="number topHome">{{ $diferenciaAnios }}</span>
                                 {!! $stats[2]->text !!}
                             </a>
                         </li>
                         <li>
                             <a class="metric-link" href="{{ route('frutas')}}">
-                                <span class="number">{!! $stats[3]->value !!}</span>
+                                <span class="number topHome">{!! $stats[3]->value !!}</span>
                                 {!! $stats[3]->text !!}
                             </a>
                         </li>
                         <li>
-                            <span class="number">{!! $stats[4]->value !!}</span>
+                            <span class="number topHome">{!! $stats[4]->value !!}</span>
                             {!! $stats[4]->text !!}
                         </li>
                         <li>
-                            <span class="number">{!! $stats[5]->value !!}</span>
+                            <span class="number topHome">{!! $stats[5]->value !!}</span>
                             {!! $stats[5]->text !!}
                         </li>
                     </ul>
 
-                    <style>
-                        .custom-tooltip:hover::before {
-                            content: attr(data-title);
-                            background-color: #fff;
-                            color: #000;
-                            position: absolute;
-                            left: 50%;
-                            bottom: 100%;
-                            transform: translateX(-50%);
-                            padding: 2rem;
-                            border: 1px solid #ccc;
-                            border-radius: 0.5rem;
-                            font-size: 1rem;
-                            opacity: 0;
-                            pointer-events: none;
-                            transition: opacity 0.5s ease-in-out;
-                            margin-bottom: 8px;
-
-                        }
-
-                        .custom-tooltip:hover::before {
-                            opacity: 1;
-                        }
-
-                        .metric-link {
-                            text-decoration: none;
-                            /* Elimina el subrayado */
-                            color: inherit;
-                        }
-
-
-                        .slick-next,
-                        .slick-prev {
-                            font-size: 1rem;
-                            color: #ffffff;
-                            background-color: rgba(55, 102, 151, 0.5);
-                            border-radius: 50%;
-                            width: 3rem;
-                            height: 3rem;
-                            position: absolute;
-                            top: 50%;
-                            transform: translateY(-50%);
-
-                        }
-
-                        .slick-next {
-                            right: 100px;
-
-                        }
-
-                        .slick-prev {
-                            left: 100px;
-
-                        }
-                    </style>
 
                     <!-- <ul class="list--stats">
                         @foreach ($stats as $stat)

@@ -17,7 +17,7 @@ return [
 
   //traduccion etiquetas pagina Home
 
-  'proposito' => 'Our Porpuse',
+  'proposito' => 'Our Purpose',
   'logros' => 'Our Achievements',
   'metricas' => 'MIOA Metrics',
   'repositorio' => 'Documents Repository',

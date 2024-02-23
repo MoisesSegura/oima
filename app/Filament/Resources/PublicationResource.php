@@ -58,8 +58,7 @@ class PublicationResource extends Resource
                         ->maxLength(255),
 
                         Forms\Components\TextInput::make('topographic_signature')
-                        ->maxLength(255)
-                        ->required(),
+                        ->maxLength(255),
 
                         Forms\Components\DateTimePicker::make('expiration_date'),
 

@@ -163,6 +163,11 @@ class SiteTextResource extends Resource
                             Section::make('History')
                             ->relationship('history')
                             ->schema([
+
+                                Forms\Components\FileUpload::make('image_history')->label("Imagen (Seccion Historia)")->required()
+                                ->disk('public')
+                                ->directory('uploads/history'),
+
                                 Repeater::make('translations')->collapsed()
                                 ->relationship('translations')
                                 ->schema([
@@ -193,7 +198,8 @@ class SiteTextResource extends Resource
                         Section::make('Executive commitee')
                         ->relationship('executiveCommitee')
                         ->schema([
-                            Forms\Components\FileUpload::make('image')->required()->label("Imagen (Comité Ejecutivo)")
+                            Forms\Components\FileUpload::make('image')->required()
+                            ->label("Imagen (Comité Ejecutivo)")
                             ->disk('public')
                         ->directory('uploads/executive_commitee'),
                         

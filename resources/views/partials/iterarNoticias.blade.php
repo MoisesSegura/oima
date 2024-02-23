@@ -25,6 +25,12 @@ $currentYear = $newYear;
             \Carbon\Carbon::parse($new->date)->isoFormat('D [-] MMMM YYYY') }}</p>
 
         <a class="btn btn--green" href="{{ route('showNew', ['id' => $new->id]) }}">@lang('locale.verNoticia')</a>
+
+        @if ($new->file)
+            <a class="btn btn--white-blue btn--small btnNewDownload" href="{{ asset('/uploads/' . ltrim($new->file, '/')) }}" download="{{ $new->title }}" target="_blank">
+                <i class="mdi mdi-download"></i>
+            </a>
+        @endif
     </div>
 </div>
 @endforeach

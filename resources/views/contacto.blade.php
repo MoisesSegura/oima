@@ -154,7 +154,7 @@
 <section class="contact__form ">
     <div class="card--form">
         <h3 class="title text-center">@lang('locale.enviar')</h3>
-        <form action="{{ route('enviar-correo') }}" method="post">
+        <form>
             @csrf
             <div class="form-group">
                 <label for="name">@lang('locale.nombre')</label>

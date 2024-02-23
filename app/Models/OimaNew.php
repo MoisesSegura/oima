@@ -18,7 +18,7 @@ class OimaNew extends Model implements TranslatableContract
 
     protected $guarded = [];
 
-    public $translatedAttributes = ['title','short_description'];
+    public $translatedAttributes = ['title','short_description','file'];
 
 
     //------------------RELATION MANAGERS------------------------------

@@ -31,61 +31,72 @@ class OimaNewResource extends Resource
     {
 
         return $form
-        ->schema([
-            Tabs::make('') 
-                ->tabs([
-                    Tabs\Tab::make('En') 
-                        ->schema([
-                        Forms\Components\TextInput::make('en.title'),
-                        Forms\Components\RichEditor::make('en.short_description'),
-                
-                        ]),
-                    Tabs\Tab::make('Es')
-                        ->schema([
-                        Forms\Components\TextInput::make('es.title'),
-                        Forms\Components\RichEditor::make('es.short_description'),
-                           
+            ->schema([
+                Tabs::make('')
+                    ->tabs([
+                        Tabs\Tab::make('En')
+                            ->schema([
+                                Forms\Components\TextInput::make('en.title'),
+                                Forms\Components\RichEditor::make('en.short_description'),
+
+                                Forms\Components\FileUpload::make('en.file')
+                                    ->disk('public')
+                                    ->directory('uploads/news')
+
+                            ]),
+                        Tabs\Tab::make('Es')
+                            ->schema([
+                                Forms\Components\TextInput::make('es.title'),
+                                Forms\Components\RichEditor::make('es.short_description'),
+
+                                Forms\Components\FileUpload::make('es.file')
+                                    ->disk('public')
+                                    ->directory('uploads/news')
+
+                            ]),
+                        Tabs\Tab::make('Pt')
+                            ->schema([
+                                Forms\Components\TextInput::make('pt.title'),
+                                Forms\Components\RichEditor::make('pt.short_description'),
+
+                                Forms\Components\FileUpload::make('pt.file')
+                                    ->disk('public')
+                                    ->directory('uploads/news')
+                            ]),
+
                     ]),
-                    Tabs\Tab::make('Pt')
-                        ->schema([
-                        Forms\Components\TextInput::make('pt.title'),
-                        Forms\Components\RichEditor::make('pt.short_description'),
-                    ]),
-                    
-                ]),
 
-            Forms\Components\DateTimePicker::make('date')
-            ->required(),
-            Forms\Components\FileUpload::make('image')
-            ->disk('public')
-            ->directory('uploads/news')
-            ->image(),
-            Forms\Components\Toggle::make('delete_image'),
-            Forms\Components\TextInput::make('year')
-            ->required()
-            ->numeric(),
+                Forms\Components\FileUpload::make('image')
+                    ->disk('public')
+                    ->directory('uploads/news')
+                    ->image(),
+
+                Forms\Components\DateTimePicker::make('date')
+                    ->required(),
+
+                Forms\Components\TextInput::make('year')
+                    ->required()
+                    ->numeric(),
 
 
-        ])
-        ->columns([
-            'sm' => '3',
-            'lg' => 'full',
-        ]);
+            ])
+            ->columns([
+                'sm' => '3',
+                'lg' => 'full',
+            ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title') ->sortable()
-                ->wrap(),
+                Tables\Columns\TextColumn::make('title')
+                    ->wrap(),
                 Tables\Columns\TextColumn::make('date')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('year')
-                    ->numeric()
-                    ->sortable(),
+               
             ])
             ->filters([
                 //
@@ -100,14 +111,14 @@ class OimaNewResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             RelationManagers\OimaNewContentRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -116,5 +127,5 @@ class OimaNewResource extends Resource
             'view' => Pages\ViewOimaNew::route('/{record}'),
             'edit' => Pages\EditOimaNew::route('/{record}/edit'),
         ];
-    }    
+    }
 }

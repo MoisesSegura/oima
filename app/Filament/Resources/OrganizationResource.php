@@ -58,10 +58,11 @@ class OrganizationResource extends Resource
                 Tables\Columns\TextColumn::make('country.name')
                 ->label('country')
                 ->sortable()
-                ->toggleable(),
+                ->toggleable()
+                ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+               
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

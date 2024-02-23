@@ -51,8 +51,10 @@
                                     @endif
                                 </div>
                                 <div class="content-who">
-                                    <h3>{{ $individual->name }}</h3>
+                                    <h3 class="h3Color">{{ $individual->name }}</h3>
+                                    <p class="pBold">{!! $individual->position !!}</p>
                                     <p>{!! $individual->description !!}</p>
+                                    <p>{!! $individual->email !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +78,11 @@
                                     @endif
                                 </div>
                                 <div class="content-who">
-                                    <h3>{{ $individual->name }}</h3>
-                                    <p>{!! $individual->descriptio !!}</p>
+                                    <h3 class="h3Color">{{ $individual->name }}</h3>
+                                    <p class="pBold">{!! $individual->position !!}</p>
+                                    <p>{!! $individual->description !!}</p>
+                                    <p>{!! $individual->email !!}</p>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -100,8 +105,10 @@
                                     @endif
                                 </div>
                                 <div class="content-who">
-                                    <h3>{{ $individual->name }}</h3>
+                                    <h3 class="h3Color">{{ $individual->name }}</h3>
+                                    <p class="pBold">{!! $individual->position !!}</p>
                                     <p>{!! $individual->description !!}</p>
+                                    <p>{!! $individual->email !!}</p>
                                 </div>
                             </div>
                         </div>

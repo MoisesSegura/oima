@@ -15,7 +15,7 @@
                         <p></p>
                         <p></p>
                         <p> {{ $publication->isbn }} </p>
-                        <p> {{ $publication->topographic_signature }} </p>
+                        <!-- <p> {{ $publication->topographic_signature }} </p> -->
                     </div>
                     <a class="btn btn--green"
                         href="{{ asset('/uploads/' . ltrim($publication->file_real, '/')) }}" download="{{ ($publication->file_real_name) }}"
