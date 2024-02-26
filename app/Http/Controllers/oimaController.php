@@ -31,49 +31,18 @@ class oimaController extends Controller
 
         $history = History::all();
 
-        $person = Person::all()->sortBy('name');
-
         $oima = Oima::all();
 
         $executivecommitee = ExecutiveCommitee::all();
 
         $achievement = Achievement::all();
 
-        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
 
-        $regions = Region::all();
-
-        $categories = PersonCategory::all();
-
-
-        return view('oima', compact('workprinciples','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
+        return view('oima', compact('workprinciples','history','oima','executivecommitee','achievement'));
     }
 
 
-    public function oimaFuncionamiento(Request $request){
 
-        
-        $workprinciple = WorkPrinciple::all();
-
-        $history = History::all();
-
-        $person = Person::all();
-
-        $oima = Oima::First();
-
-        $executivecommitee = ExecutiveCommitee::all();
-
-        $achievement = Achievement::all();
-
-        $countries = Country::with('region', 'organizations')->get()->sortBy('flag.name');
-
-        $regions = Region::all();
-
-        $categories = PersonCategory::all();
-
-
-        return view('oima-funcionamiento', compact('workprinciple','history','person','oima','executivecommitee','achievement','countries','regions','categories'));
-    }
 
     public function quienesSomos(Request $request){
 
@@ -82,7 +51,10 @@ class oimaController extends Controller
 
         $history = History::all();
 
-        $person = Person::all();
+        $person = Person::all()->sortBy(function($person) {
+            // Ordenar por 'order', pero colocar los nulos al final
+            return $person->order ?? PHP_INT_MAX;
+        });
 
         $oima = Oima::First();
 

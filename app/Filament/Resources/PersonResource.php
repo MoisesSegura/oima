@@ -54,6 +54,12 @@ class PersonResource extends Resource
                 ->searchable()
                 ->required(),
 
+
+            Forms\Components\Select::make('order')
+            ->label('Orden')
+            ->options(array_combine(range(1, 30), range(1, 30))),
+
+
                 Forms\Components\FileUpload::make('photo')
                 ->disk('public')
                 ->directory('uploads/person_photos'),

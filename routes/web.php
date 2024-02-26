@@ -45,7 +45,6 @@ Route::get('/get-countries-products/{product}', [CatalogController::class, 'getC
 
 
 Route::get('/oima', [oimaController::class, 'oima'])->name('oima');
-Route::get('/oima-funcionamiento', [oimaController::class, 'oimaFuncionamiento'])->name('oima-funcionamiento');
 Route::get('/quienes-somos', [oimaController::class, 'quienesSomos'])->name('quienes');
 Route::get('/organizacion/{id}', [oimaController::class,'showOrganization'])->name('verOrganizacion');
 Route::get('/historia', [oimaController::class, 'history'])->name('historia');

@@ -47,7 +47,7 @@
                             <div class="card-who">
                                 <div class="profile-img">
                                     @if($individual->photo)
-                                    <img src="{{ asset('/uploads/' . $individual->photo) }}" alt="$individual->name">
+                                    <!-- <img src="{{ asset('/uploads/' . $individual->photo) }}"> -->
                                     @endif
                                 </div>
                                 <div class="content-who">
@@ -74,7 +74,7 @@
                             <div class="card-who">
                                 <div class="profile-img">
                                     @if($individual->photo)
-                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                    <!-- <img src="{{ asset('/uploads/' . $individual->photo) }}"> -->
                                     @endif
                                 </div>
                                 <div class="content-who">
@@ -101,7 +101,7 @@
                             <div class="card-who">
                                 <div class="profile-img">
                                     @if($individual->photo)
-                                    <img src="{{ asset('/uploads/' . $individual->photo) }}">
+                                    <!-- <img src="{{ asset('/uploads/' . $individual->photo) }}"> -->
                                     @endif
                                 </div>
                                 <div class="content-who">

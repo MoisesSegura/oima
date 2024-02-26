@@ -58,10 +58,11 @@ class SiteTextResource extends Resource
                             Forms\Components\TextInput::make('es.banner_subtitle'),
                             Forms\Components\TextInput::make('es.know_oima_title'),
                             Forms\Components\RichEditor::make('es.know_oima_description'),
+                            Forms\Components\Textarea::make('es.oima_purpose')->required(),
                             Forms\Components\TextInput::make('es.catalog_title')->required(),
                             Forms\Components\TextInput::make('es.catalog_subtitle')->required(),
                             Forms\Components\RichEditor::make('es.catalog_description'),
-                            Forms\Components\TextInput::make('es.oima_purpose')->required(),
+         
     
                             ]),
                         Tabs\Tab::make('En')
@@ -70,10 +71,11 @@ class SiteTextResource extends Resource
                                 Forms\Components\TextInput::make('en.banner_subtitle'),
                                 Forms\Components\TextInput::make('en.know_oima_title'),
                                 Forms\Components\RichEditor::make('en.know_oima_description'),
+                                Forms\Components\Textarea::make('en.oima_purpose')->required(),
                                 Forms\Components\TextInput::make('en.catalog_title')->required(),
                                 Forms\Components\TextInput::make('en.catalog_subtitle')->required(),
                                 Forms\Components\RichEditor::make('en.catalog_description'),
-                                Forms\Components\TextInput::make('en.oima_purpose')->required(),
+                     
                                
                         ]),
                         Tabs\Tab::make('Pt')
@@ -82,10 +84,11 @@ class SiteTextResource extends Resource
                                 Forms\Components\TextInput::make('pt.banner_subtitle'),
                                 Forms\Components\TextInput::make('pt.know_oima_title'),
                                 Forms\Components\RichEditor::make('pt.know_oima_description'),
+                                Forms\Components\Textarea::make('pt.oima_purpose')->required(),
                                 Forms\Components\TextInput::make('pt.catalog_title')->required(),
                                 Forms\Components\TextInput::make('pt.catalog_subtitle')->required(),
                                 Forms\Components\RichEditor::make('pt.catalog_description'),
-                                Forms\Components\TextInput::make('pt.oima_purpose')->required(),
+                              
                                
                         ]),
                         
@@ -94,8 +97,8 @@ class SiteTextResource extends Resource
                     
     
 
-                            Forms\Components\Toggle::make('active')
-                                ->required(),
+                            // Forms\Components\Toggle::make('active')
+                            //     ->required(),
                         
                 
 
@@ -146,7 +149,7 @@ class SiteTextResource extends Resource
                                         return $options;
                                     }),
                                     Forms\Components\TextInput::make('title'),
-                                    Forms\Components\RichEditor::make('description'),
+                                    Forms\Components\RichEditor::make('description')->label('Description (seccion quienes-somos)'),
                                     Forms\Components\RichEditor::make('mision'),
                                     Forms\Components\RichEditor::make('vision'),
                                 ]),
@@ -216,7 +219,7 @@ class SiteTextResource extends Resource
                                     return $options;
                                 }),
                                 Forms\Components\TextInput::make('title'),
-                                Forms\Components\RichEditor::make('description'),
+                                Forms\Components\RichEditor::make('description')->label('Description (seccion quienes-somos)'),
                             ]),
                             
                         ]),
