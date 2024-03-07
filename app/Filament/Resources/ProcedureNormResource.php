@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Support\Enums\MaxWidth;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Tabs;
@@ -89,8 +92,12 @@ class ProcedureNormResource extends Resource
             
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('id')->label('Name')
+                ->options(ProcedureNorm::all()->pluck('name', 'id'))
+                ->searchable()
+                ->preload(),
+
+            ], layout: FiltersLayout::AboveContent)->filtersFormColumns(1)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

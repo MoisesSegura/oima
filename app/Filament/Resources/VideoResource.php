@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Support\Enums\MaxWidth;
 
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
@@ -90,13 +93,16 @@ class VideoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('name'),
             
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('id')->label('Name')
+                ->options(Video::all()->pluck('name', 'id'))
+                ->searchable()
+                ->preload(),
+
+            ], layout: FiltersLayout::AboveContent)->filtersFormColumns(1)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

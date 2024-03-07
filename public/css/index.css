@@ -10705,6 +10705,14 @@ footer .footer__links li:before {
   max-width: 1000px; 
 }
 
+.award-container-who {
+  max-width: 600px;
+}
+
+.award-who{
+  margin-left: 0;
+}
+
 .container-who p, .container-who h3 {
   text-align: left; 
   margin-bottom: 0 !important;

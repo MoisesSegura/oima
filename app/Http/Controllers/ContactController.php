@@ -8,6 +8,7 @@ use App\Models\Extra;
 use App\Models\InfoCountry;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviarCorreo;
+use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
@@ -29,6 +30,21 @@ class ContactController extends Controller
     }
 
     return null; 
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'country' => 'required',
+            'message' => 'required',
+        ]);
+
+  
+        Mail::to('oima@iica.int')->send(new ContactMail($validatedData));
+
+        return redirect()->back()->with('success', 'El correo ha sido enviado correctamente.');
     }
 
     public function enviarCorreo(Request $request)

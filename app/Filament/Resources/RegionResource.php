@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
 
 use App\Models\RegionTranslation;
 use Filament\Forms\Components\Tabs;
@@ -91,10 +93,8 @@ class RegionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                // Tables\Columns\TextColumn::make('type')
-                //     ->searchable(),
+                Tables\Columns\TextColumn::make('name'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -104,9 +104,13 @@ class RegionResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+           ->filters([
+                SelectFilter::make('id')->label('Region name')
+                ->options(Region::all()->pluck('name', 'id'))
+                ->searchable()
+                ->preload(),
+
+            ], layout: FiltersLayout::AboveContent)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

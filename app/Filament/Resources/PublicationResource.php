@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Support\Enums\MaxWidth;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
@@ -147,16 +150,17 @@ class PublicationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title') ->wrap(),
-                Tables\Columns\TextColumn::make('author')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('isbn')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('author'),
+                Tables\Columns\TextColumn::make('isbn'),
                 Tables\Columns\ImageColumn::make('image'),
             
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('id')->label('Titulo')
+                ->options(Publication::all()->pluck('title', 'id'))
+                ->searchable()
+                ->preload()
+            ], layout: FiltersLayout::AboveContent)->filtersFormColumns(1)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

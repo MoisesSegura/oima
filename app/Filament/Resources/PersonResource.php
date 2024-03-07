@@ -39,7 +39,6 @@ class PersonResource extends Resource
                 ->maxLength(255),
 
             Forms\Components\TextInput::make('email')
-                ->required()
                 ->maxLength(255),
 
             Forms\Components\Select::make('country_id')

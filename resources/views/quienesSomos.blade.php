@@ -93,8 +93,8 @@
             </div>
 
             <div class="tab-pane fade" id="category-4" role="tabpanel" aria-labelledby="category-4-tab">
-                <div class="who">
-                    <div class="container-who">
+                <div class="who award-who">
+                    <div class="container-who award-container-who">
                         @foreach($person as $individual)
                         @if($individual->category_id == 4)
                         <div class="wrapper-who">

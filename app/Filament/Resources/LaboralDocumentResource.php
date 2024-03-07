@@ -12,6 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Support\Enums\MaxWidth;
 
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
@@ -153,19 +157,19 @@ class LaboralDocumentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->searchable()
+                Tables\Columns\TextColumn::make('title')
                 ->wrap(),
-                Tables\Columns\TextColumn::make('author')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('author'),
                 Tables\Columns\TextColumn::make('place')
-                    ->searchable(),
-                // Tables\Columns\TextColumn::make('region.name')
-                //     ->searchable(),
 
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('id')->label('Titulo')
+                ->options(LaboralDocument::all()->pluck('title', 'id'))
+                ->searchable()
+                ->preload()
+            ], layout: FiltersLayout::AboveContent)->filtersFormColumns(1)
+
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

@@ -14,6 +14,7 @@
 
 
 <div class="content">
+    
     <h1 class="section--title title--underline  txt--blue text-center d-md-none">@lang('locale.contacto')</h1>
     <div class="hero hero-has-text hero-contact" style="background-image: url('{{ asset(trim('/uploads/' . $extras->image, '/')) }}');">
         <div class="hero--txt">
@@ -151,10 +152,12 @@
 <div id="contactar"></div>
 
 
-<section class="contact__form ">
+
+
+<section class="contact__form" >
     <div class="card--form">
         <h3 class="title text-center">@lang('locale.enviar')</h3>
-        <form>
+        <form action="{{ route('contact.send') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="name">@lang('locale.nombre')</label>

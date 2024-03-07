@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Enums\FiltersLayout;
 
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
@@ -86,8 +88,8 @@ class EventResource extends Resource
                 ->disk('public')
                 ->directory('uploads/events')
                 ->image()
-                ->nullable(),
-                Forms\Components\Toggle::make('delete_image'),
+                ->required(),
+
                 Forms\Components\TextInput::make('year')
                 ->required()
                 ->numeric(),
@@ -137,8 +139,12 @@ class EventResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('id')->label('Event name')
+                ->options(Event::all()->pluck('name', 'id'))
+                ->searchable()
+                ->preload(),
+
+            ], layout: FiltersLayout::AboveContent)->filtersFormColumns(1)
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
