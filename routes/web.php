@@ -20,8 +20,6 @@ Route::get('/locale/{locale}', function ($locale) {
 
 
 
-Route::post('/enviar-correo', [ContactController::class, 'enviarCorreo'])->name('enviar-correo');
-
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 Route::get('/', [HomeController::class, 'Home'])->name('home');

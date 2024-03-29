@@ -1,14 +1,5 @@
 @include('widgets.header')
 @include('widgets.navbar')
-<script src="../../www.google.com/recaptcha/apicbae.js?render=6Ldwp8AZAAAAAIO4Botn2YIT7t-dIeOTz54B8Vul"></script>
-<script>
-    grecaptcha.ready(function () {
-        grecaptcha.execute('6Ldwp8AZAAAAAIO4Botn2YIT7t-dIeOTz54B8Vul', { action: 'contact' }).then(function (token) {
-            var recaptchaResponse = document.getElementById('recaptchaResponse');
-            recaptchaResponse.value = token;
-        });
-    });
-</script>
 
 
 
@@ -153,8 +144,7 @@
 
 
 
-
-<section class="contact__form" >
+<section class="contact__form">
     <div class="card--form">
         <h3 class="title text-center">@lang('locale.enviar')</h3>
         <form action="{{ route('contact.send') }}" method="POST">
@@ -162,8 +152,7 @@
             <div class="form-group">
                 <label for="name">@lang('locale.nombre')</label>
                 <div class="input__wrap input--green">
-                    <input class="input" id="name" type="text" name="name" maxlength="255" required
-                        placeholder="@lang('locale.nombreComp')">
+                    <input class="input" id="name" type="text" name="name" maxlength="255" required placeholder="@lang('locale.nombreComp')">
                 </div>
             </div>
             <div class="form-group">
@@ -182,23 +171,48 @@
             <div class="form-group">
                 <label for="email">@lang('locale.EnviarCorreo')</label>
                 <div class="input__wrap input--green">
-                    <input class="input" id="email" type="email" name="email" maxlength="255" required
-                        placeholder="@lang('locale.ingresecorreo')">
+                    <input class="input" id="email" type="email" name="email" maxlength="255" required placeholder="@lang('locale.ingresecorreo')">
                 </div>
             </div>
             <div class="form-group">
                 <label for="message">@lang('locale.mensaje')</label>
                 <div class="input__wrap input--green">
-                    <textarea class="input" required id="message" name="message" rows="3"
-                        placeholder="@lang('locale.ingreseMensaje')" maxlength="5000"></textarea>
+                    <textarea class="input" required id="message" name="message" rows="3" placeholder="@lang('locale.ingreseMensaje')" maxlength="5000"></textarea>
                 </div>
             </div>
+         
             <button class="btn btn--green" type="submit">@lang('locale.env')</button>
-            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
         </form>
     </div>
 </section>
 
 
-</div>
+
+<script src="https://www.google.com/recaptcha/api.js?render={{ env('RECAPTCHA_SITE_KEY') }}"></script>
+
+<script>
+    document.addEventListener('submit', function(e){
+        e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute('{{ env('RECAPTCHA_SITE_KEY') }}', {action: 'submit'}).then(function(token) {
+
+            let form = e.target;
+
+            let input = document.createElement('input');
+            input.type = "hidden";
+            input.name = 'g-recaptcha-response';
+            input.value = token;
+
+            form.appendChild(input);
+
+            form.submit();
+              
+          });
+        });
+
+    })
+</script>
+
+
+
 @include('widgets.footer')
