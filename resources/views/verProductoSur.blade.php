@@ -11,16 +11,16 @@
             <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
             <ul class="share--links">
                 <li><a class="share--link" target="_blank"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/producto/lim%C3%B3n/argentina"><img
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/producto/"><img
                             src="/img/fb-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://wa.me/?text=https://www.mioa.org/es/producto/lim%C3%B3n/argentina"><img
+                        href="https://wa.me/?text=https://www.mioa.org/es/producto/"><img
                             src="/img/wa-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://twitter.com/home?status=https://www.mioa.org/es/producto/lim%C3%B3n/argentina "><img
+                        href="https://twitter.com/home?status=https://www.mioa.org/es/producto/"><img
                             src="/img/tw-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/producto/lim%C3%B3n/argentina&title=&summary=&source="><img
+                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/producto/"><img
                             src="/img/li-icon.svg"></a></li>
             </ul>
         </div>
@@ -67,28 +67,7 @@
 
             </div>
         </div>
-        <!-- <div class="card--md-only col-md-12">
-            <div class="selectors__container" style="text-align:-webkit-center">
-                <div class="selectors">
-                    <div class="select--wrapper">
-                        <select class="select" name="region" id="region-validate">
-                            <option value="">Región</option>
-                            <option value="1">Región Central</option>
-                            <option selected value="5">Región Cono Sur</option>
-                        </select>
-                    </div>
-                    <div class="select--wrapper">
-                        <select class="select selected-country" name="country" id="country">
-                            <option value="">País</option>
-                            <option selected value="argentina">Argentina</option>
-                            <option value="chile">Chile</option>
-                            <option value="paraguay">Paraguay</option>
-                            <option value="uruguay">Uruguay</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+
     </div>
 
 
@@ -205,10 +184,11 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+            @if(!empty($graphic))
+            <div class="col-12">
                     <div class="card--md-only">
                         <h3 class="title title--sideline title--underline-md">@lang('locale.estacionalidad')</h3>
-                        @if(!empty($graphic))
+                      
                         <div class="x-scroll__container">
                             <div class="chart--container">
                                 <div id="graphicConti"></div>
@@ -216,12 +196,12 @@
                         </div>
                         <p>Fuente: {{$graphic->font}}</p>
                         <p>Años: {{$graphic->font_years}}</p>
-                        @else
-                        <p>@lang('locale.noDatos')</p>
-                        @endif
+                       
+                      
                     </div>
                 </div>
             </div>
+            @endif
 
 
 
@@ -243,7 +223,7 @@
 
                 Highcharts.chart('graphicConti', {
                     chart: {
-                        type: 'line'
+                        type: 'column'
                     },
                     title: {
                         text: ''
@@ -309,16 +289,16 @@
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
                 <ul class="share--links">
                     <li><a class="share--link" target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/producto/lim%C3%B3n/argentina"><img
+                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/"><img
                                 src="/img/fb-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://wa.me/?text=https://www.mioa.org/es/producto/lim%C3%B3n/argentina"><img
+                            href="https://wa.me/?text=https://www.mioa.org/es/"><img
                                 src="/img/wa-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://twitter.com/home?status=https://www.mioa.org/es/producto/lim%C3%B3n/argentina "><img
+                            href="https://twitter.com/home?status=https://www.mioa.org/es/"><img
                                 src="/img/tw-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/producto/lim%C3%B3n/argentina&title=&summary=&source="><img
+                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/"><img
                                 src="/img/li-icon.svg"></a></li>
                 </ul>
             </div>

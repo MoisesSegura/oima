@@ -4,22 +4,22 @@
 <div class="content">
     <div class="d-flex justify-content-between">
         <div class="backbot">
-            <a href="/en/catalogo" class="backbot--link"><i class="mdi mdi-chevron-left"></i> Back</a>
+            <a href="javascript:history.back()" class="backbot--link"><i class="mdi mdi-chevron-left"></i> @lang('locale.volver') </a>
         </div>
         <div class="sharebot ">
             <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
             <ul class="share--links">
                 <li><a class="share--link" target="_blank"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/en"><img
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es"><img
                             src="/img/fb-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://wa.me/?text=https://www.mioa.org/en/"><img
+                        href="https://wa.me/?text=https://www.mioa.org/es/"><img
                             src="/img/wa-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://twitter.com/home?status=https://www.mioa.org/en/"><img
+                        href="https://twitter.com/home?status=https://www.mioa.org/es/"><img
                             src="/img/tw-icon.svg"></a></li>
                 <li><a class="share--link" target="_blank"
-                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/en/"><img
+                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/"><img
                             src="/img/li-icon.svg"></a></li>
             </ul>
         </div>
@@ -66,29 +66,6 @@
         </div>
     </div>
 
-    <!-- <div class="d-md-flex justify-content-md-around align-items-md-end m-1 mt-5 m-md-4">
-        <div class="search--container">
-            <div class="selectors__container">
-                <div class="selectors">
-                    <div class="select--wrapper">
-                        <select class="select" name="region" id="region-validate">
-                            <option value="">Region</option>
-                            <option selected value="2">Northern Region</option>
-                            <option value="5">Southern Cone Region</option>
-                        </select>
-                    </div>
-                    <div class="select--wrapper">
-                        <select class="select selected-country" name="country" id="country">
-                            <option value="">Country</option>
-                            <option selected value="canadaa">Canada</option>
-                            <option value="estados-unidos">United States</option>
-                            <option value="maaxico">Mexico</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 
     <div class="product__content">
@@ -154,11 +131,13 @@
                             <h4 class="title">@lang('locale.unidad') <i class="fa fa-map-marker"> </i> </h4>
                         </div>
                         <div class="card no-border-md card--full" style="background-color:#F3F3F3">
-                            <!-- <p><img alt=""
-                                    src="/uploads/products/galleries/6d788890b631fbd7cd200a829151391e9b36e1c5.png"
+                            <!-- <p><img src="{{ asset(trim('/uploads/' . $product->national_production, '/')) }}" alt=""
                                     style="height:585px; width:750px" /></p> -->
 
+                                    <!-- <img src="{{ asset(trim('/uploads/' . $product->national_production, '/')) }}" alt=""
+                                    class="card--product__img">   -->
                             <p> {!! $product->national_production !!}  </p>
+                           
                         </div>
                     </div>
                 </div>
@@ -191,7 +170,81 @@
             </div>
 
             <div class="row">
+
+            @if(!empty($graphic))
+            <div class="col-12">
+                    <div class="card--md-only">
+                        <h3 class="title title--sideline title--underline-md">@lang('locale.estacionalidad')</h3>
+                      
+                        <div class="x-scroll__container">
+                            <div class="chart--container">
+                                <div id="graphicConti"></div>
+                            </div>
+                        </div>
+                        <p>Fuente: {{$graphic->font}}</p>
+                        <p>Años: {{$graphic->font_years}}</p>
+                       
+                      
+                    </div>
+                </div>
             </div>
+            @endif
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+
+
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/series-label.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+            <script>
+
+
+                Highcharts.chart('graphicConti', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ['@lang('locale.enero')', '@lang('locale.febrero')', '@lang('locale.marzo')', '@lang('locale.abril')', '@lang('locale.mayo')',
+                            '@lang('locale.junio')', '@lang('locale.julio')', '@lang('locale.agosto')', '@lang('locale.septiembre')', '@lang('locale.octubre')',
+                            '@lang('locale.noviembre')', '@lang('locale.diciembre')']
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: false
+                            },
+                            enableMouseTracking: true
+                        }
+
+                    },
+
+                    series: [{
+                        name: '',
+
+                        data: <?= $data ?>
+  }]
+                });
+            </script>
+            </div>
+
+            
 
             <div class="row">
             </div>
@@ -218,16 +271,16 @@
                 <p class="sharebot--link"><i class="mdi mdi-share-variant"></i> Compartir</p>
                 <ul class="share--links">
                     <li><a class="share--link" target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/en/"><img
+                            href="https://www.facebook.com/sharer/sharer.php?u=https://www.mioa.org/es/"><img
                                 src="/img/fb-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://wa.me/?text=https://www.mioa.org/en/"><img
+                            href="https://wa.me/?text=https://www.mioa.org/es/"><img
                                 src="/img/wa-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://twitter.com/home?status=https://www.mioa.org/en/"><img
+                            href="https://twitter.com/home?status=https://www.mioa.org/es/"><img
                                 src="/img/tw-icon.svg"></a></li>
                     <li><a class="share--link" target="_blank"
-                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/en/"><img
+                            href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.mioa.org/es/"><img
                                 src="/img/li-icon.svg"></a></li>
                 </ul>
             </div>

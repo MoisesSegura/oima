@@ -11,6 +11,7 @@ use App\Models\Region;
 use App\Models\ProductDetail;
 use App\Models\Category;
 use App\Models\ProductGraphic;
+use App\Models\OfferCalendar;
 use App\Models\Extra;
 use App\Models\ProductDetailGraphicValue;
 use Illuminate\Support\Facades\DB;
@@ -259,38 +260,37 @@ class CatalogController extends Controller
         $knownNames = $this->getCountryProducts($product->product_id);
     
         $graphic = ProductGraphic::where('product_detail_id', $product->id)->first();
-
-
+        $offer = OfferCalendar::where('id', $product->offer_calendar_id)->first();
+    
+        $data = json_encode([]);
+    
         if ($graphic) {
- 
             $values = $graphic->values;
-    
             $puntos = [];
-    
             foreach ($values as $value) {
                 $puntos[] = ['name' => $value->month, 'y' => floatval($value->value)];
             }
-    
             $data = json_encode($puntos);
-        } else {
- 
-            $data = json_encode([]);
+        } elseif ($offer) {
+            $values = $offer->values;
+            $puntos = [];
+            foreach ($values as $value) {
+                $puntos[] = ['name' => $value->month, 'y' => floatval($value->value)];
+            }
+            $data = json_encode($puntos);
         }
-
+    
         $regions = $this->getRegions();
-    
-        $region = $product->country->region; 
-    
+        $region = $product->country->region;
         $countriesWithRegions = $this->getCountriesWithRegions($product);
     
-        // Verificar el valor del campo 'slug' de la región
         switch ($region->slug) {
             case 'norte':
-                return $this->showNorteView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+                return $this->showNorteView($product, $knownNames, $graphic, $data, $countriesWithRegions, $regions);
             case 'sur':
-                return $this->showSurView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+                return $this->showSurView($product, $knownNames, $graphic ?: $offer, $data, $countriesWithRegions, $regions);
             default:
-                return $this->showDefaultView($product, $knownNames, $graphic, $data, $countriesWithRegions,$regions);
+                return $this->showDefaultView($product, $knownNames, $graphic, $data, $countriesWithRegions, $regions);
         }
     }
     

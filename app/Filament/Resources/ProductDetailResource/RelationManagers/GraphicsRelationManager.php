@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 use Filament\Forms\Components\Tabs;
 use Filament\Resources\Pages\ListRecords\Tab;
+use Filament\Forms\Components\Section;
 use App\Filament\Traits\Translatable;
 use App\Models\ProductDetail;
 use App\Models\ProductGraphic;
@@ -30,7 +31,12 @@ class GraphicsRelationManager extends RelationManager
     public function form(Form $form): Form
     {
         return $form
-        ->schema([             
+        ->schema([      
+        
+            
+
+            Section::make('Los valores del gráfico están disponibles en la pestaña Product Graphics. Es necesario completar los siguientes campos antes de continuar.')
+            ->schema([
             Tabs::make('lang form') 
             ->tabs([
                 Tabs\Tab::make('En') 
@@ -68,6 +74,7 @@ class GraphicsRelationManager extends RelationManager
             Forms\Components\TextInput::make('font_years')->label('Years Range')
             ->maxLength(255),
 
+            ])
 
         ])->Columns('full');
     }

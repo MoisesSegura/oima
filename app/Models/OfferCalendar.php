@@ -21,4 +21,9 @@ class OfferCalendar extends Model  implements TranslatableContract
     {
         return $this->belongsTo(ProductDetail::class);
     }
+
+    public function values()
+    {
+        return $this->hasMany(OfferCalendarValue::class, 'product_detail_offer_calendar_id');
+    }
 }

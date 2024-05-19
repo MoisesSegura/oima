@@ -67,7 +67,6 @@ class SimaMediaResource extends Resource
             ->image()
             ->disk('public')
             ->directory('uploads/simaMedia'),
-            Forms\Components\Toggle::make('delete_image'),
             Forms\Components\TextInput::make('year')
             ->required()
             ->numeric(),
