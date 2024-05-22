@@ -194,7 +194,9 @@ class ProductDetailResource extends Resource
                                         Tabs\Tab::make('Es')
                                             ->schema([
                                                 Forms\Components\RichEditor::make('es.characteristics')->label('Características del Producto'), //
-                                                Forms\Components\RichEditor::make('es.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('es.national_production')->label('procedencia / origen') //procedencia origen
+                                                ->fileAttachmentsDisk('public')
+                                                ->fileAttachmentsDirectory('uploads/products/galleries'),
                                                 Forms\Components\RichEditor::make('es.commercialization')->label('comercializacion en mercado interno'),
                                                 Forms\Components\RichEditor::make('es.varieties')->label('Principales variedades'), //
                                                 Forms\Components\RichEditor::make('es.salesunit')->label('Unidad de venta'), // 
@@ -207,7 +209,9 @@ class ProductDetailResource extends Resource
                                         Tabs\Tab::make('En')
                                             ->schema([
                                                 Forms\Components\RichEditor::make('en.characteristics')->label('Características del Producto'), //
-                                                Forms\Components\RichEditor::make('en.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('en.national_production')->label('procedencia / origen') //procedencia origen
+                                                ->fileAttachmentsDisk('public')
+                                                ->fileAttachmentsDirectory('uploads/products/galleries'),
                                                 Forms\Components\RichEditor::make('en.commercialization')->label('comercializacion en mercado interno'),
                                                 Forms\Components\RichEditor::make('en.varieties')->label('Principales variedades'), //
                                                 Forms\Components\RichEditor::make('en.salesunit')->label('Unidad de venta'), // 
@@ -220,7 +224,9 @@ class ProductDetailResource extends Resource
                                         Tabs\Tab::make('Pt')
                                             ->schema([
                                                 Forms\Components\RichEditor::make('pt.characteristics')->label('Características del Producto'), //
-                                                Forms\Components\RichEditor::make('pt.national_production')->label('procedencia / origen'), //procedencia origen
+                                                Forms\Components\RichEditor::make('pt.national_production')->label('procedencia / origen') //procedencia origen
+                                                ->fileAttachmentsDisk('public')
+                                                ->fileAttachmentsDirectory('uploads/products/galleries'),
                                                 Forms\Components\RichEditor::make('pt.commercialization')->label('comercializacion en mercado interno'),
                                                 Forms\Components\RichEditor::make('pt.varieties')->label('Principales variedades'), //
                                                 Forms\Components\RichEditor::make('pt.salesunit')->label('Unidad de venta'), // 

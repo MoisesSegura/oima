@@ -128,15 +128,28 @@
                 <div class="row">
                     <div class="col-md-12" style="padding:20px">
                         <div class="col-md-12" style="border-bottom:6px solid #878484!important">
-                            <h4 class="title">@lang('locale.unidad') <i class="fa fa-map-marker"> </i> </h4>
+                            <h4 class="title">@lang('locale.procedencia') <i class="fa fa-map-marker"> </i> </h4>
                         </div>
                         <div class="card no-border-md card--full" style="background-color:#F3F3F3">
-                            <!-- <p><img src="{{ asset(trim('/uploads/' . $product->national_production, '/')) }}" alt=""
-                                    style="height:585px; width:750px" /></p> -->
+                         
+@php
+   
+    $content = $product->national_production;
 
-                                    <!-- <img src="{{ asset(trim('/uploads/' . $product->national_production, '/')) }}" alt=""
-                                    class="card--product__img">   -->
-                            <p> {!! $product->national_production !!}  </p>
+   
+    $pattern = '/src="http:\/\/localhost(\/uploads\/[^"]*)"/';
+    $replacement = 'src="$1"';
+    $modifiedContent = preg_replace($pattern, $replacement, $content);
+
+    
+    if (strpos($modifiedContent, '/uploads/uploads/') === false) {
+        $modifiedContent = str_replace('/uploads', '/uploads/uploads', $modifiedContent);
+    }
+@endphp
+
+<p>{!! $modifiedContent !!}</p>
+
+
                            
                         </div>
                     </div>

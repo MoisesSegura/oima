@@ -156,12 +156,7 @@
                         </a>
                     </li>
                     @endforeach
-                    @else
-                    <li class="region-{{ $country->region->id }}">
-                        <span class="flag flag--{{ strtolower($country->flag->iso) }}"></span>
-                        <span>{{ $country->flag->name }}</span>
-
-                    </li>
+                    
                     @endif
                     @endforeach
                 </ul>
